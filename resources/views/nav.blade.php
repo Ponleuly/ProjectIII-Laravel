@@ -15,7 +15,7 @@
                             <a class="nav-link" href="{{url('shop')}}">Shop</a>
                         </li>
 						<li class="nav-item {{Request::is('about')? 'active':''}}">
-                            <a class="nav-link" href="{{url('about')}}">About us</a>
+                            <a class="nav-link" href="{{url('about')}}">Categories</a>
                         </li>
 						<li class="nav-item {{Request::is('services')? 'active':''}}">
                             <a class="nav-link" href="{{url('services')}}">Services</a>
@@ -29,9 +29,15 @@
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="#"><img src="frontend/images/user.svg"></a></li>
 						<li>
-                            <a class="nav-link" href="{{url('cart')}}"><img src="frontend/images/cart.svg"></a>
+							<a class="nav-link" href="#">
+								<span class="material-icons-round">person</span>
+							</a>
+						</li>
+						<li>
+                            <a class="nav-link" href="{{url('cart')}}">
+								<span class="material-icons-outlined">shopping_cart</span>
+							</a>
                         </li>
 					</ul>
 				</div>

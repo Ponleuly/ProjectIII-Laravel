@@ -7,8 +7,11 @@
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
 								<h1>High Quality <span clsas="d-block">music instruments</span></h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+								<p class="mb-4">Discover the latest musical instruments online. Shop for a wide range of guitars, drums, pianos, live sound & recording gear here...</p>
+								<p>
+									<a href="{{url('shop')}}" class="btn btn-secondary me-2">Shop Now</a>
+									<a href="#" class="btn btn-white-outline">Explore</a>
+								</p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -80,8 +83,9 @@
 			</div>
 		</div>
 		<!-- End Product Section -->
-
+		
 		<!-- Start Why Choose Us Section -->
+		<!--
 		<div class="why-choose-section">
 			<div class="container">
 				<div class="row justify-content-between">
@@ -142,9 +146,11 @@
 				</div>
 			</div>
 		</div>
+		-->
 		<!-- End Why Choose Us Section -->
-
+		
 		<!-- Start We Help Section -->
+		<!--
 		<div class="we-help-section">
 			<div class="container">
 				<div class="row justify-content-between">
@@ -170,6 +176,7 @@
 				</div>
 			</div>
 		</div>
+		-->
 		<!-- End We Help Section -->
 
 		<!-- Start Popular Product -->
@@ -318,8 +325,9 @@
 			</div>
 		</div>
 		<!-- End Testimonial Slider -->
-
+		
 		<!-- Start Blog Section -->
+		<!--
 		<div class="blog-section">
 			<div class="container">
 				<div class="row mb-5">
@@ -372,5 +380,6 @@
 				</div>
 			</div>
 		</div>
+		-->
 		<!-- End Blog Section -->
 @endsection()
