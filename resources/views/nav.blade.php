@@ -1,6 +1,6 @@
         <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 			<div class="container">
-				<a class="navbar-brand" href="{{url('home')}}">Lambada<span>.</span></a>
+				<a class="navbar-brand" href="{{url('home')}}">MotBuoc<span>.</span></a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -8,23 +8,20 @@
 
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item {{Request::is('home')? 'active':''}}">
-							<a class="nav-link" href="{{url('home')}}">Home</a>
-						</li>
 						<li class="nav-item {{Request::is('shop')? 'active':''}}">
-                            <a class="nav-link" href="{{url('shop')}}">Shop</a>
-                        </li>
-						<li class="nav-item {{Request::is('about')? 'active':''}}">
-                            <a class="nav-link" href="{{url('about')}}">Categories</a>
+                            <a class="nav-link" href="{{url('shop')}}">SẢN PHẨM</a>
                         </li>
 						<li class="nav-item {{Request::is('services')? 'active':''}}">
-                            <a class="nav-link" href="{{url('services')}}">Services</a>
+                            <a class="nav-link" href="{{url('services')}}">NAM</a>
                         </li>
 						<li class="nav-item {{Request::is('blog')? 'active':''}}">
-                            <a class="nav-link" href="{{url('blog')}}">Blog</a>
+                            <a class="nav-link" href="{{url('blog')}}">NỮ</a>
+                        </li>
+						<li class="nav-item {{Request::is('about')? 'active':''}}">
+                            <a class="nav-link" href="{{url('about')}}">DANH MỤC</a>
                         </li>
 						<li class="nav-item {{Request::is('contact')? 'active':''}}">
-                            <a class="nav-link" href="{{url('contact')}}">Contact us</a>
+                            <a class="nav-link" href="{{url('contact')}}">LIÊN HỆ</a>
                         </li>
 					</ul>
 
