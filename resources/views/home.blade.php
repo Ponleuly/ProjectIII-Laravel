@@ -8,7 +8,7 @@
 							<div class="intro-excerpt">
 								<h1>Đôi giày vừa <span clsas="d-block">đẹp vừa dễ dàng</span></h1>
 								<p class="mb-4">Mang cho bạn những đôi giày mới nhất và đẹp nhất. 
-									Danh cho tuổi trẻ có đam mê với phong cách hiện đại và đa dạng</p>
+									Danh đặc biệt cho tuổi trẻ có đam mê với phong cách hiện đại và đa dạng.</p>
 								<p>
 									<a href="{{url('shop')}}" class="btn btn-secondary me-2">Shop Now</a>
 									<a href="#" class="btn btn-white-outline">Tìm hiểu thêm</a>
@@ -17,7 +17,7 @@
 						</div>
 						<div class="col-lg-7">
 							<div class="hero-img-wrap">
-								<img src="frontend/images/sneaker_banner.png" class="img-fluid">
+								<img src="frontend/images/sneaker.png" class="img-fluid">
 							</div>
 						</div>
 					</div>
@@ -40,7 +40,6 @@
 				</div>
 
 				<div class="row">
-
 					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 						<div class="post-entry">
 							<a href="#" class="post-thumbnail"><img src="frontend/images/Menu_nam.jpg" alt="Image" class="img-fluid"></a>
@@ -114,8 +113,8 @@
 					<!-- Start Column 3 -->
 					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
 						<a class="product-item" href="{{url('cart')}}">
-							<img src="frontend/images/Giay_2.jpeg" class="img-fluid product-thumbnail">
-							<h3 class="product-title">Ananas Sneaker</h3>
+							<img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
+							<h3 class="product-title">Vanss Sneaker</h3>
 							<strong class="product-price">$78.00</strong>
 
 							<span class="icon-cross">
@@ -309,25 +308,20 @@
 							</div>
 
 							<div class="testimonial-slider">
-								
 								<div class="item">
 									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
-
+										<div class="col-lg-5 mx-auto">
 											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
-
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
+												<blockquote class="mb-5">
+													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
+												</blockquote>
 											</div>
-
 										</div>
 									</div>
 								</div> 
@@ -335,22 +329,18 @@
 
 								<div class="item">
 									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
-
+										<div class="col-lg-5 mx-auto">
 											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
-
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
+												<blockquote class="mb-5">
+													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
+												</blockquote>
 											</div>
-
 										</div>
 									</div>
 								</div> 
@@ -358,27 +348,22 @@
 
 								<div class="item">
 									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
-
+										<div class="col-lg-5 mx-auto">
 											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
-
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
+												<blockquote class="mb-5">
+													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
+												</blockquote>
 											</div>
-
 										</div>
 									</div>
 								</div> 
 								<!-- END item -->
-
 							</div>
 
 						</div>

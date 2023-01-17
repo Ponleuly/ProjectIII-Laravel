@@ -17,26 +17,31 @@
 						<li class="nav-item {{Request::is('blog')? 'active':''}}">
                             <a class="nav-link" href="{{url('blog')}}">NỮ</a>
                         </li>
+						<!--
 						<li class="nav-item {{Request::is('about')? 'active':''}}">
                             <a class="nav-link" href="{{url('about')}}">DANH MỤC</a>
                         </li>
 						<li class="nav-item {{Request::is('contact')? 'active':''}}">
                             <a class="nav-link" href="{{url('contact')}}">LIÊN HỆ</a>
                         </li>
+					-->
 					</ul>
-
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li>
-							<a class="nav-link" href="#">
-								<span class="material-icons-round">person</span>
+					
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5 me-4">
+						<li class="nav-item">
+							<a class="nav-link" href="{{url('profile')}}">
+								<span class="material-icons-round {{Request::is('profile')? 'active':''}}">person</span>
 							</a>
 						</li>
-						<li>
+						<li class="nav-item">
                             <a class="nav-link" href="{{url('cart')}}">
-								<span class="material-icons-outlined">shopping_cart</span>
+								<span class="material-icons-outlined {{Request::is('cart')? 'active':''}}">shopping_cart</span>
 							</a>
                         </li>
 					</ul>
+					<form class="form-inline my-0 my-lg-0 ms-4">
+						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					</form>
 				</div>
 			</div>
 		</nav>
