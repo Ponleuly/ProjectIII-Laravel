@@ -27,20 +27,20 @@
 					-->
 					</ul>
 					
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5 me-4">
-						<li class="nav-item">
-							<a class="nav-link" href="{{url('profile')}}">
-								<span class="material-icons-round {{Request::is('profile')? 'active':''}}">person</span>
-							</a>
-						</li>
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-4 me-4">
 						<li class="nav-item">
                             <a class="nav-link" href="{{url('cart')}}">
 								<span class="material-icons-outlined {{Request::is('cart')? 'active':''}}">shopping_cart</span>
 							</a>
                         </li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{url('profile')}}">
+								<span class="material-icons-round {{Request::is('profile')? 'active':''}}">person</span>
+							</a>
+						</li>
 					</ul>
-					<form class="form-inline my-0 my-lg-0 ms-4">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<form class="d-flex col-lg-3">
+						<input class="form-control ds-input me-2 ms-2" type="search" placeholder="Search here..." aria-label="Search">
 					</form>
 				</div>
 			</div>

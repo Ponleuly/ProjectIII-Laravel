@@ -13,7 +13,7 @@
 									<input type="email" class="form-control" placeholder="Enter your email">
 								</div>
 								<div class="col-auto">
-									<button class="btn btn-primary">
+									<button class="btn btn-primary px-4 rounded">
 										<span class="fa fa-paper-plane"></span>
 									</button>
 								</div>
