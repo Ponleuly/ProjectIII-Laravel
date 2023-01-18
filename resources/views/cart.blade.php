@@ -1,7 +1,7 @@
 @extends('index')
 @section('content') 
 <!-- Start Hero Section -->
-			<div class="hero ms-0">
+			<div class="hero">
 				<div class="container">
 					<div class="row justify-content-between">
             <div class="col-md-6 mx-auto text-center"> 
@@ -22,7 +22,7 @@
                           <th class="product-thumbnail">Image</th>
                           <th class="product-name">Product</th>
                           <th class="product-price">Price</th>
-                          <th class="product-quantity">Quantity</th>
+                          <th class="product-quantity" style="width: 160px">Quantity</th>
                           <th class="product-total">Total</th>
                           <th class="product-remove">Remove</th>
                         </tr>
@@ -30,14 +30,14 @@
                       <tbody>
                         <tr>
                           <td class="product-thumbnail">
-                            <img src="frontend/images/product-1.png" alt="Image" class="img-fluid">
+                            <img src="frontend/images/Giay_1.jpeg" alt="Image" class="img-fluid">
                           </td>
                           <td class="product-name">
                             <h2 class="h5 text-black">Product 1</h2>
                           </td>
                           <td>$49.00</td>
                           <td>
-                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                            <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">
                                 <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                               </div>
@@ -46,7 +46,6 @@
                                 <button class="btn btn-outline-black increase" type="button">&plus;</button>
                               </div>
                             </div>
-        
                           </td>
                           <td>$49.00</td>
                           <td><a href="#" class="btn btn-black btn-sm">X</a></td>
@@ -54,14 +53,14 @@
         
                         <tr>
                           <td class="product-thumbnail">
-                            <img src="frontend/images/product-2.png" alt="Image" class="img-fluid">
+                            <img src="frontend/images/Giay_3.jpeg" alt="Image" class="img-fluid">
                           </td>
                           <td class="product-name">
                             <h2 class="h5 text-black">Product 2</h2>
                           </td>
                           <td>$49.00</td>
                           <td>
-                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                            <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">
                                 <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                               </div>
@@ -85,22 +84,21 @@
                 <div class="col-md-6">
                   <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                      <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                      <button class="btn btn-black btn-sm btn-block rounded-pill px-4 py-2 fw-semibold">XÓA HẾT</button>
                     </div>
                     <div class="col-md-6">
-                      <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                      <button class="btn btn-outline-black btn-sm btn-block rounded-pill px-4 py-2 fw-semibold">QUAY LẠI MUA HÀNG</button>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-black h4" for="coupon">Coupon</label>
-                      <p>Enter your coupon code if you have one.</p>
+                      <label class="text-black h4" for="coupon">NHẬP MÃ KHUYẾN MÃI</label>
                     </div>
                     <div class="col-md-8 mb-3 mb-md-0">
-                      <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                      <input type="text" class="form-control py-3" id="coupon" placeholder="Nhập Mã">
                     </div>
                     <div class="col-md-4">
-                      <button class="btn btn-black">Apply Coupon</button>
+                      <button class="btn btn-black py-3 px-4 rounded-pill fw-semibold">ÁP DỤNG</button>
                     </div>
                   </div>
                 </div>
@@ -109,30 +107,30 @@
                     <div class="col-md-7">
                       <div class="row">
                         <div class="col-md-12 text-right border-bottom mb-5">
-                          <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                          <h3 class="text-black h4 text-uppercase">TỔNG TIỀN TẠM TÍNH</h3>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-md-6">
-                          <span class="text-black">Subtotal</span>
+                          <span class="text-black">Giảm</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">$230.00</strong>
+                          <strong class="text-black">100.000 VND</strong>
                         </div>
                       </div>
                       <div class="row mb-5">
                         <div class="col-md-6">
-                          <span class="text-black">Total</span>
+                          <span class="text-black">Tổng đơn hàng</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">$230.00</strong>
+                          <strong class="text-black">500.000 VND</strong>
                         </div>
                       </div>
         
                       <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-black btn-lg py-3 btn-block" onclick="location.href='{{ url('checkout') }}'">
-                                Proceed To Checkout
+                            <button class="btn btn-black btn-lg btn-block py-3 px-4 rounded-pill fw-semibold" onclick="location.href='{{ url('checkout') }}'">
+                                TIẾP TỤC THANH TOÁN
                             </button>
                         </div>
                       </div>
