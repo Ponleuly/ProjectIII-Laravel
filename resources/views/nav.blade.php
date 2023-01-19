@@ -40,7 +40,7 @@
 						</li>
 					</ul>
 					<form class="d-flex col-lg-3">
-						<input class="form-control ds-input me-2 ms-2" type="search" placeholder="Search here..." aria-label="Search">
+						<input class="form-control ds-input me-2 ms-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
 					</form>
 				</div>
 			</div>

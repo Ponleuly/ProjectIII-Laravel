@@ -92,29 +92,29 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-black h4" for="coupon">NHẬP MÃ KHUYẾN MÃI</label>
-                    </div>
-                    <div class="col-md-8 mb-3 mb-md-0">
-                      <input type="text" class="form-control py-3" id="coupon" placeholder="nhập mã">
-                    </div>
-                    <div class="col-md-4">
-                      <button class="btn btn-black py-3 px-4 rounded-pill fw-semibold">ÁP DỤNG</button>
+                      <h2 class="h4 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
+                      <div class="d-grid col-md-8">
+                        <div class="input-group mb-5">
+                          <input type="text" class="form-control py-2" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
+                          <button class="btn btn-outline-secondary px-3 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 pl-5">
+                <div class="col-md-6 pl-5 ">
                   <div class="row justify-content-end">
                     <div class="col-md-7">
                       <div class="row">
                         <div class="col-md-12 text-right border-bottom mb-5">
-                          <h3 class="text-black h4 text-uppercase">TỔNG TIỀN TẠM TÍNH</h3>
+                          <h3 class="text-black h4 text-center">TỔNG TIỀN TẠM TÍNH</h3>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <span class="text-black">Giảm</span>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-md-6 text-end">
                           <strong class="text-black">100.000 VND</strong>
                         </div>
                       </div>
@@ -122,14 +122,14 @@
                         <div class="col-md-6">
                           <span class="text-black">Tổng đơn hàng</span>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-md-6 text-end">
                           <strong class="text-black">500.000 VND</strong>
                         </div>
                       </div>
         
-                      <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-black btn-lg btn-block py-3 px-4 rounded-pill fw-semibold" onclick="location.href='{{ url('checkout') }}'">
+                      <div class="row text-center">
+                        <div class="d-grid">
+                            <button class="btn btn-block py-3 px-4 fw-semibold" onclick="location.href='{{ url('checkout') }}'">
                                 TIẾP TỤC THANH TOÁN
                             </button>
                         </div>

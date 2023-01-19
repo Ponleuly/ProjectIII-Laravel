@@ -213,14 +213,14 @@
 
 		          <div class="row mb-5">
 		            <div class="col-md-12">
-		              <h2 class="h3 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
-		              <div class="p-3 p-lg-5 border bg-white">
-		                <div class="input-group w-85">
-							<input type="text" class="form-control py-3" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
-							<button class="btn btn-outline-secondary px-4 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
-		                </div>
-		              </div>
-		            </div>
+						<h2 class="h3 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
+						<div class="p-3 p-lg-5 border bg-white">
+						  <div class="input-group w-85">
+							  <input type="text" class="form-control py-2" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
+							  <button class="btn btn-outline-secondary px-3 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
+						  </div>
+						</div>
+					  </div>
 		          </div>
 
 		          <div class="row mb-5">
@@ -230,95 +230,80 @@
 		                <table class="table site-block-order-table mb-5">
 		                  <thead>
 		                    <th>Đơn hàng</th>
-		                    <th>Tổng tiền</th>
+		                    <th class="text-end">Tổng tiền</th>
 		                  </thead>
 		                  <tbody>
 		                    <tr>
 		                      <td class="border-bottom-0">Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-		                      <td class="text-end border-bottom-0">400.000</td>
-							  <td class="border-bottom-0">VND</td>
+		                      <td class="text-end border-bottom-0">400.000 VND</td>
 		                    </tr>
 		                    <tr>
 		                      <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-		                      <td class="text-end">400.000</td>
-							  <td>VND</td>
-
+		                      <td class="text-end">400.000 VND</td>
 		                    </tr>
 		                    <tr>
 		                      <td class="text-black font-weight-bold border-bottom-0"><strong>Đơn hàng</strong></td>
-		                      <td class="text-black text-end border-bottom-0"><strong>800.000</strong></td>
-							  <td class="border-bottom-0"><strong>VND</strong></td>
+		                      <td class="text-black text-end border-bottom-0"><strong>800.000 VND</strong></td>
 		                    </tr>
 		                    <tr>
 		                      <td class="text-black font-weight-bold border-bottom-0"><strong>Giảm</strong></td>
-		                      <td class="text-black text-end font-weight-bold border-bottom-0"><strong>100.000</strong></td>
-							  <td class="border-bottom-0"><strong>VND</strong></td>
+		                      <td class="text-black text-end font-weight-bold border-bottom-0"><strong>100.000 VND</strong></td>
 							</tr>
 							<tr>
 								<td class="text-black font-weight-bold"><strong>Phí vận chuyển</strong></td>
-								<td class="text-black text-end font-weight-bold"><strong>0</strong></td>
-								<td><strong>VND</strong></td>
+								<td class="text-black text-end font-weight-bold"><strong>0 VND</strong></td>
 							</tr>
 							<tr>
 								<td class="text-black h6 fw-bold border-bottom-0"><strong>TỔNG CỘNG</strong></td>
-								<td class="text-danger text-end h6 fw-bold border-bottom-0"><strong>700.000</strong></td>
-								<td class="text-danger h6 fw-bold border-bottom-0"><strong>VND</strong></td>
+								<td class="text-danger text-end h6 fw-bold border-bottom-0"><strong>700.000 VND</strong></td>
 							</tr>
 		                  </tbody>
 		                </table>
 
 		                <div class="border p-3 mb-3">
-		                  	<h3 class="h6 mb-0">
-								<a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">
-									Thanh toán trực tiếp khi giao hàng
-								</a>
-								
-							</h3>
-							
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+							<div class="form-check ">
+								<input class="form-check-input big-radio me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
 								<label class="form-check-label" for="flexRadioDefault1">
 									<h3 class="h6 mb-0">
 										<a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">
 											Thanh toán trực tiếp khi giao hàng
 										</a>
-										
 									</h3>
 								</label>
-							  </div>
-							  <div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-								<label class="form-check-label" for="flexRadioDefault2">
-								  Default checked radio
-								</label>
-							  </div>
-							  
+							</div>
 		                  <div class="collapse" id="collapsebank">
 		                    <div class="py-2">
-		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+		                      <p class="mb-0">Thanh toán khi nhận được hàng.</p>
 		                    </div>
 		                  </div>
 		                </div>
 
 		                <div class="border p-3 mb-3">
-							<h3 class="h6 mb-0">
-								<a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">
-									Thanh toán bằng chuyển khoản ngân hàng
-								</a>
-							</h3>
-
+							<div class="form-check">
+								<input class="form-check-input big-radio me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+								<label class="form-check-label" for="flexRadioDefault2">
+									<h3 class="h6 mb-0">
+										<a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">
+											Thanh toán bằng chuyển khoản ngân hàng
+										</a>
+									</h3>
+								</label>
+							  </div>
 		                  <div class="collapse" id="collapsecheque">
 		                    <div class="py-2">
-		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+								<p class="mb-0">Khách hàng vui lòng chuyển khoản qua tài khoản ngân hàng dưới đây :</p>
+								<p class="mb-0">Tên ngân hàng: <strong class="text-danger">Agribank</strong></p>
+								<p class="mb-0">Số tài khoản: <strong class="text-danger">1303206422785</strong></p>
+								<p class="mb-0">Chủ tài khoản: <strong class="text-danger">LY PONLEU</strong></p>
+								<p class="mb-0">Nội dụng chuyển khoản: <strong class="text-danger">Tên khách hàng + Mã đặt hàng</strong></p>
 		                    </div>
-							
 		                  </div>
 		                </div>
 
-		                <div class="form-group">
-		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="location.href='{{ url('thankyou') }}'">Place Order</button>
+						<div class="d-grid">
+							<button class="btn btn-block px-4 py-3 fw-semibold" onclick="location.href='{{ url('thankyou') }}'">HOÀN TẤT ĐẶT HÀNG</button>
+						</div>
 		                </div>
-
 		              </div>
 		            </div>
 		          </div>

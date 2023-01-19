@@ -738,16 +738,31 @@ textarea {
   border-radius: 10px !important; }
 
 .text-primary {
-  color: #3b5d50 !important; }
+  color: #CC2936 !important; }
 
 .thankyou-icon {
   position: relative;
-  color: #3b5d50; }
+  color: #CC2936; }
   .thankyou-icon:before {
     position: absolute;
     content: "";
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    background: rgba(59, 93, 80, 0.2); }
+    background: rgba(204, 41, 54, 0.25);
+  }
 
+.big-radio{
+  width:1.5em;
+  height:1.5em;
+  border:2px solid rgba(0,0,0,.25);
+}
+.form-check-input:focus {
+  border-color:#CC2936;
+  outline:0;
+  box-shadow:0 0 0 .25rem rgba(204, 41, 54, 0.25);
+}
+.form-check-input:checked {
+  background-color:#CC2936;
+  border-color:#CC2936;
+}
