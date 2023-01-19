@@ -95,7 +95,7 @@
                       <label class="text-black h4" for="coupon">NHẬP MÃ KHUYẾN MÃI</label>
                     </div>
                     <div class="col-md-8 mb-3 mb-md-0">
-                      <input type="text" class="form-control py-3" id="coupon" placeholder="Nhập Mã">
+                      <input type="text" class="form-control py-3" id="coupon" placeholder="nhập mã">
                     </div>
                     <div class="col-md-4">
                       <button class="btn btn-black py-3 px-4 rounded-pill fw-semibold">ÁP DỤNG</button>

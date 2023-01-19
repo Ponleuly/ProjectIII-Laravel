@@ -50,41 +50,70 @@
 
 		            <div class="form-group row">
 		              <div class="col-md-12">
-		                <label for="c_companyname" class="text-black">Số điện thoại </label>
-		                <input type="text" class="form-control" id="c_companyname" name="c_companyname" placeholder="XXX XXX XXX">
+		                <label for="c_phone" class="text-black">Số điện thoại </label>
+		                <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="xxx xxx xxx xxx">
 		              </div>
+		            </div> 
+
+					<div class="form-group row">
+						<div class="col-md-12">
+							<label for="c_email_address" class="text-black">Email <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="c_email_address" name="c_email_address" placeholder="example@gmail.com">
+						  </div>
 		            </div>
 
 		            <div class="form-group row">
 		              <div class="col-md-12">
-		                <label for="c_address" class="text-black">Email <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
+		                <label for="c_address" class="text-black">Địa chỉ <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="c_address" name="c_address" placeholder="23 Ta Quang Buu">
 		              </div>
 		            </div>
 
-		            <div class="form-group mt-3">
-		              <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-		            </div>
-
+					<div class="form-group">
+						<label for="c_city" class="text-black">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+						<select id="c_city" class="form-control">
+						  <option value="1">chọn tỉnh / thành phố</option>    
+						  <option value="2">bangladesh</option>    
+						  <option value="3">Algeria</option>    
+						  <option value="4">Afghanistan</option>    
+						  <option value="5">Ghana</option>    
+						  <option value="6">Albania</option>    
+						  <option value="7">Bahrain</option>    
+						  <option value="8">Colombia</option>    
+						  <option value="9">Dominican Republic</option>    
+						</select>
+					  </div>
 		            <div class="form-group row">
 		              <div class="col-md-6">
-		                <label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_state_country" name="c_state_country">
+		                <label for="c_commune" class="text-black">Quận / Huyện <span class="text-danger">*</span></label>
+		                <select id="c_commune" class="form-control">
+							<option value="1">chọn quận / huyện</option>    
+							<option value="2">bangladesh</option>    
+							<option value="3">Algeria</option>    
+							<option value="4">Afghanistan</option>    
+							<option value="5">Ghana</option>    
+							<option value="6">Albania</option>    
+							<option value="7">Bahrain</option>    
+							<option value="8">Colombia</option>    
+							<option value="9">Dominican Republic</option>    
+						  </select>
 		              </div>
 		              <div class="col-md-6">
-		                <label for="c_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
-		              </div>
+		                <label for="c_village" class="text-black">Phường / Xã <span class="text-danger">*</span></label>
+						<select id="c_village" class="form-control">
+							<option value="1">chọn phường / xã</option>    
+							<option value="2">bangladesh</option>    
+							<option value="3">Algeria</option>    
+							<option value="4">Afghanistan</option>    
+							<option value="5">Ghana</option>    
+							<option value="6">Albania</option>    
+							<option value="7">Bahrain</option>    
+							<option value="8">Colombia</option>    
+							<option value="9">Dominican Republic</option>    
+						  </select>
+					</div>
 		            </div>
-
-		            <div class="form-group row mb-5">
-		              <div class="col-md-6">
-		                <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_email_address" name="c_email_address">
-		              </div>
-		              
-		            </div>
-
+					<!--
 		            <div class="form-group">
 		              <label for="c_create_account" class="text-black" data-bs-toggle="collapse" href="#create_an_account" role="button" aria-expanded="false" aria-controls="create_an_account"><input type="checkbox" value="1" id="c_create_account"> Create an account?</label>
 		              <div class="collapse" id="create_an_account">
@@ -97,7 +126,6 @@
 		                </div>
 		              </div>
 		            </div>
-
 
 		            <div class="form-group">
 		              <label for="c_ship_different_address" class="text-black" data-bs-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
@@ -118,7 +146,6 @@
 		                      <option value="9">Dominican Republic</option>    
 		                    </select>
 		                  </div>
-
 
 		                  <div class="form-group row">
 		                    <div class="col-md-6">
@@ -172,13 +199,12 @@
 		                  </div>
 
 		                </div>
-
 		              </div>
 		            </div>
-
+				-->
 		            <div class="form-group">
-		              <label for="c_order_notes" class="text-black">Order Notes</label>
-		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+		              <label for="c_order_notes" class="text-black">Yêu cầu khác</label>
+		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="nhập yêu cầu của bạn..."></textarea>
 		            </div>
 
 		          </div>
@@ -187,53 +213,86 @@
 
 		          <div class="row mb-5">
 		            <div class="col-md-12">
-		              <h2 class="h3 mb-3 text-black">Coupon Code</h2>
+		              <h2 class="h3 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
 		              <div class="p-3 p-lg-5 border bg-white">
-
-		                <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-		                <div class="input-group w-75 couponcode-wrap">
-		                  <input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
-		                  <div class="input-group-append">
-		                    <button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
-		                  </div>
+		                <div class="input-group w-85">
+							<input type="text" class="form-control py-3" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
+							<button class="btn btn-outline-secondary px-4 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
 		                </div>
-
 		              </div>
 		            </div>
 		          </div>
 
 		          <div class="row mb-5">
 		            <div class="col-md-12">
-		              <h2 class="h3 mb-3 text-black">Your Order</h2>
+		              <h2 class="h3 mb-3 text-black">THANH TOÁN</h2>
 		              <div class="p-3 p-lg-5 border bg-white">
 		                <table class="table site-block-order-table mb-5">
 		                  <thead>
-		                    <th>Product</th>
-		                    <th>Total</th>
+		                    <th>Đơn hàng</th>
+		                    <th>Tổng tiền</th>
 		                  </thead>
 		                  <tbody>
 		                    <tr>
-		                      <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-		                      <td>$250.00</td>
+		                      <td class="border-bottom-0">Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
+		                      <td class="text-end border-bottom-0">400.000</td>
+							  <td class="border-bottom-0">VND</td>
 		                    </tr>
 		                    <tr>
 		                      <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-		                      <td>$100.00</td>
+		                      <td class="text-end">400.000</td>
+							  <td>VND</td>
+
 		                    </tr>
 		                    <tr>
-		                      <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-		                      <td class="text-black">$350.00</td>
+		                      <td class="text-black font-weight-bold border-bottom-0"><strong>Đơn hàng</strong></td>
+		                      <td class="text-black text-end border-bottom-0"><strong>800.000</strong></td>
+							  <td class="border-bottom-0"><strong>VND</strong></td>
 		                    </tr>
 		                    <tr>
-		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-		                      <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-		                    </tr>
+		                      <td class="text-black font-weight-bold border-bottom-0"><strong>Giảm</strong></td>
+		                      <td class="text-black text-end font-weight-bold border-bottom-0"><strong>100.000</strong></td>
+							  <td class="border-bottom-0"><strong>VND</strong></td>
+							</tr>
+							<tr>
+								<td class="text-black font-weight-bold"><strong>Phí vận chuyển</strong></td>
+								<td class="text-black text-end font-weight-bold"><strong>0</strong></td>
+								<td><strong>VND</strong></td>
+							</tr>
+							<tr>
+								<td class="text-black h6 fw-bold border-bottom-0"><strong>TỔNG CỘNG</strong></td>
+								<td class="text-danger text-end h6 fw-bold border-bottom-0"><strong>700.000</strong></td>
+								<td class="text-danger h6 fw-bold border-bottom-0"><strong>VND</strong></td>
+							</tr>
 		                  </tbody>
 		                </table>
 
 		                <div class="border p-3 mb-3">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
-
+		                  	<h3 class="h6 mb-0">
+								<a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">
+									Thanh toán trực tiếp khi giao hàng
+								</a>
+								
+							</h3>
+							
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+								<label class="form-check-label" for="flexRadioDefault1">
+									<h3 class="h6 mb-0">
+										<a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">
+											Thanh toán trực tiếp khi giao hàng
+										</a>
+										
+									</h3>
+								</label>
+							  </div>
+							  <div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+								<label class="form-check-label" for="flexRadioDefault2">
+								  Default checked radio
+								</label>
+							  </div>
+							  
 		                  <div class="collapse" id="collapsebank">
 		                    <div class="py-2">
 		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
@@ -242,22 +301,17 @@
 		                </div>
 
 		                <div class="border p-3 mb-3">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
+							<h3 class="h6 mb-0">
+								<a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">
+									Thanh toán bằng chuyển khoản ngân hàng
+								</a>
+							</h3>
 
 		                  <div class="collapse" id="collapsecheque">
 		                    <div class="py-2">
 		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
 		                    </div>
-		                  </div>
-		                </div>
-
-		                <div class="border p-3 mb-5">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
-
-		                  <div class="collapse" id="collapsepaypal">
-		                    <div class="py-2">
-		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-		                    </div>
+							
 		                  </div>
 		                </div>
 
