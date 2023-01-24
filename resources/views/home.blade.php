@@ -11,7 +11,7 @@
 									Danh đặc biệt cho tuổi trẻ có đam mê với phong cách hiện đại và đa dạng.</p>
 								<p>
 									<a href="{{url('shop')}}" class="btn btn-secondary me-2 rounded-pill px-4 py-2 fw-semibold">Shop Now</a>
-									<a href="#" class="btn btn-white-outline rounded-pill px-4 py-2 fw-semibold">Tìm hiểu thêm</a>
+									<!--<a href="#" class="btn btn-white-outline rounded-pill px-4 py-2 fw-semibold">Tìm hiểu thêm</a>-->
 								</p>
 							</div>
 						</div>

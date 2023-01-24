@@ -9,13 +9,14 @@
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item {{Request::is('shop')? 'active':''}}">
-                            <a class="nav-link" href="{{url('shop')}}">SẢN PHẨM</a>
+                            <a class="nav-link" href="{{url('shop')}}"><h5><strong>SẢN PHẨM</strong></h5></a>
+							
                         </li>
 						<li class="nav-item {{Request::is('services')? 'active':''}}">
-                            <a class="nav-link" href="{{url('services')}}">NAM</a>
+                            <a class="nav-link" href="{{url('services')}}"><h5><strong>NAM</strong></h5></a>
                         </li>
 						<li class="nav-item {{Request::is('blog')? 'active':''}}">
-                            <a class="nav-link" href="{{url('blog')}}">NỮ</a>
+                            <a class="nav-link" href="{{url('blog')}}"><h5><strong>NỮ</strong></h5></a>
                         </li>
 						<!--
 						<li class="nav-item {{Request::is('about')? 'active':''}}">
@@ -39,7 +40,7 @@
 							</a>
 						</li>
 					</ul>
-					<form class="d-flex col-lg-3">
+					<form class="d-flex col-lg-3 ms-5">
 						<input class="form-control ds-input me-2 ms-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
 					</form>
 				</div>

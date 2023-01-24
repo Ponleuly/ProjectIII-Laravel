@@ -1,16 +1,11 @@
 @extends('index')
 @section('content') 
-<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-            <div class="col-md-6 mx-auto text-center"> 
-								<h1>GIỎ HÀNG</h1>
-            </div>
-					</div>
-				</div>
-			</div>
-		<!-- End Hero Section -->
+  <div class="container-fluid">
+    <div class="row px-3 py-2 text-center" style="background: #cc2936">
+      <h5 class="text-light pt-2">GỈO HÀNG</h5>
+    </div>
+  </div>
+  
 		<div class="untree_co-section before-footer-section">
             <div class="container">
               <div class="row mb-5">

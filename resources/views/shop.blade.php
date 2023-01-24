@@ -1,7 +1,14 @@
 @extends('index')
 @section('content')
     <!-- Start Hero Section -->
-		<!--	<div class="hero"> -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
+		  <li class="breadcrumb-item "><a href="{{url("home")}}" class="text-light">Trang chủ</a></li>
+		  <li class="breadcrumb-item "><a href="{{url("shop")}}" class="text-light">Sản phẩm</a></li>
+		  <li class="breadcrumb-item text-light active" aria-current="page">Ananas Vintas 2023</li>
+		</ol>
+	</nav>
+	<!-- End Hero Section -->
 				<div class="container">
 					
 					<div class="row justify-content-between">
@@ -20,7 +27,6 @@
 						</div>
 					-->
 					</div>
-					
 				</div>
 		<!--	</div>-->
 		<!-- End Hero Section -->
