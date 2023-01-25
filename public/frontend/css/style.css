@@ -60,6 +60,32 @@ a {
     -o-transition: .3s all ease;
     transition: .3s all ease;
     position: relative; 
+    
+  }
+  .custom-navbar .custom-navbar-nav li a:hover {
+    font-weight: 600;
+    color: #CC2936 !important;
+    opacity: 1;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    position: relative; 
+    
+  }
+  .custom-navbar .custom-navbar-nav li.active a {
+    font-weight: 600;
+    color: #CC2936 !important;
+    opacity: 1;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    position: relative; 
+  }
+  .custom-navbar .custom-navbar-nav li a h5{
+    padding-top: 6px;
+  }
+  .custom-navbar .custom-navbar-nav li h6{
+    margin-top: 8px;
   }
     @media (min-width: 768px) {
       .custom-navbar .custom-navbar-nav li a:before {
@@ -79,6 +105,7 @@ a {
     .custom-navbar .custom-navbar-nav li a:hover {
       opacity: 1;   
     }
+    
       .custom-navbar .custom-navbar-nav li a:hover:before {
         width: calc(100% - 16px); }
   .custom-navbar .custom-navbar-nav li.active a {
@@ -102,6 +129,11 @@ a {
       }
       .custom-navbar .custom-navbar-cta li a span{
         padding: 5px;
+      }
+      
+      .custom-navbar .custom-navbar-nav li .dropdown:hover .dropdown-menu{
+        display: block;
+        
       }
 .hero {
   background: #CC2936;

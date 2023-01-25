@@ -20,6 +20,9 @@
 		<link rel="stylesheet" href="{{url('frontend/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{url('frontend/css/tiny-slider.css')}}">
 		<link rel="stylesheet" href="{{url('frontend/css/style.css')}}">
+		<link rel="stylesheet" href="{{url('frontend/js/bootstrap.bundle.min.js')}}">
+		<link rel="stylesheet" href="{{url('frontend/js/custom.js')}}">
+		<link rel="stylesheet" href="{{url('frontend/js/tiny-slider.js')}}">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
