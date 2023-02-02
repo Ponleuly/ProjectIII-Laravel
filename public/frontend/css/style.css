@@ -799,3 +799,17 @@ textarea {
   background-color:#CC2936;
   border-color:#CC2936;
 }
+.product-color {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 999;
+    display: block;
+    border: #e1e1e1 1px solid;
+    margin-right: 15px; 
+    cursor: pointer;;
+}
+.cart-add{
+  background: #000;
+  border: 1px #000 solid;
+}
