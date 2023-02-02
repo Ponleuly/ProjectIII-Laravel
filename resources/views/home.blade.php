@@ -99,7 +99,7 @@
 				<div class="row">
 					<!-- Start Column 2 -->
 					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
-						<a class="product-item" href="{{url('cart')}}">
+						<a class="product-item" href="{{url('product-detail')}}">
 							<img src="frontend/images/Giay_1.jpeg" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Vintas Monoguso</h3>
 							<strong class="product-price">$50.00</strong>
@@ -112,7 +112,7 @@
 
 					<!-- Start Column 3 -->
 					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
-						<a class="product-item" href="{{url('cart')}}">
+						<a class="product-item" href="{{url('product-detail')}}">
 							<img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Vanss Sneaker</h3>
 							<strong class="product-price">$78.00</strong>
@@ -126,7 +126,7 @@
 
 					<!-- Start Column 4 -->
 					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
-						<a class="product-item" href="{{url('cart')}}">
+						<a class="product-item" href="{{url('product-detail')}}">
 							<img src="frontend/images/Giay_3.jpeg" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Ananas Urba</h3>
 							<strong class="product-price">$43.00</strong>

@@ -28,11 +28,14 @@ Route::get('/shop', function(){
 Route::get('/about', function(){
    return view('about'); 
 });
-Route::get('/services', function(){
-   return view('services'); 
+Route::get('/men', function(){
+   return view('product_men'); 
 });
-Route::get('/blog', function(){
-   return view('blog'); 
+Route::get('/women', function(){
+   return view('product_men'); 
+});
+Route::get('/product-detail', function(){
+   return view('product_detail'); 
 });
 Route::get('/contact', function(){
    return view('contact'); 
