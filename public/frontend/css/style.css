@@ -108,10 +108,12 @@ a {
     
       .custom-navbar .custom-navbar-nav li a:hover:before {
         width: calc(100% - 16px); }
+  /*
   .custom-navbar .custom-navbar-nav li.active a {
     opacity: 1; }
     .custom-navbar .custom-navbar-nav li.active a:before {
       width: calc(100% - 16px); }
+      */
   .custom-navbar .custom-navbar-cta {
     margin-left: 0 !important;
     -webkit-box-orient: horizontal;
@@ -130,11 +132,12 @@ a {
       .custom-navbar .custom-navbar-cta li a span{
         padding: 5px;
       }
-      
+      /*
       .custom-navbar .custom-navbar-nav li .dropdown:hover .dropdown-menu{
         display: block;
         
       }
+      */
 .hero {
   background: #CC2936;
   padding: calc(4rem - 30px) 0 0rem 0; }
