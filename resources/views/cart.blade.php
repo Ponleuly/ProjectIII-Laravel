@@ -17,6 +17,7 @@
                           <th class="product-thumbnail">Image</th>
                           <th class="product-name">Product</th>
                           <th class="product-price">Price</th>
+                          <th class="product-size" style="width: 70px">Size</th>
                           <th class="product-quantity" style="width: 160px">Quantity</th>
                           <th class="product-total">Total</th>
                           <th class="product-remove">Remove</th>
@@ -31,6 +32,24 @@
                             <h2 class="h5 text-black">Product 1</h2>
                           </td>
                           <td>$49.00</td>
+                          <td>
+                            <div style="width: 70px;">
+                                <select class="form-select form-control rounded-0" aria-label="Default select example" >
+                                    <option value="product-siz" selected>35</option>
+                                    <option value="product-siz">36</option>
+                                    <option value="product-siz">37</option>
+                                    <option value="product-siz">38</option>
+                                    <option value="product-siz">39</option>
+                                    <option value="product-siz">40</option>
+                                    <option value="product-siz">41</option>
+                                    <option value="product-siz">42</option>
+                                    <option value="product-siz">43</option>
+                                    <option value="product-siz">44</option>
+                                    <option value="product-siz">45</option>
+                              </select>
+                            </div>
+                            
+                          </td>
                           <td>
                             <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">
@@ -54,6 +73,23 @@
                             <h2 class="h5 text-black">Product 2</h2>
                           </td>
                           <td>$49.00</td>
+                          <td>
+                            <div style="width: 70px;">
+                                <select class="form-select form-control rounded-0" aria-label="Default select example" >
+                                    <option value="product-siz" selected>35</option>
+                                    <option value="product-siz">36</option>
+                                    <option value="product-siz">37</option>
+                                    <option value="product-siz">38</option>
+                                    <option value="product-siz">39</option>
+                                    <option value="product-siz">40</option>
+                                    <option value="product-siz">41</option>
+                                    <option value="product-siz">42</option>
+                                    <option value="product-siz">43</option>
+                                    <option value="product-siz">44</option>
+                                    <option value="product-siz">45</option>
+                              </select>
+                            </div>
+                          </td>
                           <td>
                             <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">

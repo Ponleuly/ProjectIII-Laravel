@@ -38,43 +38,43 @@
 
                 <!-- End second colume section -->
 		        <div class="col-md-6">
-		          <div class="row mb-5 ms-4">
-		            <div class="col-md-12">
-						<h3 class="mb-2 text-black fw-bold">Vanss Sneaker</h3>
-						<p class="text-black py-1 my-0">Sản phẩm: <strong>Nam</strong></p>
-                        <h5 class="text-danger fw-bold py-2"><strong>700.000 VND</strong></h5>
-                        <hr>
-                        <div class="row  py-2  px-3">
-                            <span class="product-color" style="background-color:#CC2936;"><a href="" ></a></span>
-                            <span class="product-color" style="background-color:#edc373;"><a href="" ></a></span>
-                            <span class="product-color" style="background-color:#889bae;"><a href="" ></a></span>
-                            <span class="product-color" style="background-color:#75a14f;"><a href="" ></a></span>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-						        <h5 class="mb-2 text-black fw-bold py-2">SIZE</h5>
-                                <select class="form-select form-control bg-transparent rounded-0" aria-label="Default select example">
-                                    <option value="product-siz" selected>35</option>
-                                    <option value="product-siz">36</option>
-                                    <option value="product-siz">37</option>
-                                    <option value="product-siz">38</option>
-                                    <option value="product-siz">39</option>
-                                    <option value="product-siz">40</option>
-                                    <option value="product-siz">41</option>
-                                    <option value="product-siz">42</option>
-                                    <option value="product-siz">43</option>
-                                    <option value="product-siz">44</option>
-                                    <option value="product-siz">45</option>
-                                </select>
+		            <div class="row mb-5 ms-4">
+                        <div class="col-md-12">
+                            <h3 class="mb-2 text-black fw-bold">Vanss Sneaker</h3>
+                            <p class="text-black py-1 my-0">Sản phẩm: <strong>Nam</strong></p>
+                            <h5 class="text-danger fw-bold py-2"><strong>700.000 VND</strong></h5>
+                            <hr>
+                            <div class="row  py-2  px-3">
+                                <span class="product-color" style="background-color:#CC2936;"><a href="" ></a></span>
+                                <span class="product-color" style="background-color:#edc373;"><a href="" ></a></span>
+                                <span class="product-color" style="background-color:#889bae;"><a href="" ></a></span>
+                                <span class="product-color" style="background-color:#75a14f;"><a href="" ></a></span>
                             </div>
-                            <div class="col-md-6">
-						        <h5 class="mb-2 text-black fw-bold py-2">SỐ LƯỢNG</h5>
-                                <div class="form-outline">
-                                    <input class="form-control bg-transparent rounded-0" type="number" name="quantity" id="quantity" value="1" max="5" min="1">
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-2 text-black fw-bold py-2">SIZE</h5>
+                                    <select class="form-select form-control bg-transparent rounded-0" aria-label="Default select example">
+                                        <option value="product-siz" selected>35</option>
+                                        <option value="product-siz">36</option>
+                                        <option value="product-siz">37</option>
+                                        <option value="product-siz">38</option>
+                                        <option value="product-siz">39</option>
+                                        <option value="product-siz">40</option>
+                                        <option value="product-siz">41</option>
+                                        <option value="product-siz">42</option>
+                                        <option value="product-siz">43</option>
+                                        <option value="product-siz">44</option>
+                                        <option value="product-siz">45</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-2 text-black fw-bold py-2">SỐ LƯỢNG</h5>
+                                    <div class="form-outline">
+                                        <input class="form-control bg-transparent rounded-0" type="number" name="quantity" id="quantity" value="1" max="5" min="1">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="row my-4">
                                 <div class="col-md-10">
                                     <div class="d-grid">

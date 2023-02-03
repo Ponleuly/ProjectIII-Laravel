@@ -207,8 +207,8 @@
 					
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-4 me-4">
 						<li class="nav-item me-0 ">
-							<a class="nav-link" href="{{url('cart')}}">
-								<span class="material-icons-outlined {{Request::is('cart')? 'active':''}}">favorite</span>
+							<a class="nav-link" href="{{url('like')}}">
+								<span class="material-icons-outlined {{Request::is('like')? 'active':''}}">favorite</span>
 							</a>
 						</li>
 						<li class="nav-item">

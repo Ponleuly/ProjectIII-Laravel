@@ -52,3 +52,6 @@ Route::get('/checkout', function(){
 Route::get('/thankyou', function(){
    return view('thankyou'); 
 });
+Route::get('/like', function(){
+   return view('like'); 
+});
