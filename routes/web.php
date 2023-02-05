@@ -20,41 +20,32 @@ Route::get('/index', function(){
    return view('index'); 
 });
 Route::get('/home', function(){
-   return view('home'); 
+   return view('frontend.mainPages.home'); 
 });
 Route::get('/shop', function(){
-   return view('shop'); 
-});
-Route::get('/about', function(){
-   return view('about'); 
+   return view('frontend.mainPages.shop'); 
 });
 Route::get('/men', function(){
-   return view('product_men'); 
+   return view('frontend.product.product_men'); 
 });
 Route::get('/women', function(){
    return view('product_men'); 
 });
 Route::get('/product-detail', function(){
-   return view('product_detail'); 
-});
-Route::get('/contact', function(){
-   return view('contact'); 
-});
-Route::get('/profile', function(){
-   return view('contact'); 
+   return view('frontend.product.product_detail'); 
 });
 Route::get('/cart', function(){
-   return view('cart'); 
+   return view('frontend.mainPages.cart'); 
 });
 Route::get('/checkout', function(){
-   return view('checkout'); 
+   return view('frontend.mainPages.checkout'); 
 });
 Route::get('/thankyou', function(){
-   return view('thankyou'); 
+   return view('frontend.mainPages.thankyou'); 
 });
 Route::get('/like', function(){
-   return view('like'); 
+   return view('frontend.mainPages.like'); 
 });
 Route::get('/profile', function(){
-   return view('profile'); 
+   return view('frontend.mainPages.profile'); 
 });

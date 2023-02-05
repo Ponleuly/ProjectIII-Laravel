@@ -32,7 +32,7 @@
 	<body>
 
 		<!-- Start Header/Navigation -->
-		@include('nav')
+		@include('frontend.mainPages.nav')
 		<!-- End Header/Navigation -->
  	
 		<!-- main display/body  -->
@@ -40,7 +40,7 @@
 		<!-- End main display -->
 
 		<!-- Start Footer Section -->
-		@include('footer')
+		@include('frontend.mainPages.footer')
 		<!-- End Footer Section -->	
 
 		<script src="{{url('frontend/js/bootstrap.bundle.min.js')}}"></script>
