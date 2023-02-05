@@ -147,6 +147,16 @@
                 </div>   
             </div>
             <hr class="line-color">
+            <div class="row my-5">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <a href="" class="btn btn-block py-1 px-5 fw-semibold rounded-0 me-1">
+                        <span>XÓA HẾT</span>
+                    </a>
+                    <a href="{{url('shop')}}" class="btn btn-block py-1 px-5 fw-semibold rounded-0 ms-1">
+                        <span>QUAY LẠI MUA HÀNG</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection()

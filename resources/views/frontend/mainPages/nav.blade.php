@@ -216,15 +216,32 @@
 								<span class="material-icons-outlined {{Request::is('cart')? 'active':''}}">shopping_cart</span>
 							</a>
                         </li>
+						<!--
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('profile')}}">
-								<span class="material-icons-round {{Request::is('profile')? 'active':''}}">person</span>
+							<a href="" class="nav-link">
+								<div class="profile">
+									<img src="frontend/images/person_1.jpg" class="img-fluid">
+								</div>
 							</a>
+						</li>
+						-->
+						<li class="nav-item">
+							<div class="dropdown">
+								<a class="nav-link" href="{{url('profile')}}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+									<span class="material-icons-round {{Request::is('profile')? 'active':''}}">person</span>
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<li><a class="dropdown-item" href="{{url('profile')}}">Tài khoản</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+								</ul>
+							</div>
+							
 						</li>
 						
 					</ul>
 					<form class="d-flex col-lg-3 ms-5">
-						<input class="form-control ds-input me-2 ms-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+						<input class="form-control ds-input me-2 ms-2 rounded-0" type="search" placeholder="Tìm kiếm" aria-label="Search">
 					</form>
 				</div>
 			</div>

@@ -41,7 +41,6 @@
 							<img src="frontend/images/Giay_1.jpeg" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Nordic Chair</h3>
 							<strong class="product-price">$50.00</strong>
-
 							<span class="icon-cross">
 								<img src="frontend/images/cross.svg" class="img-fluid">
 							</span>

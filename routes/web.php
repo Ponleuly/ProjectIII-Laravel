@@ -55,3 +55,6 @@ Route::get('/thankyou', function(){
 Route::get('/like', function(){
    return view('like'); 
 });
+Route::get('/profile', function(){
+   return view('profile'); 
+});

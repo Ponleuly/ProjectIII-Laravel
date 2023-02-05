@@ -816,3 +816,25 @@ textarea {
 .line-color{
   background: #CC2936;
 }
+.profile img{
+  max-width: 35px;
+  border-radius: 50%;
+}
+.icon-over {
+}
+img.icon-over  {
+  display: block;
+  position: relative;
+}
+ .icon {
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+  font-size: 35px;
+  color: #CC2936;
+}
+.profile-detail img{
+  max-width: 100px;
+  border-radius: 50%;
+  
+}

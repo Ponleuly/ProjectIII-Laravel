@@ -115,10 +115,10 @@
                 <div class="col-md-6">
                   <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                      <button class="btn btn-black btn-sm btn-block rounded-pill px-4 py-2 fw-semibold">XÓA HẾT</button>
+                      <button class="btn btn-black btn-sm btn-block rounded-0 px-5 py-2 fw-semibold">XÓA HẾT</button>
                     </div>
                     <div class="col-md-6">
-                      <button class="btn btn-outline-black btn-sm btn-block rounded-pill px-4 py-2 fw-semibold">QUAY LẠI MUA HÀNG</button>
+                      <button class="btn btn-outline-black btn-sm btn-block rounded-0 px-5 py-2 fw-semibold">QUAY LẠI MUA HÀNG</button>
                     </div>
                   </div>
                   <div class="row">
@@ -126,8 +126,8 @@
                       <h2 class="h4 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
                       <div class="d-grid col-md-8">
                         <div class="input-group mb-5">
-                          <input type="text" class="form-control py-2" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
-                          <button class="btn btn-outline-secondary px-3 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
+                          <input type="text" class="form-control py-2 rounded-0" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
+                          <button class="btn btn-outline-secondary px-3 fw-semibold rounded-0" type="button" id="button-addon2">ÁP DỤNG</button>
                         </div>
                       </div>
                     </div>
@@ -160,7 +160,7 @@
         
                       <div class="row text-center">
                         <div class="d-grid">
-                            <button class="btn btn-block py-3 px-4 fw-semibold" onclick="location.href='{{ url('checkout') }}'">
+                            <button class="btn btn-block py-3 px-4 fw-semibold rounded-0" onclick="location.href='{{ url('checkout') }}'">
                                 TIẾP TỤC THANH TOÁN
                             </button>
                         </div>

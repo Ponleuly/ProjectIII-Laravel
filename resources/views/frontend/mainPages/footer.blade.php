@@ -7,13 +7,13 @@
 
 							<form action="#" class="row g-3">
 								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name">
+									<input type="text" class="form-control  rounded-0" placeholder="Enter your name">
 								</div>
 								<div class="col-auto">
-									<input type="email" class="form-control" placeholder="Enter your email">
+									<input type="email" class="form-control  rounded-0" placeholder="Enter your email">
 								</div>
 								<div class="col-auto">
-									<button class="btn btn-primary px-4 rounded">
+									<button class="btn btn-primary px-4  rounded-0 border-1">
 										<span class="fa fa-paper-plane"></span>
 									</button>
 								</div>

@@ -41,34 +41,34 @@
 		            <div class="form-group row">
 		              <div class="col-md-12">
 		                <label for="c_fname" class="text-black">Tên Khách Hàng <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_fname" name="c_fname" placeholder="họ và tên">
+		                <input type="text" class="form-control rounded-0" id="c_fname" name="c_fname" placeholder="họ và tên">
 		              </div>
 		            </div>
 
 		            <div class="form-group row">
 		              <div class="col-md-12">
 		                <label for="c_phone" class="text-black">Số điện thoại </label>
-		                <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="xxx xxx xxx xxx">
+		                <input type="text" class="form-control rounded-0" id="c_phone" name="c_phone" placeholder="xxx xxx xxx xxx">
 		              </div>
 		            </div> 
 
 					<div class="form-group row">
 						<div class="col-md-12">
 							<label for="c_email_address" class="text-black">Email <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="c_email_address" name="c_email_address" placeholder="example@gmail.com">
+							<input type="text" class="form-control rounded-0" id="c_email_address" name="c_email_address" placeholder="example@gmail.com">
 						  </div>
 		            </div>
 
 		            <div class="form-group row">
 		              <div class="col-md-12">
 		                <label for="c_address" class="text-black">Địa chỉ <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_address" name="c_address" placeholder="23 Ta Quang Buu">
+		                <input type="text" class="form-control rounded-0" id="c_address" name="c_address" placeholder="23 Ta Quang Buu">
 		              </div>
 		            </div>
 
 					<div class="form-group">
 						<label for="c_city" class="text-black">Tỉnh / Thành phố <span class="text-danger">*</span></label>
-						<select id="c_city" class="form-control">
+						<select id="c_city" class="form-control  rounded-0">
 						  <option value="1">chọn tỉnh / thành phố</option>    
 						  <option value="2">bangladesh</option>    
 						  <option value="3">Algeria</option>    
@@ -82,8 +82,8 @@
 					  </div>
 		            <div class="form-group row">
 		              <div class="col-md-6">
-		                <label for="c_commune" class="text-black">Quận / Huyện <span class="text-danger">*</span></label>
-		                <select id="c_commune" class="form-control">
+		                <label for="c_commune" class="text-black ">Quận / Huyện <span class="text-danger">*</span></label>
+		                <select id="c_commune" class="form-control rounded-0">
 							<option value="1">chọn quận / huyện</option>    
 							<option value="2">bangladesh</option>    
 							<option value="3">Algeria</option>    
@@ -96,8 +96,8 @@
 						  </select>
 		              </div>
 		              <div class="col-md-6">
-		                <label for="c_village" class="text-black">Phường / Xã <span class="text-danger">*</span></label>
-						<select id="c_village" class="form-control">
+		                <label for="c_village" class="text-black ">Phường / Xã <span class="text-danger">*</span></label>
+						<select id="c_village" class="form-control rounded-0">
 							<option value="1">chọn phường / xã</option>    
 							<option value="2">bangladesh</option>    
 							<option value="3">Algeria</option>    
@@ -201,7 +201,7 @@
 				-->
 		            <div class="form-group">
 		              <label for="c_order_notes" class="text-black">Yêu cầu khác</label>
-		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="nhập yêu cầu của bạn..."></textarea>
+		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control rounded-0" placeholder="nhập yêu cầu của bạn..."></textarea>
 		            </div>
 
 		          </div>
@@ -213,8 +213,8 @@
 						<h2 class="h3 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
 						<div class="p-3 p-lg-5 border bg-white">
 						  <div class="input-group w-85">
-							  <input type="text" class="form-control py-2" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
-							  <button class="btn btn-outline-secondary px-3 fw-semibold" type="button" id="button-addon2">ÁP DỤNG</button>
+							  <input type="text" class="form-control py-2 rounded-0" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
+							  <button class="btn btn-outline-secondary px-3 fw-semibold  rounded-0" type="button" id="button-addon2">ÁP DỤNG</button>
 						  </div>
 						</div>
 					  </div>
@@ -298,7 +298,7 @@
 		                </div>
 
 						<div class="d-grid">
-							<button class="btn btn-block px-4 py-3 fw-semibold" onclick="location.href='{{ url('thankyou') }}'">HOÀN TẤT ĐẶT HÀNG</button>
+							<button class="btn btn-block px-4 py-3 fw-semibold  rounded-0" onclick="location.href='{{ url('thankyou') }}'">HOÀN TẤT ĐẶT HÀNG</button>
 						</div>
 		                </div>
 		              </div>

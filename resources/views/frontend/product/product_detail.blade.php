@@ -78,13 +78,13 @@
                         <div class="row my-4">
                                 <div class="col-md-10">
                                     <div class="d-grid">
-                                        <a href="" class="btn btn-block py-3 fw-semibold cart-add">THÊM VÀO GIỎ HÀNG</a>
+                                        <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">THÊM VÀO GIỎ HÀNG</a>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-2">
                                     <div class="d-grid">
-                                        <a href="" class="btn btn-block px-4 py-2 cart-add">
+                                        <a href="" class="btn btn-block px-4 py-2 cart-add  rounded-0">
                                             <span class="material-icons-outlined py-2">favorite</span>
                                         </a>
                                     </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="row my-4">
                             <div class="d-grid">
-                                <a href="{{url('cart')}}" class="btn btn-block px-4 py-3 fw-semibold">MUA NGAY</a>
+                                <a href="{{url('cart')}}" class="btn btn-block px-4 py-3 fw-semibold  rounded-0">MUA NGAY</a>
 						    </div>
                         </div>
                         

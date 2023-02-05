@@ -98,7 +98,7 @@
 				</div>
 				<div class="row">
 					<!-- Start Column 2 -->
-					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
+					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 ">
 						<a class="product-item" href="{{url('product-detail')}}">
 							<img src="frontend/images/Giay_1.jpeg" class="img-fluid product-thumbnail">
 							<h3 class="product-title">Vintas Monoguso</h3>
