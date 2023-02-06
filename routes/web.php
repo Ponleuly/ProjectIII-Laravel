@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\FrontendController;
 use App\Http\Controllers\UserController\ProductController;
 
+use App\Http\Controllers\AdminController\AdminFrontendController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index', function(){
-   return view('index'); 
+   return view('index');
 });
-/*============= Frontend route ==================*/
+/*============= User Frontend route ==================*/
 // *Using Route group to control route pages
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
@@ -32,7 +34,7 @@ Route::controller(FrontendController::class)->group(function () {
    Route::get('/thankyou', 'thankyou')->name('thankyou');
    Route::get('/like', 'like')->name('like');
    Route::get('/profile', 'profile')->name('profile');
-  
+
 
 });
 Route::controller(ProductController::class)->group(function(){
@@ -40,8 +42,14 @@ Route::controller(ProductController::class)->group(function(){
    Route::get('/product-detail', 'product_detail')->name('product-detail');
 
 });
+/*============= End User Frontend route ==================*/
 
+/*============= Admin Frontend route ==================*/
+Route::prefix('admin')->controller(AdminFrontendController::class)->group(function(){
+   Route::get('/dashboard', 'dashboard')->name('dashboard');
+   //Route::get('/product-detail', 'product_detail')->name('product-detail');
 
+});
 
 
 

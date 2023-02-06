@@ -34,14 +34,14 @@
 		<!-- Start Header/Navigation -->
 		@include('frontend.mainPages.nav')
 		<!-- End Header/Navigation -->
- 	
+
 		<!-- main display/body  -->
 		@yield('content')
 		<!-- End main display -->
 
 		<!-- Start Footer Section -->
 		@include('frontend.mainPages.footer')
-		<!-- End Footer Section -->	
+		<!-- End Footer Section -->
 
 		<script src="{{url('frontend/js/bootstrap.bundle.min.js')}}"></script>
 		<script src="{{url('frontend/js/tiny-slider.js')}}"></script>

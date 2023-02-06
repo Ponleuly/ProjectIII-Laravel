@@ -11,14 +11,14 @@
               <div class="row mb-5">
                 <form class="col-md-12" method="post">
                   <div class="site-blocks-table">
-                    <table class="table">
+                    <table class="table h-100">
                       <thead>
                         <tr>
                           <th class="product-thumbnail">Image</th>
                           <th class="product-name">Product</th>
                           <th class="product-price">Price</th>
-                          <th class="product-size" style="width: 70px">Size</th>
-                          <th class="product-quantity" style="width: 160px">Quantity</th>
+                          <th class="product-size">Size</th>
+                          <th class="product-quantity">Quantity</th>
                           <th class="product-total">Total</th>
                           <th class="product-remove">Remove</th>
                         </tr>
@@ -33,7 +33,7 @@
                           </td>
                           <td>$49.00</td>
                           <td>
-                            <div style="width: 70px;">
+                            <div class="mx-auto" style="width: 70px;">
                                 <select class="form-select form-control rounded-0" aria-label="Default select example" >
                                     <option value="product-siz" selected>35</option>
                                     <option value="product-siz">36</option>
@@ -51,14 +51,8 @@
                             
                           </td>
                           <td>
-                            <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-outline-black decrease" type="button">&minus;</button>
-                              </div>
-                              <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                              </div>
+                            <div class="input-group mx-auto quantity-container " style="max-width: 70px;">
+                              <input type="number" class="form-control text-center quantity-amount rounded-0" value="1" max="5" min="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                             </div>
                           </td>
                           <td>$49.00</td>
@@ -74,7 +68,7 @@
                           </td>
                           <td>$49.00</td>
                           <td>
-                            <div style="width: 70px;">
+                            <div class="mx-auto" style="width: 70px;">
                                 <select class="form-select form-control rounded-0" aria-label="Default select example" >
                                     <option value="product-siz" selected>35</option>
                                     <option value="product-siz">36</option>
@@ -91,14 +85,10 @@
                             </div>
                           </td>
                           <td>
-                            <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px;">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-outline-black decrease" type="button">&minus;</button>
-                              </div>
-                              <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                              </div>
+                            <div class="input-group mx-auto quantity-container" style="max-width: 70px;">
+                             
+                              <input type="number" class="form-control text-center quantity-amount rounded-0" value="1" min="1" max="5" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                              
                             </div>
         
                           </td>
