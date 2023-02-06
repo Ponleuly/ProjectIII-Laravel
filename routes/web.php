@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController\FrontendController;
+use App\Http\Controllers\UserController\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,33 +22,26 @@ Route::get('/', function () {
 Route::get('/index', function(){
    return view('index'); 
 });
-Route::get('/home', function(){
-   return view('frontend.mainPages.home'); 
+/*============= Frontend route ==================*/
+// *Using Route group to control route pages
+Route::controller(FrontendController::class)->group(function () {
+   Route::get('/home', 'home')->name('home');
+   Route::get('/shop', 'shop')->name('shop');
+   Route::get('/cart', 'cart')->name('cart');
+   Route::get('/checkout', 'checkout')->name('checkout');
+   Route::get('/thankyou', 'thankyou')->name('thankyou');
+   Route::get('/like', 'like')->name('like');
+   Route::get('/profile', 'profile')->name('profile');
+  
+
 });
-Route::get('/shop', function(){
-   return view('frontend.mainPages.shop'); 
+Route::controller(ProductController::class)->group(function(){
+   Route::get('/product-men', 'product_men')->name('product-men');
+   Route::get('/product-detail', 'product_detail')->name('product-detail');
+
 });
-Route::get('/men', function(){
-   return view('frontend.product.product_men'); 
-});
-Route::get('/women', function(){
-   return view('product_men'); 
-});
-Route::get('/product-detail', function(){
-   return view('frontend.product.product_detail'); 
-});
-Route::get('/cart', function(){
-   return view('frontend.mainPages.cart'); 
-});
-Route::get('/checkout', function(){
-   return view('frontend.mainPages.checkout'); 
-});
-Route::get('/thankyou', function(){
-   return view('frontend.mainPages.thankyou'); 
-});
-Route::get('/like', function(){
-   return view('frontend.mainPages.like'); 
-});
-Route::get('/profile', function(){
-   return view('frontend.mainPages.profile'); 
-});
+
+
+
+
+

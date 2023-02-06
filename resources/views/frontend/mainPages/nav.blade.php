@@ -51,10 +51,10 @@
 						<li class="nav-item ms-0 me-0">
                             <h6 class="nav-link text-black-50">|</h6>
 						</li>	
-						<li class="nav-item {{Request::is('men')? 'active':''}}">
-                            <!--<a class="nav-link" href="{{url('men')}}"><h5><strong>NAM</strong></h5></a>-->
+						<li class="nav-item {{Request::is('product-men')? 'active':''}}">
+                            <!--<a class="nav-link" href="{{url('product-men')}}"><h5><strong>NAM</strong></h5></a>-->
 							<div class="dropdown position-static">
-								<a class="nav-link hover-bar" href="{{url('men')}} {{Request::is('men')? 'active':''}}"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a class="nav-link hover-bar" href="{{url('product-men')}} {{Request::is('product-men')? 'active':''}}"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<h5><strong>NAM</strong></h5>
 								</a>
 								<div class="dropdown-menu w-100">
@@ -63,13 +63,13 @@
 											<div class="col-12 col-md-4">
 												<h5 class="text-center text-black py-4"><strong>NỔI BẬT</strong></h5>
 												<div class="list-group list-group-light text-center">
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0">
 														<h6>Tất cả sản phẩm nam</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0"> 
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0"> 
 														<h6>New Arrivals</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
 														<h6>Best Seller</h6>
 													</a>
 												</div>													
@@ -77,16 +77,16 @@
 											<div class="col-12 col-md-4">
 												<h5 class="text-center text-black py-4"><strong>DÒNG SẢN PHẨM</strong></h5>
 												<div class="list-group list-group-light text-center">
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0">
 														<h6>Basas</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0"> 
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0"> 
 														<h6>Vintas</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0"> 
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0"> 
 														<h6>Urbas</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
 														<h6>Pattas</h6>
 													</a>
 												</div>		
@@ -94,13 +94,13 @@
 											<div class="col-12 col-md-4">
 												<h5 class="text-center text-black py-4"><strong>PHỤ KIỆN</strong></h5>
 												<div class="list-group list-group-light text-center">
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0">
 														<h6>Nón</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0"> 
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0"> 
 														<h6>Dây Giày</h6>
 													</a>
-													<a href="{{url('men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
+													<a href="{{url('product-men')}}" class="list-group-item px-0 py-1 border-0 mb-4">
 														<h6>Vớ</h6>
 													</a>
 												</div>	
