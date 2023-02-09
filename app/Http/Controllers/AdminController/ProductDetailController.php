@@ -5,21 +5,18 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminFrontendController extends Controller
+class ProductDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('adminfrontend.pages.dashboard');
+        //
     }
-    public function product_add()
-    {
-        return view('adminfrontend.pages.product_add');
-    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -1,4 +1,4 @@
-@extends('adminfrontend.index')
+@extends('adminfrontend.layouts.index')
 @section('admincontent')
            <div class="container-fluid">
                     <!-- ========== title-wrapper start ========== -->

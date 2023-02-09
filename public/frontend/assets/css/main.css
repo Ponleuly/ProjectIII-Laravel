@@ -94,7 +94,13 @@ p {
   line-height: 25px;
   margin: 0px;
 }
-
+p.text-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 25px;
+  margin: 0px;
+  color: var(--bs-secondary-color) !important;
+}
 .img-bg {
   background-position: center center;
   background-size: cover;
@@ -1118,6 +1124,7 @@ h6,
 }
 
 /* =========== tables css =========== */
+/*
 .table {
   border-collapse: inherit;
   border-spacing: 0px;
@@ -1137,6 +1144,7 @@ h6,
   border-bottom-color: transparent;
   padding-bottom: 0px;
 }
+*/
 .table th h6 {
   font-weight: 500;
   color: #262d3f;
@@ -1923,12 +1931,12 @@ h6,
 
 /* ========== header css ========== */
 .header {
-  padding: 30px 0;
+  padding: 20px 0;
   background: #fff;
 }
 .header .header-left .menu-toggle-btn .main-btn {
   padding: 0px 15px;
-  height: 46px;
+  height: 40px;
   line-height: 46px;
   border-radius: 10px;
   display: flex;
@@ -1944,7 +1952,7 @@ h6,
   border: 1px solid #efefef;
   background: rgba(239, 239, 239, 0.5);
   border-radius: 10px;
-  height: 46px;
+  height: 40px;
   padding-left: 44px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
@@ -2118,8 +2126,8 @@ h6,
   -webkit-box-shadow: 0px 21px 25px rgba(218, 223, 227, 0.8);
   -moz-box-shadow: 0px 21px 25px rgba(218, 223, 227, 0.8);
   box-shadow: 0px 21px 25px rgba(218, 223, 227, 0.8);
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-left: 16px;
   position: relative;
@@ -4899,4 +4907,11 @@ h6,
 
 .fw-900 {
   font-weight: 900;
+}
+.color-btn{
+  content: "";
+  height: 25px;
+  width: 50px;
+  background: red;
+  margin: 5px ;
 }

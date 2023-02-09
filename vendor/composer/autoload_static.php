@@ -340,8 +340,8 @@ class ComposerStaticInit33e1456c084b29edf19f24aff726bcc6
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -507,7 +507,13 @@ class ComposerStaticInit33e1456c084b29edf19f24aff726bcc6
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AdminController\\AdminFrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController/AdminFrontendController.php',
+        'App\\Http\\Controllers\\AdminController\\ProductCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController/ProductCategoryController.php',
+        'App\\Http\\Controllers\\AdminController\\ProductDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController/ProductDetailController.php',
+        'App\\Http\\Controllers\\AdminController\\ProductGroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController/ProductGroupController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\UserController\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController/FrontendController.php',
+        'App\\Http\\Controllers\\UserController\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController/ProductController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -518,6 +524,11 @@ class ComposerStaticInit33e1456c084b29edf19f24aff726bcc6
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Product_categories' => __DIR__ . '/../..' . '/app/Models/Product_categories.php',
+        'App\\Models\\Product_colors' => __DIR__ . '/../..' . '/app/Models/Product_colors.php',
+        'App\\Models\\Product_details' => __DIR__ . '/../..' . '/app/Models/Product_details.php',
+        'App\\Models\\Product_groups' => __DIR__ . '/../..' . '/app/Models/Product_groups.php',
+        'App\\Models\\Product_sizes' => __DIR__ . '/../..' . '/app/Models/Product_sizes.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

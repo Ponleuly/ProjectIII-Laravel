@@ -7,8 +7,8 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li class="nav-item active">
-                    <a href="#0">
+                <li class="nav-item {{Request::is('admin/dashboard')? 'active':''}}">
+                    <a href="{{url('admin/dashboard')}}">
                         <span class="icon">
                             <span class="material-icons-round">dashboard</span>
                         </span>
@@ -22,7 +22,7 @@
                     </ul>
                     -->
                 </li>
-                <li class="nav-item nav-item-has-children">
+                <li class="nav-item nav-item-has-children {{Request::is('admin/product*')? 'active':''}}">
                     <a
                         href="#0"
                         class="collapsed"
@@ -42,11 +42,21 @@
                             <a href="settings.html">Product list</a>
                         </li>
                         <li>
-                            <a href="blank-page.html">Product add</a>
+                            <a href="{{url('admin/product-add')}}" class="{{Request::is('admin/product-add')? 'active':''}}">Product add</a>
                         </li>
+                        <li>
+                            <a href="{{url('admin/product-group-list')}}" class="{{Request::is('admin/product-group-list')? 'active':''}}">Product group list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/product-group-add')}}" class="{{Request::is('admin/product-group-add')? 'active':''}}">Product group add</a>
+                        </li>
+                         <li>
+                            <a href="{{url('admin/product-add')}}" class="{{Request::is('admin/product-add')? 'active':''}}">Product size add</a>
+                        </li>
+
                     </ul>
                 </li>
-                <li class="nav-item nav-item-has-children">
+                <li class="nav-item nav-item-has-children {{Request::is('admin/product-category*')? 'active':''}}">
                     <a
                         href="#0"
                         class="collapsed"
@@ -63,10 +73,10 @@
                     </a>
                     <ul id="ddmenu_2" class="collapse dropdown-nav">
                         <li>
-                            <a href="settings.html">Category list</a>
+                            <a href="{{url('admin/product-category-list')}}" class="{{Request::is('admin/product-category-list')? 'active':''}}">Category list</a>
                         </li>
                         <li>
-                            <a href="blank-page.html">Category add</a>
+                            <a href="{{url('admin/product-category-add')}}" class="{{Request::is('admin/product-category-add')? 'active':''}}">Category add</a>
                         </li>
                     </ul>
                 </li>
