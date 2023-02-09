@@ -109,8 +109,16 @@ class ProductGroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function product_group_delete($id)
     {
-        //
+        $delete_group = Product_groups::where('id', $id)->first();
+        $delete_group->delete();
+
+        return redirect('/admin/product-group-list')
+            ->with(
+                'alert',
+                'Product group ' . '"' . $delete_group->group_name . '"' .
+                    ' is deleted successfully !'
+            );
     }
 }

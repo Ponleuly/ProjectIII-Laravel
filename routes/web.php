@@ -50,15 +50,18 @@ Route::prefix('admin')->controller(AdminFrontendController::class)->group(functi
    Route::get('/dashboard', 'dashboard')->name('dashboard');
    Route::get('/product-add', 'product_add')->name('product-add');
 });
+Route::prefix('admin')->controller(ProductGroupController::class)->group(function () {
+   Route::get('/product-group-list', 'product_group_list')->name('product-group-list');
+   Route::get('/product-group-add', 'product_group_add')->name('product-group-add');
+   Route::post('/product-group-add', 'product_group_store')->name('product-group-add');
+   Route::get('/product-group-edit/{id}', 'product_group_edit')->name('product-group-edit');
+   Route::put('/product-group-edit/{id}', 'product_group_update');
+   Route::get('/product-group-delete/{id}', 'product_group_delete');
+});
 Route::prefix('admin')->controller(ProductCategoryController::class)->group(function () {
    Route::get('/product-category-list', 'product_category_list')->name('product-category-list');
    Route::get('/product-category-add', 'product_category_add')->name('product-category-add');
    Route::post('/product-category-add', 'product_category_store')->name('product-category-add');
-});
-Route::prefix('admin')->controller(ProductGroupController::class)->group(function () {
-   Route::get('/product-group-list', 'product_group_list')->name('product-group-list');
-   Route::get('/product-group-add', 'product_group_add')->name('product-group-add');
-   Route::post('product-group-add', 'product_group_store')->name('product-group-add');
-   Route::get('product-group-edit/{id}', 'product_group_edit')->name('product-group-edit');
-   Route::put('product-group-edit/{id}', 'product_group_update');
+   Route::get('/product-category-edit/{id}', 'product_category_edit')->name('product-category-edit');
+   Route::put('/product-category-edit/{id}', 'product_category_update');
 });

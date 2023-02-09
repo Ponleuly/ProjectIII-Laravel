@@ -1,8 +1,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/product-category-add')}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('/admin/product-category-edit/'.$category->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
+            @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-md-6 my-3 mb-md-0">
                     @if(Session::has('alert'))
@@ -12,14 +13,14 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Add Category</h4>
+                    <h4 class="mb-2 text-black">Edit Category</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
                                         <label for="category_name"><p class="text-label">Category name</p></label>
-                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="category_name" name="category_name" placeholder="category name..." required>
+                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="category_name" name="category_name" value="{{$category->category_name}}" placeholder="category name..." required>
 
                                         <label>
                                             <p class="text-label mt-2">
@@ -39,9 +40,9 @@
                                                     id="{{$row->group_name}}"
                                                     value="{{$row->id}}"
                                                     name="group_id[]"
-                                                    @if ($loop->first)
-                                                        checked
-                                                    @endif
+                                                    @foreach ($selected_group as $item)
+                                                        {{($row->id == $item->group_id) ? 'checked' : ''}}
+                                                    @endforeach
                                                 >
                                                 <label class="form-check-label" for="{{$row->group_name}}">{{$row->group_name}}</label>
                                             </div>
@@ -49,7 +50,7 @@
 
                                         <div class="d-flex mt-4">
                                             <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-category-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Add Category</button>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Update Category</button>
                                         </div>
                                     </div>
                                 </div>

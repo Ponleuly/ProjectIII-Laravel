@@ -4915,3 +4915,11 @@ h6,
   background: red;
   margin: 5px ;
 }
+
+.ck-content p,
+.ck-content h1,
+.ck-content h2,
+.ck-content h3 {
+	margin: 0;
+	padding: 0;
+}

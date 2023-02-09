@@ -13,13 +13,13 @@
                                         <label for="c_fname"><p class="text-label">Product name</p></label>
                                         <input type="text" class="form-control rounded-0 fw-500 mb-2" id="c_fname" name="c_fname" placeholder="product name...">
 
-                                        <label for="floatingTextarea2"><p class="text-label mt-2">Description</p></label>
-                                        <textarea class="form-control rounded-0 fw-500 mb-2" placeholder="product description..." id="floatingTextarea2" style="height: 100px"></textarea>
+                                        <label for="product_des"><p class="text-label mt-2">Description</p></label>
+                                        <textarea class="form-control rounded-0 fw-500 mb-2" rows="5" placeholder="product description..." name="product_des" id="product_des"></textarea>
 
                                         <label for="c_email_address"><p class="text-label mt-2">Images (5 pictures)</p></label>
                                         <input class="form-control rounded-0 mb-2" type="file" placeholder="xxx" id="formFile" accept="image/png, image/jpeg, image/jpg" multiple>
 
-                                        <label for="c_fname"><p class="text-label mt-2">Product price ($)</p></label>
+                                        <label for="c_fname"><p class="text-label mt-2 ">Product price ($)</p></label>
                                         <input class="form-control rounded-0 fw-500 mb-2" type="number" value="00.00" step="0.05"  name="c_fname" placeholder="00.00">
 
                                         <label for="c_fname"><p class="text-label mt-2">Product total stock</p></label>
@@ -132,4 +132,13 @@
             </div>
         </form>
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#product_des' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
 @endsection()

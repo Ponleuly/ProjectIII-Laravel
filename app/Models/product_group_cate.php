@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class product_group_cate extends Model
+class Product_group_cate extends Model
 {
     use HasFactory;
     protected $table = 'product_group_cate';
@@ -13,4 +13,8 @@ class product_group_cate extends Model
         'category_id',
         'group_id'
     ];
+    public function group_cate()
+    {
+        return $this->belongsTo(Product_groups::class, 'group_id');
+    }
 }

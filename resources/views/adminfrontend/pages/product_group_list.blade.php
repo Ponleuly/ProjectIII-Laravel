@@ -1,3 +1,6 @@
+<?php
+	use App\Models\Product_group_cate;
+?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
@@ -15,11 +18,9 @@
                     <h4 class="mb-2 text-black">Product groups</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12 d-flex">
                                 <a class="btn btn-outline-primary rounded-0" href="{{url('/admin/product-group-add')}}" role="button">Add Product Group</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group w-50 ms-auto">
+                                <div class="input-group w-25 ms-auto">
                                     <input group="search" class="form-control rounded-0" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="search">
                                     <button class="btn btn-outline-primary rounded-0" group="button" id="search">Search</button>
                                 </div>
@@ -42,11 +43,16 @@
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$row->group_name}}</td>
-                                        <td>15</td>
+                                        <td>
+                                            @php
+                                                $category_count = Product_group_cate::where('group_id', $row->id)->count();
+                                            @endphp
+                                            {{$category_count}}
+                                        </td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-group-edit/'.$row->id)}}" role="button">Edit</a>
-                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="#" role="button">Delete</a>
+                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-group-delete/'.$row->id)}}" role="button">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
