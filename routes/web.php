@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController\ProductCategoryController;
 use App\Http\Controllers\AdminController\ProductgroupController;
 use App\Http\Controllers\AdminController\ProductDetailController;
 use App\Http\Controllers\AdminController\ProductSizeController;
+use App\Http\Controllers\AdminController\ProductColorController;
 
 
 
@@ -77,6 +78,14 @@ Route::prefix('admin')->controller(ProductSizeController::class)->group(function
    Route::get('/product-size-edit/{id}', 'product_size_edit')->name('product-size-edit');
    Route::put('/product-size-edit/{id}', 'product_size_update');
    Route::get('/product-size-delete/{id}', 'product_size_delete');
+});
+Route::prefix('admin')->controller(ProductColorController::class)->group(function () {
+   Route::get('/product-color-list', 'product_color_list')->name('product-color-list');
+   Route::get('/product-color-add', 'product_color_add')->name('product-color-add');
+   Route::post('/product-color-add', 'product_color_store')->name('product-color-add');
+   Route::get('/product-color-edit/{id}', 'product_color_edit')->name('product-color-edit');
+   Route::put('/product-color-edit/{id}', 'product_color_update');
+   Route::get('/product-color-delete/{id}', 'product_color_delete');
 });
 Route::prefix('admin')->controller(ProductDetailController::class)->group(function () {
    Route::get('/product-detail-list', 'product_detail_list')->name('product-detail-list');

@@ -50,7 +50,7 @@ class ProductDetailController extends Controller
     {
         $input  = $request->all();
 
-        return dd($request);
+        return dd($request->toArray());
     }
 
     /**

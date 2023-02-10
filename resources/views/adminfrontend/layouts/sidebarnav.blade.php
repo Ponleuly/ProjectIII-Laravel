@@ -62,6 +62,12 @@
                         <li>
                             <a href="{{url('admin/product-size-add')}}" class="{{Request::is('admin/product-size-add')? 'active':''}}">Product size add</a>
                         </li>
+                        <li>
+                            <a href="{{url('admin/product-color-list')}}" class="{{Request::is('admin/product-color-list')? 'active':''}}">Product color list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/product-color-add')}}" class="{{Request::is('admin/product-color-add')? 'active':''}}">Product color add</a>
+                        </li>
 
                     </ul>
                 </li>

@@ -8,6 +8,7 @@
                 <div class="col-md-12 my-3 mb-md-0">
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
+
                             <div class="col-md-6">
                                 <div class="form-group row mb-2">
                                     <div class="col-md-12">
@@ -15,16 +16,17 @@
                                         <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_name" name="product_name" placeholder="product name..." required>
 
                                         <label for="product_des"><p class="text-label mt-2">Description</p></label>
-                                        <textarea class="form-control rounded-0 fw-500 mb-2" rows="5" placeholder="product description..." name="product_des" id="product_des" required></textarea>
+                                        <textarea class="form-control rounded-0 fw-500 mb-2" placeholder="product description..." name="product_des" id="product_des"></textarea>
 
                                         <label for="product_img"><p class="text-label mt-4">Images (5 pictures)</p></label>
                                         <input class="form-control rounded-0 mb-2" type="file" id="product_img" name="product_img" accept="image/png, image/jpeg, image/jpg" multiple required>
 
                                         <label for="product_price"><p class="text-label mt-2 ">Product price ($)</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" value="00.00" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
+                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
 
                                         <label for="product_stock"><p class="text-label mt-2">Product total stock</p></label>
                                         <input class="form-control rounded-0 fw-500" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
+
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +37,7 @@
                                         <div class="row mb-2">
                                             <label for="color_idd"><p class="text-label">Product color</p></label>
                                             <div class="col-md-2 ">
-                                                <input type="color" class="form-control form-control-color rounded-0 w-100" name="color_id[]" id="exampleColorInput" value="#c5c5c5" title="Choose your color">
+                                                <input type="color" class="form-control form-control-color rounded-0 w-100" name="color_id[]" id="exampleColorInput" valuec=null title="Choose your color">
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="color" class="form-control form-control-color rounded-0 w-100"  name="color_id[]" id="exampleColorInput" value="#c5c5c5" title="Choose your color">
@@ -81,8 +83,10 @@
                                         </select>
 
                                         <div class="d-flex mt-4">
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Add product</button>
+                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-category-list')}}" role="button">Back to list</a>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit" >Add product</button>
                                         </div>
+                                        <!--formnovalidate="formnovalidate" => for textarea input with CKeditor-->
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +96,7 @@
             </div>
         </form>
     </div>
+
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
