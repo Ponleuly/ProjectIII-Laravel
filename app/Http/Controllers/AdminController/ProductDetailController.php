@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product_groups;
 use App\Models\Product_sizes;
 use App\Models\Product_categories;
-
+use App\Models\Product_colors;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -19,14 +19,15 @@ class ProductDetailController extends Controller
     public function product_detail_add()
     {
         $product_sizes = Product_sizes::orderBy('size')->get();
+        $product_colors = Product_colors::orderBy('id')->get();
         $product_groups = Product_groups::orderBy('id')->get();
         $product_categories = Product_categories::orderBy('id')->get();
-
 
         return view(
             'adminfrontend.pages.products.product_detail_add',
             compact(
                 'product_sizes',
+                'product_colors',
                 'product_groups',
                 'product_categories'
             )

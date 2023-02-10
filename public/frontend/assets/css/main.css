@@ -4933,3 +4933,8 @@ h6,
   width: 60px;
   margin-top: 2px;
 }
+.color-choose {
+  content: "";
+  height: 25px;
+  width: 60px;
+}
