@@ -23,7 +23,7 @@ class ProductCategoryController extends Controller
         $product_categories = Product_categories::orderBy('category_name')->get();
         $count = 1;
         return view(
-            'adminfrontend.pages.product_category_list',
+            'adminfrontend.pages.categories.product_category_list',
             compact(
                 'product_categories',
                 'count',
@@ -41,7 +41,7 @@ class ProductCategoryController extends Controller
         $product_groups = Product_groups::orderBy('id')->get();
         $groups_count = Product_groups::all()->count();
         return view(
-            'adminfrontend.pages.product_category_add',
+            'adminfrontend.pages.categories.product_category_add',
             compact('product_groups', 'groups_count')
         );
     }
@@ -69,7 +69,7 @@ class ProductCategoryController extends Controller
             Product_group_cate::create($save);
         }
 
-        // After inputed -> go back to category page
+        // After inputed -> go back to category pages
         return redirect('/admin/product-category-add')
             ->with('alert', 'Product category ' . $request->category_name . ' successfully!');
         //return dd($input);
@@ -91,9 +91,10 @@ class ProductCategoryController extends Controller
         $categoryId = $category->id;
         $selected_group = Product_group_cate::where('category_id', $categoryId)->get();
         return view(
-            'adminfrontend.pages.product_category_edit',
+            'adminfrontend.pages.categories.product_category_edit',
             compact(
                 'category',
+                'categoryId',
                 'groups_count',
                 'product_groups',
                 'selected_group'
@@ -159,8 +160,16 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function product_category_delete($id)
     {
-        //
+        $delete_category = Product_categories::where('id', $id)->first();
+        $delete_category->delete();
+
+        return redirect('/admin/product-category-list')
+            ->with(
+                'alert',
+                'Product category ' . '"' . $delete_category->category_name . '"' .
+                    ' is deleted successfully !'
+            );
     }
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product_groups;
+use App\Models\Product_sizes;
+use App\Models\Product_categories;
+
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -12,9 +16,21 @@ class ProductDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function product_detail_add()
     {
-        //
+        $product_sizes = Product_sizes::orderBy('size')->get();
+        $product_groups = Product_groups::orderBy('id')->get();
+        $product_categories = Product_categories::orderBy('id')->get();
+
+
+        return view(
+            'adminfrontend.pages.products.product_detail_add',
+            compact(
+                'product_sizes',
+                'product_groups',
+                'product_categories'
+            )
+        );
     }
 
     /**
@@ -22,10 +38,6 @@ class ProductDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +45,12 @@ class ProductDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function product_detail_store(Request $request)
     {
-        //
+        $input  = $request->all();
+
+        return dd($request);
     }
 
     /**

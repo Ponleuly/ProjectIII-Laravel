@@ -22,7 +22,13 @@
                     </ul>
                     -->
                 </li>
-                <li class="nav-item nav-item-has-children {{Request::is('admin/product*')? 'active':''}}">
+                <li class="nav-item nav-item-has-children
+                    {{Request::is('admin/product-detail*')? 'active':''}}||
+                    {{Request::is('admin/product-group*')? 'active':''}}||
+                    {{Request::is('admin/product-category*')? 'active':''}}||
+                    {{Request::is('admin/product-size*')? 'active':''}}
+
+                    ">
                     <a
                         href="#0"
                         class="collapsed"
@@ -39,10 +45,10 @@
                     </a>
                     <ul id="ddmenu_1" class="collapse dropdown-nav">
                         <li>
-                            <a href="settings.html">Product list</a>
+                            <a href="{{url('admin/product-detail-list')}}" class="{{Request::is('admin/product-detail-list')? 'active':''}}">Product list</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-add')}}" class="{{Request::is('admin/product-add')? 'active':''}}">Product add</a>
+                            <a href="{{url('admin/product-detail-add')}}" class="{{Request::is('admin/product-detail-add')? 'active':''}}">Product add</a>
                         </li>
                         <li>
                             <a href="{{url('admin/product-group-list')}}" class="{{Request::is('admin/product-group-list')? 'active':''}}">Product group list</a>
@@ -50,8 +56,11 @@
                         <li>
                             <a href="{{url('admin/product-group-add')}}" class="{{Request::is('admin/product-group-add')? 'active':''}}">Product group add</a>
                         </li>
-                         <li>
-                            <a href="{{url('admin/product-add')}}" class="{{Request::is('admin/product-add')? 'active':''}}">Product size add</a>
+                        <li>
+                            <a href="{{url('admin/product-size-list')}}" class="{{Request::is('admin/product-size-list')? 'active':''}}">Product size list</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/product-size-add')}}" class="{{Request::is('admin/product-size-add')? 'active':''}}">Product size add</a>
                         </li>
 
                     </ul>

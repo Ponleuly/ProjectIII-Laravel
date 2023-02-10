@@ -7,6 +7,10 @@ use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\AdminController\AdminFrontendController;
 use App\Http\Controllers\AdminController\ProductCategoryController;
 use App\Http\Controllers\AdminController\ProductgroupController;
+use App\Http\Controllers\AdminController\ProductDetailController;
+use App\Http\Controllers\AdminController\ProductSizeController;
+
+
 
 
 
@@ -64,4 +68,21 @@ Route::prefix('admin')->controller(ProductCategoryController::class)->group(func
    Route::post('/product-category-add', 'product_category_store')->name('product-category-add');
    Route::get('/product-category-edit/{id}', 'product_category_edit')->name('product-category-edit');
    Route::put('/product-category-edit/{id}', 'product_category_update');
+   Route::get('/product-category-delete/{id}', 'product_category_delete');
+});
+Route::prefix('admin')->controller(ProductSizeController::class)->group(function () {
+   Route::get('/product-size-list', 'product_size_list')->name('product-size-list');
+   Route::get('/product-size-add', 'product_size_add')->name('product-size-add');
+   Route::post('/product-size-add', 'product_size_store')->name('product-size-add');
+   Route::get('/product-size-edit/{id}', 'product_size_edit')->name('product-size-edit');
+   Route::put('/product-size-edit/{id}', 'product_size_update');
+   Route::get('/product-size-delete/{id}', 'product_size_delete');
+});
+Route::prefix('admin')->controller(ProductDetailController::class)->group(function () {
+   Route::get('/product-detail-list', 'product_detail_list')->name('product-detail-list');
+   Route::get('/product-detail-add', 'product_detail_add')->name('product-detail-add');
+   Route::post('/product-detail-add', 'product_detail_store')->name('product-detail-add');
+   Route::get('/product-detail-edit/{id}', 'product_detail_edit')->name('product-detail-edit');
+   Route::put('/product-detail-edit/{id}', 'product_detail_update');
+   Route::get('/product-detail-delete/{id}', 'product_detail_delete');
 });

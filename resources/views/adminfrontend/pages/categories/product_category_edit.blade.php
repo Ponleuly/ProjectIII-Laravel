@@ -1,7 +1,7 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/product-category-edit/'.$category->id)}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('/admin/product-category-edit/'.$categoryId)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
             @method('PUT')
             <div class="row justify-content-center">

@@ -4,27 +4,37 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product_sizes;
 
-class AdminFrontendController extends Controller
+class ProductSizeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function product_size_list()
     {
-        return view('adminfrontend.pages.dashboard');
+        $product_sizes = Product_sizes::orderBy('size')->get();
+        $count = 1;
+        return view(
+            '
+                adminfrontend.pages.sizes.product_size_list',
+            compact(
+                'product_sizes',
+                'count'
+            )
+        );
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function product_size_add()
     {
-        //
+        return view('adminfrontend.pages.sizes.product_size_add');
     }
 
     /**
@@ -33,9 +43,12 @@ class AdminFrontendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function product_size_store(Request $request)
     {
-        //
+        $input = $request->all();
+        Product_sizes::create($input);
+        return redirect('/admin/product-size-add')
+            ->with('alert', 'Product size ' . $request->size . ' is added successfully!');
     }
 
     /**

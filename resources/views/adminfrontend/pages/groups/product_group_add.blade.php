@@ -19,7 +19,7 @@
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
                                         <label for="group_name"><p class="text-label">Product group name</p></label>
-                                        <input group="text" class="form-control rounded-0 fw-500 mb-2 text-capitalize" id="group_namee" name="group_name" placeholder="group name...">
+                                        <input type="text" class="form-control rounded-0 fw-500 mb-2 text-capitalize" id="group_name" name="group_name" placeholder="group name...">
 
                                         <div class="d-flex mt-4">
                                             <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-group-list')}}" role="button">Back to list</a>

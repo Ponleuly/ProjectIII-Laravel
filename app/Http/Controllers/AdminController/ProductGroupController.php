@@ -19,7 +19,7 @@ class ProductGroupController extends Controller
         $count = 1;
 
         return view(
-            'adminfrontend.pages.product_group_list',
+            'adminfrontend.pages.groups.product_group_list',
             compact(
                 'product_groups',
                 'count',
@@ -34,7 +34,7 @@ class ProductGroupController extends Controller
      */
     public function product_group_add()
     {
-        return view('adminfrontend.pages.product_group_add');
+        return view('adminfrontend.pages.groups.product_group_add');
     }
 
     /**
@@ -50,7 +50,7 @@ class ProductGroupController extends Controller
 
         // After inputed -> go back to category page
         return redirect('/admin/product-group-add')
-            ->with('alert', 'Product group ' . $request->group_name . ' successfully!');
+            ->with('alert', 'Product group ' . $request->group_name . ' is added successfully!');
     }
 
     /**
@@ -75,7 +75,7 @@ class ProductGroupController extends Controller
         $group = Product_groups::where('id', $id)->first();
 
         return view(
-            'adminfrontend.pages.product_group_edit',
+            'adminfrontend.pages.groups.product_group_edit',
             compact(
                 'group'
             )
