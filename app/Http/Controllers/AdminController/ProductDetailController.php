@@ -50,7 +50,15 @@ class ProductDetailController extends Controller
     public function product_detail_store(Request $request)
     {
         $input  = $request->all();
+        if ($request->hasFile('product_img')) {
+            $destination_path = 'public/imgs/products';
+            $image = $request->file('product_img');
 
+            $image_name = $image->getClientOriginalName();
+            $image->storeAs($destination_path, $image_name);
+
+            $input['product_img'] = $image_name;
+        }
         return dd($request->toArray());
     }
 

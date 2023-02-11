@@ -12,12 +12,13 @@ class Product_details extends Model
     protected $fillable = [
         'product_name',
         'product_des',
-        'product_img',
+        'product_imgcover',
         'product_price',
+        'product_saleprice',
         'product_stock',
         'color_id',
         'size_id',
         'category_id',
-        'type_id',
+        'group_id',
     ];
 }

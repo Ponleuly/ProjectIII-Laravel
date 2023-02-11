@@ -18,15 +18,17 @@
                                         <label for="product_des"><p class="text-label mt-2">Description</p></label>
                                         <textarea class="form-control rounded-0 fw-500" placeholder="product description..." name="product_des" id="product_des"></textarea>
 
-                                        <label for="product_img"><p class="text-label mt-3">Images (5 pictures)</p></label>
-                                        <input class="form-control rounded-0 mb-2" type="file" id="product_img" name="product_img[]" accept="image/png, image/jpeg, image/jpg" multiple required>
+                                        <label for="product_imgcover"><p class="text-label mt-3">Image cover (1 picture)</p></label>
+                                        <input class="form-control rounded-0 mb-2" type="file" id="product_imgcover" name="product_imgcover" accept="image/png, image/jpeg, image/jpg" required>
 
-                                        <label for="product_price"><p class="text-label mt-2 ">Product price ($)</p></label>
+                                        <label for="product_imgreview"><p class="text-label mt-2">Images review (4 pictures)</p></label>
+                                        <input class="form-control rounded-0 mb-2" type="file" id="product_imgreview" name="product_imgreview[]" accept="image/png, image/jpeg, image/jpg" multiple required>
+
+                                        <label for="product_price"><p class="text-label mt-2">Product price ($)</p></label>
                                         <input class="form-control rounded-0 fw-500 mb-2" type="number" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
 
-                                        <label for="product_stock"><p class="text-label mt-2">Product total stock</p></label>
-                                        <input class="form-control rounded-0 fw-500" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
-
+                                        <label for="product_saleprice"><p class="text-label mt-2">Product sale price ($)</p></label>
+                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" step="0.05" name="product_saleprice" id="product_saleprice" placeholder="00.00" required>
                                     </div>
                                 </div>
                             </div>
@@ -34,8 +36,29 @@
                             <div class="col-md-6">
                                 <div class="col-md-12 mb-2">
                                     <div class="form-group mb-2">
+                                        <div class="col-md-12 mb-2">
+                                            <label for="product_stock"><p class="text-label">Product total stock</p></label>
+                                            <input class="form-control rounded-0 fw-500" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
+                                        </div>
+
+                                        <label for="category_id" ><p class="text-label mt-2" >Product category</p></label>
+                                        <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
+                                            <option selected disabled>Select category</option>
+                                            @foreach ($product_categories as $item2)
+                                                <option value="{{$item2->id}}">{{$item2->category_name}}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label>
+                                        <select class="form-select rounded-0 mb-2" aria-label="group select" name="group_id" id="group_id" required>
+                                            <option selected disabled>Select group</option>
+                                            @foreach ($product_groups as $item3)
+                                                <option value="{{$item3->id}}">{{$item3->group_name}}</option>
+                                            @endforeach
+                                        </select>
+
                                         <div class="mb-2">
-                                            <label for="color_id"><p class="text-label">Product color</p></label><br>
+                                            <label for="color_id"><p class="text-label mt-2">Product color</p></label><br>
                                             @foreach ($product_colors as $row)
                                                 <div class="form-check form-check-inline all">
                                                     <input
@@ -59,8 +82,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-2 mt-0">
-                                            <label for="size_id"><p class="text-label">Product size</p></label><br>
+                                        <div class="mb-2">
+                                            <label for="size_id"><p class="text-label mt-1">Product size</p></label><br>
                                             @foreach ($product_sizes as $item1)
                                                 <div class="form-check form-check-inline all">
                                                     <input
@@ -82,25 +105,15 @@
                                             <label class="form-check-label text-danger ms-1" for="size">Check All</label>
                                         </div>
 
-                                        <label for="category_id " style="margin-top: 5px"><p class="text-label mt-0" >Product category</p></label>
-                                        <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
-                                            <option selected disabled>Select category</option>
-                                            @foreach ($product_categories as $item2)
-                                                <option value="{{$item2->id}}">{{$item2->category_name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label>
-                                        <select class="form-select rounded-0 mb-2" aria-label="group select" name="group_id" id="group_id" required>
-                                            <option selected disabled>Select group</option>
-                                            @foreach ($product_groups as $item3)
-                                                <option value="{{$item3->id}}">{{$item3->group_name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <div class="d-flex mt-4">
-                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-category-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit" >Add product</button>
+                                        <div class="d-flex mt-4" style="padding-top: 2px">
+                                            <a
+                                                class="btn btn-outline-danger rounded-0 mt-2"
+                                                href="{{url('/admin/product-category-list')}}"
+                                                role="button"
+                                                >
+                                                Back to list
+                                            </a>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-2" type="submit">Add product</button>
                                         </div>
                                         <!--formnovalidate="formnovalidate" => for textarea input with CKeditor-->
                                     </div>
