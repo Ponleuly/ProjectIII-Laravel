@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('product_sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedDecimal('size', 3, 2);
+            $table->string('size', 5);
             $table->timestamps();
         });
     }

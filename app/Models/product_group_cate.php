@@ -17,4 +17,8 @@ class Product_group_cate extends Model
     {
         return $this->belongsTo(Product_groups::class, 'group_id');
     }
+    public function product_group()
+    {
+        return $this->hasMany(Product_details::class, 'id');
+    }
 }

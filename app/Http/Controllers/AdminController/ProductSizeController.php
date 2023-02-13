@@ -68,9 +68,14 @@ class ProductSizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function product_size_edit($id)
     {
-        //
+        $sizes = Product_sizes::where('id', $id)->first();
+
+        return view(
+            'adminfrontend.pages.sizes.product_size_edit',
+            compact('sizes')
+        );
     }
 
     /**
@@ -80,9 +85,18 @@ class ProductSizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function product_size_update(Request $request, $id)
     {
-        //
+        $update_size = Product_sizes::where('id', $id)->first();
+        $update_size->size = $request->input('size');
+        $update_size->update();
+
+        return redirect('/admin/product-size-list')
+            ->with(
+                'alert',
+                'Product size ' . '"' . $update_size->size . '"' .
+                    ' is updated successfully !'
+            );
     }
 
     /**
@@ -91,8 +105,16 @@ class ProductSizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function product_size_delete($id)
     {
-        //
+        $delete_size = Product_sizes::where('id', $id)->first();
+        $delete_size->delete();
+
+        return redirect('/admin/product-size-list')
+            ->with(
+                'alert',
+                'Product size ' . '"' . $delete_size->size . '"' .
+                    ' is deleted successfully !'
+            );
     }
 }

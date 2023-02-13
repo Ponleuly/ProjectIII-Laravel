@@ -1,6 +1,6 @@
 
 @extends('index')
-@section('content') 
+@section('content')
     <!-- Start breabcrumb Section -->
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
@@ -44,7 +44,7 @@
                             <p class="text-black py-1 my-0">Sản phẩm: <strong>Nam</strong></p>
                             <h5 class="text-danger fw-bold py-2"><strong>700.000 VND</strong></h5>
                             <hr>
-                            <div class="row  py-2  px-3">
+                            <div class="row py-2 px-3">
                                 <span class="product-color" style="background-color:#CC2936;"><a href="" ></a></span>
                                 <span class="product-color" style="background-color:#edc373;"><a href="" ></a></span>
                                 <span class="product-color" style="background-color:#889bae;"><a href="" ></a></span>
@@ -75,27 +75,27 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="row my-4">
-                                <div class="col-md-10">
-                                    <div class="d-grid">
-                                        <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">THÊM VÀO GIỎ HÀNG</a>
+                            <div class="row my-4">
+                                    <div class="col-md-10">
+                                        <div class="d-grid">
+                                            <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">THÊM VÀO GIỎ HÀNG</a>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                    <div class="d-grid">
-                                        <a href="" class="btn btn-block px-4 py-2 cart-add  rounded-0">
-                                            <span class="material-icons-outlined py-2">favorite</span>
-                                        </a>
+
+                                    <div class="col-md-2">
+                                        <div class="d-grid">
+                                            <a href="" class="btn btn-block px-4 py-2 cart-add  rounded-0">
+                                                <span class="material-icons-outlined py-2">favorite</span>
+                                            </a>
+                                        </div>
                                     </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="d-grid">
+                                    <a href="{{url('cart')}}" class="btn btn-block px-4 py-3 fw-semibold  rounded-0">MUA NGAY</a>
                                 </div>
+                            </div>
                         </div>
-                        <div class="row my-4">
-                            <div class="d-grid">
-                                <a href="{{url('cart')}}" class="btn btn-block px-4 py-3 fw-semibold  rounded-0">MUA NGAY</a>
-						    </div>
-                        </div>
-                        
 		            </div>
 
 		            <div class="col-md-12">
@@ -168,9 +168,9 @@
                                 <div class="collapse" id="collapsebank4">
                                     <div class="px-5">
                                         <p class="mb-0">
-                                            Mỗi đôi giày Ananas trước khi xuất xưởng đều trải qua nhiều khâu kiểm tra. 
-                                            Tuy vậy, trong quá trình sử dụng, nếu nhận thấy các lỗi: gãy đế, hở đế, 
-                                            đứt chỉ may,...trong thời gian 6 tháng từ ngày mua hàng, 
+                                            Mỗi đôi giày Ananas trước khi xuất xưởng đều trải qua nhiều khâu kiểm tra.
+                                            Tuy vậy, trong quá trình sử dụng, nếu nhận thấy các lỗi: gãy đế, hở đế,
+                                            đứt chỉ may,...trong thời gian 6 tháng từ ngày mua hàng,
                                             mong bạn sớm gửi sản phẩm về Ananas nhằm giúp chúng tôi có cơ hội phục vụ bạn tốt hơn.
                                             Vui lòng gửi sản phẩm về bất kỳ cửa hàng Ananas nào,
                                             hoặc gửi đến trung tâm bảo hành Ananas ngay trong trung tâm TP.HCM trong giờ hành chính:

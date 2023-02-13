@@ -1,6 +1,13 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
+        @if(Session::has('alert'))
+            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                {{Session::get('alert')}}
+                <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+		@endif
+
         <h4 class="mt-3 text-black">Add Product</h4>
         <form action="{{url('/admin/product-detail-add')}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
@@ -8,10 +15,10 @@
                 <div class="col-md-12 my-3 mb-md-0">
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
-
                             <div class="col-md-6">
                                 <div class="form-group row mb-2">
                                     <div class="col-md-12">
+
                                         <label for="product_name"><p class="text-label">Product name</p></label>
                                         <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_name" name="product_name" placeholder="product name..." required>
 
@@ -25,10 +32,10 @@
                                         <input class="form-control rounded-0 mb-2" type="file" id="product_imgreview" name="product_imgreview[]" accept="image/png, image/jpeg, image/jpg" multiple required>
 
                                         <label for="product_price"><p class="text-label mt-2">Product price ($)</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
+                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="0" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
 
                                         <label for="product_saleprice"><p class="text-label mt-2">Product sale price ($)</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" step="0.05" name="product_saleprice" id="product_saleprice" placeholder="00.00" required>
+                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="0" step="0.05" name="product_saleprice" id="product_saleprice" placeholder="00.00" required>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +65,7 @@
                                         </select>
 
                                         <div class="mb-2">
-                                            <label for="color_id"><p class="text-label mt-2">Product color</p></label><br>
+                                            <label for="color_id[]"><p class="text-label mt-2">Product color</p></label><br>
                                             @foreach ($product_colors as $row)
                                                 <div class="form-check form-check-inline all">
                                                     <input
@@ -83,7 +90,7 @@
                                         </div>
 
                                         <div class="mb-2">
-                                            <label for="size_id"><p class="text-label mt-1">Product size</p></label><br>
+                                            <label for="size_id[]"><p class="text-label mt-1">Product size</p></label><br>
                                             @foreach ($product_sizes as $item1)
                                                 <div class="form-check form-check-inline all">
                                                     <input
@@ -108,7 +115,7 @@
                                         <div class="d-flex mt-4" style="padding-top: 2px">
                                             <a
                                                 class="btn btn-outline-danger rounded-0 mt-2"
-                                                href="{{url('/admin/product-category-list')}}"
+                                                href="{{url('/admin/product-detail-list')}}"
                                                 role="button"
                                                 >
                                                 Back to list

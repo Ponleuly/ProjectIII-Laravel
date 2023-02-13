@@ -24,19 +24,8 @@ return new class extends Migration
 
             $table->string('product_imgcover', 100);
 
-            $table->unsignedInteger('color_id');
-            $table->foreign('color_id')
-                ->references('id')
-                ->on('product_colors')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->unsignedInteger('size_id');
-            $table->foreign('size_id')
-                ->references('id')
-                ->on('product_sizes')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->string('color_id');
+            $table->string('size_id');
 
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')

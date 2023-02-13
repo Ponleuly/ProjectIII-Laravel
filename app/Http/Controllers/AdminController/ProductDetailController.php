@@ -7,6 +7,8 @@ use App\Models\Product_groups;
 use App\Models\Product_sizes;
 use App\Models\Product_categories;
 use App\Models\Product_colors;
+use App\Models\Product_details;
+use App\Models\Product_images;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -39,7 +41,35 @@ class ProductDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function product_detail_list()
+    {
+        $products = Product_details::latest()->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.products.product_detail_list',
+            compact(
+                'products',
+                'count'
+            )
 
+        );
+    }
+    public function product_detail_view($id)
+    {
+        $product_view = Product_details::where('id', $id)->first();
+        $color = $product_view->color_id;
+
+        return view(
+            'adminfrontend.pages.products.product_detail_view',
+            compact(
+                'product_view',
+            )
+
+        );
+
+
+        //return dd(json_decode($color));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -50,16 +80,44 @@ class ProductDetailController extends Controller
     public function product_detail_store(Request $request)
     {
         $input  = $request->all();
-        if ($request->hasFile('product_img')) {
-            $destination_path = 'public/imgs/products';
-            $image = $request->file('product_img');
+
+        $input['color_id'] = collect($request->color_id);
+        $input['size_id'] = collect($request->size_id);
+
+
+        if ($request->hasFile('product_imgcover')) {
+            $destination_path = 'product_img/imgcover';
+            $image = $request->file('product_imgcover');
 
             $image_name = $image->getClientOriginalName();
-            $image->storeAs($destination_path, $image_name);
+            $image->move($destination_path, $image_name);
 
-            $input['product_img'] = $image_name;
+            $input['product_imgcover'] = $image_name;
         }
-        return dd($request->toArray());
+        Product_details::create($input);
+
+        $product = Product_details::where('product_name', $request->product_name)->latest()->first();
+        $productId = $product->id;
+        //$imgCount = count($request->product_imgreview);
+        if ($file = $request->hasFile('product_imgreview')) {
+            $file = $request->file('product_imgreview');
+            $destinationPath = 'product_img/imgreview';
+
+            if (is_array($file)) {
+                foreach ($file as $part) {
+                    $filename = $part->getClientOriginalName();
+                    $part->move($destinationPath, $filename);
+
+                    $input['product_imgreview'] = $filename;
+                    $input['product_id'] = $productId;
+                    Product_images::create($input);
+                }
+            }
+        }
+
+        return redirect('/admin/product-detail-add')
+            ->with('alert', 'Product' . $request->product_name . ' is added successfully!');
+        //return dd($filename);
     }
 
     /**

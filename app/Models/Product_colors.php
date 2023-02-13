@@ -10,4 +10,8 @@ class Product_colors extends Model
     use HasFactory;
     protected $table = 'product_colors';
     protected $fillable = ['color_name'];
+    public function product_col()
+    {
+        return $this->hasOne(Product_details::class, 'id');
+    }
 }

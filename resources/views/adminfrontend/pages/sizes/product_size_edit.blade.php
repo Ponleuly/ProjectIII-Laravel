@@ -1,8 +1,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/product-size-add')}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('/admin/product-size-edit/'.$sizes->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
+            @method('PUT') <!-- to make form edit -->
             <div class="row justify-content-center">
                 <div class="col-md-6 my-3 mb-md-0">
                     @if(Session::has('alert'))
@@ -12,18 +13,25 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Add product size</h4>
+                    <h4 class="mb-2 text-black">Edit Product Size</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
                                         <label for="size"><p class="text-label">Product size</p></label>
-                                        <input type="number" class="form-control rounded-0 fw-500 mb-2" value="34" min="1" id="size" name="size" placeholder="size number..." required>
-
+                                        <input
+                                            type="number"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            value="{{$sizes->size}}"
+                                            min="1"
+                                            id="size"
+                                            name="size"
+                                            placeholder="size number..."
+                                            required>
                                         <div class="d-flex mt-4">
                                             <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-size-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" group="submit">Add size</button>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" group="submit">Update size</button>
                                         </div>
                                     </div>
                                 </div>
