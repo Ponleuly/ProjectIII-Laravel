@@ -57,7 +57,7 @@ class ProductDetailController extends Controller
     public function product_detail_view($id)
     {
         $product_view = Product_details::where('id', $id)->first();
-        $color = $product_view->color_id;
+        //$color = $product_view->color_id;
 
         return view(
             'adminfrontend.pages.products.product_detail_view',
@@ -81,9 +81,8 @@ class ProductDetailController extends Controller
     {
         $input  = $request->all();
 
-        $input['color_id'] = collect($request->color_id);
-        $input['size_id'] = collect($request->size_id);
-
+        $input['product_color'] = collect($request->color);
+        $input['product_size'] = collect($request->size);
 
         if ($request->hasFile('product_imgcover')) {
             $destination_path = 'product_img/imgcover';
@@ -116,8 +115,8 @@ class ProductDetailController extends Controller
         }
 
         return redirect('/admin/product-detail-add')
-            ->with('alert', 'Product' . $request->product_name . ' is added successfully!');
-        //return dd($filename);
+            ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
+        //return dd($request->color_id);
     }
 
     /**

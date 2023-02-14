@@ -36,21 +36,13 @@
 
                                         <label for="product_saleprice"><p class="text-label mt-2">Product sale price ($)</p></label>
                                         <input class="form-control rounded-0 fw-500 mb-2" type="number" min="0" step="0.05" name="product_saleprice" id="product_saleprice" placeholder="00.00" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-group mb-2">
-                                        <div class="col-md-12 mb-2">
-                                            <label for="product_stock"><p class="text-label">Product total stock</p></label>
-                                            <input class="form-control rounded-0 fw-500" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
-                                        </div>
-
+                                        <!--
+                                        <label for="product_stock"><p class="text-label mt-2">Product total stock</p></label>
+                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
+                                        -->
                                         <label for="category_id" ><p class="text-label mt-2" >Product category</p></label>
                                         <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
-                                            <option selected disabled>Select category</option>
+                                                <option selected disabled>Select category</option>
                                             @foreach ($product_categories as $item2)
                                                 <option value="{{$item2->id}}">{{$item2->category_name}}</option>
                                             @endforeach
@@ -58,47 +50,139 @@
 
                                         <label for="group_id"><p class="text-label mt-2">Product group</p></label>
                                         <select class="form-select rounded-0 mb-2" aria-label="group select" name="group_id" id="group_id" required>
-                                            <option selected disabled>Select group</option>
+                                                <option selected disabled>Select group</option>
                                             @foreach ($product_groups as $item3)
                                                 <option value="{{$item3->id}}">{{$item3->group_name}}</option>
                                             @endforeach
                                         </select>
 
-                                        <div class="mb-2">
-                                            <label for="color_id[]"><p class="text-label mt-2">Product color</p></label><br>
-                                            @foreach ($product_colors as $row)
-                                                <div class="form-check form-check-inline all">
-                                                    <input
-                                                        type="checkbox"
-                                                        class="form-check-input colorAll"
-                                                        id="{{$row->color_name}}"
-                                                        value="{{$row->id}}"
-                                                        name="color_id[]"
-                                                        @if ($loop->first)
-                                                            checked
-                                                        @endif
-                                                    >
-                                                    <label class="form-check-label mt-0" for="{{$row->color_name}}">
-                                                        <div class="color-choose" style="background: {{$row->color_name}}"></div>
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                            <div class="form-check">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-group mb-2">
+                                        <!-- Start Product color and quantity -->
+                                        <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
+                                        <div class="border border-1 p-3 mb-2">
+                                            <div class="row">
+                                                @foreach ($product_colors as $row)
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="border border-1 py-2 px-4">
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-4">
+                                                                    <label for="color_id[]"><p class="text-label">Color: </p></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        class="form-check-input colorAll"
+                                                                        id="{{$row->color_name}}"
+                                                                        value="{{$row->color_name}}"
+                                                                        name="color[]"
+                                                                        @if ($loop->first)
+                                                                            checked
+                                                                        @endif
+                                                                    >
+                                                                    <label class="form-check-label" for="{{$row->color_name}}">
+                                                                        <div style="background: {{$row->color_name}}; color: {{$row->color_name}}" class="px-2 ms-1">FFFFF1</div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label for="quantity1"><p class="text-label">Quantity: </p></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input
+                                                                        class="form-control rounded-0 w-75 py-0"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        name="product_stock"
+                                                                        id="quantity1"
+                                                                        placeholder="00"
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
+                                            <div class="form-check mb-0">
                                                 <input type="checkbox" class="form-check-input" id="color" onclick="javascript:colorAll(this)"/>
                                                 <label class="form-check-label text-danger" for="color">Check All</label>
                                             </div>
                                         </div>
+                                        <!-- End Product color and quantity -->
 
+                                        <!-- Start Product size and quantity -->
+                                        <label for="size"><p class="text-label mt-2">Product size and quantity</p></label><br>
+                                        <div class="border border-1 p-3 mb-2">
+                                            <div class="row">
+                                                 @foreach ($product_sizes as $item1)
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="border border-1 py-2 px-4">
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-4">
+                                                                    <label for="size"><p class="text-label">Size: </p></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        class="form-check-input sizeAll"
+                                                                        id="size{{$item1->size}}"
+                                                                        value="{{$item1->size}}"
+                                                                        name="size[]"
+                                                                        @if ($loop->first)
+                                                                            checked
+                                                                        @endif
+                                                                    >
+                                                                    <label class="form-check-label fw-500" for="size{{$item1->size}}">
+                                                                        {{$item1->size}}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label for="quantity1"><p class="text-label">Quantity: </p></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <input
+                                                                        class="form-control rounded-0 w-75 py-0"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        name="product_stock"
+                                                                        id="quantity1"
+                                                                        placeholder="00"
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
+                                            <div class="form-check mb-0">
+                                                <input type="checkbox"  class="form-check-input" id="size" onclick="javascript:sizeAll(this)"/>
+                                                <label class="form-check-label text-danger ms-1" for="size">Check All</label>
+                                            </div>
+                                        </div>
+                                        <!-- End Product size and quantity -->
+
+                                        <!-- Start Product size and quantity -->
+                                        <!--
                                         <div class="mb-2">
-                                            <label for="size_id[]"><p class="text-label mt-1">Product size</p></label><br>
+                                            <label for="size_id[]"><p class="text-label">Product size and quantity</p></label><br>
                                             @foreach ($product_sizes as $item1)
                                                 <div class="form-check form-check-inline all">
                                                     <input
                                                         type="checkbox"
                                                         class="form-check-input sizeAll"
                                                         id="size{{$item1->size}}"
-                                                        value="{{$item1->id}}"
-                                                        name="size_id[]"
+                                                        value="{{$item1->size}}"
+                                                        name="size[]"
                                                         @if ($loop->first)
                                                             checked
                                                         @endif
@@ -111,6 +195,8 @@
                                             <input type="checkbox"  class="form-check-input" id="size" onclick="javascript:sizeAll(this)"/>
                                             <label class="form-check-label text-danger ms-1" for="size">Check All</label>
                                         </div>
+                                        -->
+                                        <!-- End Product size and quantity -->
 
                                         <div class="d-flex mt-4" style="padding-top: 2px">
                                             <a

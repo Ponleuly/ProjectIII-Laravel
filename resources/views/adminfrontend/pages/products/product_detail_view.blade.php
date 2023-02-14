@@ -97,13 +97,16 @@
                                         </div>
                                         <div class="col-9 row ms-0 ps-0">
                                             @php
-                                                $colorId = $product_view->color_id;
+                                                $productColors = $product_view->product_color;
                                             @endphp
-                                            @foreach (json_decode($colorId) as $item)
+                                            @foreach (json_decode($productColors) as $color)
                                                 @php
-                                                    $colors = Product_colors::where('id', intval($item))->first();
+                                                    $colors = Product_colors::where('color_name', $color)->first();
                                                 @endphp
-                                                <div class="color-product me-3" style="background: {{$colors->color_name}}"></div>
+                                                <div
+                                                    class="color-product me-3"
+                                                    style="background: {{$colors->color_name}}">
+                                                </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -115,11 +118,11 @@
                                         <div class="col-9 pe-2 ps-0 ms-0">
                                             <div class="row ms-0 ps-0">
                                                 @php
-                                                    $sizeId = $product_view->size_id;
+                                                    $productSizes = $product_view->product_size;
                                                 @endphp
-                                                @foreach (json_decode($sizeId) as $item)
+                                                @foreach (json_decode($productSizes) as $size)
                                                     @php
-                                                        $sizes = Product_sizes::where('id', intval($item))->first();
+                                                        $sizes = Product_sizes::where('size', $size)->first();
                                                     @endphp
                                                     <div class="color-product me-1 ms-0">{{$sizes->size}}</div>
                                                 @endforeach

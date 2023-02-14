@@ -16,8 +16,8 @@ class Product_details extends Model
         'product_price',
         'product_saleprice',
         'product_stock',
-        'color_id',
-        'size_id',
+        'product_color',
+        'product_size',
         'category_id',
         'group_id',
     ];

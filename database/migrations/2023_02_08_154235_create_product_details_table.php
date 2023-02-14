@@ -24,8 +24,8 @@ return new class extends Migration
 
             $table->string('product_imgcover', 100);
 
-            $table->string('color_id');
-            $table->string('size_id');
+            $table->string('product_color');
+            $table->string('product_size');
 
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')
