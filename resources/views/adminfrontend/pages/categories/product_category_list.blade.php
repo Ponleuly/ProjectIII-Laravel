@@ -1,5 +1,5 @@
 <?php
-	use App\Models\Product_group_cate;
+	use App\Models\Categories_Groups;
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
@@ -39,16 +39,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($product_categories as $row)
+                                @foreach($categories as $row)
                                     @php
-                                        $product_groups =  Product_group_cate::where('category_id', $row->id)->get();
+                                        $groups =  Categories_Groups::where('category_id', $row->id)->get();
                                     @endphp
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$row->category_name}}</td>
                                         <td>
-                                            @foreach($product_groups as $item)
-                                                {{$item->group_cate->group_name}}
+                                            @foreach($groups as $item)
+                                                {{$item->rela_category_group->group_name}}
                                                 {{($loop->last)? '':'&'}}
                                             @endforeach
                                         </td>

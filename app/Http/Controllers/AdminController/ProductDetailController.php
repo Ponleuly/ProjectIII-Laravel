@@ -83,7 +83,7 @@ class ProductDetailController extends Controller
 
         $input['product_color'] = collect($request->color);
         $input['product_size'] = collect($request->size);
-
+        /*
         if ($request->hasFile('product_imgcover')) {
             $destination_path = 'product_img/imgcover';
             $image = $request->file('product_imgcover');
@@ -116,7 +116,8 @@ class ProductDetailController extends Controller
 
         return redirect('/admin/product-detail-add')
             ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
-        //return dd($request->color_id);
+        */
+        return dd($request->toArray());
     }
 
     /**

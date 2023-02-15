@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product_groups extends Model
+class Groups extends Model
 {
     use HasFactory;
-    protected $table = 'product_groups';
+    protected $table = 'groups';
     protected $fillable = ['group_name'];
-    public function group_cate()
+    public function rela_category_group()
     {
-        return $this->hasMany(Product_group_cate::class, 'group_id', 'id');
+        return $this->hasMany(Categories_Groups::class, 'group_id', 'id');
     }
 }

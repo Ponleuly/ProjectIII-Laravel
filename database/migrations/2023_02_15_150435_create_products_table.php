@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_details', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_name', 100);
             $table->string('product_des', 500);
@@ -30,14 +30,14 @@ return new class extends Migration
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')
-                ->on('product_categories')
+                ->on('categories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')
                 ->references('id')
-                ->on('product_groups')
+                ->on('groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_details');
+        Schema::dropIfExists('products');
     }
 };

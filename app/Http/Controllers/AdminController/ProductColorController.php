@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product_colors;
+use App\Models\Colors;
 use Illuminate\Http\Request;
 
 class ProductColorController extends Controller
@@ -16,12 +16,12 @@ class ProductColorController extends Controller
 
     public function product_color_list()
     {
-        $product_colors = Product_colors::latest()->get();
+        $colors = Colors::latest()->get();
         $count = 1;
         return view(
             'adminfrontend.pages.colors.product_color_list',
             compact(
-                'product_colors',
+                'colors',
                 'count'
             )
         );
@@ -45,7 +45,7 @@ class ProductColorController extends Controller
     public function product_color_store(Request $request)
     {
         $input = $request->all();
-        Product_colors::create($input);
+        Colors::create($input);
         return redirect('/admin/product-color-add')
             ->with('alert', 'Product color is added successfully!');
     }
@@ -66,7 +66,7 @@ class ProductColorController extends Controller
      */
     public function product_color_edit($id)
     {
-        $color = Product_colors::where('id', $id)->first();
+        $color = Colors::where('id', $id)->first();
 
         return view(
             'adminfrontend.pages.colors.product_color_edit',
@@ -84,7 +84,7 @@ class ProductColorController extends Controller
      */
     public function product_color_update(Request $request, $id)
     {
-        $update_color_name = Product_colors::where('id', $id)->first();
+        $update_color_name = Colors::where('id', $id)->first();
         $update_color_name->color_name = $request->input('color_name');
         $update_color_name->update();
 
@@ -103,7 +103,7 @@ class ProductColorController extends Controller
      */
     public function product_color_delete($id)
     {
-        $delete_color = Product_colors::where('id', $id)->first();
+        $delete_color = Colors::where('id', $id)->first();
         $delete_color->delete();
 
         return redirect('/admin/product-color-list')

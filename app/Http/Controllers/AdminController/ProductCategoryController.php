@@ -4,9 +4,9 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product_categories;
-use App\Models\Product_groups;
-use App\Models\Product_group_cate;
+use App\Models\Categories;
+use App\Models\Categories_Groups;
+use App\Models\Groups;
 
 
 
@@ -20,12 +20,12 @@ class ProductCategoryController extends Controller
      */
     public function product_category_list()
     {
-        $product_categories = Product_categories::orderBy('category_name')->get();
+        $categories = Categories::orderBy('category_name')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.categories.product_category_list',
             compact(
-                'product_categories',
+                'categories',
                 'count',
             )
         );
@@ -38,11 +38,11 @@ class ProductCategoryController extends Controller
      */
     public function product_category_add()
     {
-        $product_groups = Product_groups::orderBy('id')->get();
-        $groups_count = Product_groups::all()->count();
+        $groups = Groups::orderBy('id')->get();
+        $groups_count = Groups::all()->count();
         return view(
             'adminfrontend.pages.categories.product_category_add',
-            compact('product_groups', 'groups_count')
+            compact('groups', 'groups_count')
         );
     }
 
@@ -56,17 +56,17 @@ class ProductCategoryController extends Controller
     {
 
         $input = $request->all();
-        // Storing category_name data to table product_categories
-        Product_categories::create($input);
+        // Storing category_name data to table categories
+        Categories::create($input);
 
         // Storing category_id and group_id to table product_group_cate
-        $Category = Product_categories::where('category_name', $request->category_name)->latest()->first();
-        $categoryId = $Category->id;
+        $category = Categories::where('category_name', $request->category_name)->latest()->first();
+        $categoryId = $category->id;
         $groupId = $request->group_id;
         for ($i = 0; $i < count($groupId); $i++) {
             $save['category_id'] = $categoryId;
             $save['group_id'] = $groupId[$i];
-            Product_group_cate::create($save);
+            Categories_Groups::create($save);
         }
 
         // After inputed -> go back to category pages
@@ -84,19 +84,19 @@ class ProductCategoryController extends Controller
      */
     public function product_category_edit($id)
     {
-        $category = Product_categories::where('id', $id)->first();
-        $groups_count = Product_groups::all()->count();
-        $product_groups = Product_groups::orderBy('id')->get();
+        $category = Categories::where('id', $id)->first();
+        $groups_count = Groups::all()->count();
+        $groups = Groups::orderBy('id')->get();
 
         $categoryId = $category->id;
-        $selected_group = Product_group_cate::where('category_id', $categoryId)->get();
+        $selected_group = Categories_Groups::where('category_id', $categoryId)->get();
         return view(
             'adminfrontend.pages.categories.product_category_edit',
             compact(
                 'category',
                 'categoryId',
                 'groups_count',
-                'product_groups',
+                'groups',
                 'selected_group'
             )
         );
@@ -112,15 +112,15 @@ class ProductCategoryController extends Controller
      */
     public function product_category_update(Request $request, $id)
     {
-        $update_category_name = Product_categories::where('id', $id)->first();
+        $update_category_name = Categories::where('id', $id)->first();
         $update_category_name->category_name = $request->input('category_name');
         $update_category_name->update();
 
         $categoryId = $update_category_name->id;
-        $category_count = Product_group_cate::where('category_id', $categoryId)->count();
+        $category_count = Categories_Groups::where('category_id', $categoryId)->count();
 
         for ($i = 0; $i < $category_count; $i++) {
-            $delete_cate = Product_group_cate::where('category_id', $categoryId)->first();
+            $delete_cate = Categories_Groups::where('category_id', $categoryId)->first();
             $delete_cate->delete();
         }
 
@@ -129,7 +129,7 @@ class ProductCategoryController extends Controller
         for ($i = 0; $i < count($groupId); $i++) {
             $update['category_id'] = $categoryId;
             $update['group_id'] = $groupId[$i];
-            Product_group_cate::create($update);
+            Categories_Groups::create($update);
         }
 
         return redirect('/admin/product-category-list')
@@ -162,7 +162,7 @@ class ProductCategoryController extends Controller
      */
     public function product_category_delete($id)
     {
-        $delete_category = Product_categories::where('id', $id)->first();
+        $delete_category = Categories::where('id', $id)->first();
         $delete_category->delete();
 
         return redirect('/admin/product-category-list')

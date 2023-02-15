@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product_groups;
+use App\Models\Groups;
 
 class ProductGroupController extends Controller
 {
@@ -15,13 +15,13 @@ class ProductGroupController extends Controller
      */
     public function product_group_list()
     {
-        $product_groups = Product_groups::orderBy('group_name')->get();
+        $groups = Groups::orderBy('group_name')->get();
         $count = 1;
 
         return view(
             'adminfrontend.pages.groups.product_group_list',
             compact(
-                'product_groups',
+                'groups',
                 'count',
             )
         );
@@ -46,7 +46,7 @@ class ProductGroupController extends Controller
     public function product_group_store(Request $request)
     {
         $input  = $request->all();
-        Product_groups::create($input);
+        Groups::create($input);
 
         // After inputed -> go back to category page
         return redirect('/admin/product-group-add')
@@ -72,7 +72,7 @@ class ProductGroupController extends Controller
      */
     public function product_group_edit($id)
     {
-        $group = Product_groups::where('id', $id)->first();
+        $group = Groups::where('id', $id)->first();
 
         return view(
             'adminfrontend.pages.groups.product_group_edit',
@@ -91,7 +91,7 @@ class ProductGroupController extends Controller
      */
     public function product_group_update(Request $request, $id)
     {
-        $update_group_name = Product_groups::where('id', $id)->first();
+        $update_group_name = Groups::where('id', $id)->first();
         $update_group_name->group_name = $request->input('group_name');
         $update_group_name->update();
 
@@ -111,7 +111,7 @@ class ProductGroupController extends Controller
      */
     public function product_group_delete($id)
     {
-        $delete_group = Product_groups::where('id', $id)->first();
+        $delete_group = Groups::where('id', $id)->first();
         $delete_group->delete();
 
         return redirect('/admin/product-group-list')

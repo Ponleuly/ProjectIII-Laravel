@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('products_imgreviews', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_imgreview', 100);
 
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')
                 ->references('id')
-                ->on('product_details')
+                ->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('products_imgreviews');
     }
 };

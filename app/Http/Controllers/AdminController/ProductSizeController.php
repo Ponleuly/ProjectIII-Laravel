@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product_sizes;
+use App\Models\Sizes;
 
 class ProductSizeController extends Controller
 {
@@ -15,13 +15,13 @@ class ProductSizeController extends Controller
      */
     public function product_size_list()
     {
-        $product_sizes = Product_sizes::orderBy('size')->get();
+        $sizes = Sizes::orderBy('size_number')->get();
         $count = 1;
         return view(
             '
                 adminfrontend.pages.sizes.product_size_list',
             compact(
-                'product_sizes',
+                'sizes',
                 'count'
             )
         );
@@ -46,9 +46,9 @@ class ProductSizeController extends Controller
     public function product_size_store(Request $request)
     {
         $input = $request->all();
-        Product_sizes::create($input);
+        Sizes::create($input);
         return redirect('/admin/product-size-add')
-            ->with('alert', 'Product size ' . $request->size . ' is added successfully!');
+            ->with('alert', 'Product size ' . $request->size_number . ' is added successfully!');
     }
 
     /**
@@ -70,7 +70,7 @@ class ProductSizeController extends Controller
      */
     public function product_size_edit($id)
     {
-        $sizes = Product_sizes::where('id', $id)->first();
+        $sizes = Sizes::where('id', $id)->first();
 
         return view(
             'adminfrontend.pages.sizes.product_size_edit',
@@ -87,14 +87,14 @@ class ProductSizeController extends Controller
      */
     public function product_size_update(Request $request, $id)
     {
-        $update_size = Product_sizes::where('id', $id)->first();
-        $update_size->size = $request->input('size');
+        $update_size = Sizes::where('id', $id)->first();
+        $update_size->size_number = $request->input('size_number');
         $update_size->update();
 
         return redirect('/admin/product-size-list')
             ->with(
                 'alert',
-                'Product size ' . '"' . $update_size->size . '"' .
+                'Product size ' . '"' . $update_size->size_number . '"' .
                     ' is updated successfully !'
             );
     }
@@ -107,13 +107,13 @@ class ProductSizeController extends Controller
      */
     public function product_size_delete($id)
     {
-        $delete_size = Product_sizes::where('id', $id)->first();
+        $delete_size = Sizes::where('id', $id)->first();
         $delete_size->delete();
 
         return redirect('/admin/product-size-list')
             ->with(
                 'alert',
-                'Product size ' . '"' . $delete_size->size . '"' .
+                'Product size ' . '"' . $delete_size->size_number . '"' .
                     ' is deleted successfully !'
             );
     }

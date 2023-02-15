@@ -92,15 +92,16 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
-                                                                    <label for="quantity1"><p class="text-label">Quantity: </p></label>
+                                                                    <label for="color_quantity"><p class="text-label">Quantity: </p></label>
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <input
                                                                         class="form-control rounded-0 w-75 py-0"
                                                                         type="number"
                                                                         min="0"
-                                                                        name="product_stock"
-                                                                        id="quantity1"
+                                                                        value="10"
+                                                                        name="color_quantity[]"
+                                                                        id="color_quantity"
                                                                         placeholder="00"
                                                                     >
                                                                 </div>
@@ -146,15 +147,16 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
-                                                                    <label for="quantity1"><p class="text-label">Quantity: </p></label>
+                                                                    <label for="size_quantity"><p class="text-label">Quantity: </p></label>
                                                                 </div>
                                                                 <div class="col-md-8">
                                                                     <input
                                                                         class="form-control rounded-0 w-75 py-0"
                                                                         type="number"
                                                                         min="0"
-                                                                        name="product_stock"
-                                                                        id="quantity1"
+                                                                        value="10"
+                                                                        name="size_quantity[]"
+                                                                        id="size_quantity"
                                                                         placeholder="00"
                                                                     >
                                                                 </div>

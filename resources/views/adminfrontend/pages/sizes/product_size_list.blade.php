@@ -35,10 +35,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($product_sizes as $row)
+                                @foreach($sizes as $row)
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
-                                        <td>{{$row->size}}</td>
+                                        <td>{{$row->size_number}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-size-edit/'.$row->id)}}" role="button">Edit</a>

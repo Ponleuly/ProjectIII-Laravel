@@ -31,7 +31,7 @@
                                                 @endif
                                             </p>
                                         </label><br>
-                                        @foreach ($product_groups as $row)
+                                        @foreach ($groups as $row)
                                             <div class="form-check form-check-inline">
                                                 <input
                                                     type="checkbox"

@@ -13,23 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_group_cate', function (Blueprint $table) {
+        Schema::create('categories_groups', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')
-                ->on('product_categories')
+                ->on('categories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')
                 ->references('id')
-                ->on('product_groups')
+                ->on('groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
@@ -41,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_group_cate');
+        Schema::dropIfExists('categories_groups');
     }
 };

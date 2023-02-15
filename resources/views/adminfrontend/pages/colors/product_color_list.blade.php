@@ -39,7 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($product_colors as $row)
+                                @foreach($colors as $row)
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
                                         <td>

@@ -23,12 +23,13 @@
                                         <input
                                             type="number"
                                             class="form-control rounded-0 fw-500 mb-2"
-                                            value="{{$sizes->size}}"
+                                            value="{{$sizes->size_number}}"
                                             min="1"
                                             id="size"
-                                            name="size"
+                                            name="size_number"
                                             placeholder="size number..."
-                                            required>
+                                            required
+                                        >
                                         <div class="d-flex mt-4">
                                             <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-size-list')}}" role="button">Back to list</a>
                                             <button class="btn btn-primary rounded-0 ms-auto mt-3" group="submit">Update size</button>
