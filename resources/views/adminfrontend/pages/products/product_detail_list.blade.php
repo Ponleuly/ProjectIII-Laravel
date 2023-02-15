@@ -40,8 +40,8 @@
                                     <th scope="col">IMAGE</th>
                                     <th scope="col">PRODUCT NAME</th>
                                     <th scope="col">CATEGORY</th>
+                                    <th scope="col">GROUP</th>
                                     <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
                                 </tr>
@@ -56,10 +56,10 @@
                                         <td>{{$row->product_name}}</td>
                                         <td>
 
-                                            {{$row->product_cate->category_name}}
+                                            {{$row->rela_product_category->category_name}}
                                         </td>
+                                        <td>{{$row->rela_product_group->group_name}}</td>
                                         <td>${{$row->product_price}}</td>
-                                        <td>{{$row->product_stock}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-detail-view/'.$row->id)}}" role="button">View</a>

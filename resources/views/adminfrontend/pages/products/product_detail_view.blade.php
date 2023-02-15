@@ -1,6 +1,7 @@
 <?php
-	use App\Models\Product_colors;
-	use App\Models\Product_sizes;
+	use App\Models\Products_Colors;
+	use App\Models\Products_Sizes;
+	use App\Models\Products_Imgreviews;
 
 ?>
 @extends('adminfrontend.layouts.index')
@@ -24,18 +25,14 @@
                                 <img src="/product_img/imgcover/{{$product_view ->product_imgcover}}" class="img-fluid product-thumbnail">
                                 <div class="container px-0">
                                     <div class="row">
-                                        <div class="col-sm py-3">
-                                            <img src="/product_img/imgcover/{{$product_view->product_imgcover}}" class="img-fluid product-thumbnail">
-                                        </div>
-                                        <div class="col-sm py-3">
-                                            <img src="/product_img/imgcover/{{$product_view->product_imgcover}}" class="img-fluid product-thumbnail">
-                                        </div>
-                                        <div class="col-sm py-3">
-                                            <img src="/product_img/imgcover/{{$product_view->product_imgcover}}" class="img-fluid product-thumbnail">
-                                        </div>
-                                        <div class="col-sm py-3">
-                                            <img src="/product_img/imgcover/{{$product_view->product_imgcover}}" class="img-fluid product-thumbnail">
-                                        </div>
+                                        @php
+                                            $imgreviews = Products_Imgreviews::where('product_id', $product_view->id)->get();
+                                        @endphp
+                                        @foreach ($imgreviews as $imgreview)
+                                            <div class="col-sm py-3">
+                                                <img src="/product_img/imgcover/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +68,7 @@
                                             <h5 class="text-black fw-bold mt-1">Group: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->product_group->group_name}}</p>
+                                            <p>{{$product_view->rela_product_group->group_name}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -79,7 +76,7 @@
                                             <h5 class="text-black fw-bold mt-1">Category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->product_cate->category_name}}</p>
+                                            <p>{{$product_view->rela_product_category->category_name}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -97,15 +94,13 @@
                                         </div>
                                         <div class="col-9 row ms-0 ps-0">
                                             @php
-                                                $productColors = $product_view->product_color;
+                                                $colors = Products_Colors::where('product_id', $product_view->id)->get();
                                             @endphp
-                                            @foreach (json_decode($productColors) as $color)
-                                                @php
-                                                    $colors = Product_colors::where('color_name', $color)->first();
-                                                @endphp
+                                            @foreach ($colors as $color)
+
                                                 <div
                                                     class="color-product me-3"
-                                                    style="background: {{$colors->color_name}}">
+                                                    style="background: {{$color->rela_product_color->color_name}}">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -118,13 +113,10 @@
                                         <div class="col-9 pe-2 ps-0 ms-0">
                                             <div class="row ms-0 ps-0">
                                                 @php
-                                                    $productSizes = $product_view->product_size;
+                                                    $sizes = Products_Sizes::where('product_id', $product_view->id)->get();
                                                 @endphp
-                                                @foreach (json_decode($productSizes) as $size)
-                                                    @php
-                                                        $sizes = Product_sizes::where('size', $size)->first();
-                                                    @endphp
-                                                    <div class="color-product me-1 ms-0">{{$sizes->size}}</div>
+                                                @foreach ($sizes as $size)
+                                                    <div class="color-product me-1 ms-0">{{$size->rela_product_size->size_number}}</div>
                                                 @endforeach
                                             </div>
                                         </div>

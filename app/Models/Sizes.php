@@ -12,6 +12,6 @@ class Sizes extends Model
     protected $fillable = ['size_number'];
     public function rela_product_size()
     {
-        return $this->hasMany(Products_Sizes::class); // ('Model', 'foreign_key', 'local_key');
+        return $this->hasMany(Products_Sizes::class, 'size_id', 'id'); // ('Model', 'foreign_key', 'local_key');
     }
 }
