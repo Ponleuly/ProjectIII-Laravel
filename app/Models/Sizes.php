@@ -10,4 +10,8 @@ class Sizes extends Model
     use HasFactory;
     protected $table = 'sizes';
     protected $fillable = ['size_number'];
+    public function rela_product_size()
+    {
+        return $this->hasMany(Products_Sizes::class); // ('Model', 'foreign_key', 'local_key');
+    }
 }

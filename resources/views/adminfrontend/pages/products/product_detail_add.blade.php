@@ -43,7 +43,7 @@
                                         <label for="category_id" ><p class="text-label mt-2" >Product category</p></label>
                                         <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
                                                 <option selected disabled>Select category</option>
-                                            @foreach ($product_categories as $item2)
+                                            @foreach ($categories as $item2)
                                                 <option value="{{$item2->id}}">{{$item2->category_name}}</option>
                                             @endforeach
                                         </select>
@@ -51,7 +51,7 @@
                                         <label for="group_id"><p class="text-label mt-2">Product group</p></label>
                                         <select class="form-select rounded-0 mb-2" aria-label="group select" name="group_id" id="group_id" required>
                                                 <option selected disabled>Select group</option>
-                                            @foreach ($product_groups as $item3)
+                                            @foreach ($groups as $item3)
                                                 <option value="{{$item3->id}}">{{$item3->group_name}}</option>
                                             @endforeach
                                         </select>
@@ -67,7 +67,7 @@
                                         <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
-                                                @foreach ($product_colors as $row)
+                                                @foreach ($colors as $row)
                                                     <div class="col-md-6 mb-2">
                                                         <div class="border border-1 py-2 px-4">
                                                             <div class="row mb-1">
@@ -79,8 +79,8 @@
                                                                         type="checkbox"
                                                                         class="form-check-input colorAll"
                                                                         id="{{$row->color_name}}"
-                                                                        value="{{$row->color_name}}"
-                                                                        name="color[]"
+                                                                        value="{{$row->id}}"
+                                                                        name="color_id[{{$row->id}}]"
                                                                         @if ($loop->first)
                                                                             checked
                                                                         @endif
@@ -99,8 +99,7 @@
                                                                         class="form-control rounded-0 w-75 py-0"
                                                                         type="number"
                                                                         min="0"
-                                                                        value="10"
-                                                                        name="color_quantity[]"
+                                                                        name="color_quantity[{{$row->id}}]"
                                                                         id="color_quantity"
                                                                         placeholder="00"
                                                                     >
@@ -122,7 +121,7 @@
                                         <label for="size"><p class="text-label mt-2">Product size and quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
-                                                 @foreach ($product_sizes as $item1)
+                                                 @foreach ($sizes as $item1)
                                                     <div class="col-md-6 mb-2">
                                                         <div class="border border-1 py-2 px-4">
                                                             <div class="row mb-1">
@@ -133,15 +132,15 @@
                                                                     <input
                                                                         type="checkbox"
                                                                         class="form-check-input sizeAll"
-                                                                        id="size{{$item1->size}}"
-                                                                        value="{{$item1->size}}"
-                                                                        name="size[]"
+                                                                        id="size{{$item1->size_number}}"
+                                                                        value="{{$item1->id}}"
+                                                                        name="size_id[{{$item1->id}}]"
                                                                         @if ($loop->first)
                                                                             checked
                                                                         @endif
                                                                     >
-                                                                    <label class="form-check-label fw-500" for="size{{$item1->size}}">
-                                                                        {{$item1->size}}
+                                                                    <label class="form-check-label fw-500" for="size{{$item1->size_number}}">
+                                                                        {{$item1->size_number}}
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -154,8 +153,7 @@
                                                                         class="form-control rounded-0 w-75 py-0"
                                                                         type="number"
                                                                         min="0"
-                                                                        value="10"
-                                                                        name="size_quantity[]"
+                                                                        name="size_quantity[{{$item1->id}}]"
                                                                         id="size_quantity"
                                                                         placeholder="00"
                                                                     >
@@ -177,7 +175,7 @@
                                         <!--
                                         <div class="mb-2">
                                             <label for="size_id[]"><p class="text-label">Product size and quantity</p></label><br>
-                                            @foreach ($product_sizes as $item1)
+                                            @foreach ($sizes as $item1)
                                                 <div class="form-check form-check-inline all">
                                                     <input
                                                         type="checkbox"

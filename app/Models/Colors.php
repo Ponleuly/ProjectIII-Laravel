@@ -10,8 +10,8 @@ class Colors extends Model
     use HasFactory;
     protected $table = 'colors';
     protected $fillable = ['color_name'];
-    public function product_col()
+    public function rela_product_color()
     {
-        return $this->hasOne(Product_details::class, 'id');
+        return $this->hasMany(Products_Colors::class, 'color_id', 'id'); // ('Model', 'foreign_key', 'local_key');
     }
 }

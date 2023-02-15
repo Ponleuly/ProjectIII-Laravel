@@ -15,9 +15,6 @@ class Products extends Model
         'product_imgcover',
         'product_price',
         'product_saleprice',
-        'product_stock',
-        'product_color',
-        'product_size',
         'category_id',
         'group_id',
     ];
@@ -29,12 +26,16 @@ class Products extends Model
     {
         return $this->belongsTo(Categories::class, 'category_id', 'id');
     }
-    public function product_col()
-    {
-        return $this->belongsTo(Product_categories::class, 'color_id', 'id');
-    }
     public function rela_product_group()
     {
         return $this->belongsTo(Groups::class, 'group_id', 'id');
+    }
+    public function rela_product_color()
+    {
+        return $this->hasMany(Products_Colors::class, 'product_id', 'id'); // ('Model', 'foreign_key', 'local_key');
+    }
+    public function rela_product_size()
+    {
+        return $this->hasMany(Products_Sizes::class, 'product_id', 'id'); // ('Model', 'foreign_key', 'local_key');
     }
 }

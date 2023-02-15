@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product_groups;
-use App\Models\Product_sizes;
-use App\Models\Product_categories;
-use App\Models\Product_colors;
-use App\Models\Product_details;
-use App\Models\Product_images;
+use App\Models\Groups;
+use App\Models\Sizes;
+use App\Models\Categories;
+use App\Models\Colors;
+use App\Models\Products;
+use App\Models\Products_Colors;
+use App\Models\Products_Sizes;
+use App\Models\Products_Imgreviews;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -20,18 +22,18 @@ class ProductDetailController extends Controller
      */
     public function product_detail_add()
     {
-        $product_sizes = Product_sizes::orderBy('size')->get();
-        $product_colors = Product_colors::orderBy('id')->get();
-        $product_groups = Product_groups::orderBy('id')->get();
-        $product_categories = Product_categories::orderBy('id')->get();
+        $sizes = Sizes::orderBy('size_number')->get();
+        $colors = Colors::orderBy('id')->get();
+        $groups = Groups::orderBy('id')->get();
+        $categories = Categories::orderBy('id')->get();
 
         return view(
             'adminfrontend.pages.products.product_detail_add',
             compact(
-                'product_sizes',
-                'product_colors',
-                'product_groups',
-                'product_categories'
+                'sizes',
+                'colors',
+                'groups',
+                'categories'
             )
         );
     }
@@ -43,7 +45,7 @@ class ProductDetailController extends Controller
      */
     public function product_detail_list()
     {
-        $products = Product_details::latest()->get();
+        $products = Products::latest()->get();
         $count = 1;
         return view(
             'adminfrontend.pages.products.product_detail_list',
@@ -56,7 +58,7 @@ class ProductDetailController extends Controller
     }
     public function product_detail_view($id)
     {
-        $product_view = Product_details::where('id', $id)->first();
+        $product_view = Products::where('id', $id)->first();
         //$color = $product_view->color_id;
 
         return view(
@@ -80,10 +82,7 @@ class ProductDetailController extends Controller
     public function product_detail_store(Request $request)
     {
         $input  = $request->all();
-
-        $input['product_color'] = collect($request->color);
-        $input['product_size'] = collect($request->size);
-        /*
+        //========= Storing data for table products ======//
         if ($request->hasFile('product_imgcover')) {
             $destination_path = 'product_img/imgcover';
             $image = $request->file('product_imgcover');
@@ -93,15 +92,17 @@ class ProductDetailController extends Controller
 
             $input['product_imgcover'] = $image_name;
         }
-        Product_details::create($input);
+        Products::create($input);
+        //=======================================//
 
-        $product = Product_details::where('product_name', $request->product_name)->latest()->first();
+        //========= Storing data for table products_imgreviews ======//
+        $product = Products::where('product_name', $request->product_name)->latest()->first();
         $productId = $product->id;
+
         //$imgCount = count($request->product_imgreview);
         if ($file = $request->hasFile('product_imgreview')) {
             $file = $request->file('product_imgreview');
             $destinationPath = 'product_img/imgreview';
-
             if (is_array($file)) {
                 foreach ($file as $part) {
                     $filename = $part->getClientOriginalName();
@@ -109,15 +110,41 @@ class ProductDetailController extends Controller
 
                     $input['product_imgreview'] = $filename;
                     $input['product_id'] = $productId;
-                    Product_images::create($input);
+                    Products_Imgreviews::create($input);
                 }
             }
         }
+        //=======================================//
 
+        //========= Storing data for table products_colors ======//
+        $product = Products::where('product_name', $request->product_name)->latest()->first();
+        if ($request->color_id) {
+            foreach ($request->color_id as $key => $colorId) {
+                $product->rela_product_color()->create(
+                    [
+                        'product_id' => $product->id,
+                        'color_id' => $colorId,
+                        'color_quantity' => $request->color_quantity[$key] ?? 0
+                    ]
+                );
+            }
+        }
+
+        //========= Storing data for table products_sizes ======//
+        if ($request->size_id) {
+            foreach ($request->size_id as $key => $sizeId) {
+                $product->rela_product_size()->create(
+                    [
+                        'product_id' => $product->id,
+                        'size_id' => $sizeId,
+                        'size_quantity' => $request->size_quantity[$key] ?? 0
+                    ]
+                );
+            }
+        }
         return redirect('/admin/product-detail-add')
             ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
-        */
-        return dd($request->toArray());
+        //return dd($request->toArray());
     }
 
     /**
