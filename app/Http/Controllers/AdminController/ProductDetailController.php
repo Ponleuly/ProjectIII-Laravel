@@ -60,17 +60,29 @@ class ProductDetailController extends Controller
     {
         $product_view = Products::where('id', $id)->first();
         //$color = $product_view->color_id;
+        $productColor = Products_Colors::where('product_id', $id)->get();
+        $colorStock = 0;
+        $productSize = Products_Sizes::where('product_id', $id)->get();
+        $sizeStock = 0;
+        foreach ($productColor as $row) {
+            $colorStock += $row->color_quantity;
+        }
+        foreach ($productSize as $row) {
+            $sizeStock += $row->size_quantity;
+        }
+        $totalStock = $colorStock + $sizeStock;
 
         return view(
             'adminfrontend.pages.products.product_detail_view',
             compact(
                 'product_view',
+                'totalStock'
             )
 
         );
 
 
-        //return dd(json_decode($color));
+        //return dd($totalStock);
     }
     /**
      * Store a newly created resource in storage.

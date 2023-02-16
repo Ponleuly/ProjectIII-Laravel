@@ -84,40 +84,82 @@
                                             <h5 class="text-black fw-bold mt-1">Total stock: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->product_stock}}</p>
+                                            <p>{{$totalStock}}</p>
                                         </div>
                                     </div>
                                     <hr>
+
                                     <div class="row mb-2">
-                                        <div class="col-3">
-                                            <h5 class="text-black fw-bold mt-1">Colors: </h5>
-                                        </div>
-                                        <div class="col-9 row ms-0 ps-0">
+                                        <div class="col-md-12">
                                             @php
                                                 $colors = Products_Colors::where('product_id', $product_view->id)->get();
                                             @endphp
-                                            @foreach ($colors as $color)
 
-                                                <div
-                                                    class="color-product me-3"
-                                                    style="background: {{$color->rela_product_color->color_name}}">
+                                            <div class="border border-1 p-3">
+                                                <div class="row">
+                                                    @foreach ($colors as $row)
+                                                        <div class="col-md-3">
+                                                            <div class="border border-1 py-2 px-2 my-1">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-md-6">
+                                                                        <label for="color_id[]"><p class="text-label">Color: </p></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-check-label" for="{{$row->color_name}}">
+                                                                            <div style="background: {{$row->rela_product_color->color_name}}; color: {{$row->rela_product_color->color_name}}" class="px-2">FF</div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label for="color_quantity"><p class="text-label">Quantity: </p></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                    <p>{{$row->color_quantity}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row mb-2">
-                                        <div class="col-3">
-                                            <h5 class="text-black fw-bold mt-1">Sizes: </h5>
-                                        </div>
-                                        <div class="col-9 pe-2 ps-0 ms-0">
-                                            <div class="row ms-0 ps-0">
-                                                @php
-                                                    $sizes = Products_Sizes::where('product_id', $product_view->id)->get();
-                                                @endphp
-                                                @foreach ($sizes as $size)
-                                                    <div class="color-product me-1 ms-0">{{$size->rela_product_size->size_number}}</div>
-                                                @endforeach
+                                        <div class="col-md-12">
+                                            @php
+                                                $sizes = Products_Sizes::where('product_id', $product_view->id)->get();
+                                            @endphp
+
+                                            <div class="border border-1 p-3">
+                                                <div class="row">
+                                                    @foreach ($sizes as $item1)
+                                                        <div class="col-md-3 ">
+                                                            <div class="border border-1 py-1 px-2 my-1">
+                                                                <div class="row mb-1">
+                                                                    <div class="col-md-6">
+                                                                        <label for="size"><p class="text-label">Size: </p></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-check-label fw-500" for="size{{$item1->size_number}}">
+                                                                            {{$item1->rela_product_size->size_number}}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label for="size_quantity"><p class="text-label">Quantity: </p></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <p>{{$item1->size_quantity}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
