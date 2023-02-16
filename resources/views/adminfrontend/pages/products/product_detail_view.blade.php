@@ -21,6 +21,7 @@
                     <h4 class="mb-2 text-black">Product Details</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
+
                             <div class="col-md-4 mb-5">
                                 <img src="/product_img/imgcover/{{$product_view ->product_imgcover}}" class="img-fluid product-thumbnail">
                                 <div class="container px-0">
@@ -36,6 +37,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-8 px-4">
                                 <div class="col-md-12 ">
                                     <h3 class="mb-2 text-black fw-bold">{{$product_view->product_name}}</h3>

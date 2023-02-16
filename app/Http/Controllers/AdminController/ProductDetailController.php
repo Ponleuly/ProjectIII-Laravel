@@ -176,9 +176,24 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function product_detail_edit($id)
     {
-        //
+        $sizes = Sizes::orderBy('size_number')->get();
+        $colors = Colors::orderBy('id')->get();
+        $groups = Groups::orderBy('id')->get();
+        $categories = Categories::orderBy('id')->get();
+        $products = Products::where('id', $id)->first();
+
+        return view(
+            'adminfrontend.pages.products.product_detail_edit',
+            compact(
+                'sizes',
+                'colors',
+                'groups',
+                'categories',
+                'products',
+            )
+        );
     }
 
     /**
