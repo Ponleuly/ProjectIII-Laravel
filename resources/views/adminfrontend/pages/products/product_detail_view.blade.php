@@ -31,7 +31,7 @@
                                         @endphp
                                         @foreach ($imgreviews as $imgreview)
                                             <div class="col-sm py-3">
-                                                <img src="/product_img/imgcover/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
+                                                <img src="/product_img/imgreview/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
                                             </div>
                                         @endforeach
                                     </div>
@@ -171,7 +171,7 @@
                                             <div class="col-md-12">
                                                 <div class="d-flex ">
                                                     <a class="btn btn-outline-danger rounded-0 mt-2" href="{{url('/admin/product-detail-list')}}" role="button">Back to list</a>
-                                                    <a class="btn btn-primary rounded-0 ms-auto mt-2" href="{{url('/admin/product-detail-edit')}}" role="button">Edit Product</a>
+                                                    <a class="btn btn-primary rounded-0 ms-auto mt-2" href="{{url('/admin/product-detail-edit/'.$product_view->id)}}" role="button">Edit Product</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -15,8 +15,9 @@
 		@endif
 
         <h4 class="mt-3 text-black">Edit Product</h4>
-        <form action="{{url('/admin/product-detail-add')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('/admin/product-detail-edit/'.$products->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
+            @method('PUT')
             <div class="row ">
                 <div class="col-md-12 my-3 mb-md-0">
                     <div class="p-3 p-lg-4 border bg-white">
@@ -34,6 +35,7 @@
                                             id="product_name"
                                             name="product_name"
                                             placeholder="product name..."
+                                            value="{{$products->product_name}}"
                                             required
                                         >
 
@@ -63,7 +65,6 @@
                                             type="file" id="product_imgcover"
                                             name="product_imgcover"
                                             accept="image/png, image/jpeg, image/jpg"
-                                            required
                                         >
 
                                         <label for="product_imgreview">
@@ -75,7 +76,7 @@
                                             @endphp
                                             @foreach ($imgreviews as $imgreview)
                                                 <div class="col-sm py-3">
-                                                    <img src="/product_img/imgcover/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
+                                                    <img src="/product_img/imgreview/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -89,7 +90,7 @@
                                             id="product_imgreview"
                                             name="product_imgreview[]"
                                             accept="image/png, image/jpeg, image/jpg"
-                                            multiple required
+                                            multiple
                                         >
 
                                         <label for="product_price">
@@ -171,12 +172,11 @@
                                         <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
-                                                @php
-                                                    $productColor = Products_Colors::where('product_id', $products->id)->get();
-                                                    $productColor = Products_Colors::where('product_id', $products->id)->get();
-                                                @endphp
+                                                @foreach ($colors as $color)
+                                                    @php
+                                                        $productColor = Products_Colors::where('product_id', $products->id)->where('color_id', $color->id)->get();
+                                                    @endphp
 
-                                                @foreach ($colors as $row)
                                                         <div class="col-md-6 mb-2">
                                                             <div class="border border-1 py-2 px-4">
                                                                 <div class="row mb-1">
@@ -188,15 +188,15 @@
                                                                         <input
                                                                             type="checkbox"
                                                                             class="form-check-input colorAll"
-                                                                            id="{{$row->color_name}}"
-                                                                            value="{{$row->id}}"
-                                                                            name="color_id[{{$row->id}}]"
-                                                                            @foreach ($productColor as $pro_color)
-                                                                                {{($row->id == $pro_color->color_id) ? 'checked' : ''}}
+                                                                            id="{{$color->color_name}}"
+                                                                            value="{{$color->id}}"
+                                                                            name="color_id[{{$color->id}}]"
+                                                                            @foreach ($productColor as $item)
+                                                                                {{($color->id == $item->color_id ) ? 'checked' : ''}}
                                                                             @endforeach
                                                                         >
-                                                                        <label class="form-check-label" for="{{$row->color_name}}">
-                                                                            <div style="background: {{$row->color_name}}; color: {{$row->color_name}}" class="px-2 ms-1">FFFFF1</div>
+                                                                        <label class="form-check-label" for="{{$color->color_name}}">
+                                                                            <div style="background: {{$color->color_name}}; color: {{$color->color_name}}" class="px-2 ms-1">FFFFF1</div>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -210,10 +210,12 @@
                                                                             class="form-control rounded-0 w-75 py-0"
                                                                             type="number"
                                                                             min="0"
-                                                                            name="color_quantity[{{$row->id}}]"
+                                                                            name="color_quantity[{{$color->id}}]"
                                                                             id="color_quantity"
                                                                             placeholder="00"
-                                                                            value="{{ old('color_quantity')[$color_quantity] ?? "" }}"
+                                                                            @foreach ($productColor as $item)
+                                                                                {{($color->id == $item->color_id ) ? 'value=' .$item->color_quantity : 'value=0'}}
+                                                                            @endforeach
                                                                         >
                                                                     </div>
                                                                 </div>
@@ -233,7 +235,10 @@
                                         <label for="size"><p class="text-label mt-2">Product size and quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
-                                                 @foreach ($sizes as $item1)
+                                                @foreach ($sizes as $size)
+                                                    @php
+                                                        $productSize = Products_Sizes::where('product_id', $products->id)->where('size_id', $size->id)->get();
+                                                    @endphp
                                                     <div class="col-md-6 mb-2">
                                                         <div class="border border-1 py-2 px-4">
                                                             <div class="row mb-1">
@@ -244,15 +249,15 @@
                                                                     <input
                                                                         type="checkbox"
                                                                         class="form-check-input sizeAll"
-                                                                        id="size{{$item1->size_number}}"
-                                                                        value="{{$item1->id}}"
-                                                                        name="size_id[{{$item1->id}}]"
-                                                                        @if ($loop->first)
-                                                                            checked
-                                                                        @endif
+                                                                        id="size{{$size->size_number}}"
+                                                                        value="{{$size->id}}"
+                                                                        name="size_id[{{$size->id}}]"
+                                                                        @foreach ($productSize as $item)
+                                                                            {{($size->id == $item->size_id ) ? 'checked' : ''}}
+                                                                        @endforeach
                                                                     >
-                                                                    <label class="form-check-label fw-500" for="size{{$item1->size_number}}">
-                                                                        {{$item1->size_number}}
+                                                                    <label class="form-check-label fw-500" for="size{{$size->size_number}}">
+                                                                        {{$size->size_number}}
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -265,9 +270,12 @@
                                                                         class="form-control rounded-0 w-75 py-0"
                                                                         type="number"
                                                                         min="0"
-                                                                        name="size_quantity[{{$item1->id}}]"
+                                                                        name="size_quantity[{{$size->id}}]"
                                                                         id="size_quantity"
                                                                         placeholder="00"
+                                                                        @foreach ($productSize as $item)
+                                                                            {{($size->id == $item->size_id ) ? 'value=' .$item->size_quantity : 'value=0'}}
+                                                                        @endforeach
                                                                     >
                                                                 </div>
                                                             </div>

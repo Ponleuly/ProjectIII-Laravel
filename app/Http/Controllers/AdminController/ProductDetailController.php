@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\Controller;
-use App\Models\Groups;
 use App\Models\Sizes;
-use App\Models\Categories;
 use App\Models\Colors;
+use App\Models\Groups;
 use App\Models\Products;
-use App\Models\Products_Colors;
-use App\Models\Products_Sizes;
-use App\Models\Products_Imgreviews;
+use App\Models\Categories;
 use Illuminate\Http\Request;
+use App\Models\Products_Sizes;
+use App\Models\Products_Colors;
+use PhpParser\Node\Stmt\Foreach_;
+use App\Models\Products_Imgreviews;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class ProductDetailController extends Controller
 {
@@ -96,7 +98,7 @@ class ProductDetailController extends Controller
         $input  = $request->all();
         //========= Storing data for table products ======//
         if ($request->hasFile('product_imgcover')) {
-            $destination_path = 'product_img/imgcover';
+            $destination_path = 'product_img/imgcover/';
             $image = $request->file('product_imgcover');
 
             $image_name = $image->getClientOriginalName();
@@ -114,7 +116,7 @@ class ProductDetailController extends Controller
         //$imgCount = count($request->product_imgreview);
         if ($file = $request->hasFile('product_imgreview')) {
             $file = $request->file('product_imgreview');
-            $destinationPath = 'product_img/imgreview';
+            $destinationPath = 'product_img/imgreview/';
             if (is_array($file)) {
                 foreach ($file as $part) {
                     $filename = $part->getClientOriginalName();
@@ -184,6 +186,7 @@ class ProductDetailController extends Controller
         $categories = Categories::orderBy('id')->get();
         $products = Products::where('id', $id)->first();
 
+
         return view(
             'adminfrontend.pages.products.product_detail_edit',
             compact(
@@ -194,6 +197,8 @@ class ProductDetailController extends Controller
                 'products',
             )
         );
+
+        //return dd($colors->toArray());
     }
 
     /**
@@ -203,9 +208,98 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function product_detail_update(Request $request, $id)
     {
-        //
+        $update_product  = Products::where('id', $id)->first();
+        $update_product->product_name = $request->input('product_name');
+        $update_product->product_des = $request->input('product_des');
+        $update_product->product_price = $request->input('product_price');
+        $update_product->product_saleprice = $request->input('product_saleprice');
+        $update_product->category_id = $request->input('category_id');
+        $update_product->group_id = $request->input('group_id');
+
+        //========= Storing data for table products ======//
+        if ($request->hasFile('product_imgcover')) {
+
+            $destination_path = 'product_img/imgcover';
+            $image = $request->file('product_imgcover');
+            if (File::exists(public_path($destination_path))) {
+                File::delete(public_path($destination_path));
+            }
+            $image_name = $image->getClientOriginalName();
+            $image->move($destination_path, $image_name);
+
+            $update_product['product_imgcover'] = $image_name;
+        }
+        $update_product->update();
+        //=======================================//
+
+        //========= Storing data for table products_imgreviews ======//
+        // $product = Products::where('product_name', $request->product_name)->latest()->first();
+        $productId = $update_product->id;
+        $destinationPath = 'product_img/imgreview/';
+        $imgReview = Products_Imgreviews::where('product_id', $productId)->get();
+
+
+        if ($file = $request->hasFile('product_imgreview')) {
+            //====== Delete imgreview in table Product_imgreview ======/
+            for ($i = 0; $i < count($imgReview); $i++) {
+                $delete_img = Products_Imgreviews::where('product_id', $productId)->first();
+                $path = 'product_img/imgreview/' . $delete_img->product_imgreview;
+
+                if (File::exists(public_path($path))) {
+                    File::delete(public_path($path));
+                }
+                $delete_img->delete();
+            }
+            $file = $request->file('product_imgreview');
+            $destinationPath = 'product_img/imgreview';
+            if (is_array($file)) {
+                foreach ($file as $part) {
+                    $filename = $part->getClientOriginalName();
+                    $part->move($destinationPath, $filename);
+
+                    $input['product_imgreview'] = $filename;
+                    $input['product_id'] = $productId;
+                    Products_Imgreviews::create($input);
+                }
+            }
+        }
+
+
+
+        //=======================================//
+        /*
+        //========= Storing data for table products_colors ======//
+        $product = Products::where('id', $id)->first();
+        if ($request->color_id) {
+            foreach ($request->color_id as $key => $colorId) {
+                $product->rela_product_color()->update(
+                    [
+                        'product_id' => $product->id,
+                        'color_id' => $colorId,
+                        'color_quantity' => $request->color_quantity[$key] ?? 0
+                    ]
+                );
+            }
+        }
+
+        //========= Storing data for table products_sizes ======//
+        if ($request->size_id) {
+            foreach ($request->size_id as $key => $sizeId) {
+                $product->rela_product_size()->update(
+                    [
+                        'product_id' => $product->id,
+                        'size_id' => $sizeId,
+                        'size_quantity' => $request->size_quantity[$key] ?? 0
+                    ]
+                );
+            }
+        }
+        */
+
+        return redirect('/admin/product-detail-list')
+            ->with('alert', 'Product ' . $request->product_name . ' is updated successfully!');
     }
 
     /**
