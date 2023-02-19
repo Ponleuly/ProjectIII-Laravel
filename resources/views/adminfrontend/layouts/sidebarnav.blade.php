@@ -45,30 +45,71 @@
                     </a>
                     <ul id="ddmenu_1" class="collapse dropdown-nav">
                         <li>
-                            <a href="{{url('admin/product-detail-list')}}" class="{{Request::is('admin/product-detail-list')? 'active':''}}">Product list</a>
+                            <a
+                                href="{{url('admin/product-detail-list')}}"
+                                class="{{Request::is('admin/product-detail-list')? 'active':''}}"
+                                >
+                                Product list
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-detail-add')}}" class="{{Request::is('admin/product-detail-add')? 'active':''}}">Product add</a>
+                            <a
+                                href="{{url('admin/product-detail-add')}}"
+                                class="{{Request::is('admin/product-detail-add')? 'active':''}}"
+                                >
+                                Product add
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-group-list')}}" class="{{Request::is('admin/product-group-list')? 'active':''}}">Product group list</a>
+                            <a
+                                href="{{url('admin/product-group-list')}}"
+                                class="{{Request::is('admin/product-group-list')? 'active':''}}"
+                                >
+                                Product group list
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-group-add')}}" class="{{Request::is('admin/product-group-add')? 'active':''}}">Product group add</a>
+                            <a
+                                href="{{url('admin/product-group-add')}}"
+                                class="{{Request::is('admin/product-group-add')? 'active':''}}"
+                                >
+                                Product group add
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-size-list')}}" class="{{Request::is('admin/product-size-list')? 'active':''}}">Product size list</a>
+                            <a
+                                href="{{url('admin/product-size-list')}}"
+                                class="{{Request::is('admin/product-size-list')? 'active':''}}"
+                                >
+                                Product size list
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-size-add')}}" class="{{Request::is('admin/product-size-add')? 'active':''}}">Product size add</a>
+                            <a
+                                href="{{url('admin/product-size-add')}}"
+                                class="{{Request::is('admin/product-size-add')? 'active':''}}"
+                                >
+                                Product size add
+                            </a>
+                        </li>
+                        <!--
+                        <li>
+                            <a
+                                href="{{url('admin/product-color-list')}}"
+                                class="{{Request::is('admin/product-color-list')? 'active':''}}"
+                                >
+                                Product color list
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-color-list')}}" class="{{Request::is('admin/product-color-list')? 'active':''}}">Product color list</a>
+                            <a
+                                href="{{url('admin/product-color-add')}}"
+                                class="{{Request::is('admin/product-color-add')? 'active':''}}"
+                                >
+                                Product color add
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{url('admin/product-color-add')}}" class="{{Request::is('admin/product-color-add')? 'active':''}}">Product color add</a>
-                        </li>
-
+                        -->
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children {{Request::is('admin/product-category*')? 'active':''}}">
@@ -88,10 +129,19 @@
                     </a>
                     <ul id="ddmenu_2" class="collapse dropdown-nav">
                         <li>
-                            <a href="{{url('admin/product-category-list')}}" class="{{Request::is('admin/product-category-list')? 'active':''}}">Category list</a>
+                            <a
+                                href="{{url('admin/product-category-list')}}"
+                                class="{{Request::is('admin/product-category-list')? 'active':''}}"
+                                >
+                                Category list
+                            </a>
                         </li>
                         <li>
-                            <a href="{{url('admin/product-category-add')}}" class="{{Request::is('admin/product-category-add')? 'active':''}}">Category add</a>
+                            <a
+                                href="{{url('admin/product-category-add')}}"
+                                class="{{Request::is('admin/product-category-add')? 'active':''}}"
+                                >
+                                Category add</a>
                         </li>
                     </ul>
                 </li>

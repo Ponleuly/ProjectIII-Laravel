@@ -79,17 +79,18 @@ class ProductDetailController extends Controller
             $sizeStock += $row->size_quantity;
         }
         $totalStock = $sizeStock;
-        /*
+
         return view(
             'adminfrontend.pages.products.product_detail_view',
             compact(
                 'product_view',
-                'totalStock'
+                'totalStock',
+                'productCode',
             )
 
         );
-        */
-        return dd($productCode->toArray());
+
+        //return dd($productCode->toArray());
 
 
         //return dd($totalStock);

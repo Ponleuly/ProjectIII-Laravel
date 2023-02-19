@@ -101,27 +101,40 @@
 
                                     <div class="row mb-2">
                                         <div class="col-md-12">
-                                            @php
-                                                $colors = Products_Colors::where('product_id', $product_view->id)->get();
-                                            @endphp
-
                                             <div class="border border-1 p-3">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label class="form-check-label" for="">
-                                                            <div
-                                                                class="py-2"
-                                                                style="background: {{$product_view->product_color}};"
+                                                    <div class="col-md-2 mx-0">
+                                                        <div
+                                                            class="py-2 text-center"
+                                                            style="background: {{$product_view->product_color}};"
+                                                            >
+                                                            <a
+                                                                href="{{url('/admin/product-detail-view/'.$product_view->product_code)}}"
+                                                                style="color: {{$product_view->product_color}}"
                                                                 >
-                                                                <a
-                                                                    href="{{url('/admin/product-detail-view/')}}"
-                                                                    style="color: {{$product_view->product_color}}"
-                                                                    >
-                                                                    {{$product_view->product_color}}
-                                                                </a>
-                                                            </div>
-                                                        </label>
+                                                                {{$product_view->product_color}}
+                                                            </a>
+                                                        </div>
                                                     </div>
+                                                    @foreach ($productCode as $row)
+                                                        @if($row->product_code == $product_view->product_code)
+                                                            @continue
+                                                            @else
+                                                                <div class="col-md-2 mx-0">
+                                                                    <div
+                                                                        class="py-2 text-center"
+                                                                        style="background: {{$row->product_color}};"
+                                                                        >
+                                                                        <a
+                                                                            href="{{url('/admin/product-detail-view/'.$row->product_code)}}"
+                                                                            style="color: {{$row->product_color}}"
+                                                                            >
+                                                                            {{$row->product_color}}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                        @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
