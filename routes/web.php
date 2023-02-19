@@ -79,14 +79,7 @@ Route::prefix('admin')->controller(ProductSizeController::class)->group(function
    Route::put('/product-size-edit/{id}', 'product_size_update');
    Route::get('/product-size-delete/{id}', 'product_size_delete');
 });
-Route::prefix('admin')->controller(ProductColorController::class)->group(function () {
-   Route::get('/product-color-list', 'product_color_list')->name('product-color-list');
-   Route::get('/product-color-add', 'product_color_add')->name('product-color-add');
-   Route::post('/product-color-add', 'product_color_store')->name('product-color-add');
-   Route::get('/product-color-edit/{id}', 'product_color_edit')->name('product-color-edit');
-   Route::put('/product-color-edit/{id}', 'product_color_update');
-   Route::get('/product-color-delete/{id}', 'product_color_delete');
-});
+
 Route::prefix('admin')->controller(ProductDetailController::class)->group(function () {
    Route::get('/product-detail-list', 'product_detail_list')->name('product-detail-list');
    Route::get('/product-detail-view/{code}', 'product_detail_view')->name('product-detail-view');

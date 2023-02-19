@@ -1,5 +1,4 @@
 <?php
-	use App\Models\Products_Colors;
 	use App\Models\Products_Sizes;
 	use App\Models\Products_Imgreviews;
 
@@ -131,8 +130,16 @@
                                             required
                                         >
 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-group mb-2">
+
                                         <label for="category_id">
-                                            <p class="text-label mt-2" >Product category</p>
+                                            <p class="text-label" >Product category</p>
                                         </label>
                                         <select
                                             class="form-select rounded-0 mb-2"
@@ -173,14 +180,12 @@
                                             @endforeach
                                         </select>
 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-group mb-2">
-                                        <label for="color_id[]"><p class="text-label">Product color</p></label><br>
+                                        <!-- Start Product color and quantity -->
+                                        <label for="color">
+                                            <p class="text-label mt-2">
+                                                Product color
+                                            </p>
+                                        </label><br>
                                         <input
                                             type="color"
                                             class="form-control form-control-color d-flex w-100 rounded-0 mb-2"
@@ -189,70 +194,6 @@
                                             value="{{$products->product_color}}"
                                             required
                                         >
-
-                                        <!-- Start Product color and quantity -->
-                                        <!--
-                                        <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
-                                        <div class="border border-1 p-3 mb-2">
-                                            <div class="row">
-                                                @foreach ($colors as $color)
-                                                    @php
-                                                        $productColor = Products_Colors::where('product_id', $products->id)->where('color_id', $color->id)->get();
-                                                    @endphp
-
-                                                        <div class="col-md-6 mb-2">
-                                                            <div class="border border-1 py-2 px-4">
-                                                                <div class="row mb-1">
-                                                                    <div class="col-md-4">
-                                                                        <label for="color_id[]"><p class="text-label">Color: </p></label>
-                                                                    </div>
-
-                                                                    <div class="col-md-8">
-                                                                        <input
-                                                                            type="checkbox"
-                                                                            class="form-check-input colorAll"
-                                                                            id="{{$color->color_name}}"
-                                                                            value="{{$color->id}}"
-                                                                            name="color_id[{{$color->id}}]"
-                                                                            @foreach ($productColor as $item)
-                                                                                {{($color->id == $item->color_id ) ? 'checked' : ''}}
-                                                                            @endforeach
-                                                                        >
-                                                                        <label class="form-check-label" for="{{$color->color_name}}">
-                                                                            <div style="background: {{$color->color_name}}; color: {{$color->color_name}}" class="px-2 ms-1">FFFFF1</div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label for="color_quantity"><p class="text-label">Quantity: </p></label>
-                                                                    </div>
-                                                                    <div class="col-md-8">
-                                                                        <input
-                                                                            class="form-control rounded-0 w-75 py-0"
-                                                                            type="number"
-                                                                            min="0"
-                                                                            name="color_quantity[{{$color->id}}]"
-                                                                            id="color_quantity"
-                                                                            placeholder="00"
-                                                                            @foreach ($productColor as $item)
-                                                                                {{($color->id == $item->color_id ) ? 'value=' .$item->color_quantity : 'value=0'}}
-                                                                            @endforeach
-                                                                        >
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                @endforeach
-                                            </div>
-
-                                            <div class="form-check mb-0">
-                                                <input type="checkbox" class="form-check-input" id="color" onclick="javascript:colorAll(this)"/>
-                                                <label class="form-check-label text-danger" for="color">Check All</label>
-                                            </div>
-                                        </div>
-                                        -->
                                         <!-- End Product color and quantity -->
 
                                         <!-- Start Product size and quantity -->

@@ -20,6 +20,10 @@
         <link rel="stylesheet" href="{{url('frontend/assets/css/main.css')}}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+        <!-- Tag input in sub category--->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{url('frontend/assets/css/bootstrap-tagsinput.css')}}" />
+
 
     </head>
     <body>

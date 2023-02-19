@@ -22,6 +22,22 @@
                                         <label for="category_name"><p class="text-label">Category name</p></label>
                                         <input type="text" class="form-control rounded-0 fw-500 mb-2" id="category_name" name="category_name" value="{{$category->category_name}}" placeholder="category name..." required>
 
+                                        <label for="sub_category">
+                                            <p class="text-label mt-2">
+                                                Sub category :  (Write then press enter to add new sub category)
+                                            </p>
+                                        </label>
+                                        <input
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            type="text"
+                                            data-role="tagsinput"
+                                            name="sub_category"
+                                            placeholder="sub category"
+                                            @foreach ($subCategory as $item)
+                                                value="{{$item->sub_category}}"
+                                            @endforeach
+                                        >
+
                                         <label>
                                             <p class="text-label mt-2">
                                                 Product group
@@ -60,6 +76,7 @@
                 </div>
             </div>
         </form>
-
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
 @endsection()

@@ -19,7 +19,26 @@
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
                                         <label for="category_name"><p class="text-label">Category name</p></label>
-                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="category_name" name="category_name" placeholder="category name..." required>
+                                        <input type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="category_name"
+                                            name="category_name"
+                                            placeholder="category name..."
+                                            required
+                                        >
+
+                                        <label for="sub_category">
+                                            <p class="text-label mt-2">
+                                                Sub category :  (Write then press enter to add new sub category)
+                                            </p>
+                                        </label>
+                                        <input
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            type="text"
+                                            data-role="tagsinput"
+                                            name="sub_category"
+                                            placeholder="sub category"
+                                        >
 
                                         <label>
                                             <p class="text-label mt-2">
@@ -45,6 +64,7 @@
                                                 >
                                                 <label class="form-check-label" for="{{$row->group_name}}">{{$row->group_name}}</label>
                                             </div>
+
                                         @endforeach
 
                                         <div class="d-flex mt-4">
@@ -60,4 +80,6 @@
             </div>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
 @endsection()

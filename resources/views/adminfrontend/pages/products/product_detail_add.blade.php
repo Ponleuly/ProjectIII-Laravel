@@ -70,59 +70,8 @@
                                         </select>
 
                                         <!-- Start Product color and quantity -->
-                                        <label for="color_id[]"><p class="text-label mt-2">Product color and quantity</p></label><br>
-                                        <!--
-                                        <div class="border border-1 p-3 mb-2">
-                                            <div class="row">
-                                                @foreach ($colors as $row)
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="border border-1 py-2 px-3">
-                                                            <div class="row mb-1">
-                                                                <div class="col-md-4">
-                                                                    <label for="color_id[]"><p class="text-label">Color: </p></label>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <input
-                                                                        type="checkbox"
-                                                                        class="form-check-input colorAll"
-                                                                        id="{{$row->color_name}}"
-                                                                        value="{{$row->id}}"
-                                                                        name="color_id[{{$row->id}}]"
-                                                                        @if ($loop->first)
-                                                                            checked
-                                                                        @endif
-                                                                    >
-                                                                    <label class="form-check-label" for="{{$row->color_name}}">
-                                                                        <div style="background: {{$row->color_name}}; color: {{$row->color_name}}" class="px-2 ms-1">FFFFFF1</div>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <label for="color_quantity"><p class="text-label">Quantity: </p></label>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <input
-                                                                        class="form-control rounded-0 w-75 py-0"
-                                                                        type="number"
-                                                                        min="0"
-                                                                        name="color_quantity[{{$row->id}}]"
-                                                                        id="color_quantity"
-                                                                        placeholder="00"
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                        <label for="color_id[]"><p class="text-label mt-2">Product color</p></label><br>
 
-                                            <div class="form-check mb-0">
-                                                <input type="checkbox" class="form-check-input" id="color" onclick="javascript:colorAll(this)"/>
-                                                <label class="form-check-label text-danger" for="color">Check All</label>
-                                            </div>
-                                        </div>
-                                        -->
                                         <input type="color" class="form-control form-control-color d-flex w-100 rounded-0 mb-2" id="product_color" name="product_color"  value="#c5c5c5" placeholder="product name..." required>
                                         <!-- End Product color and quantity -->
 

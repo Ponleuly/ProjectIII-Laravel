@@ -32,10 +32,7 @@ class Products extends Model
     {
         return $this->belongsTo(Groups::class, 'group_id', 'id');
     }
-    public function rela_product_color()
-    {
-        return $this->hasMany(Products_Colors::class, 'product_id', 'id'); // ('Model', 'foreign_key', 'local_key');
-    }
+
     public function rela_product_size()
     {
         return $this->hasMany(Products_Sizes::class, 'product_id', 'id'); // ('Model', 'foreign_key', 'local_key');

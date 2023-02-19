@@ -9,8 +9,6 @@ use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Products_Sizes;
-use App\Models\Products_Colors;
-use PhpParser\Node\Stmt\Foreach_;
 use App\Models\Products_Imgreviews;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -25,7 +23,6 @@ class ProductDetailController extends Controller
     public function product_detail_add()
     {
         $sizes = Sizes::orderBy('size_number')->get();
-        $colors = Colors::orderBy('id')->get();
         $groups = Groups::orderBy('id')->get();
         $categories = Categories::orderBy('id')->get();
 
@@ -33,7 +30,6 @@ class ProductDetailController extends Controller
             'adminfrontend.pages.products.product_detail_add',
             compact(
                 'sizes',
-                'colors',
                 'groups',
                 'categories'
             )
@@ -192,7 +188,6 @@ class ProductDetailController extends Controller
     public function product_detail_edit($id)
     {
         $sizes = Sizes::orderBy('size_number')->get();
-        $colors = Colors::orderBy('id')->get();
         $groups = Groups::orderBy('id')->get();
         $categories = Categories::orderBy('id')->get();
         $products = Products::where('id', $id)->first();
@@ -202,7 +197,6 @@ class ProductDetailController extends Controller
             'adminfrontend.pages.products.product_detail_edit',
             compact(
                 'sizes',
-                'colors',
                 'groups',
                 'categories',
                 'products',
@@ -335,8 +329,16 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function product_detail_delete($id)
     {
-        //
+        $delete_product = Products::where('id', $id)->first();
+        $delete_product->delete();
+
+        return redirect('/admin/product-detail-list')
+            ->with(
+                'alert',
+                'Product ' . '"' . $delete_product->product_name . '"' .
+                    ' is deleted successfully !'
+            );
     }
 }

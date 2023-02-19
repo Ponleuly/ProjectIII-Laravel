@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Categories_Groups;
+use App\Models\Categories_Subcategories;
 use App\Models\Groups;
 
 
@@ -54,7 +55,6 @@ class ProductCategoryController extends Controller
      */
     public function product_category_store(Request $request)
     {
-
         $input = $request->all();
         // Storing category_name data to table categories
         Categories::create($input);
@@ -68,11 +68,17 @@ class ProductCategoryController extends Controller
             $save['group_id'] = $groupId[$i];
             Categories_Groups::create($save);
         }
-
+        $subCategory = explode(',', $request->sub_category);
+        for ($j = 0; $j < count($subCategory); $j++) {
+            $sub['category_id'] = $categoryId;
+            $sub['sub_category'] = $subCategory[$j];
+            Categories_Subcategories::create($sub);
+        }
         // After inputed -> go back to category pages
         return redirect('/admin/product-category-add')
             ->with('alert', 'Product category ' . $request->category_name . ' successfully!');
-        //return dd($input);
+
+        //return dd($explode_id);
     }
 
     /**
@@ -90,6 +96,7 @@ class ProductCategoryController extends Controller
 
         $categoryId = $category->id;
         $selected_group = Categories_Groups::where('category_id', $categoryId)->get();
+        $subCategory = Categories_Subcategories::where('category_id', $id)->get();
         return view(
             'adminfrontend.pages.categories.product_category_edit',
             compact(
@@ -97,11 +104,12 @@ class ProductCategoryController extends Controller
                 'categoryId',
                 'groups_count',
                 'groups',
-                'selected_group'
+                'selected_group',
+                'subCategory'
             )
         );
 
-        //return dd($selected_group->toArray());
+        //return dd($subCategory->toArray());
     }
 
     /**
