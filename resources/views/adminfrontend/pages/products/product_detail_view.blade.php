@@ -43,6 +43,14 @@
                                     <h3 class="mb-2 text-black fw-bold">{{$product_view->product_name}}</h3>
                                     <div class="row mb-2">
                                         <div class="col-3">
+                                            <h5 class="text-black fw-bold mt-1">Code:</h5>
+                                        </div>
+                                        <div class="col-9 ms-0 ps-0">
+                                            <p>{{$product_view->product_code}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-3">
                                             <h5 class="text-black fw-bold mt-1">Price:</h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
@@ -99,31 +107,21 @@
 
                                             <div class="border border-1 p-3">
                                                 <div class="row">
-                                                    @foreach ($colors as $row)
-                                                        <div class="col-md-3">
-                                                            <div class="border border-1 py-2 px-2 my-1">
-                                                                <div class="row mb-1">
-                                                                    <div class="col-md-6">
-                                                                        <label for="color_id[]"><p class="text-label">Color: </p></label>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label class="form-check-label" for="{{$row->color_name}}">
-                                                                            <div style="background: {{$row->rela_product_color->color_name}}; color: {{$row->rela_product_color->color_name}}" class="px-2">FF</div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <label for="color_quantity"><p class="text-label">Quantity: </p></label>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                    <p>{{$row->color_quantity}}</p>
-                                                                    </div>
-                                                                </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-check-label" for="">
+                                                            <div
+                                                                class="py-2"
+                                                                style="background: {{$product_view->product_color}};"
+                                                                >
+                                                                <a
+                                                                    href="{{url('/admin/product-detail-view/')}}"
+                                                                    style="color: {{$product_view->product_color}}"
+                                                                    >
+                                                                    {{$product_view->product_color}}
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                    @endforeach
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

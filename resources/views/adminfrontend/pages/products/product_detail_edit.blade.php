@@ -39,6 +39,18 @@
                                             required
                                         >
 
+                                        <label for="product_name">
+                                            <p class="text-label mt-2">Product code</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="product_code"
+                                            name="product_code"
+                                            placeholder="product code..."
+                                            value="{{$products->product_code}}"
+                                            required
+                                        >
                                         <label for="product_des">
                                             <p class="text-label mt-2">Description</p>
                                         </label>
@@ -168,7 +180,18 @@
                             <div class="col-md-6">
                                 <div class="col-md-12 mb-2">
                                     <div class="form-group mb-2">
+                                        <label for="color_id[]"><p class="text-label">Product color</p></label><br>
+                                        <input
+                                            type="color"
+                                            class="form-control form-control-color d-flex w-100 rounded-0 mb-2"
+                                            id="product_color"
+                                            name="product_color"
+                                            value="{{$products->product_color}}"
+                                            required
+                                        >
+
                                         <!-- Start Product color and quantity -->
+                                        <!--
                                         <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
@@ -229,6 +252,7 @@
                                                 <label class="form-check-label text-danger" for="color">Check All</label>
                                             </div>
                                         </div>
+                                        -->
                                         <!-- End Product color and quantity -->
 
                                         <!-- Start Product size and quantity -->

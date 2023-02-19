@@ -62,7 +62,7 @@
                                         <td>${{$row->product_price}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-detail-view/'.$row->id)}}" role="button">View</a>
+                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-detail-view/'.$row->product_code)}}" role="button">View</a>
                                             <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-detail-edit/'.$row->id)}}" role="button">Edit</a>
                                             <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-detail-delete/'.$row->id)}}" role="button">Delete</a>
                                         </td>

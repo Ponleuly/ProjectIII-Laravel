@@ -58,22 +58,28 @@ class ProductDetailController extends Controller
 
         );
     }
-    public function product_detail_view($id)
+    public function product_detail_view($code)
     {
-        $product_view = Products::where('id', $id)->first();
-        //$color = $product_view->color_id;
-        $productColor = Products_Colors::where('product_id', $id)->get();
-        $colorStock = 0;
-        $productSize = Products_Sizes::where('product_id', $id)->get();
+        $product_view = Products::where('product_code', $code)->first();
+        $productId = $product_view->id;
+
+        $productSize = Products_Sizes::where('product_id', $productId)->get();
         $sizeStock = 0;
+        $headCode = trim($code, " 0..9");
+        $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
+
+        /*
+        $productColor = Products_Colors::where('product_id', $productId)->get();
+        $colorStock = 0;
         foreach ($productColor as $row) {
             $colorStock += $row->color_quantity;
         }
+        */
         foreach ($productSize as $row) {
             $sizeStock += $row->size_quantity;
         }
-        $totalStock = $colorStock + $sizeStock;
-
+        $totalStock = $sizeStock;
+        /*
         return view(
             'adminfrontend.pages.products.product_detail_view',
             compact(
@@ -82,6 +88,8 @@ class ProductDetailController extends Controller
             )
 
         );
+        */
+        return dd($productCode->toArray());
 
 
         //return dd($totalStock);
@@ -96,6 +104,7 @@ class ProductDetailController extends Controller
     public function product_detail_store(Request $request)
     {
         $input  = $request->all();
+
         //========= Storing data for table products ======//
         if ($request->hasFile('product_imgcover')) {
             $destination_path = 'product_img/imgcover/';
@@ -129,7 +138,7 @@ class ProductDetailController extends Controller
             }
         }
         //=======================================//
-
+        /*
         //========= Storing data for table products_colors ======//
         $product = Products::where('product_name', $request->product_name)->latest()->first();
         if ($request->color_id) {
@@ -143,7 +152,7 @@ class ProductDetailController extends Controller
                 );
             }
         }
-
+        */
         //========= Storing data for table products_sizes ======//
         if ($request->size_id) {
             foreach ($request->size_id as $key => $sizeId) {
@@ -156,6 +165,7 @@ class ProductDetailController extends Controller
                 );
             }
         }
+
         return redirect('/admin/product-detail-add')
             ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
         //return dd($request->toArray());
@@ -210,15 +220,19 @@ class ProductDetailController extends Controller
      */
     public function product_detail_update(Request $request, $id)
     {
+
+        //======== Update data on table products ========//
         $update_product  = Products::where('id', $id)->first();
         $update_product->product_name = $request->input('product_name');
+        $update_product->product_code = $request->input('product_code');
         $update_product->product_des = $request->input('product_des');
         $update_product->product_price = $request->input('product_price');
+        $update_product->product_color = $request->input('product_color');
         $update_product->product_saleprice = $request->input('product_saleprice');
         $update_product->category_id = $request->input('category_id');
         $update_product->group_id = $request->input('group_id');
 
-        //========= Storing data for table products ======//
+        //========= Update data for table products ======//
         if ($request->hasFile('product_imgcover')) {
 
             $destination_path = 'product_img/imgcover';
@@ -234,12 +248,10 @@ class ProductDetailController extends Controller
         $update_product->update();
         //=======================================//
 
-        //========= Storing data for table products_imgreviews ======//
-        // $product = Products::where('product_name', $request->product_name)->latest()->first();
+        //========= Update data for table products_imgreviews ======//
         $productId = $update_product->id;
         $destinationPath = 'product_img/imgreview/';
         $imgReview = Products_Imgreviews::where('product_id', $productId)->get();
-
 
         if ($file = $request->hasFile('product_imgreview')) {
             //====== Delete imgreview in table Product_imgreview ======/
@@ -266,40 +278,54 @@ class ProductDetailController extends Controller
             }
         }
 
-
-
         //=======================================//
         /*
-        //========= Storing data for table products_colors ======//
-        $product = Products::where('id', $id)->first();
+        //========= Update data for table products_colors ======//
+        $productColor = Products_Colors::where('product_id', $productId)->get();
         if ($request->color_id) {
+
+            //==== Delete all data on table products_colors if request has new color_id value
+            for ($i = 0; $i < count($productColor); $i++) {
+                $deleteColor = Products_Colors::where('product_id', $productId)->first();
+                $deleteColor->delete();
+            }
+
             foreach ($request->color_id as $key => $colorId) {
-                $product->rela_product_color()->update(
+                $update_product->rela_product_color()->create(
                     [
-                        'product_id' => $product->id,
+                        'product_id' => $update_product->id,
                         'color_id' => $colorId,
                         'color_quantity' => $request->color_quantity[$key] ?? 0
                     ]
                 );
             }
         }
+        */
+        //========= Update data for table products_sizes ======//
+        $productSize = Products_Sizes::where('product_id', $productId)->get();
 
-        //========= Storing data for table products_sizes ======//
         if ($request->size_id) {
+            //==== Delete all data on table products_sizes if request has new size_id value
+            for ($i = 0; $i < count($productSize); $i++) {
+                $deleteSize = Products_Sizes::where('product_id', $productId)->first();
+                $deleteSize->delete();
+            }
+
             foreach ($request->size_id as $key => $sizeId) {
-                $product->rela_product_size()->update(
+                $update_product->rela_product_size()->create(
                     [
-                        'product_id' => $product->id,
+                        'product_id' => $update_product->id,
                         'size_id' => $sizeId,
                         'size_quantity' => $request->size_quantity[$key] ?? 0
                     ]
                 );
             }
         }
-        */
 
         return redirect('/admin/product-detail-list')
             ->with('alert', 'Product ' . $request->product_name . ' is updated successfully!');
+
+        //return dd($request->toArray());
     }
 
     /**

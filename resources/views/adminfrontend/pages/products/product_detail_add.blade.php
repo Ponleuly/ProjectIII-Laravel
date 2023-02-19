@@ -22,6 +22,9 @@
                                         <label for="product_name"><p class="text-label">Product name</p></label>
                                         <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_name" name="product_name" placeholder="product name..." required>
 
+                                        <label for="product_code"><p class="text-label mt-2">Product code</p></label>
+                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_code" name="product_code" placeholder="product code..." required>
+
                                         <label for="product_des"><p class="text-label mt-2">Description</p></label>
                                         <textarea class="form-control rounded-0 fw-500" placeholder="product description..." name="product_des" id="product_des"></textarea>
 
@@ -40,7 +43,17 @@
                                         <label for="product_stock"><p class="text-label mt-2">Product total stock</p></label>
                                         <input class="form-control rounded-0 fw-500 mb-2" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
                                         -->
-                                        <label for="category_id" ><p class="text-label mt-2" >Product category</p></label>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-group mb-2">
+
+                                        <label for="category_id" ><p class="text-label" >Product category</p></label>
                                         <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
                                                 <option selected disabled>Select category</option>
                                             @foreach ($categories as $item2)
@@ -56,20 +69,14 @@
                                             @endforeach
                                         </select>
 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-group mb-2">
                                         <!-- Start Product color and quantity -->
-                                        <label for="color_id[]"><p class="text-label">Product color and quantity</p></label><br>
+                                        <label for="color_id[]"><p class="text-label mt-2">Product color and quantity</p></label><br>
+                                        <!--
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
                                                 @foreach ($colors as $row)
                                                     <div class="col-md-6 mb-2">
-                                                        <div class="border border-1 py-2 px-4">
+                                                        <div class="border border-1 py-2 px-3">
                                                             <div class="row mb-1">
                                                                 <div class="col-md-4">
                                                                     <label for="color_id[]"><p class="text-label">Color: </p></label>
@@ -86,7 +93,7 @@
                                                                         @endif
                                                                     >
                                                                     <label class="form-check-label" for="{{$row->color_name}}">
-                                                                        <div style="background: {{$row->color_name}}; color: {{$row->color_name}}" class="px-2 ms-1">FFFFF1</div>
+                                                                        <div style="background: {{$row->color_name}}; color: {{$row->color_name}}" class="px-2 ms-1">FFFFFF1</div>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -115,6 +122,8 @@
                                                 <label class="form-check-label text-danger" for="color">Check All</label>
                                             </div>
                                         </div>
+                                        -->
+                                        <input type="color" class="form-control form-control-color d-flex w-100 rounded-0 mb-2" id="product_color" name="product_color"  value="#c5c5c5" placeholder="product name..." required>
                                         <!-- End Product color and quantity -->
 
                                         <!-- Start Product size and quantity -->
@@ -122,13 +131,13 @@
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
                                                  @foreach ($sizes as $item1)
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="border border-1 py-2 px-4">
+                                                    <div class="col-md-4 mb-2">
+                                                        <div class="border border-1 py-2 px-3">
                                                             <div class="row mb-1">
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-5">
                                                                     <label for="size"><p class="text-label">Size: </p></label>
                                                                 </div>
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-7">
                                                                     <input
                                                                         type="checkbox"
                                                                         class="form-check-input sizeAll"
@@ -145,12 +154,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-5">
                                                                     <label for="size_quantity"><p class="text-label">Quantity: </p></label>
                                                                 </div>
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-7">
                                                                     <input
-                                                                        class="form-control rounded-0 w-75 py-0"
+                                                                        class="form-control rounded-0 w-100 py-0"
                                                                         type="number"
                                                                         min="0"
                                                                         name="size_quantity[{{$item1->id}}]"
