@@ -120,13 +120,14 @@ class ProductCategoryController extends Controller
      */
     public function product_category_update(Request $request, $id)
     {
+        
         $update_category_name = Categories::where('id', $id)->first();
         $update_category_name->category_name = $request->input('category_name');
         $update_category_name->update();
 
         $categoryId = $update_category_name->id;
         $category_count = Categories_Groups::where('category_id', $categoryId)->count();
-
+        //===== Table categories_groups =====///
         for ($i = 0; $i < $category_count; $i++) {
             $delete_cate = Categories_Groups::where('category_id', $categoryId)->first();
             $delete_cate->delete();
@@ -135,9 +136,24 @@ class ProductCategoryController extends Controller
         $categoryId = $update_category_name->id;
         $groupId = $request->group_id;
         for ($i = 0; $i < count($groupId); $i++) {
+
             $update['category_id'] = $categoryId;
             $update['group_id'] = $groupId[$i];
             Categories_Groups::create($update);
+        }
+        //===== Table categories_subcategories =====///
+        $subcategory_count = Categories_Subcategories::where('category_id', $categoryId)->count();
+        
+        for ($j = 0; $j < $subcategory_count; $i++) {
+            $delete_sub = Categories_Subcategories::where('category_id', $categoryId)->first();
+            $delete_sub->delete();
+        }
+
+        $subCategory = explode(',', $request->sub_category);
+        for ($j = 0; $j < count($subCategory); $j++) {
+            $sub['category_id'] = $categoryId;
+            $sub['sub_category'] = $subCategory[$j];
+            Categories_Subcategories::create($sub);
         }
 
         return redirect('/admin/product-category-list')
@@ -146,8 +162,9 @@ class ProductCategoryController extends Controller
                 'Product category ' . '"' . $update_category_name->category_name . '"' .
                     ' is updated successfully !'
             );
+        
 
-        //return dd($category_count);
+        return dd($subcategory_count);
     }
 
     /**

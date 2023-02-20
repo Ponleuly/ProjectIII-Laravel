@@ -33,9 +33,11 @@
                                             data-role="tagsinput"
                                             name="sub_category"
                                             placeholder="sub category"
-                                            @foreach ($subCategory as $item)
-                                                value="{{$item->sub_category}}"
-                                            @endforeach
+                                            value="
+                                                @foreach ($subCategory as $item)
+                                                    {{$item->sub_category. ','}}
+                                                @endforeach
+                                            "
                                         >
 
                                         <label>

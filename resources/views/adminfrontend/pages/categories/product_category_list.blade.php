@@ -1,5 +1,6 @@
 <?php
 	use App\Models\Categories_Groups;
+	use App\Models\Categories_Subcategories;
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
@@ -33,6 +34,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">CATEGORY</th>
+                                    <th scope="col">SUB CATEGORY</th>
                                     <th scope="col">PRODUCT GROUP</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
@@ -47,6 +49,16 @@
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$row->category_name}}</td>
                                         <td>
+                                            @php
+                                                $sub = Categories_Subcategories::where('category_id', $row->id)->get();
+                                            @endphp
+                                            @foreach ($sub as $item)
+                                                {{$item->sub_category}}
+                                                {{($loop->last)? '':'&'}}
+                                            @endforeach
+                                            
+                                        </td>
+                                        <td> 
                                             @foreach($groups as $item)
                                                 {{$item->rela_category_group->group_name}}
                                                 {{($loop->last)? '':'&'}}

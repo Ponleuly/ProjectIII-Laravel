@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             CategorySeeder::class,
             CategoryGroupSeeder::class,
-            ColorSeeder::class,
             SizeSeeder::class,
             //Product::class,
         ]);
