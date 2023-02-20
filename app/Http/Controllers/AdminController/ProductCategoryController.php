@@ -8,9 +8,7 @@ use App\Models\Categories;
 use App\Models\Categories_Groups;
 use App\Models\Categories_Subcategories;
 use App\Models\Groups;
-
-
-
+use Illuminate\Cache\TagSet;
 
 class ProductCategoryController extends Controller
 {
@@ -120,7 +118,7 @@ class ProductCategoryController extends Controller
      */
     public function product_category_update(Request $request, $id)
     {
-        
+
         $update_category_name = Categories::where('id', $id)->first();
         $update_category_name->category_name = $request->input('category_name');
         $update_category_name->update();
@@ -141,15 +139,17 @@ class ProductCategoryController extends Controller
             $update['group_id'] = $groupId[$i];
             Categories_Groups::create($update);
         }
+        //================================================//
+
         //===== Table categories_subcategories =====///
-        $subcategory_count = Categories_Subcategories::where('category_id', $categoryId)->count();
-        
-        for ($j = 0; $j < $subcategory_count; $i++) {
-            $delete_sub = Categories_Subcategories::where('category_id', $categoryId)->first();
+        $subcategory_count = Categories_Subcategories::where('category_id', $categoryId)->get();
+        foreach ($subcategory_count as $row) {
+            $delete_sub = Categories_Subcategories::where('category_id', $row->category_id)->first();
             $delete_sub->delete();
         }
+        $sub_request = explode(',', $request->sub_category);
+        $subCategory = preg_replace('/\s+/', '', $sub_request); // eliminate whitespace from input form
 
-        $subCategory = explode(',', $request->sub_category);
         for ($j = 0; $j < count($subCategory); $j++) {
             $sub['category_id'] = $categoryId;
             $sub['sub_category'] = $subCategory[$j];
@@ -162,9 +162,8 @@ class ProductCategoryController extends Controller
                 'Product category ' . '"' . $update_category_name->category_name . '"' .
                     ' is updated successfully !'
             );
-        
 
-        return dd($subcategory_count);
+        //return dd($sub_category);
     }
 
     /**
