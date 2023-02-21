@@ -14,4 +14,8 @@ class Categories extends Model
     {
         return $this->hasMany(Products::class, 'id');
     }
+    public function rela_category()
+    {
+        return $this->hasMany(Categories_Groups::class, 'id');
+    }
 }

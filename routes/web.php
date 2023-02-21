@@ -46,6 +46,7 @@ Route::controller(FrontendController::class)->group(function () {
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('/product-men', 'product_men')->name('product-men');
+   Route::get('/product-women', 'product_women')->name('product-women');
    Route::get('/product-detail', 'product_detail')->name('product-detail');
 });
 /*============= End User Frontend route ==================*/

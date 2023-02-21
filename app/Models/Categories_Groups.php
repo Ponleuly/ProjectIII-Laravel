@@ -17,6 +17,10 @@ class Categories_Groups extends Model
     {
         return $this->belongsTo(Groups::class, 'group_id');
     }
+    public function rela_category()
+    {
+        return $this->belongsTo(Categories::class, 'category_id');
+    }
     public function rela_product_group()
     {
         return $this->hasOne(Products::class, 'id');

@@ -16,6 +16,10 @@ class ProductController extends Controller
     {
         return view('frontend.product.product_men');
     }
+    public function product_women()
+    {
+        return view('frontend.product.product_men');
+    }
     public function product_detail()
     {
         return view('frontend.product.product_detail');
