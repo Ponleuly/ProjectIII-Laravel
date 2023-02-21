@@ -20,30 +20,93 @@
                                     <div class="col-md-12">
 
                                         <label for="product_name"><p class="text-label">Product name</p></label>
-                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_name" name="product_name" placeholder="product name..." required>
+                                        <input
+                                            type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="product_name"
+                                            name="product_name"
+                                            placeholder="product name..."
+                                            required
+                                        >
 
                                         <label for="product_code"><p class="text-label mt-2">Product code</p></label>
-                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="product_code" name="product_code" placeholder="product code..." required>
+                                        <input
+                                            type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="product_code"
+                                            name="product_code"
+                                            placeholder="product code..." required
+                                        >
 
                                         <label for="product_des"><p class="text-label mt-2">Description</p></label>
-                                        <textarea class="form-control rounded-0 fw-500" placeholder="product description..." name="product_des" id="product_des"></textarea>
+                                        <textarea
+                                            class="form-control rounded-0 fw-500"
+                                            placeholder="product description..."
+                                            name="product_des"
+                                            id="product_des">
+                                        </textarea>
 
                                         <label for="product_imgcover"><p class="text-label mt-3">Image cover (1 picture)</p></label>
-                                        <input class="form-control rounded-0 mb-2" type="file" id="product_imgcover" name="product_imgcover" accept="image/png, image/jpeg, image/jpg" required>
+                                        <input
+                                            class="form-control rounded-0 mb-2"
+                                            type="file"
+                                            id="product_imgcover"
+                                            name="product_imgcover"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            required
+                                        >
 
                                         <label for="product_imgreview"><p class="text-label mt-2">Images review (4 pictures)</p></label>
-                                        <input class="form-control rounded-0 mb-2" type="file" id="product_imgreview" name="product_imgreview[]" accept="image/png, image/jpeg, image/jpg" multiple required>
+                                        <input
+                                            class="form-control rounded-0 mb-2"
+                                            type="file"
+                                            id="product_imgreview"
+                                            name="product_imgreview[]"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            multiple
+                                            required
+                                        >
 
                                         <label for="product_price"><p class="text-label mt-2">Product price ($)</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="0" step="0.05" name="product_price" id="product_price" placeholder="00.00" required>
+                                        <input
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            type="number"
+                                            min="0"
+                                            step="0.05"
+                                            name="product_price"
+                                            id="product_price"
+                                            placeholder="00.00"
+                                            required
+                                        >
 
                                         <label for="product_saleprice"><p class="text-label mt-2">Product sale price ($)</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="0" step="0.05" name="product_saleprice" id="product_saleprice" placeholder="00.00" required>
-                                        <!--
-                                        <label for="product_stock"><p class="text-label mt-2">Product total stock</p></label>
-                                        <input class="form-control rounded-0 fw-500 mb-2" type="number" min="1" name="product_stock" id="product_stock" placeholder="00" required>
-                                        -->
+                                        <input
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            type="number"
+                                            min="0"
+                                            step="0.05"
+                                            name="product_saleprice"
+                                            id="product_saleprice"
+                                            placeholder="00.00"
+                                            required
+                                        >
 
+                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label><br>
+                                        @foreach ($groups as $row)
+                                            <div class="form-check form-check-inline">
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    id="{{$row->group_name}}"
+                                                    value="{{$row->id}}"
+                                                    name="group_id[]"
+                                                    @if ($loop->first)
+                                                        checked
+                                                    @endif
+                                                >
+                                                <label class="form-check-label" for="{{$row->group_name}}">{{$row->group_name}}</label>
+                                            </div>
+                                        @endforeach
 
                                     </div>
                                 </div>
@@ -54,25 +117,43 @@
                                     <div class="form-group mb-2">
 
                                         <label for="category_id" ><p class="text-label" >Product category</p></label>
-                                        <select class="form-select rounded-0 mb-2" aria-label="category select" name="category_id" id="category_id" required>
-                                                <option selected disabled>Select category</option>
+                                        <select
+                                            class="form-select rounded-0 mb-2"
+                                            aria-label="category select"
+                                            name="category_id"
+                                            id="category_id"
+                                            required
+                                            >
+                                            <option selected disabled>Select category</option>
                                             @foreach ($categories as $item2)
                                                 <option value="{{$item2->id}}">{{$item2->category_name}}</option>
                                             @endforeach
                                         </select>
 
-                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label>
-                                        <select class="form-select rounded-0 mb-2" aria-label="group select" name="group_id" id="group_id" required>
-                                                <option selected disabled>Select group</option>
-                                            @foreach ($groups as $item3)
-                                                <option value="{{$item3->id}}">{{$item3->group_name}}</option>
+                                        <label for="subcategory_id" ><p class="text-label mt-2" >Product subcategory</p></label>
+                                        <select
+                                            class="form-select rounded-0 mb-2"
+                                            aria-label="category select"
+                                            name="subcategory_id"
+                                            id="subcategory_id"
+                                            required
+                                            >
+                                            <option selected disabled>Select subcategory</option>
+                                            @foreach ($subCategories as $item1)
+                                                <option value="{{$item1->id}}">{{$item1->sub_category}}</option>
                                             @endforeach
                                         </select>
-
                                         <!-- Start Product color and quantity -->
                                         <label for="color_id[]"><p class="text-label mt-2">Product color</p></label><br>
-
-                                        <input type="color" class="form-control form-control-color d-flex w-100 rounded-0 mb-2" id="product_color" name="product_color"  value="#c5c5c5" placeholder="product name..." required>
+                                        <input
+                                            type="color"
+                                            class="form-control form-control-color d-flex w-100 rounded-0 mb-2"
+                                            id="product_color"
+                                            name="product_color"
+                                            value="#c5c5c5"
+                                            placeholder="product name..."
+                                            required
+                                        >
                                         <!-- End Product color and quantity -->
 
                                         <!-- Start Product size and quantity -->
@@ -81,7 +162,7 @@
                                             <div class="row">
                                                  @foreach ($sizes as $item1)
                                                     <div class="col-md-4 mb-2">
-                                                        <div class="border border-1 py-2 px-3">
+                                                        <div class="border border-1 py-2 px-2">
                                                             <div class="row mb-1">
                                                                 <div class="col-md-5">
                                                                     <label for="size"><p class="text-label">Size: </p></label>
@@ -123,37 +204,15 @@
                                             </div>
 
                                             <div class="form-check mb-0">
-                                                <input type="checkbox"  class="form-check-input" id="size" onclick="javascript:sizeAll(this)"/>
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    id="size"
+                                                    onclick="javascript:sizeAll(this)"
+                                                >
                                                 <label class="form-check-label text-danger ms-1" for="size">Check All</label>
                                             </div>
                                         </div>
-                                        <!-- End Product size and quantity -->
-
-                                        <!-- Start Product size and quantity -->
-                                        <!--
-                                        <div class="mb-2">
-                                            <label for="size_id[]"><p class="text-label">Product size and quantity</p></label><br>
-                                            @foreach ($sizes as $item1)
-                                                <div class="form-check form-check-inline all">
-                                                    <input
-                                                        type="checkbox"
-                                                        class="form-check-input sizeAll"
-                                                        id="size{{$item1->size}}"
-                                                        value="{{$item1->size}}"
-                                                        name="size[]"
-                                                        @if ($loop->first)
-                                                            checked
-                                                        @endif
-                                                    >
-                                                    <label class="form-check-label" for="size{{$item1->size}}">
-                                                        {{$item1->size}}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                            <input type="checkbox"  class="form-check-input" id="size" onclick="javascript:sizeAll(this)"/>
-                                            <label class="form-check-label text-danger ms-1" for="size">Check All</label>
-                                        </div>
-                                        -->
                                         <!-- End Product size and quantity -->
 
                                         <div class="d-flex mt-4" style="padding-top: 2px">

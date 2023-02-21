@@ -1,5 +1,5 @@
 <?php
-	use App\Models\Product_group_cate;
+	use App\Models\Products_Groups;
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
@@ -39,8 +39,9 @@
                                     <th scope="col">#</th>
                                     <th scope="col">IMAGE</th>
                                     <th scope="col">PRODUCT NAME</th>
-                                    <th scope="col">CATEGORY</th>
                                     <th scope="col">GROUP</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">SUB CATEGORY</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
@@ -55,10 +56,16 @@
                                         </td>
                                         <td>{{$row->product_name}}</td>
                                         <td>
-
-                                            {{$row->rela_product_category->category_name}}
+                                            @php
+                                                $groups = Products_Groups::where('product_id', $row->id)->get();
+                                            @endphp
+                                            @foreach ($groups as $item)
+                                                {{$item->rela_product_group->group_name}}
+                                                {{($loop->last)? '':'&'}}
+                                            @endforeach
                                         </td>
-                                        <td>{{$row->rela_product_group->group_name}}</td>
+                                        <td> {{$row->rela_product_category->category_name}}</td>
+                                        <td> {{$row->rela_product_subcategory->sub_category}}</td>
                                         <td>${{$row->product_price}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>

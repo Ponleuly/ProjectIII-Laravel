@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Models\Sizes;
-use App\Models\Colors;
+use App\Models\Categories_Subcategories;
 use App\Models\Groups;
 use App\Models\Products;
 use App\Models\Categories;
@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Products_Sizes;
 use App\Models\Products_Imgreviews;
 use App\Http\Controllers\Controller;
+use App\Models\Products_Groups;
 use Illuminate\Support\Facades\File;
 
 class ProductDetailController extends Controller
@@ -25,13 +26,16 @@ class ProductDetailController extends Controller
         $sizes = Sizes::orderBy('size_number')->get();
         $groups = Groups::orderBy('id')->get();
         $categories = Categories::orderBy('id')->get();
+        $subCategories = Categories_Subcategories::orderBy('id')->get();
+
 
         return view(
             'adminfrontend.pages.products.product_detail_add',
             compact(
                 'sizes',
                 'groups',
-                'categories'
+                'categories',
+                'subCategories'
             )
         );
     }
@@ -60,6 +64,7 @@ class ProductDetailController extends Controller
         $productId = $product_view->id;
 
         $productSize = Products_Sizes::where('product_id', $productId)->get();
+        $productGroups = Products_Groups::where('product_id', $productId)->get();
         $sizeStock = 0;
         $headCode = trim($code, " 0..9");
         $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
@@ -82,6 +87,7 @@ class ProductDetailController extends Controller
                 'product_view',
                 'totalStock',
                 'productCode',
+                'productGroups'
             )
 
         );
@@ -100,6 +106,7 @@ class ProductDetailController extends Controller
 
     public function product_detail_store(Request $request)
     {
+
         $input  = $request->all();
 
         //========= Storing data for table products ======//
@@ -135,21 +142,7 @@ class ProductDetailController extends Controller
             }
         }
         //=======================================//
-        /*
-        //========= Storing data for table products_colors ======//
-        $product = Products::where('product_name', $request->product_name)->latest()->first();
-        if ($request->color_id) {
-            foreach ($request->color_id as $key => $colorId) {
-                $product->rela_product_color()->create(
-                    [
-                        'product_id' => $product->id,
-                        'color_id' => $colorId,
-                        'color_quantity' => $request->color_quantity[$key] ?? 0
-                    ]
-                );
-            }
-        }
-        */
+
         //========= Storing data for table products_sizes ======//
         if ($request->size_id) {
             foreach ($request->size_id as $key => $sizeId) {
@@ -162,10 +155,16 @@ class ProductDetailController extends Controller
                 );
             }
         }
-
+        //========= Storing data for table products_groups ======//
+        foreach ($request->group_id as  $row => $value) {
+            $group['group_id'] = $value;
+            $group['product_id'] = $productId;
+            Products_Groups::create($group);
+        }
         return redirect('/admin/product-detail-add')
             ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
-        //return dd($request->toArray());
+
+        //return dd($value);
     }
 
     /**
@@ -189,7 +188,9 @@ class ProductDetailController extends Controller
     {
         $sizes = Sizes::orderBy('size_number')->get();
         $groups = Groups::orderBy('id')->get();
+        $selected_group = Products_Groups::where('product_id', $id)->get();
         $categories = Categories::orderBy('id')->get();
+        $subCategories = Categories_Subcategories::orderBy('id')->get();
         $products = Products::where('id', $id)->first();
 
 
@@ -200,6 +201,8 @@ class ProductDetailController extends Controller
                 'groups',
                 'categories',
                 'products',
+                'subCategories',
+                'selected_group',
             )
         );
 
@@ -225,7 +228,7 @@ class ProductDetailController extends Controller
         $update_product->product_color = $request->input('product_color');
         $update_product->product_saleprice = $request->input('product_saleprice');
         $update_product->category_id = $request->input('category_id');
-        $update_product->group_id = $request->input('group_id');
+        $update_product->subcategory_id = $request->input('subcategory_id');
 
         //========= Update data for table products ======//
         if ($request->hasFile('product_imgcover')) {
@@ -273,29 +276,6 @@ class ProductDetailController extends Controller
             }
         }
 
-        //=======================================//
-        /*
-        //========= Update data for table products_colors ======//
-        $productColor = Products_Colors::where('product_id', $productId)->get();
-        if ($request->color_id) {
-
-            //==== Delete all data on table products_colors if request has new color_id value
-            for ($i = 0; $i < count($productColor); $i++) {
-                $deleteColor = Products_Colors::where('product_id', $productId)->first();
-                $deleteColor->delete();
-            }
-
-            foreach ($request->color_id as $key => $colorId) {
-                $update_product->rela_product_color()->create(
-                    [
-                        'product_id' => $update_product->id,
-                        'color_id' => $colorId,
-                        'color_quantity' => $request->color_quantity[$key] ?? 0
-                    ]
-                );
-            }
-        }
-        */
         //========= Update data for table products_sizes ======//
         $productSize = Products_Sizes::where('product_id', $productId)->get();
 
@@ -316,7 +296,17 @@ class ProductDetailController extends Controller
                 );
             }
         }
-
+        //========= Update data for table products_groups ======//
+        $deleteGroup = Products_Groups::where('product_id', $productId)->get();
+        foreach ($deleteGroup as $row) {
+            $delete_group = Products_Groups::where('product_id', $row->product_id)->first();
+            $delete_group->delete();
+        }
+        foreach ($request->group_id as  $row => $value) {
+            $group['group_id'] = $value;
+            $group['product_id'] = $productId;
+            Products_Groups::create($group);
+        }
         return redirect('/admin/product-detail-list')
             ->with('alert', 'Product ' . $request->product_name . ' is updated successfully!');
 

@@ -29,7 +29,21 @@ class ProductCategoryController extends Controller
             )
         );
     }
+    public function product_category_view($id)
+    {
+        $category = Categories::where('id', $id)->first();
+        $groups = Categories_Groups::where('category_id', $id)->get();
+        $subCategories = Categories_Subcategories::where('category_id', $id)->get();
 
+        return view(
+            'adminfrontend.pages.categories.product_category_view',
+            compact(
+                'category',
+                'groups',
+                'subCategories'
+            )
+        );
+    }
     /**
      * Show the form for creating a new resource.
      *

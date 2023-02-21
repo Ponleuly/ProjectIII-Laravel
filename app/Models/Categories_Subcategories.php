@@ -13,4 +13,8 @@ class Categories_Subcategories extends Model
         'sub_category',
         'category_id',
     ];
+    public function rela_product_subcategory()
+    {
+        return $this->hasMany(Products::class, 'id');
+    }
 }

@@ -66,7 +66,10 @@
                                             <p class="text-label mt-3">Image cover</p>
                                         </label>
                                         <div class="col-md-4">
-                                            <img src="/product_img/imgcover/{{$products->product_imgcover}}" class="img-fluid product-thumbnail">
+                                            <img
+                                                src="/product_img/imgcover/{{$products->product_imgcover}}"
+                                                class="img-fluid product-thumbnail"
+                                            >
                                         </div>
                                         <label for="product_imgcover">
                                             <p class="text-label mt-3">Updata image cover (1 picture)</p>
@@ -87,7 +90,10 @@
                                             @endphp
                                             @foreach ($imgreviews as $imgreview)
                                                 <div class="col-sm py-3">
-                                                    <img src="/product_img/imgreview/{{$imgreview->product_imgreview}}" class="img-fluid product-thumbnail">
+                                                    <img
+                                                    src="/product_img/imgreview/{{$imgreview->product_imgreview}}"
+                                                    class="img-fluid product-thumbnail"
+                                                    >
                                                 </div>
                                             @endforeach
                                         </div>
@@ -104,8 +110,18 @@
                                             multiple
                                         >
 
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-group mb-2">
+
                                         <label for="product_price">
-                                            <p class="text-label mt-2">Product price ($)</p>
+                                            <p class="text-label">Product price ($)</p>
                                         </label>
                                         <input
                                             class="form-control rounded-0 fw-500 mb-2"
@@ -130,16 +146,25 @@
                                             required
                                         >
 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-group mb-2">
-
+                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label><br>
+                                        @foreach ($groups as $row)
+                                            <div class="form-check form-check-inline">
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    id="{{$row->group_name}}"
+                                                    value="{{$row->id}}"
+                                                    name="group_id[]"
+                                                    @foreach ($selected_group as $item)
+                                                        {{($row->id == $item->group_id) ? 'checked' : ''}}
+                                                    @endforeach
+                                                >
+                                                <label class="form-check-label" for="{{$row->group_name}}">{{$row->group_name}}</label>
+                                            </div>
+                                        @endforeach
+                                        <br>
                                         <label for="category_id">
-                                            <p class="text-label" >Product category</p>
+                                            <p class="text-label mt-2">Product category</p>
                                         </label>
                                         <select
                                             class="form-select rounded-0 mb-2"
@@ -159,23 +184,23 @@
                                             @endforeach
                                         </select>
 
-                                        <label for="group_id">
-                                            <p class="text-label mt-2">Product group</p>
+                                        <label for="subcategory_id">
+                                            <p class="text-label mt-2">Product subcategory</p>
                                         </label>
                                         <select
                                             class="form-select rounded-0 mb-2"
-                                            aria-label="group select"
-                                            name="group_id"
-                                            id="group_id"
+                                            aria-label="category select"
+                                            name="subcategory_id"
+                                            id="subcategory_id"
                                             required
                                             >
-                                            <option selected disabled>Select group</option>
-                                            @foreach ($groups as $item3)
+                                            <option selected disabled>Select subcategory</option>
+                                            @foreach ($subCategories as $item1)
                                                 <option
-                                                    value="{{$item3->id}}"
-                                                    {{($item3->id == $products->group_id) ? 'selected' : ''}}
+                                                    value="{{$item1->id}}"
+                                                    {{($item1->id == $products->subcategory_id) ? 'selected' : ''}}
                                                     >
-                                                    {{$item3->group_name}}
+                                                    {{$item1->sub_category}}
                                                 </option>
                                             @endforeach
                                         </select>

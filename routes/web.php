@@ -65,6 +65,7 @@ Route::prefix('admin')->controller(ProductGroupController::class)->group(functio
 });
 Route::prefix('admin')->controller(ProductCategoryController::class)->group(function () {
    Route::get('/product-category-list', 'product_category_list')->name('product-category-list');
+   Route::get('/product-category-view/{id}', 'product_category_view')->name('product-category-view');
    Route::get('/product-category-add', 'product_category_add')->name('product-category-add');
    Route::post('/product-category-add', 'product_category_store')->name('product-category-add');
    Route::get('/product-category-edit/{id}', 'product_category_edit')->name('product-category-edit');

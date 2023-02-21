@@ -35,7 +35,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">CATEGORY</th>
                                     <th scope="col">SUB CATEGORY</th>
-                                    <th scope="col">PRODUCT GROUP</th>
+                                    <th scope="col">CATEGORY GROUP</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
                                 </tr>
@@ -50,15 +50,11 @@
                                         <td>{{$row->category_name}}</td>
                                         <td>
                                             @php
-                                                $sub = Categories_Subcategories::where('category_id', $row->id)->get();
+                                                $sub_count = Categories_Subcategories::where('category_id', $row->id)->count();
                                             @endphp
-                                            @foreach ($sub as $item)
-                                                {{$item->sub_category}}
-                                                {{($loop->last)? '':'&'}}
-                                            @endforeach
-                                            
+                                            {{$sub_count}}
                                         </td>
-                                        <td> 
+                                        <td>
                                             @foreach($groups as $item)
                                                 {{$item->rela_category_group->group_name}}
                                                 {{($loop->last)? '':'&'}}
@@ -66,6 +62,7 @@
                                         </td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
+                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-category-view/'.$row->id)}}" role="button">View</a>
                                             <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-category-edit/'.$row->id)}}" role="button">Edit</a>
                                             <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-category-delete/'.$row->id)}}" role="button">Delete</a>
                                         </td>

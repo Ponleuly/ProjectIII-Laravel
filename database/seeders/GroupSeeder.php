@@ -27,11 +27,6 @@ class GroupSeeder extends Seeder
                 'group_name' => 'Women',
                 'created_at' => Carbon::now()
             ],
-            [
-                'id' => 3,
-                'group_name' => 'Accessories',
-                'created_at' => Carbon::now()
-            ],
         ]);
     }
 }

@@ -78,7 +78,12 @@
                                             <h5 class="text-black fw-bold mt-1">Group: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->rela_product_group->group_name}}</p>
+                                            <p>
+                                                @foreach ($productGroups as $item)
+                                                    {{$item->rela_product_group->group_name}}
+                                                    {{($loop->last)? '':'&'}}
+                                                @endforeach
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -87,6 +92,14 @@
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
                                             <p>{{$product_view->rela_product_category->category_name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-3">
+                                            <h5 class="text-black fw-bold mt-1">Sub category: </h5>
+                                        </div>
+                                        <div class="col-9 ms-0 ps-0">
+                                            <p>{{$product_view->rela_product_subcategory->sub_category}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">

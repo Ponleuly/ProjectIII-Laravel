@@ -24,7 +24,6 @@ return new class extends Migration
             $table->unsignedDecimal('product_saleprice', 5, 2);
 
             $table->string('product_imgcover', 100);
-
             $table->string('product_color', 10);
 
             $table->unsignedInteger('category_id');
@@ -34,13 +33,20 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->unsignedInteger('subcategory_id');
+            $table->foreign('subcategory_id')
+                ->references('id')
+                ->on('categories_subcategories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            /*
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')
                 ->references('id')
                 ->on('groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
+            */
             $table->timestamps();
         });
     }
