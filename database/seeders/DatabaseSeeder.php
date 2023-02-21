@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Products_Groups;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +28,11 @@ class DatabaseSeeder extends Seeder
             CategoryGroupSeeder::class,
             CategorySubcategorySeeder::class,
             SizeSeeder::class,
-            Product::class,
+            ProductSeeder::class,
+            ProductGroupSeeder::class,
+            ProductImgreviewSeeder::class,
+            ProductSizeSeeder::class,
+
         ]);
     }
 }
