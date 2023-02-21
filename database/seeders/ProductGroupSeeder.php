@@ -16,24 +16,20 @@ class ProductGroupSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products_groups')->insert([
-            ['id' => 1, 'group_id' => 1, 'product_id' => 1, 'created_at' => Carbon::now()],
-            ['id' => 2, 'group_id' => 2, 'product_id' => 1, 'created_at' => Carbon::now()],
+        $j = 1;
+        $k = 1;
+        for ($i = 1; $i <= 12; $i++) {
+            DB::table('products_groups')->insert([
+                [
+                    'id' => $i,
+                    'group_id' => $j++,
+                    'product_id' => $k,
+                    'created_at' => Carbon::now()
+                ],
 
-            ['id' => 3, 'group_id' => 1, 'product_id' => 2, 'created_at' => Carbon::now()],
-            ['id' => 4, 'group_id' => 2, 'product_id' => 2, 'created_at' => Carbon::now()],
-
-            ['id' => 5, 'group_id' => 1, 'product_id' => 3, 'created_at' => Carbon::now()],
-            ['id' => 6, 'group_id' => 2, 'product_id' => 3, 'created_at' => Carbon::now()],
-
-            ['id' => 7, 'group_id' => 1, 'product_id' => 4, 'created_at' => Carbon::now()],
-            ['id' => 8, 'group_id' => 2, 'product_id' => 4, 'created_at' => Carbon::now()],
-
-            ['id' => 9, 'group_id' => 1, 'product_id' => 5, 'created_at' => Carbon::now()],
-            ['id' => 10, 'group_id' => 2, 'product_id' => 5, 'created_at' => Carbon::now()],
-
-            ['id' => 11, 'group_id' => 1, 'product_id' => 6, 'created_at' => Carbon::now()],
-            ['id' => 12, 'group_id' => 2, 'product_id' => 6, 'created_at' => Carbon::now()],
-        ]);
+            ]);
+            if ($j == 3) $j = 1;
+            if (($i % $j) == 0) $k++;
+        }
     }
 }
