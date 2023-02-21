@@ -32,7 +32,7 @@
 								href="{{url('/shop')}}
 								{{Request::is('shop')? 'active':''}}"
 								>
-								<h5><strong>SHOP</strong></h5>
+								<h5><strong>Shop</strong></h5>
 							</a>
 						</div>
                     </li>
@@ -50,7 +50,6 @@
 								<a
 									class="nav-link hover-bar"
 									role="button"
-									data-bs-toggle="dropdown"
 									aria-expanded="false"
 									href="{{url('product-' .strtolower($group->group_name))}}
 									{{Request::is('product-'.strtolower($group->group_name))? 'active':''}}"

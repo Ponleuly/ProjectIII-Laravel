@@ -17,33 +17,40 @@ class ProductImgreviewSeeder extends Seeder
     public function run()
     {
         DB::table('products_imgreviews')->insert([
-            [
-                'id' => 1, 'product_imgreview' => 'Pro_AV0001_1.jpg', 'product_id' => 1, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 2, 'product_imgreview' => 'Pro_AV0001_2.jpg', 'product_id' => 1, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 3, 'product_imgreview' => 'Pro_AV0001_3.jpg', 'product_id' => 1, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 4, 'product_imgreview' => 'Pro_AV0001_4.jpg', 'product_id' => 1, 'created_at' => Carbon::now()
-            ],
+            ['id' => 1, 'product_imgreview' => 'Pro_ba0001_1.jpg', 'product_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 2, 'product_imgreview' => 'Pro_ba0001_2.jpg', 'product_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 3, 'product_imgreview' => 'Pro_ba0001_3.jpg', 'product_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 4, 'product_imgreview' => 'Pro_ba0001_4.jpg', 'product_id' => 1, 'created_at' => Carbon::now()],
 
             //=======================================================================================================//
-            [
-                'id' => 5, 'product_imgreview' => 'Pro_AV0002_1.jpg', 'product_id' => 2, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 6, 'product_imgreview' => 'Pro_AV0002_2.jpg', 'product_id' => 2, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 7, 'product_imgreview' => 'Pro_AV0002_3.jpg', 'product_id' => 2, 'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 8, 'product_imgreview' => 'Pro_AV0002_4.jpg', 'product_id' => 2, 'created_at' => Carbon::now()
-            ],
+            ['id' => 5, 'product_imgreview' => 'Pro_ba0002_1.jpg', 'product_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 6, 'product_imgreview' => 'Pro_ba0002_2.jpg', 'product_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 7, 'product_imgreview' => 'Pro_ba0002_3.jpg', 'product_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 8, 'product_imgreview' => 'Pro_ba0002_4.jpg', 'product_id' => 2, 'created_at' => Carbon::now()],
 
+            //=======================================================================================================//
+            ['id' => 9, 'product_imgreview' => 'Pro_ba0003_1.jpg', 'product_id' => 3, 'created_at' => Carbon::now()],
+            ['id' => 10, 'product_imgreview' => 'Pro_ba0003_2.jpg', 'product_id' => 3, 'created_at' => Carbon::now()],
+            ['id' => 11, 'product_imgreview' => 'Pro_ba0003_3.jpg', 'product_id' => 3, 'created_at' => Carbon::now()],
+            ['id' => 12, 'product_imgreview' => 'Pro_ba0003_4.jpg', 'product_id' => 3, 'created_at' => Carbon::now()],
+
+            //=======================================================================================================//
+            ['id' => 13, 'product_imgreview' => 'Pro_va0001_1.jpg', 'product_id' => 4, 'created_at' => Carbon::now()],
+            ['id' => 14, 'product_imgreview' => 'Pro_va0001_2.jpg', 'product_id' => 4, 'created_at' => Carbon::now()],
+            ['id' => 15, 'product_imgreview' => 'Pro_va0001_3.jpg', 'product_id' => 4, 'created_at' => Carbon::now()],
+            ['id' => 16, 'product_imgreview' => 'Pro_va0001_4.jpg', 'product_id' => 4, 'created_at' => Carbon::now()],
+
+            //=======================================================================================================//
+            ['id' => 17, 'product_imgreview' => 'Pro_va0002_1.jpg', 'product_id' => 5, 'created_at' => Carbon::now()],
+            ['id' => 18, 'product_imgreview' => 'Pro_va0002_2.jpg', 'product_id' => 5, 'created_at' => Carbon::now()],
+            ['id' => 19, 'product_imgreview' => 'Pro_va0002_3.jpg', 'product_id' => 5, 'created_at' => Carbon::now()],
+            ['id' => 20, 'product_imgreview' => 'Pro_va0002_4.jpg', 'product_id' => 5, 'created_at' => Carbon::now()],
+
+            //=======================================================================================================//
+            ['id' => 21, 'product_imgreview' => 'Pro_va0003_1.jpg', 'product_id' => 6, 'created_at' => Carbon::now()],
+            ['id' => 22, 'product_imgreview' => 'Pro_va0003_2.jpg', 'product_id' => 6, 'created_at' => Carbon::now()],
+            ['id' => 23, 'product_imgreview' => 'Pro_va0003_3.jpg', 'product_id' => 6, 'created_at' => Carbon::now()],
+            ['id' => 34, 'product_imgreview' => 'Pro_va0003_4.jpg', 'product_id' => 6, 'created_at' => Carbon::now()],
 
         ]);
     }

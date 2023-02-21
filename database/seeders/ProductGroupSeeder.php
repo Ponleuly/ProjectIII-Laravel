@@ -22,6 +22,18 @@ class ProductGroupSeeder extends Seeder
 
             ['id' => 3, 'group_id' => 1, 'product_id' => 2, 'created_at' => Carbon::now()],
             ['id' => 4, 'group_id' => 2, 'product_id' => 2, 'created_at' => Carbon::now()],
+
+            ['id' => 5, 'group_id' => 1, 'product_id' => 3, 'created_at' => Carbon::now()],
+            ['id' => 6, 'group_id' => 2, 'product_id' => 3, 'created_at' => Carbon::now()],
+
+            ['id' => 7, 'group_id' => 1, 'product_id' => 4, 'created_at' => Carbon::now()],
+            ['id' => 8, 'group_id' => 2, 'product_id' => 4, 'created_at' => Carbon::now()],
+
+            ['id' => 9, 'group_id' => 1, 'product_id' => 5, 'created_at' => Carbon::now()],
+            ['id' => 10, 'group_id' => 2, 'product_id' => 5, 'created_at' => Carbon::now()],
+
+            ['id' => 11, 'group_id' => 1, 'product_id' => 6, 'created_at' => Carbon::now()],
+            ['id' => 12, 'group_id' => 2, 'product_id' => 6, 'created_at' => Carbon::now()],
         ]);
     }
 }

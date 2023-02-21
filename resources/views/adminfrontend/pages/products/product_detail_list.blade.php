@@ -41,7 +41,7 @@
                                     <th scope="col">PRODUCT NAME</th>
                                     <th scope="col">GROUP</th>
                                     <th scope="col">CATEGORY</th>
-                                    <th scope="col">SUB CATEGORY</th>
+                                    <th scope="col">SUBCATEGORY</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
@@ -69,9 +69,30 @@
                                         <td>${{$row->product_price}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-detail-view/'.$row->product_code)}}" role="button">View</a>
-                                            <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-detail-edit/'.$row->id)}}" role="button">Edit</a>
-                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-detail-delete/'.$row->id)}}" role="button">Delete</a>
+                                            <a
+                                                class="btn btn-info py-1 px-2 btn-sm"
+                                                style="font-size: 10px"
+                                                href="{{url('/admin/product-detail-view/'.$row->product_code)}}"
+                                                role="button"
+                                                >
+                                                View
+                                            </a>
+                                            <a
+                                                class="btn btn-primary py-1 px-2 btn-sm"
+                                                style="font-size: 10px"
+                                                href="{{url('/admin/product-detail-edit/'.$row->id)}}"
+                                                role="button"
+                                                >
+                                                Edit
+                                            </a>
+                                            <a
+                                                class="btn btn-danger py-1 px-2 btn-sm"
+                                                style="font-size: 10px"
+                                                href="{{url('/admin/product-detail-delete/'.$row->id)}}"
+                                                role="button"
+                                                >
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
