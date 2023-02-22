@@ -28,6 +28,8 @@ class SizeSeeder extends Seeder
             ['id' => 9, 'size_number' => "42", 'created_at' => Carbon::now()],
             ['id' => 10, 'size_number' => "43", 'created_at' => Carbon::now()],
             ['id' => 11, 'size_number' => "44", 'created_at' => Carbon::now()],
+            ['id' => 12, 'size_number' => "free", 'created_at' => Carbon::now()],
+
         ]);
     }
 }

@@ -44,7 +44,7 @@
                                     <th scope="col">SUBCATEGORY</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">DATE</th>
-                                    <th scope="col">ACTIONS</th>
+                                    <th scope="col" class="col-2">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>

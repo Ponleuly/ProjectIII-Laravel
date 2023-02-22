@@ -21,7 +21,7 @@
                                     <div class="col-md-12">
                                         <label for="size"><p class="text-label">Product size</p></label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             class="form-control rounded-0 fw-500 mb-2"
                                             value="{{$sizes->size_number}}"
                                             min="1"

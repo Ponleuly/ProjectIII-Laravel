@@ -18,7 +18,7 @@ class ProductGroupSeeder extends Seeder
     {
         $j = 1;
         $k = 1;
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= 26; $i++) {
             DB::table('products_groups')->insert([
                 [
                     'id' => $i,
