@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\UserController;
 
-use App\Http\Controllers\Controller;
+use App\Models\Groups;
+use App\Models\Products;
+use App\Models\Categories;
 use Illuminate\Http\Request;
+use App\Models\Products_Sizes;
+use App\Models\Products_Groups;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -12,26 +18,81 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function product_men()
+    public function shop()
     {
-        return view('frontend.product.product_men');
+        $allProducts = Products::orderBy('id')->get();
+        return view(
+            'frontend.product.shop',
+            compact('allProducts')
+        );
     }
-    public function product_women()
+    public function product($group)
     {
-        return view('frontend.product.product_men');
+        $groupName = Groups::where('group_name', ucfirst($group))->first();
+        $groupId = $groupName->id;
+        $group_name = $groupName->group_name;
+        $productGroups = Products_Groups::where('group_id', $groupId)->get();
+        return view(
+            'frontend.product.product',
+            compact('productGroups', 'group_name')
+        );
+        //return dd($productGroups);
     }
-    public function product_detail()
+
+    public function product_detail($code)
     {
-        return view('frontend.product.product_detail');
+        $productDetails = Products::where('product_code', $code)->first();
+        $productId = $productDetails->id;
+
+        $productSize = Products_Sizes::where('product_id', $productId)->get();
+        $productGroups = Products_Groups::where('product_id', $productId)->get();
+        $sizeStock = 0;
+        $headCode = trim($code, "0..9");
+        $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
+
+
+        foreach ($productSize as $row) {
+            $sizeStock += $row->size_quantity;
+        }
+        $totalStock = $sizeStock;
+
+        return view(
+            'frontend.product.product_detail',
+            compact(
+                'productDetails',
+                'totalStock',
+                'productCode',
+                'productGroups',
+                'productSize'
+            )
+        );
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function product_category($group, $category)
     {
-        //
+        $groupName = Groups::where('group_name', ucfirst($group))->first();
+        $groupId = $groupName->id;
+
+        $category = Categories::where('category_name', ucfirst($category))->first();
+        $productGroups = Products_Groups::where('group_id', $groupId)->get();
+
+        $group_name = $groupName->group_name;
+        $products = Products::where('category_id', $category->id)->get();
+        return view(
+            'frontend.product.product_category',
+            compact(
+                'productGroups',
+                'group_name',
+                'products',
+                'category'
+            )
+        );
+
+        //return dd($products);
     }
 
     /**

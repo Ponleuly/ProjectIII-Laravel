@@ -37,7 +37,6 @@ Route::get('/index', function () {
 // *Using Route group to control route pages
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
-   Route::get('/shop', 'shop')->name('shop');
    Route::get('/cart', 'cart')->name('cart');
    Route::get('/checkout', 'checkout')->name('checkout');
    Route::get('/thankyou', 'thankyou')->name('thankyou');
@@ -45,9 +44,10 @@ Route::controller(FrontendController::class)->group(function () {
    Route::get('/profile', 'profile')->name('profile');
 });
 Route::controller(ProductController::class)->group(function () {
-   Route::get('/product-men', 'product_men')->name('product-men');
-   Route::get('/product-women', 'product_women')->name('product-women');
-   Route::get('/product-detail', 'product_detail')->name('product-detail');
+   Route::get('shop', 'shop')->name('shop');
+   Route::get('product-{group}', 'product')->name('product-{group}');
+   Route::get('product-detail/{code}', 'product_detail')->name('product-detail');
+   Route::get('product-category/{group}/{category}', 'product_category')->name('product-category');
 });
 /*============= End User Frontend route ==================*/
 

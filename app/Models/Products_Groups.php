@@ -18,4 +18,8 @@ class Products_Groups extends Model
     {
         return $this->belongsTo(Groups::class, 'group_id');
     }
+    public function rela_group()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 }

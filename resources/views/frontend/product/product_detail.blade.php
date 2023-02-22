@@ -1,36 +1,69 @@
-
+<?php
+	use App\Models\Products_Colors;
+	use App\Models\Products_Sizes;
+	use App\Models\Products_Imgreviews;
+?>
 @extends('index')
 @section('content')
     <!-- Start breabcrumb Section -->
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
-		  <li class="breadcrumb-item "><a href="{{url("home")}}" class="text-light">Trang chủ</a></li>
-		  <li class="breadcrumb-item "><a href="{{url("shop")}}" class="text-light">Sản phẩm</a></li>
-		  <li class="breadcrumb-item text-light active" aria-current="page">Ananas Vintas 2023</li>
+            <li class="breadcrumb-item ">
+                @foreach ( $productGroups as $group)
+                    <a
+                        href="{{url('product-'.strtolower($group->rela_product_group->group_name))}}"
+                        class="text-light"
+                        >
+                        {{$group->rela_product_group->group_name}}
+                    </a>
+                    {{($loop->last)? '': '-'}}
+                @endforeach
+            </li>
+		    <li class="breadcrumb-item ">
+                <a
+                    href="{{url("shop")}}"
+                    class="text-light"
+                    >
+                    {{$productDetails->rela_product_category->category_name}}
+                </a>
+            </li>
+		    <li class="breadcrumb-item">
+                <a
+                    href="{{url("shop")}}"
+                    class="text-light"
+                    >
+                    {{$productDetails->rela_product_subcategory->sub_category}}
+                </a>
+            </li>
+		    <li class="breadcrumb-item text-light active" aria-current="page">
+                {{$productDetails->product_name}}
+            </li>
 		</ol>
 	</nav>
 	<!-- End breabcrumb Section -->
 
     <div class="untree_co-section">
-		    <div class="container">
-		      <div class="row">
+		<div class="container">
+		    <div class="row">
                 <!-- Start first colume section -->
 		        <div class="col-md-6 mb-5 mb-md-0">
-					<img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
+					<img
+                        src="/product_img/imgcover/{{$productDetails->product_imgcover}}"
+                        class="img-fluid product-thumbnail"
+                    >
                     <div class="container px-0">
                          <div class="row">
-                            <div class="col-sm py-3">
-                                <img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
-                            </div>
-                            <div class="col-sm py-3">
-                                <img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
-                            </div>
-                            <div class="col-sm py-3">
-                                <img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
-                            </div>
-                            <div class="col-sm py-3">
-                                <img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
-                            </div>
+                            @php
+                                $imgreviews = Products_Imgreviews::where('product_id', $productDetails->id)->get();
+                            @endphp
+                            @foreach ($imgreviews as $imgreview)
+                                <div class="col-sm py-3">
+                                    <img
+                                        src="/product_img/imgreview/{{$imgreview->product_imgreview}}"
+                                        class="img-fluid product-thumbnail"
+                                    >
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 		        </div>
@@ -38,47 +71,103 @@
 
                 <!-- End second colume section -->
 		        <div class="col-md-6">
-		            <div class="row mb-5 ms-4">
+		            <div class="row mb-2 ms-4">
                         <div class="col-md-12">
-                            <h3 class="mb-2 text-black fw-bold">Vanss Sneaker</h3>
-                            <p class="text-black py-1 my-0">Sản phẩm: <strong>Nam</strong></p>
-                            <h5 class="text-danger fw-bold py-2"><strong>700.000 VND</strong></h5>
-                            <hr>
-                            <div class="row py-2 px-3">
-                                <span class="product-color" style="background-color:#CC2936;"><a href="" ></a></span>
-                                <span class="product-color" style="background-color:#edc373;"><a href="" ></a></span>
-                                <span class="product-color" style="background-color:#889bae;"><a href="" ></a></span>
-                                <span class="product-color" style="background-color:#75a14f;"><a href="" ></a></span>
+                            <h3 class="mb-2 text-black fw-bold">{{$productDetails->product_name}}</h3>
+                            <p class="text-black py-1 my-0">
+                                @foreach ($productGroups as $group)
+                                    {{$group->rela_product_group->group_name}}
+                                    {{($loop->last)? '':'&'}}
+                                @endforeach
+                            </p>
+                            <!--------------------- Price ------------------------>
+                            <div class="row d-flex align-items-baseline">
+                                @if($productDetails->product_saleprice < $productDetails->product_price)
+                                    <div class="col-2 ">
+                                        <h5 class="text-danger fw-bold py-2">
+                                            ${{floatval($productDetails->product_saleprice)}}
+                                        </h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="fw-bold">
+                                            <del>${{floatval($productDetails->product_price)}}</del>
+                                        </p>
+                                    </div>
+                                    @else
+                                        <div class="col-2">
+                                            <h5 class="text-danger fw-bold py-2">
+                                                ${{floatval($productDetails->product_saleprice)}}
+                                            </h5>
+                                        </div>
+                                @endif
                             </div>
+                            <!---------------------End Price ------------------------>
+
+                            <!--------------------- Color ------------------------>
+                            <hr>
+                            <div class="row py-2 px-2">
+                                <div class="col-md-1">
+                                    <a href="{{url('product-detail/'.$productDetails->product_code)}}">
+                                        <span
+                                            class="product-color"
+                                            style="background-color:{{$productDetails->product_color}};"
+                                            >
+                                        </span>
+                                    </a>
+                                </div>
+
+                                @foreach ($productCode as $row)
+                                    @if($row->product_code == $productDetails->product_code)
+                                        @continue
+                                        @else
+                                            <div class="col-md-1">
+                                                <a
+                                                    href="{{url('product-detail/'.$row->product_code)}}"
+                                                    style="color:{{$row->product_color}}"
+                                                    >
+                                                    <span
+                                                        class="product-color"
+                                                        style="background-color:{{$row->product_color}};">
+                                                    </span>
+                                                </a>
+                                            </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <!--------------------End  Color ------------------------>
+
+                            <!-------------------- Size and Quantity------------------------>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h5 class="mb-2 text-black fw-bold py-2">SIZE</h5>
-                                    <select class="form-select form-control bg-transparent rounded-0" aria-label="Default select example">
-                                        <option value="product-siz" selected>35</option>
-                                        <option value="product-siz">36</option>
-                                        <option value="product-siz">37</option>
-                                        <option value="product-siz">38</option>
-                                        <option value="product-siz">39</option>
-                                        <option value="product-siz">40</option>
-                                        <option value="product-siz">41</option>
-                                        <option value="product-siz">42</option>
-                                        <option value="product-siz">43</option>
-                                        <option value="product-siz">44</option>
-                                        <option value="product-siz">45</option>
+                                    <select
+                                        class="form-select form-control bg-transparent rounded-0"
+                                        aria-label="Default select example"
+                                        >
+                                        <option value="product-siz" disabled selected>choose size</option>
+                                        @foreach ($productSize as $size)
+                                            <option value="{{$size->size_id}}">
+                                                {{$size->rela_product_size->size_number}}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <h5 class="mb-2 text-black fw-bold py-2">SỐ LƯỢNG</h5>
+                                    <h5 class="mb-2 text-black fw-bold py-2">Quantity</h5>
                                     <div class="form-outline">
                                         <input class="form-control bg-transparent rounded-0" type="number" name="quantity" id="quantity" value="1" max="5" min="1">
                                     </div>
                                 </div>
                             </div>
+                            <!--------------------End  Size and Quantity------------------------>
+
                             <div class="row my-4">
                                     <div class="col-md-10">
                                         <div class="d-grid">
-                                            <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">THÊM VÀO GIỎ HÀNG</a>
+                                            <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">
+                                                ADD TO CART
+                                            </a>
                                         </div>
                                     </div>
 
@@ -92,27 +181,37 @@
                             </div>
                             <div class="row my-4">
                                 <div class="d-grid">
-                                    <a href="{{url('cart')}}" class="btn btn-block px-4 py-3 fw-semibold  rounded-0">MUA NGAY</a>
+                                    <a
+                                        href="{{url('cart')}}"
+                                        class="btn btn-block px-4 py-3 fw-semibold  rounded-0"
+                                        >
+                                        BUY NOW
+                                    </a>
                                 </div>
                             </div>
                         </div>
 		            </div>
 
-		            <div class="col-md-12">
+                    <div class="row ms-4">
+		                <div class="col-md-12">
                             <div class="border p-3 mb-3">
                                 <div class="form-check px-5">
                                         <h6 class="mb-0">
-                                            <a class="d-block" data-bs-toggle="collapse" href="#collapsebank1" role="button" aria-expanded="false" aria-controls="collapsebank">
-                                                Thông tin sản phẩm
+                                            <a
+                                                class="d-block"
+                                                data-bs-toggle="collapse"
+                                                href="#collapsebank1"
+                                                role="button"
+                                                aria-expanded="false"
+                                                aria-controls="collapsebank"
+                                                >
+                                                View Product Details
                                             </a>
                                         </h6>
                                 </div>
                                 <div class="collapse" id="collapsebank1">
                                     <div class="px-5">
-                                        <p class="mb-0">Size run: 35 – 46</p>
-                                        <p class="mb-0">Gender: Unisex</p>
-                                        <p class="mb-0">Upper: Canvas NE</p>
-                                        <p class="mb-0">Outsole: Rubber</p>
+                                        <p>{!! $productDetails->product_des !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -120,14 +219,21 @@
                             <div class="border p-3 mb-3">
                                 <div class="form-check px-5">
                                         <h6 class="mb-0">
-                                            <a class="d-block" data-bs-toggle="collapse" href="#collapsebank2" role="button" aria-expanded="false" aria-controls="collapsebank">
-                                                Hướng dẫn chọn size
+                                            <a
+                                                class="d-block"
+                                                data-bs-toggle="collapse"
+                                                href="#collapsebank2"
+                                                role="button"
+                                                aria-expanded="false"
+                                                aria-controls="collapsebank"
+                                                >
+                                                Size Chart Introduction
                                             </a>
                                         </h6>
                                 </div>
                                 <div class="collapse" id="collapsebank2">
                                     <div class="px-5 py-2">
-                                        <img src="frontend/images/Size-chart.jpg" class="img-fluid product-thumbnail">
+                                        <img src="/frontend/images/Size-chart.jpg" class="img-fluid product-thumbnail">
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +242,7 @@
                                 <div class="form-check px-5">
                                         <h6 class="mb-0">
                                             <a class="d-block" data-bs-toggle="collapse" href="#collapsebank3" role="button" aria-expanded="false" aria-controls="collapsebank">
-                                                Quy định đổi sản phẩm
+                                                Free Delivery and Returns
                                             </a>
                                         </h6>
                                 </div>
@@ -161,7 +267,7 @@
                                 <div class="form-check px-5">
                                         <h6 class="mb-0">
                                             <a class="d-block" data-bs-toggle="collapse" href="#collapsebank4" role="button" aria-expanded="false" aria-controls="collapsebank">
-                                                Bảo hành sản phẩm
+                                                Product Warranty
                                             </a>
                                         </h6>
                                 </div>
@@ -179,14 +285,13 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+		                    </div>
 		                </div>
 		            </div>
-		          </div>
 		        </div>
                 <!-- End second colume section -->
-		      </div>
-		      <!-- </form> -->
 		    </div>
-		  </div>
+		    <!-- </form> -->
+		</div>
+    </div>
 @endsection()

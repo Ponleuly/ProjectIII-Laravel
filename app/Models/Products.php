@@ -36,4 +36,8 @@ class Products extends Model
     {
         return $this->hasMany(Products_Sizes::class, 'product_id', 'id'); // ('Model', 'foreign_key', 'local_key');
     }
+    public function rela_group()
+    {
+        return $this->hasMany(Products_Groups::class, 'product_id');
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 	use App\Models\Categories_Groups;
+	use App\Models\Products;
 	use App\Models\Categories_Subcategories;
 ?>
 @extends('adminfrontend.layouts.index')
@@ -35,36 +36,39 @@
                                     <th scope="col">#</th>
                                     <th scope="col">CATEGORY</th>
                                     <th scope="col">SUB CATEGORY</th>
+                                    <th scope="col">PRODUCTS</th>
                                     <th scope="col">CATEGORY GROUP</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($categories as $row)
+                                @foreach($categories as $category)
                                     @php
-                                        $groups =  Categories_Groups::where('category_id', $row->id)->get();
+                                        $groups =  Categories_Groups::where('category_id', $category->id)->get();
+                                        $productCount =  Products::where('category_id', $category->id)->count();
                                     @endphp
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
-                                        <td>{{$row->category_name}}</td>
+                                        <td>{{$category->category_name}}</td>
                                         <td>
                                             @php
-                                                $sub_count = Categories_Subcategories::where('category_id', $row->id)->count();
+                                                $sub_count = Categories_Subcategories::where('category_id', $category->id)->count();
                                             @endphp
                                             {{$sub_count}}
                                         </td>
+                                        <td>{{$productCount}}</td>
                                         <td>
                                             @foreach($groups as $item)
                                                 {{$item->rela_category_group->group_name}}
                                                 {{($loop->last)? '':'&'}}
                                             @endforeach
                                         </td>
-                                        <td>{{$row->created_at->diffForHumans()}}</td>
+                                        <td>{{$category->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-category-view/'.$row->id)}}" role="button">View</a>
-                                            <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-category-edit/'.$row->id)}}" role="button">Edit</a>
-                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-category-delete/'.$row->id)}}" role="button">Delete</a>
+                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-category-view/'.$category->id)}}" role="button">View</a>
+                                            <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-category-edit/'.$category->id)}}" role="button">Edit</a>
+                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-category-delete/'.$category->id)}}" role="button">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
