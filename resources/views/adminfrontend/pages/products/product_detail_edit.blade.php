@@ -177,7 +177,7 @@
                                             @foreach ($categories as $item2)
                                                 <option
                                                     value="{{$item2->id}}"
-                                                    {{($item2->id == $products->category_id) ? 'selected' : ''}}
+                                                    {{($item2->id == $selected_category->category_id) ? 'selected' : ''}}
                                                     >
                                                     {{$item2->category_name}}
                                                 </option>
@@ -198,7 +198,7 @@
                                             @foreach ($subCategories as $item1)
                                                 <option
                                                     value="{{$item1->id}}"
-                                                    {{($item1->id == $products->subcategory_id) ? 'selected' : ''}}
+                                                    {{($item1->id == $selected_category->subcategory_id) ? 'selected' : ''}}
                                                     >
                                                     {{$item1->sub_category}}
                                                 </option>

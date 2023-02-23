@@ -15,6 +15,6 @@ class Categories_Subcategories extends Model
     ];
     public function rela_product_subcategory()
     {
-        return $this->hasMany(Products::class, 'id');
+        return $this->hasMany(Products_Attributes::class, 'id');
     }
 }

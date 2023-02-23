@@ -1,5 +1,5 @@
 <?php
-	use App\Models\Products_Groups;
+	use App\Models\Products_Attributes;
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
@@ -48,31 +48,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($products as $row)
+                                @foreach($products as $product)
                                     <tr class="admin-table">
                                         <th scope="row">{{$count++}}</th>
                                         <td>
-                                            <img src="/product_img/imgcover/{{$row->product_imgcover}}" class="img-fluid product-thumbnail product-img">
+                                            <img src="/product_img/imgcover/{{$product->product_imgcover}}" class="img-fluid product-thumbnail product-img">
                                         </td>
-                                        <td>{{$row->product_name}}</td>
+                                        <td>{{$product->product_name}}</td>
                                         <td>
                                             @php
-                                                $groups = Products_Groups::where('product_id', $row->id)->get();
+                                                $groupAttribute = Products_Attributes::where('product_id', $product->id)->get();
+                                                $categoryAttribute = Products_Attributes::where('product_id', $product->id)->first();
                                             @endphp
-                                            @foreach ($groups as $item)
-                                                {{$item->rela_product_group->group_name}}
+                                            @foreach ($groupAttribute as $attribute)
+                                                {{$attribute->rela_product_group->group_name}}
                                                 {{($loop->last)? '':'&'}}
                                             @endforeach
                                         </td>
-                                        <td> {{$row->rela_product_category->category_name}}</td>
-                                        <td> {{$row->rela_product_subcategory->sub_category}}</td>
-                                        <td>${{$row->product_price}}</td>
-                                        <td>{{$row->created_at->diffForHumans()}}</td>
+                                        <td>
+                                            {{$categoryAttribute->rela_product_category->category_name}}
+                                        </td>
+                                        <td>
+                                            {{$categoryAttribute->rela_product_subcategory->sub_category}}
+                                        </td>
+                                        <td>${{$product->product_price}}</td>
+                                        <td>{{$product->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a
                                                 class="btn btn-info py-1 px-2 btn-sm"
                                                 style="font-size: 10px"
-                                                href="{{url('/admin/product-detail-view/'.$row->product_code)}}"
+                                                href="{{url('/admin/product-detail-view/'.$product->product_code)}}"
                                                 role="button"
                                                 >
                                                 View
@@ -80,7 +85,7 @@
                                             <a
                                                 class="btn btn-primary py-1 px-2 btn-sm"
                                                 style="font-size: 10px"
-                                                href="{{url('/admin/product-detail-edit/'.$row->id)}}"
+                                                href="{{url('/admin/product-detail-edit/'.$product->id)}}"
                                                 role="button"
                                                 >
                                                 Edit
@@ -88,7 +93,7 @@
                                             <a
                                                 class="btn btn-danger py-1 px-2 btn-sm"
                                                 style="font-size: 10px"
-                                                href="{{url('/admin/product-detail-delete/'.$row->id)}}"
+                                                href="{{url('/admin/product-detail-delete/'.$product->id)}}"
                                                 role="button"
                                                 >
                                                 Delete

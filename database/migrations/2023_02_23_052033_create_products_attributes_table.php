@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products_groups', function (Blueprint $table) {
+        Schema::create('products_attributes', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('product_id');
@@ -23,14 +23,26 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->unsignedInteger('subcategory_id');
+            $table->foreign('subcategory_id')
+                ->references('id')
+                ->on('categories_subcategories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')
                 ->references('id')
                 ->on('groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-
             $table->timestamps();
         });
     }
@@ -42,6 +54,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_groups');
+        Schema::dropIfExists('products_attributes');
     }
 };

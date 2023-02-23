@@ -1,6 +1,6 @@
 <?php
 	use App\Models\Categories_Groups;
-	use App\Models\Products;
+	use App\Models\Products_Attributes;
 	use App\Models\Categories_Subcategories;
 ?>
 @extends('adminfrontend.layouts.index')
@@ -46,7 +46,7 @@
                                 @foreach($categories as $category)
                                     @php
                                         $groups =  Categories_Groups::where('category_id', $category->id)->get();
-                                        $productCount =  Products::where('category_id', $category->id)->count();
+                                        $productCount =  Products_Attributes::where('category_id', $category->id)->distinct('product_id')->count();
                                     @endphp
                                     <tr>
                                         <th scope="row">{{$count++}}</th>

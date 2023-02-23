@@ -91,7 +91,7 @@
                                             <h5 class="text-black fw-bold mt-1">Category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->rela_product_category->category_name}}</p>
+                                            <p>{{$productCategory->rela_product_category->category_name}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -99,7 +99,7 @@
                                             <h5 class="text-black fw-bold mt-1">Sub category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$product_view->rela_product_subcategory->sub_category}}</p>
+                                            <p>{{$productCategory->rela_product_subcategory->sub_category}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">

@@ -16,6 +16,6 @@ class Groups extends Model
     }
     public function rela_product_group()
     {
-        return $this->hasMany(Products_Groups::class, 'group_id', 'id');
+        return $this->hasMany(Products_Attributes::class, 'group_id', 'id');
     }
 }

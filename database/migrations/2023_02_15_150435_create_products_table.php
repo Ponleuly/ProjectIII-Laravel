@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('product_imgcover', 100);
             $table->string('product_color', 10);
 
+            /*
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')
@@ -33,12 +34,14 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+
             $table->unsignedInteger('subcategory_id');
             $table->foreign('subcategory_id')
                 ->references('id')
                 ->on('categories_subcategories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            */
             /*
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')

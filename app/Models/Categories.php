@@ -12,7 +12,7 @@ class Categories extends Model
     protected $fillable = ['category_name'];
     public function rela_product_category()
     {
-        return $this->hasMany(Products::class, 'id');
+        return $this->hasMany(Products_Attributes::class, 'id');
     }
     public function rela_category()
     {
