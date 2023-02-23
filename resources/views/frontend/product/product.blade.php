@@ -6,11 +6,8 @@
 		  	<li class="breadcrumb-item ">
 				<a href="{{url("home")}}" class="text-light">Home</a>
 			</li>
-		  	<li class="breadcrumb-item ">
-				<a
-					href="{{url('product-' .strtolower($group_name))}}"
-					 class="text-light">{{$group_name}}
-				</a>
+		  	<li class="breadcrumb-item text-light">
+				{{$group_name}}
 			</li>
 		</ol>
 	</nav>

@@ -10,6 +10,7 @@ use App\Models\Products_Sizes;
 use App\Models\Products_Attributes;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Categories_Subcategories;
 
 class ProductController extends Controller
 {
@@ -81,21 +82,52 @@ class ProductController extends Controller
 
         $categoryName = Categories::where('category_name', ucfirst($category))->first();
         $categoryId = $categoryName->id;
-
         $productCategory = Products_Attributes::where('group_id', $groupId)
             ->where('category_id', $categoryId)->get();
 
         $group_name = $groupName->group_name;
+        $category_name = $categoryName->category_name;
+
         return view(
             'frontend.product.product_category',
             compact(
                 'productCategory',
                 'group_name',
-                'category'
+                'category_name'
             )
         );
+        //return dd($subcategoryName);
+    }
+    public function product_subcategory($group, $category, $subcategory)
+    {
+        $groupName = Groups::where('group_name', ucfirst($group))->first();
+        $groupId = $groupName->id;
 
-        //return dd($productCategory);
+        $categoryName = Categories::where('category_name', ucfirst($category))->first();
+        $categoryId = $categoryName->id;
+
+        $subcategoryName = Categories_Subcategories::where('sub_category', ucfirst($subcategory))->first();
+        $subcategoryId = $subcategoryName->id;
+
+        $productSubcategory = Products_Attributes::where('group_id', $groupId)
+            ->where('category_id', $categoryId)
+            ->where('subcategory_id', $subcategoryId)
+            ->get();
+
+        $group_name = $groupName->group_name;
+        $category_name = $categoryName->category_name;
+        $subcategory_name = $subcategoryName->sub_category;
+
+        return view(
+            'frontend.product.product_subcategory',
+            compact(
+                'productSubcategory',
+                'group_name',
+                'category_name',
+                'subcategory_name'
+            )
+        );
+        //return dd($subcategoryName);
     }
 
     /**

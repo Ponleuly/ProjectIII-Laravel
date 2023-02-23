@@ -76,7 +76,11 @@
 													<div class="list-group list-group-light text-center">
 														@foreach ($subCategories as $subCategory)
 															<a
-																href="{{url('product-'.strtolower($group->group_name))}}"
+																href="{{url('product-subcategory/'
+																.strtolower($group->group_name).'/'
+																.strtolower($category->rela_category->category_name).'/'
+																.strtolower($subCategory->sub_category)
+																)}}"
 																class="list-group-item px-0 py-1 border-0"
 																>
 																<h6>{{$subCategory->sub_category}}</h6>
@@ -111,15 +115,18 @@
 					</a>
 				</li>
 				<li class="nav-item">
-                	<a class="nav-link" href="{{url('cart')}}">
+                	<a class="nav-link text-dark pe-0" href="{{url('cart')}}">
 						<span
-							class="material-icons-outlined
+							class="material-icons-outlined pe-0
 							{{Request::is('cart')? 'active':''}}"
 							>
 							shopping_cart
 						</span>
 					</a>
                 </li>
+				<li class="nav-item">
+					<span class="fs-6 nav-link text-danger mt-1 ps-0">(0)</span>
+				</li>
 						<!--
 						<li class="nav-item">
 							<a href="" class="nav-link">

@@ -17,7 +17,13 @@
 				</a>
 			</li>
 			<li class="breadcrumb-item text-light active" aria-current="page">
-				{{$category_name}}
+				<a
+					href="{{url('product-category/'.strtolower($group_name).'/'.strtolower($category_name))}}"
+					 class="text-light">{{$category_name}}
+				</a>
+			</li>
+			<li class="breadcrumb-item text-light active" aria-current="page">
+				{{$subcategory_name}}
 			</li>
 		</ol>
 	</nav>
@@ -32,9 +38,9 @@
 	<div class="untree_co-section product-section before-footer-section">
 		<div class="container">
 			  <div class="row">
-				@foreach ( $productCategory as $category)
+				@foreach ( $productSubcategory as $subcategory)
 					@php
-						$products = Products::where('id', $category->product_id)->get();
+						$products = Products::where('id', $subcategory->product_id)->get();
 					@endphp
 					@foreach ($products as $product)
 						<!-- Start Column 1 -->

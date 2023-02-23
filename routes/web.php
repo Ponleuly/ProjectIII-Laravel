@@ -48,6 +48,7 @@ Route::controller(ProductController::class)->group(function () {
    Route::get('product-{group}', 'product')->name('product-{group}');
    Route::get('product-detail/{code}', 'product_detail')->name('product-detail');
    Route::get('product-category/{group}/{category}', 'product_category')->name('product-category');
+   Route::get('product-subcategory/{group}/{category}/{subcategory}', 'product_subcategory')->name('product-subcategory');
 });
 /*============= End User Frontend route ==================*/
 
