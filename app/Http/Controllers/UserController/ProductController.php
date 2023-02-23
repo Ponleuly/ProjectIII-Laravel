@@ -7,7 +7,7 @@ use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Products_Sizes;
-use App\Models\Products_Groups;
+use App\Models\Products_Attributes;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
         $groupName = Groups::where('group_name', ucfirst($group))->first();
         $groupId = $groupName->id;
         $group_name = $groupName->group_name;
-        $productGroups = Products_Groups::where('group_id', $groupId)->get();
+        $productGroups = Products_Attributes::where('group_id', $groupId)->get();
         return view(
             'frontend.product.product',
             compact('productGroups', 'group_name')
@@ -45,7 +45,8 @@ class ProductController extends Controller
         $productId = $productDetails->id;
 
         $productSize = Products_Sizes::where('product_id', $productId)->get();
-        $productGroups = Products_Groups::where('product_id', $productId)->get();
+        $productGroups = Products_Attributes::where('product_id', $productId)->get();
+        $productAttribute = Products_Attributes::where('product_id', $productId)->first();
         $sizeStock = 0;
         $headCode = trim($code, "0..9");
         $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
@@ -63,7 +64,8 @@ class ProductController extends Controller
                 'totalStock',
                 'productCode',
                 'productGroups',
-                'productSize'
+                'productSize',
+                'productAttribute'
             )
         );
     }
@@ -77,22 +79,23 @@ class ProductController extends Controller
         $groupName = Groups::where('group_name', ucfirst($group))->first();
         $groupId = $groupName->id;
 
-        $category = Categories::where('category_name', ucfirst($category))->first();
-        $productGroups = Products_Groups::where('group_id', $groupId)->get();
+        $categoryName = Categories::where('category_name', ucfirst($category))->first();
+        $categoryId = $categoryName->id;
+
+        $productCategory = Products_Attributes::where('group_id', $groupId)
+            ->where('category_id', $categoryId)->get();
 
         $group_name = $groupName->group_name;
-        $products = Products::where('category_id', $category->id)->get();
         return view(
             'frontend.product.product_category',
             compact(
-                'productGroups',
+                'productCategory',
                 'group_name',
-                'products',
                 'category'
             )
         );
 
-        //return dd($products);
+        //return dd($productCategory);
     }
 
     /**

@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             CategorySubcategorySeeder::class,
             SizeSeeder::class,
             ProductSeeder::class,
-            ProductGroupSeeder::class,
             ProductImgreviewSeeder::class,
             ProductSizeSeeder::class,
             ProductAttributeSeeder::class,

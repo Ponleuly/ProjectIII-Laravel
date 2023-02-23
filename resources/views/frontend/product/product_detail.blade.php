@@ -1,5 +1,4 @@
 <?php
-	use App\Models\Products_Colors;
 	use App\Models\Products_Sizes;
 	use App\Models\Products_Imgreviews;
 ?>
@@ -24,7 +23,7 @@
                     href="{{url("shop")}}"
                     class="text-light"
                     >
-                    {{$productDetails->rela_product_category->category_name}}
+                    {{$productAttribute->rela_product_category->category_name}}
                 </a>
             </li>
 		    <li class="breadcrumb-item">
@@ -32,7 +31,7 @@
                     href="{{url("shop")}}"
                     class="text-light"
                     >
-                    {{$productDetails->rela_product_subcategory->sub_category}}
+                    {{$productAttribute->rela_product_subcategory->sub_category}}
                 </a>
             </li>
 		    <li class="breadcrumb-item text-light active" aria-current="page">

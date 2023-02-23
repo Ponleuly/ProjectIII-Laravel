@@ -16,6 +16,10 @@ class Products_Attributes extends Model
         'group_id',
 
     ];
+    public function rela_group()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
     public function rela_product()
     {
         return $this->belongsTo(Products::class, 'product_id');
