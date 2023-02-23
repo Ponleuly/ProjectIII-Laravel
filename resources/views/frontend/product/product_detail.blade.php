@@ -43,6 +43,12 @@
 
     <div class="untree_co-section">
 		<div class="container">
+            @if(Session::has('alert'))
+                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                    {{Session::get('alert')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+		    @endif
 		    <div class="row">
                 <!-- Start first colume section -->
 		        <div class="col-md-6 mb-5 mb-md-0">
@@ -161,10 +167,12 @@
                             </div>
                             <!--------------------End  Size and Quantity------------------------>
 
+                            <!-------------------- Start add to cart / like / buy now --------------->
                             <div class="row my-4">
                                     <div class="col-md-10">
                                         <div class="d-grid">
-                                            <a href="" class="btn btn-block py-3 fw-semibold cart-add  rounded-0">
+                                            <a href="{{url('add-to-cart/'.$productDetails->id)}}"
+                                                class="btn btn-block py-3 fw-semibold cart-add  rounded-0">
                                                 ADD TO CART
                                             </a>
                                         </div>
@@ -190,6 +198,7 @@
                             </div>
                         </div>
 		            </div>
+                    <!-------------------- End add to cart / like / buy now --------------->
 
                     <div class="row ms-4">
 		                <div class="col-md-12">

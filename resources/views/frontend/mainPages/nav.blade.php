@@ -125,7 +125,7 @@
 					</a>
                 </li>
 				<li class="nav-item">
-					<span class="fs-6 nav-link text-danger mt-1 ps-0">(0)</span>
+					<span class="fs-6 nav-link text-danger mt-1 ps-0">({{ count((array) session('cart')) }})</span>
 				</li>
 						<!--
 						<li class="nav-item">

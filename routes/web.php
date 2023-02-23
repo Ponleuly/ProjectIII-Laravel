@@ -37,7 +37,8 @@ Route::get('/index', function () {
 // *Using Route group to control route pages
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
-   Route::get('/cart', 'cart')->name('cart');
+   Route::get('cart', 'cart')->name('cart');
+   Route::get('add-to-cart/{id}', 'add_to_cart')->name('add-to-cart');
    Route::get('/checkout', 'checkout')->name('checkout');
    Route::get('/thankyou', 'thankyou')->name('thankyou');
    Route::get('/like', 'like')->name('like');

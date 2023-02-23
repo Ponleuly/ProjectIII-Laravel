@@ -211,6 +211,7 @@ a {
   border-color: #CC2936;
 
 }
+
   .btn:hover {
     color: #CC2936;
     background: #ffffff;
@@ -690,7 +691,7 @@ a {
       font-size: 14px !important; }
 
 .untree_co-section {
-  padding: 4rem 0; }
+  padding: 2rem 0; }
 .form-control:focus {
   border-color: #CC2936;
   box-shadow: 0 0 0 0.2rem rgba(204, 41, 54, 0.25);
@@ -754,12 +755,13 @@ textarea {
     color: rgba(0, 0, 0, 0.8); }
   .site-blocks-table tbody tr:first-child td {
     border-top: 1px solid #3b5d50 !important; }
+    /*
   .site-blocks-table .btn {
     background: none !important;
     color: #000000;
     border: none;
     height: auto !important; }
-
+  */
 .site-block-order-table th {
   border-top: none !important;
   border-bottom-width: 1px !important; }
@@ -854,4 +856,9 @@ img.icon-over  {
   left: 0;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   margin-top: 1px;
+}
+.cart-img {
+  width: 100%;
+  max-width: 150px;
+  object-fit: cover;
 }
