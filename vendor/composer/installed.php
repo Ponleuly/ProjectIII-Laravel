@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'v9.3.8',
-        'version' => '9.3.8.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'b2d09216f550190d8cc031444686b910a5c7b737',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -16,6 +16,15 @@
             'reference' => '459f2781e1a08d52ee56b0b1444086e038561e3f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../brick/math',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'bumbummen99/shoppingcart' => array(
+            'pretty_version' => '4.2.0',
+            'version' => '4.2.0.0',
+            'reference' => '1c50fb564826b6ee748d2d9afad7447b6884166e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bumbummen99/shoppingcart',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -365,9 +374,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v9.3.8',
-            'version' => '9.3.8.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'b2d09216f550190d8cc031444686b910a5c7b737',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -709,8 +718,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

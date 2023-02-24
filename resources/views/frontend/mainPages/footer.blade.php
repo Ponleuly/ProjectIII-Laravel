@@ -29,7 +29,7 @@
 
 				<div class="row g-5 mb-5">
 					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="{{url("home")}}" class="footer-logo">ByMeShoe<span>.</span></a></div>
+						<div class="mb-4 footer-logo-wrap"><a href="{{url("home")}}" class="footer-logo">15Steps<span>.</span></a></div>
 						<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
 
 						<ul class="list-unstyled custom-social">

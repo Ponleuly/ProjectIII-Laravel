@@ -1,19 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController\FrontendController;
+use App\Http\Controllers\UserController\CartController;
 use App\Http\Controllers\UserController\ProductController;
 
-use App\Http\Controllers\AdminController\AdminFrontendController;
-use App\Http\Controllers\AdminController\ProductCategoryController;
-use App\Http\Controllers\AdminController\ProductgroupController;
-use App\Http\Controllers\AdminController\ProductDetailController;
+use App\Http\Controllers\UserController\FrontendController;
 use App\Http\Controllers\AdminController\ProductSizeController;
 use App\Http\Controllers\AdminController\ProductColorController;
-
-
-
-
+use App\Http\Controllers\AdminController\ProductgroupController;
+use App\Http\Controllers\AdminController\AdminFrontendController;
+use App\Http\Controllers\AdminController\ProductDetailController;
+use App\Http\Controllers\AdminController\ProductCategoryController;
 
 
 /*
@@ -37,9 +34,6 @@ Route::get('/index', function () {
 // *Using Route group to control route pages
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
-   Route::get('cart', 'cart')->name('cart');
-   Route::get('add-to-cart/{id}', 'add_to_cart')->name('add-to-cart');
-   Route::get('/checkout', 'checkout')->name('checkout');
    Route::get('/thankyou', 'thankyou')->name('thankyou');
    Route::get('/like', 'like')->name('like');
    Route::get('/profile', 'profile')->name('profile');
@@ -50,6 +44,14 @@ Route::controller(ProductController::class)->group(function () {
    Route::get('product-detail/{code}', 'product_detail')->name('product-detail');
    Route::get('product-category/{group}/{category}', 'product_category')->name('product-category');
    Route::get('product-subcategory/{group}/{category}/{subcategory}', 'product_subcategory')->name('product-subcategory');
+});
+Route::controller(CartController::class)->group(function () {
+   Route::get('cart', 'cart')->name('cart');
+   Route::post('add-to-cart/{id}', 'add_to_cart')->name('add-to-cart');
+   Route::put('update-cart/{id}', 'update_cart')->name('update-cart');
+   Route::get('remove-from-cart/{id}', 'remove_from_cart')->name('remove-from-cart');
+   Route::get('remove-all-cart', 'remove_all_cart')->name('remove-all-cart');
+   Route::get('/checkout', 'checkout')->name('checkout');
 });
 /*============= End User Frontend route ==================*/
 

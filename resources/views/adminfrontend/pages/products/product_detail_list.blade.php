@@ -71,7 +71,7 @@
                                         <td>
                                             {{$categoryAttribute->rela_product_subcategory->sub_category}}
                                         </td>
-                                        <td>${{$product->product_price}}</td>
+                                        <td>${{$product->product_saleprice}}</td>
                                         <td>{{$product->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a

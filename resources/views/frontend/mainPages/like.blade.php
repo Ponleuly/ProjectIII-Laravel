@@ -1,11 +1,17 @@
 @extends('index')
-@section('content') 
-    <div class="container-fluid">
-        <div class="row px-3 py-2 text-center" style="background: #cc2936">
-        <h5 class="text-light pt-2">DANH MỤC YÊU THÍCH CỦA BẠN</h5>
-        </div>
-    </div>
-  
+@section('content')
+    <!-- Start breabcrumb Section -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
+		  	<li class="breadcrumb-item ">
+				<a href="{{url("home")}}" class="text-light">Home</a>
+			</li>
+
+		  	<li class="breadcrumb-item text-light">Liked</li>
+		</ol>
+	</nav>
+	<!-- End breabcrumb Section -->
+
 	<div class="untree_co-section before-footer-section">
         <div class="container">
             <hr class="line-color">
@@ -40,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
                 <div class="col-md-6 d-flex align-items-end flex-column justify-content-end">
                     <div class="col-sm-2 d-grid py-3">
                         <a href="" class="btn btn-block py-1 fw-semibold rounded-0 cart-add ">
@@ -52,7 +58,7 @@
                             <span class="material-icons-outlined py-1 {{Request::is('cart')? 'active':''}}">delete</span>
                         </a>
                     </div>
-                </div>   
+                </div>
             </div>
             <hr>
             <div class="row my-5">
@@ -86,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
                 <div class="col-md-6 d-flex align-items-end flex-column justify-content-end">
                     <div class="col-sm-2 d-grid py-3">
                         <a href="" class="btn btn-block py-1 fw-semibold rounded-0 cart-add ">
@@ -98,7 +104,7 @@
                             <span class="material-icons-outlined py-1 {{Request::is('cart')? 'active':''}}">delete</span>
                         </a>
                     </div>
-                </div>   
+                </div>
             </div>
             <hr>
             <div class="row my-5">
@@ -132,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
                 <div class="col-md-6 d-flex align-items-end flex-column justify-content-end">
                     <div class="col-sm-2 d-grid py-3">
                         <a href="" class="btn btn-block py-1 fw-semibold rounded-0 cart-add ">
@@ -144,7 +150,7 @@
                             <span class="material-icons-outlined py-1 {{Request::is('cart')? 'active':''}}">delete</span>
                         </a>
                     </div>
-                </div>   
+                </div>
             </div>
             <hr class="line-color">
             <div class="row my-5">

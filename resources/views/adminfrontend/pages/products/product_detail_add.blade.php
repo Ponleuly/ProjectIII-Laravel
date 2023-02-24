@@ -138,7 +138,7 @@
                                             id="subcategory_id"
                                             required
                                             >
-                                            <option selected disabled>Select subcategory</option>
+                                            <option selected disabled value="">Select subcategory</option>
                                             @foreach ($subCategories as $item1)
                                                 <option value="{{$item1->id}}">{{$item1->sub_category}}</option>
                                             @endforeach
