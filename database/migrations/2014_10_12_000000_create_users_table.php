@@ -24,14 +24,14 @@ return new class extends Migration
             $table->timestamps();
             */
             $table->increments('id');
-            $table->string('username');
+            $table->string('name');
             $table->string('phone', 11)->unique();
             $table->string('email')->unique();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('address');
             $table->boolean('role')->default('1');
-            //$table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }

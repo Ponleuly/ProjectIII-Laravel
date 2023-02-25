@@ -56,7 +56,7 @@
 									>
 									<h5><strong>{{$group->group_name}}</strong></h5>
 								</a>
-								<div class="dropdown-menu w-100">
+								<div class="dropdown-menu dropdown-nav w-100">
 									<div class="container">
 										<div class="row w-100">
 											@php
@@ -137,13 +137,12 @@
 						</li>
 						-->
 				<li class="nav-item">
-					<div class="dropdown">
+					<div class="dropdown position-static">
 						<a
 							class="nav-link"
 							href="{{url('profile')}}"
 							role="button"
 							id="dropdownMenuLink"
-							data-bs-toggle="dropdown"
 							aria-expanded="false"
 							>
 							<span
@@ -154,9 +153,8 @@
 							</span>
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							<li><a class="dropdown-item" href="{{url('profile')}}">Tài khoản</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+							<li><a class="dropdown-item" href="#">Profile</a></li>
+							<li><a class="dropdown-item" href="{{url('login')}}">Log in</a></li>
 						</ul>
 					</div>
 				</li>

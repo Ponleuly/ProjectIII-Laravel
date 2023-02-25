@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminFrontendController extends Controller
 {
@@ -12,6 +13,32 @@ class AdminFrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function adminLogin()
+    {
+        return view('adminfrontend.adminLogin');
+    }
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        $arr = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+        if (Auth::attempt($arr)) {
+            return redirect('/admin/dashboard');
+        } else {
+            return redirect('/admin')
+                ->with('alert', 'Wrong Email or Password !');
+        }
+    }
+    public function adminLogout()
+    {
+        Auth::logout();
+        return redirect('/admin');
+    }
     public function dashboard()
     {
         return view('adminfrontend.pages.dashboard');

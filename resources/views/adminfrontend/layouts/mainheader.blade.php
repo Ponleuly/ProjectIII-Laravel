@@ -163,7 +163,7 @@
 								>
 									<div class="profile-info">
 									<div class="info">
-										<h6>John Doe</h6>
+										<h6>{{Auth::user()->name}}</h6>
 										<div class="image">
 										<img
 											src="{{url('frontend/images/person_1.jpg')}}"
@@ -196,7 +196,7 @@
 									<a href="#0"> <i class="lni lni-cog"></i> Settings </a>
 									</li>
 									<li>
-									<a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+									<a href="{{url('admin/logout')}}"> <i class="lni lni-exit"></i> Sign Out </a>
 									</li>
 								</ul>
 								</div>
