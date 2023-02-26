@@ -45,12 +45,21 @@ Route::controller(AuthUserController::class)->group(function () {
 
    Route::get('register', 'register')->name('register');
    Route::post('register', 'userRegister')->name('register');
+
+   Route::put('profile-update/{id}', 'profile_update')->name('profile-update');
+   Route::get('change-password', 'change_password')->name('change-password');
+   Route::put('change-password/{id}', 'update_password')->name('change-password');
+});
+//============== Route with Middleware =====================//
+Route::middleware('authUser')->group(function () {
+   Route::controller(FrontendController::class)->group(function () {
+      Route::get('like', 'like')->name('like');
+      Route::get('profile', 'profile')->name('profile');
+   });
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
    Route::get('/thankyou', 'thankyou')->name('thankyou');
-   Route::get('/like', 'like')->name('like');
-   Route::get('profile', 'profile')->name('profile')->middleware('authUser');
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('shop', 'shop')->name('shop');
@@ -74,10 +83,10 @@ Route::controller(CartController::class)->group(function () {
 
 /*================================================== Admin Frontend route =========================================================*/
 
-Route::prefix('admin')->controller(AuthAdminController::class)->group(function () {
-   Route::get('/', 'adminLogin')->name('admin');
-   Route::post('/login', 'login')->name('login');
-   Route::get('/logout', 'adminLogout')->name('logout');;
+Route::controller(AuthAdminController::class)->group(function () {
+   Route::get('admin', 'adminLogin')->name('admin');
+   Route::post('admin/login', 'login')->name('login');
+   Route::get('admin/logout', 'adminLogout')->name('logout');;
 });
 
 Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {

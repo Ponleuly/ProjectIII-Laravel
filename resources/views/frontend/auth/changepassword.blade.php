@@ -15,7 +15,7 @@
             <div class="row">
                 <!-------- Message ------------------->
                 @if(Session::has('alert'))
-                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                         {{Session::get('alert')}}
                         <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -61,9 +61,9 @@
                         </div>
 
                         <div class="col-md-8 ps-4">
-                            <h5 class="text-black py-2">General profile</h5>
+                            <h5 class="text-black py-2">Change Password</h5>
                             <form
-                                action="{{url('profile-update/'. Auth::user()->id)}}"
+                                action="{{url('change-password/'. Auth::user()->id)}}"
                                 method="POST"
                                 enctype="multipart/form-data"
                                 class="form-floating"
@@ -74,53 +74,54 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input
-                                                type="text"
-                                                class="form-control rounded-0"
-                                                id="floatingInputValue"
-                                                name="name"
-                                                placeholder="name@example.com"
-                                                value="{{Auth::user()->name}}">
-                                            <label for="floatingInputValue">Full Name</label>
+                                                id="current_password"
+                                                type="password"
+                                                class="form-control rounded-0 @error('current_password') is-invalid @enderror"
+                                                name="current_password"
+                                                required
+                                                autocomplete="new-password"
+                                            >
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <label for="floatingInputValue">Current Password</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input
-                                                type="text"
-                                                class="form-control rounded-0"
-                                                id="floatingInputValue"
-                                                name="phone"
-                                                placeholder="xxx xx xx xxx"
-                                                value="{{Auth::user()->phone}}">
-                                            <label for="floatingInputValue">Phone Number</label>
-                                        </div>
-                                    </div>
+
                                 </div>
 
                                 <div class="row py-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input
-                                                type="email"
-                                                class="form-control rounded-0"
-                                                id="floatingInputValue"
-                                                name="email"
-                                                placeholder="name@example.com"
-                                                value="{{Auth::user()->email}}">
-                                            <label for="floatingInputValue">Email</label>
+                                                id="password"
+                                                type="password"
+                                                class="form-control rounded-0 @error('password') is-invalid @enderror"
+                                                name="password"
+                                                required
+                                                autocomplete="new-password"
+                                            >
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <label for="floatingInputValue">New Password</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input
-                                                type="text"
+                                                id="password-confirm"
+                                                type="password"
                                                 class="form-control rounded-0"
-                                                id="floatingInputValue"
-                                                name="address"
-                                                placeholder="name@example.com"
-                                                value="{{Auth::user()->address}}">
-                                            <label for="floatingInputValue">Address</label>
+                                                name="password_confirmation"
+                                                required autocomplete="new-password"
+                                            >
+                                            <label for="floatingInputValue">Comfirme New Password</label>
                                         </div>
                                     </div>
 
