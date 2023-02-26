@@ -2,7 +2,6 @@
 	use App\Models\Products_Sizes;
 	use App\Models\Products_Attributes;
 	use App\Models\Products;
-
 ?>
 @extends('index')
 @section('content')
@@ -28,7 +27,7 @@
 		    <div class="row mb-3">
 		        <div class="col-md-12">
 		          	<div class="border p-3 rounded-0" role="alert">
-		            	Have an account? <a href="#">Click here</a> to log in.
+		            	Have an account? <a href="{{url('login')}}">Click here</a> to log in.
 		        	</div>
 		    	</div>
 			</div>
@@ -37,41 +36,78 @@
 			<div class="row">
 				<!--------------------Start Cart list------------------------->
 		        <div class="col-md-8 mb-5 mb-md-0 mt-3">
+					<!----- Price calculate --->
 					@php
 						$subtotal = 0;
 						$total = 0;
 						$discount = 0;
 					@endphp
-					@if((Cart::content()->count()) > 0)
+					<!---------------------->
+
+					@if($carts_count > 0 )
 						<!--*session('cart') as $id => $details-->
 						@foreach ($carts as $cart)
 							@php
-								$subtotal += $cart->price * $cart->qty;
-								$productCode = Products::where('id', $cart->id)->first();
+								//--- Check if user is guest or sign in to display img from db ---//
+								if(Auth::check() && Auth::user()->role == 1){
+									$cartId = $cart->id;
+									$productId = $cart->product_id;
+									$product = Products::where('id', $productId)->first();
+									$productSizes = Products_Sizes::where('product_id', $productId)->get();
+
+									// Image
+									$productImg = $product->product_imgcover;
+									// Name
+									$productName = $product->product_name;
+									// Size
+									$size = $cart->size_id;
+									// Quantity
+									$quantity = $cart->product_quantity;
+									//price
+									$price = $product->product_saleprice;
+									$subtotal += $price * $quantity;
+
+								}else{
+									$cartId = $cart->id;
+									$productId = $cart->id; // becoz in Cart model, column id is product_id
+									$product = Products::where('id', $cartId)->first();
+									$productSizes = Products_Sizes::where('product_id', $cartId)->get();
+
+									// Image
+									$productImg = $cart->options->has('image') ? $cart->options->image : '';
+									// Name
+									$productName = $cart->name;
+									// Size ==>Get size_id from Cart:: in colum options
+									$size = $cart->options->has('size') ? $cart->options->size : '';
+									// Quantity
+									$quantity = $cart->qty;
+									// Price
+									$price = $cart->price;
+									$subtotal += $price * $quantity;
+								}
 							@endphp
 							<div class="row form-group">
 								<div class="col-md-2">
-									<a href="{{url('product-detail/'.$productCode->product_code)}}">
+									<a href="{{url('product-detail/'.$product->product_code)}}">
 										<img
-											src="/product_img/imgcover/{{$cart->options->has('image') ? $cart->options->image : ''}}"
+											src="/product_img/imgcover/{{$productImg}}"
 											class="img-fluid product-thumbnail"
 										>
 									</a>
 								</div>
 								<div class="col-md-7 d-grid">
-
 									<div class="row">
 										<a
-											href="{{url('product-detail/'.$productCode->product_code)}}"
+											href="{{url('product-detail/'.$product->product_code)}}"
 											class="text-decoration-none"
 											>
-											<h5 class="text-dark">{{$cart->name}}</h5>
+											<h5 class="text-dark">{{$productName}}</h5>
 										</a>
 									</div>
 
 									<div class="row">
 										@php
-        									$productGroups = Products_Attributes::where('product_id', $cart->id)->get();
+        									$productGroups = Products_Attributes::where('product_id', $productId)->get();
 										@endphp
 										<label>
 											@foreach ($productGroups as $group)
@@ -81,18 +117,17 @@
 										</label>
 									</div>
 									<!---------- Start Size and Quantity ------------>
-									<form action="{{url('update-cart/'.$cart->id)}}" method="POST" enctype="multipart/form-data">
+									<form
+										action="{{url('update-cart/'.$cartId)}}"
+										method="POST"
+										enctype="multipart/form-data"
+										>
                 						@csrf <!-- to make form active -->
 										@method('PUT')
+
 										<div class="row mt-auto">
-											@php
-												$productSizes = Products_Sizes::where('product_id', $cart->id)->get();
-												//Get size_id from Cart:: in colum options
-												$size = $cart->options->has('size') ? $cart->options->size : '';
-											@endphp
 											<div class="col-md-3 ">
 												<label class="text-black" for="size">SIZE</label>
-
 												<select
 													class="form-select form-control form-select-sm rounded-0"
 													aria-label="Default select example"
@@ -106,7 +141,6 @@
 														>
 														{{$productSize->rela_product_size->size_number}}
 													@endforeach
-												</a>
 												</select>
 											</div>
 											<div class="col-md-3 ">
@@ -114,9 +148,9 @@
 												<div class="cinput-group quantity-container ">
 													<input
 														type="number"
-														name="quantity"
+														name="product_quantity"
 														class="form-control form-control-sm rounded-0"
-														value="{{$cart->qty}}" max="5" min="1"
+														value="{{$quantity}}" max="5" min="1"
 														placeholder=""
 														aria-label="Example text with button addon"
 														aria-describedby="button-addon1"
@@ -140,7 +174,7 @@
 
 								<div class="col-md-3 d-grid">
 									<div class="row text-end">
-										<h5 class="text-dark">${{$cart->price}} x {{$cart->qty}}</h5>
+										<h5 class="text-dark">${{floatval($price)}} x {{$quantity}}</h5>
 									</div>
 									<div class="row mt-auto justify-content-end">
 										<div class="col-md-6 d-grid">
@@ -152,7 +186,7 @@
 												<span class="material-icons-outlined" style="font-size: 20px">favorite</span>
 											</a>
 											<a
-												href="{{url('remove-from-cart/'.$cart->id)}}"
+												href="{{url('remove-from-cart/'.$cartId)}}"
 												class="btn btn-danger rounded-0 btn-sm pb-0 pt-1"
 												role="button"
 												>
@@ -256,7 +290,7 @@
 								</table>
 
 								<div class="d-grid">
-									@if((Cart::content()->count()) == 0)
+									@if($carts_count == 0)
 										<button
 											class="btn btn-block px-4 py-2 fw-semibold rounded-0"
 											onclick="location.href='{{ url('checkout') }}'"

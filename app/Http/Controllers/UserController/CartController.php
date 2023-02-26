@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\UserController;
 
+use App\Models\Carts;
+use App\Models\Sizes;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -16,14 +19,20 @@ class CartController extends Controller
      */
     public function cart()
     {
-
-        $carts = Cart::content();
-
+        if (Auth::check() && Auth::user()->role == 1) {
+            $carts = Carts::where('user_id', Auth::user()->id)->get();
+            $carts_count = $carts->count();
+        } else {
+            $carts = Cart::content();
+            $carts_count = $carts->count();
+        }
         return view(
             'frontend.mainPages.cart',
-            compact('carts')
+            compact(
+                'carts',
+                'carts_count'
+            )
         );
-
         //return dd($carts->toArray());
     }
 
@@ -34,36 +43,44 @@ class CartController extends Controller
      */
     public function add_to_cart(Request $request, $id)
     {
-
-        $products = Products::findOrFail($id);
-        Cart::add(
-            [
-                'id' => $products->id,
-                'name' => $products->product_name,
-                'price' => $products->product_saleprice,
-                'qty' => $request->product_quantity,
-                'weight' => 0,
-                'options' => [
-                    'image' => $products->product_imgcover,
-                    'size' => $request->size_id
-                ],
-            ]
-        );
-        /*
-            $cart = session()->get('cart', []);
-            if (isset($cart[$id])) {
-                $cart[$id]['quantity']++;
+        //========== If User Sign in then save to Carts table============== //
+        if (Auth::check() && Auth::user()->role == 1) {
+            $user_id = Auth::user()->id;
+            //==== update quantity if add the same size, prudct and user incart ===//
+            $update_qty = Carts::where('user_id', $user_id)
+                ->where('product_id', $id)
+                ->where('size_id', $request->size_id)
+                ->first();
+            if ($update_qty) {
+                $update_qty->product_quantity += $request->product_quantity;
+                $update_qty->update();
             } else {
-                $cart[$id] = [
-                    'product_name' => $products->product_name,
-                    'product_imgcover' => $products->product_imgcover,
-                    'product_saleprice' => $products->product_saleprice,
-                    'product_size' => $request->size_id,
-                    'quantity' => $request->product_quantity,
-                ];
+                $input = $request->all();
+                $input['user_id'] = $user_id;
+                $input['product_id'] = $id;
+                $input['size_id'] = $request->size_id;
+                $input['product_quantity'] = $request->product_quantity;
+                Carts::create($input);
             }
-            session()->put('cart', $cart);
-        */
+        }
+        //========== If User is guest then save data to Cart ==============//
+        else {
+            $products = Products::findOrFail($id);
+            Cart::add(
+                [
+                    'id' => $products->id,
+                    'name' => $products->product_name,
+                    'price' => $products->product_saleprice,
+                    'qty' => $request->product_quantity,
+                    'weight' => 0,
+                    'options' => [
+                        'image' => $products->product_imgcover,
+                        'size' => $request->size_id
+                    ],
+                ]
+            );
+        }
+        //=============== Check if Add to cart or Buy now =================//
         if ($request->action == 'addtocart') {
             return redirect()->back()
                 ->with(
@@ -73,35 +90,41 @@ class CartController extends Controller
         } else if ($request->action == 'buynow') {
             return redirect('/cart');
         }
-
-        //return dd($request->action);
+        //return dd($request->toArray());
     }
-    public function update_cart(Request $request, $id)
+
+    public function update_cart(Request $request, $cartId)
     {
-        $products = Products::findOrFail($id);
-        $cart = Cart::content()->where('id', $id);
-        foreach ($cart as $key => $value) {
-            $rowId = $value->rowId;
+        if (Auth::check() && Auth::user()->role == 1) {
+            //$user_id = Auth::user()->id;
+            //==== update quantity if add the same size, prudct and user incart ===//
+            $update_cart = Carts::where('id', $cartId)->first();
+            $update_cart->size_id = $request->size_id;
+            $update_cart->product_quantity = $request->product_quantity;
+            $update_cart->update();
+        } else {
+            $products = Products::findOrFail($cartId);
+            $cart = Cart::content()->where('id', $cartId);
+            foreach ($cart as $key => $value) {
+                $rowId = $value->rowId;
+            }
+            Cart::update(
+                $rowId,
+                [
+                    'qty' => $request->product_quantity,
+                    'options' => [
+                        'image' => $products->product_imgcover,
+                        'size' => $request->size_id
+                    ],
+                ]
+            );
         }
-
-        Cart::update(
-            $rowId,
-            [
-                'qty' => $request->quantity,
-                'options' => [
-                    'image' => $products->product_imgcover,
-                    'size' => $request->size_id
-                ],
-            ]
-        );
-
         return redirect()->back()
             ->with(
                 'alert',
                 'Item is updated successfully!',
             );
 
-        //$Carts = Cart::content();
         //return dd(Cart::content());
     }
     /**
@@ -162,12 +185,16 @@ class CartController extends Controller
      */
     public function remove_from_cart($id)
     {
-        $cart = Cart::content()->where('id', $id);
-        foreach ($cart as $key => $value) {
-            $rowId = $value->rowId;
+        if (Auth::check() && Auth::user()->role == 1) {
+            $removeCart = Carts::where('id', $id)->first();
+            $removeCart->delete();
+        } else {
+            $cart = Cart::content()->where('id', $id);
+            foreach ($cart as $key => $value) {
+                $rowId = $value->rowId;
+            }
+            Cart::remove($rowId);
         }
-
-        Cart::remove($rowId);
         return redirect()->back()
             ->with(
                 'alert',
@@ -177,7 +204,11 @@ class CartController extends Controller
     }
     public function remove_all_cart()
     {
-        Cart::destroy();
+        if (Auth::check() && Auth::user()->role == 1) {
+            Carts::where('user_id', Auth::user()->id)->delete();
+        } else {
+            Cart::destroy();
+        }
         return redirect()->back()
             ->with(
                 'alert',

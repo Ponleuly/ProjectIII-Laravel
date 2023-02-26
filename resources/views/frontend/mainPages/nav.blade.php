@@ -1,5 +1,6 @@
 <?php
 	use App\Models\Groups;
+	use App\Models\Carts;
 	use App\Models\Categories_Groups;
 	use App\Models\Categories_Subcategories;
 ?>
@@ -125,7 +126,16 @@
 					</a>
                 </li>
 				<li class="nav-item">
-					<span class="fs-6 nav-link text-danger mt-1 ps-0">({{ Cart::content()->count() }})</span>
+					<span class="fs-6 nav-link text-danger mt-1 ps-0">
+						@php
+							if (Auth::check() && Auth::user()->role == 1){
+								$cart_count = Carts::where('user_id', Auth::user()->id)->count();
+							}else{
+								$cart_count = Cart::content()->count();
+							}
+						@endphp
+						({{$cart_count}})
+					</span>
 				</li>
 						<!--
 						<li class="nav-item">
