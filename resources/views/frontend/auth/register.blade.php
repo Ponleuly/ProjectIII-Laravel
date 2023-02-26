@@ -1,17 +1,21 @@
-@extends('layouts.app')
+@extends('index')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 p-5">
+            <!-------- Message ------------------->
+            @if(Session::has('alert'))
+                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                    {{Session::get('alert')}}
+                    <a href="{{url('profile')}}" class="alert-link">See your profile ?</a>
+                    <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+		    @endif
+            <!-------- Message ------------------->
             <div class="card border-danger">
                 <div class="card-header">{{ $title ?? "" }} {{ __('Register') }}</div>
-
                 <div class="card-body">
-                    @isset($route)
-                        <form method="POST" action="{{ $route }}">
-                    @else
-                        <form method="POST" action="{{ route('register') }}">
-                    @endisset
+                        <form method="POST" action="{{ url('register') }}">
                         @csrf
 
                         <div class="row mb-3">

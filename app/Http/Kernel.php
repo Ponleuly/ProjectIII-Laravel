@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\isUserMinddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -54,7 +55,8 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'authAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'authAdmin' => \App\Http\Middleware\isAdminMiddleware::class,
+        'authUser' => \App\Http\Middleware\isUserMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

@@ -1,22 +1,21 @@
-@extends('layouts.app')
+
+@extends('index')
 @section('content')
 <div class="container">
-    @if(Session::has('alert'))
-        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
-            {{Session::get('alert')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     <div class="row justify-content-center">
         <div class="col-md-8 p-5">
+            @if(Session::has('alert'))
+                <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                    {{Session::get('alert')}}
+                    <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+		    @endif
             <div class="card border-danger">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ $title ?? "" }} {{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('admin/login') }}">
+                        <form method="POST" action="{{ url('login') }}">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -68,7 +67,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
 
                             </div>
                         </div>

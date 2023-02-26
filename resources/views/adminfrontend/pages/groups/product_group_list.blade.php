@@ -11,8 +11,8 @@
                     @if(Session::has('alert'))
                         <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
-                        <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                            <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
 		            @endif
 
                     <h4 class="mb-2 text-black">Product groups</h4>

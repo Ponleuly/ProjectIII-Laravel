@@ -1,11 +1,11 @@
 @extends('index')
-@section('content') 
+@section('content')
     <div class="container-fluid">
         <div class="row px-3 py-2 text-center" style="background: #cc2936">
         <h5 class="text-light pt-2">THÔNG TIN TÀI KHOẢN</h5>
         </div>
     </div>
-  
+
 	<div class="untree_co-section before-footer-section">
         <div class="container">
             <div class="row">
@@ -15,7 +15,7 @@
                             <div class="profile-detail d-flex align-items-center justify-content-center">
                                 <img src="frontend/images/person_1.jpg" class="img-fluid mb-3">
                             </div>
-                            <h5 class="username text-center py-2 mb-4 ">Ly Ponleu</h5>
+                            <h5 class="username text-center py-2 mb-4 ">{{Auth::user()->name}}</h5>
                             <div class="list-group list-group-flush">
                                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true" >
                                     Tài khoản của bạn
@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class isAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -21,11 +21,11 @@ class AdminMiddleware
             if (Auth::user()->role == 0) {
                 return $next($request);
             } else {
-                return redirect('/admin')->with('alert', 'Wrong Email or Password!');
+
+                return redirect('admin')->with('alert', 'Login failed ! Invalid email or password.');
             }
         } else {
-            return redirect('/admin');
+            return redirect('admin')->with('alert', 'Login failed ! Invalid email or password.');
         }
-        //return $next($request);
     }
 }

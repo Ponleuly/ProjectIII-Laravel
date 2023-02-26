@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController\CartController;
+use App\Http\Controllers\Auth\LoginController;
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController\CartController;
 use App\Http\Controllers\UserController\ProductController;
+use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\UserController\FrontendController;
+use App\Http\Controllers\AdminController\AuthAdminController;
 use App\Http\Controllers\AdminController\ProductSizeController;
 use App\Http\Controllers\AdminController\ProductColorController;
 use App\Http\Controllers\AdminController\ProductgroupController;
@@ -28,18 +32,25 @@ use App\Http\Controllers\AdminController\ProductCategoryController;
 Route::get('/', function () {
    return view('frontend.mainPages.home');
 });
-
-
 Route::get('/index', function () {
    return view('index');
 });
 /*============= User Frontend route ==================*/
 // *Using Route group to control route pages
+
+Route::controller(AuthUserController::class)->group(function () {
+   Route::get('login', 'userLogin')->name('login');
+   Route::post('login', 'login')->name('login');
+   Route::get('logout', 'userLogout')->name('logout')->middleware('authUser');
+
+   Route::get('register', 'register')->name('register');
+   Route::post('register', 'userRegister')->name('register');
+});
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
    Route::get('/thankyou', 'thankyou')->name('thankyou');
    Route::get('/like', 'like')->name('like');
-   Route::get('profile', 'profile')->name('profile');
+   Route::get('profile', 'profile')->name('profile')->middleware('authUser');
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('shop', 'shop')->name('shop');
@@ -62,12 +73,15 @@ Route::controller(CartController::class)->group(function () {
 
 
 /*================================================== Admin Frontend route =========================================================*/
-Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {
+
+Route::prefix('admin')->controller(AuthAdminController::class)->group(function () {
    Route::get('/', 'adminLogin')->name('admin');
    Route::post('/login', 'login')->name('login');
    Route::get('/logout', 'adminLogout')->name('logout');;
+});
+
+Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {
    Route::get('/dashboard', 'dashboard')->name('dashboard')->middleware('authAdmin');
-   //Route::get('/product-add', 'product_add')->name('product-add');
 });
 
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -117,9 +131,20 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 /*
 Auth::routes();
 
+Route::get('/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login-view');
+Route::post('/admin', [LoginController::class, 'adminLogin'])->name('admin.login');
+
+Route::get('/admin/register', [RegisterController::class, 'showAdminRegisterForm'])->name('admin.register-view');
+Route::post('/admin/register', [RegisterController::class, 'createAdmin'])->name('admin.register');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {
+   Route::get('/dashboard', 'dashboard')->name('admin.dashboard')->middleware('auth:admin');
+});
+*/
+/*
+Route::get('/admin/dashboard', function () {
+   return view('admin');
+})->middleware('auth:admin');
 */

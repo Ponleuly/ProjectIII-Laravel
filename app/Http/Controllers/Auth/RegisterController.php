@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -39,6 +44,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -53,7 +59,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:11', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -74,5 +80,24 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role' => 1,
         ]);
+    }
+    //-----------------Admin Register -------------------//
+    public function showAdminRegisterForm()
+    {
+        return view('auth.register', ['route' => route('admin.register-view'), 'title' => 'Admin']);
+    }
+    protected function createAdmin(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+
+        $admin = Admin::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => ($request['password']),
+        ]);
+
+        //return dd($request->toArray());
+        return redirect()->intended('admin');
     }
 }
