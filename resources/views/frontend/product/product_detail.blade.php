@@ -195,7 +195,7 @@
 
                                         <div class="col-md-2">
                                             <div class="d-grid">
-                                                <a href="" class="btn btn-block px-4 py-2 cart-add  rounded-0">
+                                                <a href="{{url('add-like/'.$productDetails->id)}}" class="btn btn-block px-4 py-2 cart-add  rounded-0">
                                                     <span class="material-icons-outlined py-2">favorite</span>
                                                 </a>
                                             </div>
