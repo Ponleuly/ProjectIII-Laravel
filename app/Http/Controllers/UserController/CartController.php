@@ -84,7 +84,7 @@ class CartController extends Controller
         if ($request->action == 'addtocart') {
             return redirect()->back()
                 ->with(
-                    'alert',
+                    'message',
                     'Product is added to cart successfully!',
                 );
         } else if ($request->action == 'buynow') {
@@ -121,7 +121,7 @@ class CartController extends Controller
         }
         return redirect()->back()
             ->with(
-                'alert',
+                'message',
                 'Item is updated successfully!',
             );
 
@@ -197,7 +197,7 @@ class CartController extends Controller
         }
         return redirect()->back()
             ->with(
-                'alert',
+                'message',
                 'Product is removed from cart successfully!',
             );
         //return dd($rowId);
@@ -211,7 +211,7 @@ class CartController extends Controller
         }
         return redirect()->back()
             ->with(
-                'alert',
+                'message',
                 'All products is removed from cart successfully!',
             );
         //return dd($rowId);

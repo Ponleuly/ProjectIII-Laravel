@@ -18,19 +18,32 @@
 
 	<div class="untree_co-section">
 		<div class="container">
-			@if(Session::has('alert'))
-                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+			<!--------------- Alert ------------------------>
+            @if(Session::has('alert'))
+                <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                @elseif(Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        {{Session::get('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
             @endif
-		    <div class="row mb-3">
-		        <div class="col-md-12">
-		          	<div class="border p-3 rounded-0" role="alert">
-		            	Have an account? <a href="{{url('login')}}">Click here</a> to log in.
-		        	</div>
-		    	</div>
-			</div>
+            <!---------------End Alert ------------------------>
+
+            <!---------------Sign in link ------------------------>
+			@if(!(Auth::check() && Auth::user()->role == 1))
+				<div class="row mb-3">
+					<div class="col-md-12">
+						<div class="border p-3 rounded-0" role="alert">
+							Have an account ? <a href="{{url('login')}}">Click here</a> to sign in.
+						</div>
+					</div>
+				</div>
+			@endif
+            <!--------------- End Sign in link ------------------------>
+
 			<hr>
 
 			<div class="row">
@@ -203,8 +216,10 @@
 							<hr>
 						@endforeach
 						@else
-							<h4>
-								<p>There are no items in your cart.</p>
+							<h4 class="py-2">
+								<p>There are no items in your cart. Find some products
+                            		<a href="{{url('shop')}}" class="text-danger">Click here !</a>
+								</p>
 							</h4>
 					@endif
 					<!----------------------End cart list  Continue Shopping--------------------------->

@@ -62,6 +62,7 @@ Route::middleware('authUser')->group(function () {
 Route::controller(LikeController::class)->group(function () {
    Route::get('like', 'like')->name('like')->middleware('authUser');
    Route::get('add-like/{product_id}/{user_id}', 'add_like')->name('add-like');
+   Route::get('remove-like/{id}', 'remove_like')->name('remove-like');
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');

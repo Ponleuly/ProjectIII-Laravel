@@ -12,11 +12,16 @@ class LikeController extends Controller
     public function like()
     {
         $likes = Likes::Where('user_id', Auth::user()->id)->orderByDesc('id')->get();
+        $likes_count = $likes->count();
         return view(
             'frontend.mainPages.like',
-            compact('likes')
+            compact(
+                'likes',
+                'likes_count'
+            )
         );
     }
+
     public function add_like($product_id, $user_id)
     {
         if (Auth::check() && Auth::user()->role == 1) {
@@ -28,12 +33,12 @@ class LikeController extends Controller
                 $add_like['user_id'] = $user_id;
                 Likes::create($add_like);
                 return redirect()->back()->with(
-                    'alert',
+                    'message',
                     'Products is added to liked successfully!',
                 );
             }
             return redirect()->back()->with(
-                'alert',
+                'message',
                 'Products is removed from liked !',
             );
         } else {
@@ -42,5 +47,17 @@ class LikeController extends Controller
                 'Please sign in ! To add products to liked.',
             );
         }
+    }
+    public function remove_like($id)
+    {
+        $removeLike = Likes::where('id', $id)->first();
+        $removeLike->delete();
+
+        return redirect()->back()
+            ->with(
+                'message',
+                'Product is removed from liked successfully!',
+            );
+        //return dd($rowId);
     }
 }

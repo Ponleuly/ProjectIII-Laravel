@@ -45,23 +45,17 @@
 
     <div class="untree_co-section">
 		<div class="container">
-            @php
-            /*
-                if (Auth::check() && Auth::user()->role == 1) {
-                    $bgColor = 'success';
-                    $link = '';
-                }else{
-                    $bgColor = 'danger';
-                    $link = 'Click here to sign in.';
-                }
-                    <!--<a href="{{url('login')}}" class="alert-link">{{$link}}</a>-->
-                */
-            @endphp
             @if(Session::has('alert'))
-                <div class="alert alert-primary alert-dismissible fade show rounded-0" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
+                    <a href="{{url('login')}}" class="alert-link">  Click here </a> to sign in.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                @elseif(Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        {{Session::get('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
             @endif
 
 		    <!--------------Start </form> ---------------------->
