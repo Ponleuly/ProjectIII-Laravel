@@ -14,13 +14,6 @@
                         </span>
                         <span class="text"><strong>Dashboard</strong></span>
                     </a>
-                    <!--
-                    <ul id="ddmenu_1" class="collapse show dropdown-nav">
-                        <li>
-                            <a href="index.html" class="active"> eCommerce </a>
-                        </li>
-                    </ul>
-                    -->
                 </li>
                 <li class="nav-item nav-item-has-children
                     {{Request::is('admin/product-detail*')? 'active':''}}||
@@ -108,24 +101,6 @@
                                 Delivery add
                             </a>
                         </li>
-                        <!--
-                        <li>
-                            <a
-                                href="{{url('admin/product-color-list')}}"
-                                class="{{Request::is('admin/product-color-list')? 'active':''}}"
-                                >
-                                Product color list
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="{{url('admin/product-color-add')}}"
-                                class="{{Request::is('admin/product-color-add')? 'active':''}}"
-                                >
-                                Product color add
-                            </a>
-                        </li>
-                        -->
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children {{Request::is('admin/product-category*')? 'active':''}}">
@@ -178,10 +153,10 @@
                     </a>
                     <ul id="ddmenu_3" class="collapse dropdown-nav">
                         <li>
-                            <a href="signin.html">Order list</a>
+                            <a href="{{url('admin/order-list')}}">Order list</a>
                         </li>
                         <li>
-                            <a href="signup.html">Order invoices</a>
+                            <a href="">Order invoices</a>
                         </li>
                     </ul>
                 </li>

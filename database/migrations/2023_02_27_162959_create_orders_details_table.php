@@ -24,10 +24,11 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->unsignedInteger('product_id');
+            $table->unsignedDecimal('product_price');
             $table->unsignedInteger('product_quantity');
             $table->unsignedInteger('size_id');
             $table->string('payment');
-            $table->unsignedInteger('delivery_id');
+            $table->unsignedDecimal('delivery_fee');
 
             $table->timestamps();
         });

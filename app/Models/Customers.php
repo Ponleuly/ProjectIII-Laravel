@@ -17,4 +17,8 @@ class Customers extends Model
         'c_note',
 
     ];
+    public function rela_customer_order()
+    {
+        return $this->hasMany(Orders::class, 'id');
+    }
 }

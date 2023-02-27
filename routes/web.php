@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController\CartController;
 use App\Http\Controllers\UserController\LikeController;
+use App\Http\Controllers\AdminController\OrderController;
 use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
 use App\Http\Controllers\UserController\AuthUserController;
@@ -156,23 +157,13 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/delivery-delete/{id}', 'delivery_delete');
    });
 });
-/*
-Auth::routes();
-
-Route::get('/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login-view');
-Route::post('/admin', [LoginController::class, 'adminLogin'])->name('admin.login');
-
-Route::get('/admin/register', [RegisterController::class, 'showAdminRegisterForm'])->name('admin.register-view');
-Route::post('/admin/register', [RegisterController::class, 'createAdmin'])->name('admin.register');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {
-   Route::get('/dashboard', 'dashboard')->name('admin.dashboard')->middleware('auth:admin');
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(OrderController::class)->group(function () {
+      Route::get('/order-list', 'order_list')->name('order-list');
+      Route::get('/order-add', 'order_add')->name('order-add');
+      Route::post('/order-add', 'order_store')->name('order-add');
+      Route::get('/order-edit/{id}', 'order_edit')->name('order-edit');
+      Route::put('/order-edit/{id}', 'order_update');
+      Route::get('/order-delete/{id}', 'order_delete');
+   });
 });
-*/
-/*
-Route::get('/admin/dashboard', function () {
-   return view('admin');
-})->middleware('auth:admin');
-*/

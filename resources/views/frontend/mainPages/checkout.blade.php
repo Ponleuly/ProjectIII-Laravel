@@ -120,9 +120,9 @@
 												<input
 													class="form-check-input big-radio me-2 mb-2 mt-1"
 													type="radio"
-													name="delivery_id"
+													name="delivery_fee"
 													id="delivery_option"
-													value="{{$delivery->id}}"
+													value="{{$delivery->delivery_fee}}"
 													@if ($loop->first)
 														checked
 													@endif

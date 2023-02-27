@@ -193,12 +193,15 @@ class CartController extends Controller
                 Orders_Details::create([
                     'order_id' => $orderId,
                     'product_id' => $cart->product_id,
+                    'product_price' => $cart->rela_product_cart->product_saleprice,
                     'product_quantity' => $cart->product_quantity,
                     'size_id' => $cart->size_id,
                     'payment' => $request->payment,
-                    'delivery_id' => $request->delivery_id,
+                    'delivery_fee' => $request->delivery_fee,
                 ]);
             }
+            // Remove all products in carts after user completed order
+            Carts::where('user_id', Auth::user()->id)->delete();
         } else {
             // Get customer id
             $customer = Customers::latest()->first();
@@ -219,14 +222,16 @@ class CartController extends Controller
                 Orders_Details::create([
                     'order_id' => $orderId,
                     'product_id' => $cart->id,
+                    'product_price' => $cart->price,
                     'product_quantity' => $cart->qty,
                     'size_id' => $cart->options->size,
                     'payment' => $request->payment,
-                    'delivery_id' => $request->delivery_id,
+                    'delivery_fee' => $request->delivery_fee,
                 ]);
             }
+            // Remove all products in Cart after user completed order
+            Cart::destroy();
         }
-        //return dd($carts->toArray());
         return redirect('thankyou');
     }
     /**
