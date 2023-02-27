@@ -92,6 +92,22 @@
                                 Product size add
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="{{url('admin/delivery-list')}}"
+                                class="{{Request::is('admin/delivery-list')? 'active':''}}"
+                                >
+                                Delivery list
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{url('admin/delivery-add')}}"
+                                class="{{Request::is('admin/delivery-add')? 'active':''}}"
+                                >
+                                Delivery add
+                            </a>
+                        </li>
                         <!--
                         <li>
                             <a

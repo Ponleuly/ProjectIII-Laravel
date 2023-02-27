@@ -60,4 +60,14 @@ class LikeController extends Controller
             );
         //return dd($rowId);
     }
+    public function remove_all_like()
+    {
+        Likes::where('user_id', Auth::user()->id)->delete();
+        return redirect()->back()
+            ->with(
+                'message',
+                'All products is removed from liked list successfully!',
+            );
+        //return dd($rowId);
+    }
 }

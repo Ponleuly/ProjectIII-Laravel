@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Laravel\Ui\Presets\React;
 
 class CartController extends Controller
 {
@@ -146,7 +147,12 @@ class CartController extends Controller
      */
     public function checkout()
     {
-        $carts = Cart::content();
+        if (Auth::check() && Auth::user()->role == 1) {
+            $carts = Carts::where('user_id', Auth::user()->id)->get();
+        } else {
+            $carts = Cart::content();
+        }
+
 
         return view(
             'frontend.mainPages.checkout',
@@ -154,6 +160,10 @@ class CartController extends Controller
         );
     }
 
+    public function place_order(Request $request)
+    {
+        return dd($request->toArray());
+    }
     /**
      * Show the form for editing the specified resource.
      *

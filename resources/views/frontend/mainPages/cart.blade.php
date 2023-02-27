@@ -133,7 +133,8 @@
 											@endforeach
 										</label>
 									</div>
-									<!---------- Start Size and Quantity ------------>
+									<!----------------------- Start Size and Quantity ---------------->
+									<!------Form update Size and Quantity -------->
 									<form
 										action="{{url('update-cart/'.$cartId)}}"
 										method="POST"
@@ -186,7 +187,8 @@
 											</div>
 										</div>
 									</form>
-									<!---------- End Size and Quantity ------------>
+									<!------ End Form update Size and Quantity -------->
+									<!---------------------- End Size and Quantity -------------------->
 								</div>
 
 								<div class="col-md-3 d-grid">
@@ -332,6 +334,5 @@
 		    	</div>
 			</div>
 		</div>
-		<!------------End  </form> --------------->
 	</div>
 @endsection()

@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
 use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\UserController\FrontendController;
+use App\Http\Controllers\AdminController\DeliveryController;
 use App\Http\Controllers\AdminController\AuthAdminController;
 use App\Http\Controllers\AdminController\ProductSizeController;
 use App\Http\Controllers\AdminController\ProductColorController;
@@ -63,6 +64,7 @@ Route::controller(LikeController::class)->group(function () {
    Route::get('like', 'like')->name('like')->middleware('authUser');
    Route::get('add-like/{product_id}/{user_id}', 'add_like')->name('add-like');
    Route::get('remove-like/{id}', 'remove_like')->name('remove-like');
+   Route::get('remove-all-like', 'remove_all_like')->name('remove-all-like');
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
@@ -81,7 +83,8 @@ Route::controller(CartController::class)->group(function () {
    Route::put('update-cart/{id}', 'update_cart')->name('update-cart');
    Route::get('remove-from-cart/{id}', 'remove_from_cart')->name('remove-from-cart');
    Route::get('remove-all-cart', 'remove_all_cart')->name('remove-all-cart');
-   Route::get('/checkout', 'checkout')->name('checkout');
+   Route::get('checkout', 'checkout')->name('checkout');
+   Route::post('place-order', 'place_order')->name('place-order');
 });
 /*============= End User Frontend route ==================*/
 
@@ -143,7 +146,16 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-detail-delete/{id}', 'product_detail_delete');
    });
 });
-
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(DeliveryController::class)->group(function () {
+      Route::get('/delivery-list', 'delivery_list')->name('delivery-list');
+      Route::get('/delivery-add', 'delivery_add')->name('delivery-add');
+      Route::post('/delivery-add', 'delivery_store')->name('delivery-add');
+      Route::get('/delivery-edit/{id}', 'delivery_edit')->name('delivery-edit');
+      Route::put('/delivery-edit/{id}', 'delivery_update');
+      Route::get('/delivery-delete/{id}', 'delivery_delete');
+   });
+});
 /*
 Auth::routes();
 

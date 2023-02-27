@@ -13,7 +13,6 @@ class FrontendController extends Controller
     {
         return view('frontend.mainPages.home');
     }
-
     public function thankyou()
     {
         return view('frontend.mainPages.thankyou');

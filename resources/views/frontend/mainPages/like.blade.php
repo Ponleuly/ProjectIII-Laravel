@@ -133,7 +133,7 @@
 			@endif
             <div class="row my-5">
                 <div class="col-md-12 d-flex justify-content-between">
-                    <a href="" class="btn btn-block py-1 px-5 fw-semibold rounded-0 me-1">
+                    <a href="{{url('remove-all-like')}}" class="btn btn-block py-1 px-5 fw-semibold rounded-0 me-1">
                         <span>Remove All</span>
                     </a>
                     <a href="{{url('shop')}}" class="btn btn-block py-1 px-5 fw-semibold rounded-0 ms-1">

@@ -1,7 +1,7 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/product-color-edit/'.$color->id)}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('admin/delivery-edit/'.$delivery->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
             @method('PUT')
             <div class="row justify-content-center">
@@ -13,25 +13,34 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Edit Product Color</h4>
+                    <h4 class="mb-2 text-black">Edit Delivery Option</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
-                                        <label for="color_name"><p class="text-label">Product color (click on color bar below to choose color)</p></label>
+                                        <label for="delivery_option"><p class="text-label">Delivery Option</p></label>
                                         <input
-                                            type="color"
+                                            type="text"
                                             class="form-control form-control-color rounded-0 mb-2 py-2 px-2 w-100"
-                                            id="color_name"
-                                            name="color_name"
-                                            value="{{$color->color_name}}"
-                                            style="height: 50px"
+                                            id="delivery_option"
+                                            name="delivery_option"
+                                            value="{{$delivery->delivery_option}}"
+                                            required
+                                        >
+
+                                        <label for="delivery_fee"><p class="text-label">Delivery Fee</p></label>
+                                        <input
+                                            type="number"
+                                            class="form-control form-control-color rounded-0 mb-2 py-2 px-2 w-100"
+                                            id="delivery_fee"
+                                            name="delivery_fee"
+                                            value="{{$delivery->delivery_fee}}"
                                             required
                                         >
                                         <div class="d-flex mt-4">
-                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-color-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Add color</button>
+                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('admin/delivery-list')}}" role="button">Back to list</a>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Update delivery option</button>
                                         </div>
                                     </div>
                                 </div>
