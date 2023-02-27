@@ -15,4 +15,8 @@ class Carts extends Model
         'size_id',
         'product_quantity',
     ];
+    public function rela_product_cart()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 }

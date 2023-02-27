@@ -13,4 +13,8 @@ class Likes extends Model
         'user_id',
         'product_id',
     ];
+    public function rela_product_like()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 }

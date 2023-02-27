@@ -57,7 +57,6 @@ class ProductController extends Controller
             $sizeStock += $row->size_quantity;
         }
         $totalStock = $sizeStock;
-
         return view(
             'frontend.product.product_detail',
             compact(

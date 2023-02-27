@@ -52,19 +52,21 @@
 								if(Auth::check() && Auth::user()->role == 1){
 									$cartId = $cart->id;
 									$productId = $cart->product_id;
-									$product = Products::where('id', $productId)->first();
+									//$product = Products::where('id', $productId)->first();
 									$productSizes = Products_Sizes::where('product_id', $productId)->get();
 
 									// Image
-									$productImg = $product->product_imgcover;
+									$productImg = $cart->rela_product_cart->product_imgcover;
 									// Name
-									$productName = $product->product_name;
+									$productName =  $cart->rela_product_cart->product_name;
+									// Code
+									$productCode =  $cart->rela_product_cart->product_code;
 									// Size
 									$size = $cart->size_id;
 									// Quantity
 									$quantity = $cart->product_quantity;
 									//price
-									$price = $product->product_saleprice;
+									$price =  $cart->rela_product_cart->product_saleprice;
 									$subtotal += $price * $quantity;
 
 								}else{
@@ -77,6 +79,8 @@
 									$productImg = $cart->options->has('image') ? $cart->options->image : '';
 									// Name
 									$productName = $cart->name;
+									// Code
+									$productCode =  $product->product_code;
 									// Size ==>Get size_id from Cart:: in colum options
 									$size = $cart->options->has('size') ? $cart->options->size : '';
 									// Quantity
@@ -88,7 +92,7 @@
 							@endphp
 							<div class="row form-group">
 								<div class="col-md-2">
-									<a href="{{url('product-detail/'.$product->product_code)}}">
+									<a href="{{url('product-detail/'. $productCode)}}">
 										<img
 											src="/product_img/imgcover/{{$productImg}}"
 											class="img-fluid product-thumbnail"
@@ -98,14 +102,14 @@
 								<div class="col-md-7 d-grid">
 									<div class="row">
 										<a
-											href="{{url('product-detail/'.$product->product_code)}}"
+											href="{{url('product-detail/'.  $productCode)}}"
 											class="text-decoration-none"
 											>
 											<h5 class="text-dark">{{$productName}}</h5>
 										</a>
 									</div>
 
-									<div class="row">
+									<div class="row d-grid">
 										@php
         									$productGroups = Products_Attributes::where('product_id', $productId)->get();
 										@endphp
@@ -125,9 +129,9 @@
                 						@csrf <!-- to make form active -->
 										@method('PUT')
 
-										<div class="row mt-auto">
-											<div class="col-md-3 ">
-												<label class="text-black" for="size">SIZE</label>
+										<div class="row mt-3">
+											<div class="col-md-3  mt-auto d-grid">
+												<label class="text-black" for="size">Size</label>
 												<select
 													class="form-select form-control form-select-sm rounded-0"
 													aria-label="Default select example"
@@ -143,7 +147,7 @@
 													@endforeach
 												</select>
 											</div>
-											<div class="col-md-3 ">
+											<div class="col-md-3">
 												<label class="text-black">Quantity</label>
 												<div class="cinput-group quantity-container ">
 													<input

@@ -35,4 +35,12 @@ class Products extends Model
     {
         return $this->hasMany(Products_Groups::class, 'product_id');
     }
+    public function rela_product_like()
+    {
+        return $this->hasMany(likes::class, 'product_id');
+    }
+    public function rela_product_cart()
+    {
+        return $this->hasMany(Carts::class, 'product_id');
+    }
 }

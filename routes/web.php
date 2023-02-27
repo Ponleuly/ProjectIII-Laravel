@@ -6,7 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController\CartController;
+use App\Http\Controllers\UserController\LikeController;
 use App\Http\Controllers\UserController\ProductController;
+use App\Http\Controllers\UserController\ProfileController;
 use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\UserController\FrontendController;
 use App\Http\Controllers\AdminController\AuthAdminController;
@@ -45,17 +47,21 @@ Route::controller(AuthUserController::class)->group(function () {
 
    Route::get('register', 'register')->name('register');
    Route::post('register', 'userRegister')->name('register');
-
-   Route::put('profile-update/{id}', 'profile_update')->name('profile-update');
-   Route::get('change-password', 'change_password')->name('change-password');
-   Route::put('change-password/{id}', 'update_password')->name('change-password');
 });
-//============== Route with Middleware =====================//
+//============== Profile Route with Middleware =====================//
 Route::middleware('authUser')->group(function () {
-   Route::controller(FrontendController::class)->group(function () {
-      Route::get('like', 'like')->name('like');
+   Route::controller(ProfileController::class)->group(function () {
       Route::get('profile', 'profile')->name('profile');
+      Route::put('profile-update/{id}', 'profile_update')->name('profile-update');
+      Route::get('change-password', 'change_password')->name('change-password');
+      Route::put('change-password/{id}', 'update_password')->name('change-password');
    });
+});
+//==============Like Route with Middleware =====================//
+
+Route::controller(LikeController::class)->group(function () {
+   Route::get('like', 'like')->name('like')->middleware('authUser');
+   Route::get('add-like/{product_id}/{user_id}', 'add_like')->name('add-like');
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');

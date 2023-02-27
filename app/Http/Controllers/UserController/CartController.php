@@ -63,7 +63,7 @@ class CartController extends Controller
                 Carts::create($input);
             }
         }
-        //========== If User is guest then save data to Cart ==============//
+        //========== If User is guest then save data to Cart (Cart is a model from package) ==============//
         else {
             $products = Products::findOrFail($id);
             Cart::add(

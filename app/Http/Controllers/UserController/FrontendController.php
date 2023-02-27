@@ -18,12 +18,4 @@ class FrontendController extends Controller
     {
         return view('frontend.mainPages.thankyou');
     }
-    public function like()
-    {
-        return view('frontend.mainPages.like');
-    }
-    public function profile()
-    {
-        return view('frontend.mainPages.profile');
-    }
 }

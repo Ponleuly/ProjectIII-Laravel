@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'id' => 2,
                 'name' => 'Ponleuly',
                 'phone' => '02437347942',
-                'email' => 'ponleuly@gmail.com',
+                'email' => 'lyponleu116@gmail.com',
                 'password' => bcrypt('12345678'),
                 'address' => 'Tầng 10, Tòa nhà An Phú số 24 Hoàng Quốc Việt, phường Nghĩa Đô, Quận Cầu Giấy, Hà Nội ',
                 'role' => 1,
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'Matin',
+                'name' => 'User1',
                 'phone' => '02437347943',
                 'email' => 'user1@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'Zara Rechard',
+                'name' => 'User2',
                 'phone' => '02437347944',
                 'email' => 'user2@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'name' => 'Jack',
+                'name' => 'User3',
                 'phone' => '02437347945',
                 'email' => 'user3@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 6,
-                'name' => 'Jonh Henderson',
+                'name' => 'User4',
                 'phone' => '02437347946',
                 'email' => 'user4@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -79,7 +79,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 7,
-                'name' => 'Html',
+                'name' => 'User5',
                 'phone' => '02437347947',
                 'email' => 'user5@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 8,
-                'name' => 'CSS',
+                'name' => 'User6',
                 'phone' => '02437347948',
                 'email' => 'user6@gmail.com',
                 'password' => bcrypt('12345678'),

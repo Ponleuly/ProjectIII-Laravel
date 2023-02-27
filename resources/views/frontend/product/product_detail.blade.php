@@ -1,6 +1,8 @@
 <?php
 	use App\Models\Products_Sizes;
 	use App\Models\Products_Imgreviews;
+	use App\Models\Likes;
+
 ?>
 @extends('index')
 @section('content')
@@ -43,12 +45,25 @@
 
     <div class="untree_co-section">
 		<div class="container">
+            @php
+            /*
+                if (Auth::check() && Auth::user()->role == 1) {
+                    $bgColor = 'success';
+                    $link = '';
+                }else{
+                    $bgColor = 'danger';
+                    $link = 'Click here to sign in.';
+                }
+                    <!--<a href="{{url('login')}}" class="alert-link">{{$link}}</a>-->
+                */
+            @endphp
             @if(Session::has('alert'))
-                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                <div class="alert alert-primary alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
 		    <!--------------Start </form> ---------------------->
             <form action="{{url('add-to-cart/'.$productDetails->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf <!-- to make form active -->
@@ -195,9 +210,31 @@
 
                                         <div class="col-md-2">
                                             <div class="d-grid">
-                                                <a href="{{url('add-like/'.$productDetails->id)}}" class="btn btn-block px-4 py-2 cart-add  rounded-0">
-                                                    <span class="material-icons-outlined py-2">favorite</span>
-                                                </a>
+                                                @php
+                                                    if(Auth::check() && Auth::user()->role == 1){
+                                                        $userId = Auth::user()->id;
+                                                        $isLiked = Likes::where('product_id', $productDetails->id)->where('user_id',  $userId)->first();
+
+                                                    }else{
+                                                        $userId = 0;
+                                                        $isLiked = 0;
+                                                    }
+                                                @endphp
+                                                @if($isLiked)
+                                                    <a
+                                                        href="{{url('add-like/'.$productDetails->id.'/'.$userId)}}"
+                                                        class="btn btn-outline-danger px-4 py-2 rounded-0"
+                                                        >
+                                                        <span class="material-icons-outlined py-2">favorite</span>
+                                                    </a>
+                                                @elseif($isLiked == 0)
+                                                    <a
+                                                        href="{{url('add-like/'.$productDetails->id.'/'.$userId)}}"
+                                                        class="btn btn-outline-danger px-4 py-2 rounded-0 cart-add"
+                                                        >
+                                                        <span class="material-icons-outlined py-2">favorite</span>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                 </div>
