@@ -68,7 +68,7 @@ Route::controller(LikeController::class)->group(function () {
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
-   Route::get('/thankyou', 'thankyou')->name('thankyou');
+   Route::get('thankyou', 'thankyou')->name('thankyou');
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('shop', 'shop')->name('shop');

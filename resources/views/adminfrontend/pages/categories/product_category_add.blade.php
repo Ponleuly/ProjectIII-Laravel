@@ -57,7 +57,7 @@
                                                     class="form-check-input"
                                                     id="{{$row->group_name}}"
                                                     value="{{$row->id}}"
-                                                    name="group_id[]"
+                                                    name="group_id"
                                                     @if ($loop->first)
                                                         checked
                                                     @endif

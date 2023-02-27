@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\UserController;
 
+use App\Models\User;
 use App\Models\Carts;
 use App\Models\Sizes;
+use App\Models\Orders;
 use App\Models\Products;
+use App\Models\Customers;
+use App\Models\Deliveries;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
+use App\Models\Orders_Details;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Laravel\Ui\Presets\React;
 
 class CartController extends Controller
 {
@@ -73,7 +78,7 @@ class CartController extends Controller
                     'name' => $products->product_name,
                     'price' => $products->product_saleprice,
                     'qty' => $request->product_quantity,
-                    'weight' => 0,
+                    'weight' => 0, //defualt column in Cart
                     'options' => [
                         'image' => $products->product_imgcover,
                         'size' => $request->size_id
@@ -152,17 +157,77 @@ class CartController extends Controller
         } else {
             $carts = Cart::content();
         }
-
+        $deliveries = Deliveries::orderBy('id')->get();
 
         return view(
             'frontend.mainPages.checkout',
-            compact('carts')
+            compact(
+                'carts',
+                'deliveries'
+            )
         );
     }
 
     public function place_order(Request $request)
     {
-        return dd($request->toArray());
+        $input = $request->all();
+        //==== Store data to table customer =====//
+        Customers::create($input);
+
+        if (Auth::check() && Auth::user()->role == 1) {
+            // Get customer id
+            $customer = Customers::latest()->first();
+            $customerId = $customer->id;
+            // Store data to table orders
+            Orders::create([
+                'customer_id' => $customerId,
+                'user_id' => Auth::user()->id,
+            ]);
+            // Get order id
+            $order = Orders::latest()->first();
+            $orderId = $order->id;
+            // Get data from Carts model
+            $carts = Carts::where('user_id', Auth::user()->id)->get();
+            foreach ($carts as $cart) {
+                // Store data to table orderDetails
+                Orders_Details::create([
+                    'order_id' => $orderId,
+                    'product_id' => $cart->product_id,
+                    'product_quantity' => $cart->product_quantity,
+                    'size_id' => $cart->size_id,
+                    'payment' => $request->payment,
+                    'delivery_id' => $request->delivery_id,
+                ]);
+            }
+        } else {
+            // Get customer id
+            $customer = Customers::latest()->first();
+            $customerId = $customer->id;
+            // Store data to table orders
+            Orders::create([
+                'customer_id' => $customerId,
+                'user_id' => 0,
+            ]);
+            // Get order id
+            $order = Orders::latest()->first();
+            $orderId = $order->id;
+            // Get data from Cart if customer not signin
+
+            $carts = Cart::content();
+            foreach ($carts as $cart) {
+                // Store data to table orderDetails
+                Orders_Details::create([
+                    'order_id' => $orderId,
+                    'product_id' => $cart->id,
+                    'product_quantity' => $cart->qty,
+                    'size_id' => $cart->options->size,
+                    'payment' => $request->payment,
+                    'delivery_id' => $request->delivery_id,
+                ]);
+            }
+        }
+        //return dd($carts->toArray());
+        return redirect('thankyou');
     }
     /**
      * Show the form for editing the specified resource.

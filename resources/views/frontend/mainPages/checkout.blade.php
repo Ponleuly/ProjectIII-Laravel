@@ -49,12 +49,12 @@
 								<h2 class="h3 mb-3 text-black">Delivery Informations</h2>
 								<div class="form-group row mb-3">
 									<div class="col-md-12">
-										<label for="cfname" class="text-black mb-1">Customer Name <span class="text-danger">*</span></label>
+										<label for="c_name" class="text-black mb-1">Customer Name <span class="text-danger">*</span></label>
 										<input
 											type="text"
 											class="form-control rounded-0"
-											id="cname"
-											name="cfname"
+											id="c_name"
+											name="c_name"
 											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->name : ''}}"
 											placeholder="Full Name"
 											required
@@ -64,12 +64,12 @@
 
 								<div class="form-group row mb-3">
 									<div class="col-md-12">
-										<label for="cphone" class="text-black mb-1">Phone Number <span class="text-danger">*</span></label>
+										<label for="c_phone" class="text-black mb-1">Phone Number <span class="text-danger">*</span></label>
 										<input
 											type="text"
 											class="form-control rounded-0"
-											id="cphone"
-											name="cphone"
+											id="c_phone"
+											name="c_phone"
 											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->phone : ''}}"
 											placeholder="Phone Number"
 											required
@@ -79,12 +79,12 @@
 
 								<div class="form-group row mb-3">
 									<div class="col-md-12">
-										<label for="cemail" class="text-black mb-1">Email <span class="text-danger">*</span></label>
+										<label for="c_email" class="text-black mb-1">Email <span class="text-danger">*</span></label>
 										<input
 											type="email"
 											class="form-control rounded-0"
-											id="cemail"
-											name="cemail"
+											id="c_email"
+											name="c_email"
 											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->email : ''}}"
 											placeholder="Example@gmail.com"
 											required
@@ -94,88 +94,60 @@
 
 								<div class="form-group row mb-3">
 									<div class="col-md-12">
-										<label for="caddress" class="text-black mb-1">Address <span class="text-danger">*</span></label>
+										<label for="c_address" class="text-black mb-1">Address <span class="text-danger">*</span></label>
 										<input
 											type="text"
 											class="form-control rounded-0"
-											id="caddress"
-											name="caddress"
+											id="c_address"
+											name="c_address"
 											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->address: ''}}"
 											placeholder="House number, City ...."
 											required
 										>
 									</div>
 								</div>
-								<!--
-								<div class="form-group">
-									<label for="c_city" class="text-black">City <span class="text-danger">*</span></label>
-									<select id="c_city" class="form-control  rounded-0">
-									<option value="1">chọn tỉnh / thành phố</option>
-									<option value="2">bangladesh</option>
-									<option value="3">Algeria</option>
-									<option value="4">Afghanistan</option>
-									<option value="5">Ghana</option>
-									<option value="6">Albania</option>
-									<option value="7">Bahrain</option>
-									<option value="8">Colombia</option>
-									<option value="9">Dominican Republic</option>
-									</select>
-								</div>
-								<div class="form-group row">
-								<div class="col-md-6">
-									<label for="c_commune" class="text-black ">Quận / Huyện <span class="text-danger">*</span></label>
-									<select id="c_commune" class="form-control rounded-0">
-										<option value="1">chọn quận / huyện</option>
-										<option value="2">bangladesh</option>
-										<option value="3">Algeria</option>
-										<option value="4">Afghanistan</option>
-										<option value="5">Ghana</option>
-										<option value="6">Albania</option>
-										<option value="7">Bahrain</option>
-										<option value="8">Colombia</option>
-										<option value="9">Dominican Republic</option>
-									</select>
-								</div>
-								<div class="col-md-6">
-									<label for="c_village" class="text-black ">Phường / Xã <span class="text-danger">*</span></label>
-									<select id="c_village" class="form-control rounded-0">
-										<option value="1">chọn phường / xã</option>
-										<option value="2">bangladesh</option>
-										<option value="3">Algeria</option>
-										<option value="4">Afghanistan</option>
-										<option value="5">Ghana</option>
-										<option value="6">Albania</option>
-										<option value="7">Bahrain</option>
-										<option value="8">Colombia</option>
-										<option value="9">Dominican Republic</option>
-									</select>
-								</div>
-								</div>
-								-->
+
 								<div class="form-group mb-3">
-									<label for="cnote" class="text-black mb-1">Order Note</label>
-									<textarea name="cnote" id="cnote" cols="30" rows="5" class="form-control rounded-0" placeholder="Write here..."></textarea>
+									<label for="c_note" class="text-black mb-1">Order Note</label>
+									<textarea name="c_note" id="c_note" cols="30" rows="5" class="form-control rounded-0" placeholder="Write here..."></textarea>
 								</div>
+
+								<h2 class="h3 mb-3 text-black">Delivery Method</h2>
+								@foreach ($deliveries as $delivery)
+									<div class="row">
+										<div class="col-md-8">
+											<div class="form-check">
+												<input
+													class="form-check-input big-radio me-2 mb-2 mt-1"
+													type="radio"
+													name="delivery_id"
+													id="delivery_option"
+													value="{{$delivery->id}}"
+													@if ($loop->first)
+														checked
+													@endif
+												>
+												<label class="form-check-label text-dark mt-1 fs-6" for="delivery_option">
+													{{$delivery->delivery_option}}
+												</label>
+											</div>
+										</div>
+										<div class="col-md-4 d-flex justify-content-end">
+											<label class="form-check-label text-dark fs-6" for="delivery_option">
+												$ {{$delivery->delivery_fee}}
+											</label>
+										</div>
+									</div>
+									@php
+										$deliveryFee = $delivery->delivery_fee;
+									@endphp
+								@endforeach
 							</div>
 						</div>
 						<!------------------------End Delivery Informations--------------------------------->
 
 						<!------------------------ Your Cart --------------------------------->
 						<div class="col-md-6">
-							<!--
-							<div class="row mb-5">
-								<div class="col-md-12">
-									<h2 class="h3 mb-3 text-black">MÃ KHUYẾN MÃI</h2>
-									<div class="p-3 p-lg-5 border bg-white">
-									<div class="input-group w-85">
-										<input type="text" class="form-control py-2 rounded-0" id="coupon" placeholder="nhập mã" aria-label="nhập mã" aria-describedby="button-addon2">
-										<button class="btn btn-outline-secondary px-3 fw-semibold  rounded-0" type="button" id="button-addon2">ÁP DỤNG</button>
-									</div>
-									</div>
-								</div>
-							</div>
-							-->
-
 							<div class="row mb-5">
 								<div class="col-md-12">
 									<div class="p-3 p-lg-4 border bg-white">
@@ -194,7 +166,7 @@
 													$subtotal = 0;
 													$total = 0;
 													$discount = 0;
-													$Shipping = 0;
+
 												@endphp
 												@foreach ($carts as $cart)
 													@php
@@ -252,13 +224,13 @@
 															<strong class="text-danger">{{$productSize}}</strong>
 														</td>
 														<td class="text-center border-bottom-0">
-															<strong class="text-danger">{{floatval($price)}} $</strong>
+															<strong class="text-danger">$ {{number_format($price ,2)}}</strong>
 														</td>
 														<td class="text-center border-bottom-0">
 															<strong class="text-danger">x {{$quantity}}</strong>
 														</td>
 														<td class="text-end border-bottom-0">
-															{{$price * $quantity}} $
+															$ {{number_format($price * $quantity, 2)}}
 														</td>
 													</tr>
 												@endforeach
@@ -268,33 +240,49 @@
 											<!---------------------Toal table --------------------------->
 											<tbody>
 													<tr>
-														<td class="text-black font-weight-bold border-bottom-0 "><strong>Subtotal</strong></td>
+														<td class="text-black font-weight-bold border-bottom-0 ">
+															<strong>Subtotal</strong>
+														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
-														<td class="text-black text-end border-bottom-0"><strong>{{$subtotal}} $</strong></td>
+														<td class="text-black text-end border-bottom-0">
+															<strong>$ {{number_format($subtotal, 2)}}</strong>
+														</td>
 													</tr>
 													<tr>
-														<td class="text-black font-weight-bold border-bottom-0"><strong>Discount</strong></td>
+														<td class="text-black font-weight-bold border-bottom-0">
+															<strong>Discount</strong>
+														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
-														<td class="text-black text-end font-weight-bold border-bottom-0"><strong>{{$discount}} $</strong></td>
+														<td class="text-black text-end font-weight-bold border-bottom-0">
+															<strong>$ {{number_format($discount, 2)}}</strong>
+														</td>
 													</tr>
 													<tr>
-														<td class="text-black font-weight-bold"><strong>Estimated Shipping</strong></td>
+														<td class="text-black font-weight-bold">
+															<strong>Deliver Fee</strong>
+														</td>
 														<td></td>
 														<td></td>
 														<td></td>
-														<td class="text-black text-end font-weight-bold"><strong>0 $</strong></td>
+														<td class="text-black text-end font-weight-bold">
+															<strong>$ {{$deliveryFee}}</strong>
+														</td>
 													</tr>
 													<tr>
-														<td class="text-black h6  border-bottom-0"><strong>Total</strong></td>
+														<td class="text-black h6  border-bottom-0">
+															<strong>Total Amount</strong>
+														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="text-danger text-end h5 border-bottom-0">
-															<strong>{{$total = $subtotal - $discount - $Shipping}} $</strong>
+															<strong>
+																$ {{$total  = number_format((($subtotal + $deliveryFee) - $discount) ,2)}}
+															</strong>
 														</td>
 													</tr>
 
@@ -315,7 +303,7 @@
 													checked
 												>
 												<label class="form-check-label" for="flexRadioDefault1">
-													<h3 class="h6 mb-0">
+													<h3 class="h6 mb-0 mt-1">
 														<a
 															class="d-block"
 															data-bs-toggle="collapse"
@@ -346,7 +334,7 @@
 													id="flexRadioDefault2"
 												>
 												<label class="form-check-label" for="flexRadioDefault2">
-													<h3 class="h6 mb-0">
+													<h3 class="h6 mb-0 mt-1">
 														<a
 															class="d-block"
 															data-bs-toggle="collapse"
@@ -403,4 +391,5 @@
 				<!---/// onclick="location.href='{{ url('thankyou') }}'" ///-->
 		    </div>
 		</div>
+
 @endsection()

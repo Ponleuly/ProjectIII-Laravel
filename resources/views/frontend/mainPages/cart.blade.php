@@ -193,7 +193,7 @@
 
 								<div class="col-md-3 d-grid">
 									<div class="row text-end">
-										<h5 class="text-dark">${{floatval($price)}} x {{$quantity}}</h5>
+										<h5 class="text-dark">${{$price}} x {{$quantity}}</h5>
 									</div>
 									<div class="row mt-auto justify-content-end">
 										<div class="col-md-6 d-grid">
@@ -285,10 +285,10 @@
 									<tbody>
 										<tr>
 											<td class="text-black font-weight-bold border-bottom-0">
-												<strong>Items</strong>
+												<strong>Subtotal</strong>
 											</td>
 											<td class="text-black text-end border-bottom-0">
-												<strong>{{$subtotal}} $</strong>
+												<strong>{{number_format($subtotal, 2)}} $</strong>
 											</td>
 										</tr>
 										<tr>
@@ -296,7 +296,7 @@
 												<strong>Discount</strong>
 											</td>
 											<td class="text-black text-end font-weight-bold border-bottom-1">
-												<strong>{{$discount}} $</strong>
+												<strong>{{number_format($discount, 2)}} $</strong>
 											</td>
 										</tr>
 										<tr>
@@ -304,7 +304,7 @@
 												<strong>Total</strong>
 											</td>
 											<td class="text-danger text-end h6 fw-bold border-bottom-0">
-												<strong>{{$total = $subtotal - $discount}} $</strong>
+												<strong>{{$total = number_format(($subtotal - $discount) ,2)}} $</strong>
 											</td>
 										</tr>
 									</tbody>
