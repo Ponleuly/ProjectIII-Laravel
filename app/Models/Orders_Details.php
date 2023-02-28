@@ -15,8 +15,17 @@ class Orders_Details extends Model
         'product_price',
         'product_quantity',
         'size_id',
+        'discount',
         'payment_method',
         'delivery_fee',
 
     ];
+    public function rela_product_order()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
+    public function rela_size_order()
+    {
+        return $this->belongsTo(Sizes::class, 'size_id');
+    }
 }

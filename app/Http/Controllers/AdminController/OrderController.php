@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customers;
+use App\Models\Invoices;
 use App\Models\Orders;
+use App\Models\Orders_Details;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -25,7 +28,34 @@ class OrderController extends Controller
             )
         );
     }
+    //======  Order Details =======//
+    public function order_details($id)
+    {
+        $order = Orders::where('id', $id)->first();
+        $customer = Customers::where('id', $order->customer_id)->first();
+        $orderDetails = Orders_Details::where('order_id', $id)->get();
+        $count = 1;
 
+        return view(
+            'adminfrontend.pages.orders.order_details',
+            compact(
+                'count',
+                'order',
+                'customer',
+                'orderDetails'
+            )
+        );
+    }
+
+    //============= Update invoice status ============//
+    public function order_status($orderId, $statuId)
+    {
+        $orderStatus = Orders::where('id', $orderId)->first();
+        $orderStatus['order_status'] = $statuId;
+        $orderStatus->update();
+        return redirect()->back()
+            ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
+    }
     /**
      * Show the form for creating a new resource.
      *

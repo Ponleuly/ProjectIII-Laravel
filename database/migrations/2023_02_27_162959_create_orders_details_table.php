@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedDecimal('product_price');
             $table->unsignedInteger('product_quantity');
             $table->unsignedInteger('size_id');
+            $table->unsignedDecimal('discount');
             $table->unsignedDecimal('delivery_fee');
             $table->string('payment_method');
             $table->timestamps();

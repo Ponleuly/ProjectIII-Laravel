@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('invoice_code');
+
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')
                 ->references('id')
@@ -23,6 +25,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('order_status');
             $table->timestamps();
         });
     }

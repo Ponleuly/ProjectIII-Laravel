@@ -12,4 +12,8 @@ class Orders_Statuses extends Model
     protected $fillable = [
         'status',
     ];
+    public function rela_order_status()
+    {
+        return $this->hasMany(Orders::class, 'order_status', 'id');
+    }
 }

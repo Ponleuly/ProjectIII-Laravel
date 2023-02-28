@@ -295,8 +295,15 @@
 											<td class="text-black font-weight-bold border-bottom-1">
 												<strong>Discount</strong>
 											</td>
-											<td class="text-black text-end font-weight-bold border-bottom-1">
-												<strong>{{number_format($discount, 2)}} $</strong>
+											<td class="text-black font-weight-bold d-flex justify-content-end">
+												<input
+													class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white"
+													name="discount"
+													value="$ {{number_format($discount, 2)}}"
+													aria-label=".form-control-sm example"
+													readonly
+													placeholder="$"
+												>
 											</td>
 										</tr>
 										<tr>

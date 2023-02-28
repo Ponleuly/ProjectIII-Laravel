@@ -14,4 +14,8 @@ class Sizes extends Model
     {
         return $this->hasMany(Products_Sizes::class, 'size_id', 'id'); // ('Model', 'foreign_key', 'local_key');
     }
+    public function rela_size_order()
+    {
+        return $this->hasMany(Orders_Details::class, 'size_id', 'id'); // ('Model', 'foreign_key', 'local_key');
+    }
 }

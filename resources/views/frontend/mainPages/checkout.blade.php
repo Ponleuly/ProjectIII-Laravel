@@ -148,25 +148,49 @@
 
 						<!------------------------ Your Cart --------------------------------->
 						<div class="col-md-6">
+							<div class="row mb-2">
+								<div class="col-md-12">
+									<div class="p-3 p-lg-4 border bg-white">
+										<h2 class="h3 mb-3 text-black">Coupon</h2>
+										<div class="input-group mb-2">
+											<input
+												type="text"
+												name="coupon"
+												class="form-control rounded-0"
+												id="coupon"
+												placeholder="Enter your promo code"
+												aria-label="nhập mã"
+												aria-describedby="button-addon2"
+											>
+											<button
+												class="btn btn-outline-secondary px-3 fw-semibold rounded-0"
+												type="button"
+												id="button-addon2"
+												>
+												Apply
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="row mb-5">
 								<div class="col-md-12">
 									<div class="p-3 p-lg-4 border bg-white">
-										<h2 class="h3 mb-1 text-black">Your Cart</h2>
+										<h2 class="h3 mb-3 text-black">Your Cart</h2>
 										<table class="table site-block-order-table mb-3">
 											<thead>
 												<th>Products</th>
 												<th class="text-center">Size</th>
 												<th class="text-center">Price</th>
 												<th class="text-center">Quantity</th>
-												<th class="text-end">Amount</th>
+												<th class="text-end" style="width: 100px">Amount</th>
 											</thead>
 											<!--------------------- Cart product table --------------->
 											<tbody>
 												@php
 													$subtotal = 0;
 													$total = 0;
-													$discount = 0;
-
+													$discount = 0; // Need to create discount method
 												@endphp
 												@foreach ($carts as $cart)
 													@php
@@ -251,19 +275,26 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="text-black font-weight-bold border-bottom-0">
+														<td class="text-black font-weight-bold border-bottom-0 d-flex justify-content-even">
 															<strong>Discount</strong>
 														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
-														<td class="text-black text-end font-weight-bold border-bottom-0">
-															<strong>$ {{number_format($discount, 2)}}</strong>
+														<td class="text-black font-weight-bold border-bottom-0 d-flex justify-content-end">
+															<input
+																class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white"
+																name="discount"
+																value="$ {{number_format($discount, 2)}}"
+																aria-label=".form-control-sm example"
+																readonly
+																placeholder="$"
+															>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-black font-weight-bold">
-															<strong>Deliver Fee</strong>
+															<strong>Delivery Fee</strong>
 														</td>
 														<td></td>
 														<td></td>

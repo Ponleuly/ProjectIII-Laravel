@@ -171,6 +171,7 @@ class CartController extends Controller
 
     public function place_order(Request $request)
     {
+
         $input = $request->all();
         //==== Store data to table customer =====//
         Customers::create($input);
@@ -179,23 +180,21 @@ class CartController extends Controller
             // Get customer id
             $customer = Customers::latest()->first();
             $customerId = $customer->id;
-            // Store data to table orders
-            Orders::create([
-                'customer_id' => $customerId,
-                'user_id' => Auth::user()->id,
-            ]);
+
             // Count order row
             $order_count = Orders::all()->count();
+            // Store data to table orders
+            Orders::create([
+                'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
+                'customer_id' => $customerId,
+                'user_id' => Auth::user()->id,
+                'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+            ]);
+
             // Get order id for the lastest order
             $order = Orders::latest()->first();
             $orderId = $order->id;
 
-            // Store data to table invoice
-            Invoices::create([
-                'invoice_code' => '#iv' . sprintf('%04d', $order_count),
-                'order_id' => $orderId,
-                'status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
-            ]);
             // Get data from Carts model
             $carts = Carts::where('user_id', Auth::user()->id)->get();
             foreach ($carts as $cart) {
@@ -206,6 +205,7 @@ class CartController extends Controller
                     'product_price' => $cart->rela_product_cart->product_saleprice,
                     'product_quantity' => $cart->product_quantity,
                     'size_id' => $cart->size_id,
+                    'discount' => floatval($request->discount),
                     'payment_method' => $request->payment,
                     'delivery_fee' => $request->delivery_fee,
                 ]);
@@ -216,22 +216,21 @@ class CartController extends Controller
             // Get customer id
             $customer = Customers::latest()->first();
             $customerId = $customer->id;
-            // Store data to table orders
-            Orders::create([
-                'customer_id' => $customerId,
-                'user_id' => 0,
-            ]);
+
             // Count order row
             $order_count = Orders::all()->count();
+            // Store data to table orders
+            Orders::create([
+                'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
+                'customer_id' => $customerId,
+                'user_id' => 0,
+                'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+            ]);
+
             // Get order id
             $order = Orders::latest()->first();
             $orderId = $order->id;
-            // Store data to table invoice
-            Invoices::create([
-                'invoice_code' => '#iv' . sprintf('%04d', $order_count),
-                'order_id' => $orderId,
-                'status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
-            ]);
+
             // Get data from Cart if customer not signin
             $carts = Cart::content();
             foreach ($carts as $cart) {
@@ -242,6 +241,7 @@ class CartController extends Controller
                     'product_price' => $cart->price,
                     'product_quantity' => $cart->qty,
                     'size_id' => $cart->options->size,
+                    'discount' => floatval($request->discount),
                     'payment_method' => $request->payment,
                     'delivery_fee' => $request->delivery_fee,
                 ]);
@@ -250,6 +250,7 @@ class CartController extends Controller
             Cart::destroy();
         }
         return redirect('thankyou');
+        //return dd($request->toArray());
     }
     /**
      * Show the form for editing the specified resource.

@@ -13,23 +13,32 @@
             @csrf <!-- to make form active -->
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
+                    <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
-                        <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-		            @endif
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                    <!---------------End Alert ------------------------>
 
-                    <h4 class="mb-2 text-black">Product Details</h4>
+                    <h4 class="mb-2 text-black">Orders List</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12 d-flex">
+                                <!--
                                 <a
                                     class="btn btn-outline-primary rounded-0"
                                     href="{{url('/admin/product-detail-add')}}"
                                     role="button">
                                     Add Product
                                 </a>
+                                -->
                                 <div class="input-group w-25 ms-auto">
                                     <input group="search" class="form-control rounded-0" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="search">
                                     <button class="btn btn-outline-primary rounded-0" group="button" id="search">Search</button>
@@ -43,6 +52,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ORDER DATE</th>
+                                    <th scope="col">INVOICE CODE</th>
                                     <th scope="col">CUSTOMER</th>
                                     <th scope="col">PHONE</th>
                                     <th scope="col">PAYMENT</th>
@@ -65,16 +75,18 @@
                                             $qty = $orderDetail->product_quantity;
                                             $total += $price * $qty;
                                         }
-                                        // Get invoice row by order_id
-                                        $invoice = Invoices::where('order_id', $order->id)->first();
+
                                          // Get delivery statuses
                                         $statuses = Orders_Statuses::orderBy('id')->get();
-                                        $status_name = Orders_Statuses::where('id', $invoice->status)->first();
+                                        $status_name = Orders_Statuses::where('id', $order->order_status)->first();
                                     @endphp
                                     <tr class="admin-table">
                                         <th scope="row">{{$count++}}</th>
                                         <td>
                                             {{date('Y-m-d - H:i', strtotime($order->created_at))}}
+                                        </td>
+                                        <td>
+                                            {{$order->invoice_code}}
                                         </td>
                                         <td>
                                             {{$order->rela_customer_order->c_name}}
@@ -92,10 +104,10 @@
                                             <button
                                                 type="button"
                                                 class="btn btn-sm py-1 px-2
-                                                    {{($invoice->status == 1)?  'btn-danger' : ''}}
-                                                    {{($invoice->status == 2)?  'btn-primary' : ''}}
-                                                    {{($invoice->status == 3)?  'btn-success' : ''}}
-                                                    {{($invoice->status == 4)?  'btn-warning' : ''}}
+                                                    {{($order->order_status == 1)?  'btn-danger' : ''}}
+                                                    {{($order->order_status == 2)?  'btn-primary' : ''}}
+                                                    {{($order->order_status == 3)?  'btn-success' : ''}}
+                                                    {{($order->order_status == 4)?  'btn-warning' : ''}}
                                                     "
                                                     style="width: 90px"
                                                 >
@@ -103,12 +115,15 @@
                                             </button>
                                         </td>
                                         <td class="text-center">
-                                            <select class="form-select form-select-sm pe-2" aria-label="Default select example">
+                                            <select
+                                                class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                >
                                                 @foreach ($statuses as $status)
-                                                        <option
+                                                    <option
                                                         value ="{{$status->id}}"
-                                                        onClick="window.location = '{{url('admin/delivery-list')}}'"
-                                                        {{($status->id == $invoice->status)? 'selected': ''}}
+                                                        {{($status->id == $order->order_status)? 'selected': ''}}
+                                                        onClick="window.location = '{{url('admin/order-status/'.$order->id .'/'.$status->id)}}'"
                                                         >
                                                         {{$status->status}}
                                                     </option>
@@ -118,7 +133,7 @@
                                         <td class="text-center">
                                             <a
                                                 class="btn btn-info py-1 px-2 btn-sm"
-                                                href="{{url('/admin/product-detail-view/')}}"
+                                                href="{{url('admin/order-details/'. $order->id)}}"
                                                 role="button"
                                                 >
                                                 Details

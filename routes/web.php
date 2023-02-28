@@ -160,10 +160,8 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(OrderController::class)->group(function () {
       Route::get('/order-list', 'order_list')->name('order-list');
-      Route::get('/order-add', 'order_add')->name('order-add');
-      Route::post('/order-add', 'order_store')->name('order-add');
-      Route::get('/order-edit/{id}', 'order_edit')->name('order-edit');
-      Route::put('/order-edit/{id}', 'order_update');
-      Route::get('/order-delete/{id}', 'order_delete');
+
+      Route::get('/order-details/{id}', 'order_details')->name('order-details');
+      Route::get('/order-status/{order_id}/{status_id}', 'order_status')->name('order_status');
    });
 });
