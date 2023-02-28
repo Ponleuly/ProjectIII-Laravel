@@ -15,7 +15,7 @@ class Orders_Details extends Model
         'product_price',
         'product_quantity',
         'size_id',
-        'payment',
+        'payment_method',
         'delivery_fee',
 
     ];

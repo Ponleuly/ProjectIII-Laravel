@@ -2,6 +2,8 @@
 	use App\Models\Products_Attributes;
 	use App\Models\Orders_Details;
 	use App\Models\Products;
+	use App\Models\Invoices;
+	use App\Models\Orders_Statuses;
 
 ?>
 @extends('adminfrontend.layouts.index')
@@ -63,7 +65,11 @@
                                             $qty = $orderDetail->product_quantity;
                                             $total += $price * $qty;
                                         }
-
+                                        // Get invoice row by order_id
+                                        $invoice = Invoices::where('order_id', $order->id)->first();
+                                         // Get delivery statuses
+                                        $statuses = Orders_Statuses::orderBy('id')->get();
+                                        $status_name = Orders_Statuses::where('id', $invoice->status)->first();
                                     @endphp
                                     <tr class="admin-table">
                                         <th scope="row">{{$count++}}</th>
@@ -77,22 +83,27 @@
                                             {{$order->rela_customer_order->c_phone}}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{$paymentMethod->payment}}
+                                            {{$paymentMethod->payment_method}}
                                         </td>
                                         <td>
                                             $ {{number_format($total + $fee, 2)}}
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-success btn-sm py-1 px-2">
-                                                Pending
+                                                {{$status_name->status}}
                                             </button>
                                         </td>
                                         <td>
-                                            <select class="form-select form-select-sm pe-0" aria-label="Default select example">
-                                                <option value ="1" onClick="window.location = '{{url('admin/delivery-list')}}'" selected>Pending</option>
-                                                <option value="2"  onClick="window.location = '{{url('admin/delivery-list')}}'">Processing</option>
-                                                <option value="2"  onClick="window.location = '{{url('admin/delivery-list')}}'">Delivered</option>
-                                                <option value="3" onClick="window.location = '{{url('admin/delivery-list')}}'">Cancel</option>
+                                            <select class="form-select form-select-sm pe-1" aria-label="Default select example">
+                                                @foreach ($statuses as $status)
+                                                        <option
+                                                        value ="{{$status->id}}"
+                                                        onClick="window.location = '{{url('admin/delivery-list')}}'"
+                                                        {{($status->id == $invoice->status)? 'selected': ''}}
+                                                        >
+                                                        {{$status->status}}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </td>
                                         <td>

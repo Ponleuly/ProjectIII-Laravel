@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 use App\Models\Orders_Details;
 use App\Http\Controllers\Controller;
+use App\Models\Invoices;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -183,9 +184,18 @@ class CartController extends Controller
                 'customer_id' => $customerId,
                 'user_id' => Auth::user()->id,
             ]);
-            // Get order id
+            // Count order row
+            $order_count = Orders::all()->count();
+            // Get order id for the lastest order
             $order = Orders::latest()->first();
             $orderId = $order->id;
+
+            // Store data to table invoice
+            Invoices::create([
+                'invoice_code' => '#iv' . sprintf('%04d', $order_count),
+                'order_id' => $orderId,
+                'status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+            ]);
             // Get data from Carts model
             $carts = Carts::where('user_id', Auth::user()->id)->get();
             foreach ($carts as $cart) {
@@ -196,7 +206,7 @@ class CartController extends Controller
                     'product_price' => $cart->rela_product_cart->product_saleprice,
                     'product_quantity' => $cart->product_quantity,
                     'size_id' => $cart->size_id,
-                    'payment' => $request->payment,
+                    'payment_method' => $request->payment,
                     'delivery_fee' => $request->delivery_fee,
                 ]);
             }
@@ -211,11 +221,18 @@ class CartController extends Controller
                 'customer_id' => $customerId,
                 'user_id' => 0,
             ]);
+            // Count order row
+            $order_count = Orders::all()->count();
             // Get order id
             $order = Orders::latest()->first();
             $orderId = $order->id;
+            // Store data to table invoice
+            Invoices::create([
+                'invoice_code' => '#iv' . sprintf('%04d', $order_count),
+                'order_id' => $orderId,
+                'status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+            ]);
             // Get data from Cart if customer not signin
-
             $carts = Cart::content();
             foreach ($carts as $cart) {
                 // Store data to table orderDetails
@@ -225,7 +242,7 @@ class CartController extends Controller
                     'product_price' => $cart->price,
                     'product_quantity' => $cart->qty,
                     'size_id' => $cart->options->size,
-                    'payment' => $request->payment,
+                    'payment_method' => $request->payment,
                     'delivery_fee' => $request->delivery_fee,
                 ]);
             }

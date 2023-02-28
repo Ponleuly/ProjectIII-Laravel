@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders_details', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('invoice_code');
 
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')
@@ -22,13 +23,7 @@ return new class extends Migration
                 ->on('orders')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->unsignedInteger('product_id');
-            $table->unsignedDecimal('product_price');
-            $table->unsignedInteger('product_quantity');
-            $table->unsignedInteger('size_id');
-            $table->unsignedDecimal('delivery_fee');
-            $table->string('payment_method');
+            $table->unsignedInteger('status');
             $table->timestamps();
         });
     }
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders_details');
+        Schema::dropIfExists('invoices');
     }
 };
