@@ -47,9 +47,9 @@
                                     <th scope="col">PHONE</th>
                                     <th scope="col">PAYMENT</th>
                                     <th scope="col">TOTAL</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">ACTION</th>
-                                    <th scope="col">INVOICE</th>
+                                    <th scope="col" class="text-center">STATUS</th>
+                                    <th scope="col" class="text-center">ACTION</th>
+                                    <th scope="col" class="text-center">INVOICE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,13 +88,22 @@
                                         <td>
                                             $ {{number_format($total + $fee, 2)}}
                                         </td>
-                                        <td>
-                                            <button type="button" class="btn btn-success btn-sm py-1 px-2">
+                                        <td class="text-center">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm py-1 px-2
+                                                    {{($invoice->status == 1)?  'btn-danger' : ''}}
+                                                    {{($invoice->status == 2)?  'btn-primary' : ''}}
+                                                    {{($invoice->status == 3)?  'btn-success' : ''}}
+                                                    {{($invoice->status == 4)?  'btn-warning' : ''}}
+                                                    "
+                                                    style="width: 90px"
+                                                >
                                                 {{$status_name->status}}
                                             </button>
                                         </td>
-                                        <td>
-                                            <select class="form-select form-select-sm pe-1" aria-label="Default select example">
+                                        <td class="text-center">
+                                            <select class="form-select form-select-sm pe-2" aria-label="Default select example">
                                                 @foreach ($statuses as $status)
                                                         <option
                                                         value ="{{$status->id}}"
@@ -106,7 +115,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a
                                                 class="btn btn-info py-1 px-2 btn-sm"
                                                 href="{{url('/admin/product-detail-view/')}}"
