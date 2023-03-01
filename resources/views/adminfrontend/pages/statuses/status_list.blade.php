@@ -49,7 +49,7 @@
                                     <tr>
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$status->status}}</td>
-                                        <td>{{/*$status->created_at->diffForHumans()*/ 'null'}}</td>
+                                        <td>{{$status->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('admin/order-status-edit/'.$status->id)}}" role="button">Edit</a>
                                             <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('admin/order-status-delete/'.$status->id)}}" role="button">Delete</a>
