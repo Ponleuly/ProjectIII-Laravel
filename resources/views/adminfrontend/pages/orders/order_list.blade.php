@@ -123,7 +123,7 @@
                                                     <option
                                                         value ="{{$status->id}}"
                                                         {{($status->id == $order->order_status)? 'selected': ''}}
-                                                        onClick="window.location = '{{url('admin/order-status/'.$order->id .'/'.$status->id)}}'"
+                                                        onClick="window.location = '{{url('admin/order-status-action/'.$order->id .'/'.$status->id)}}'"
                                                         >
                                                         {{$status->status}}
                                                     </option>

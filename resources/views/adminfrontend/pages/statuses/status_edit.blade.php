@@ -1,8 +1,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/order-status-add')}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('/admin/order-status-edit/'.$order_status_option->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
+            @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-md-6 my-3 mb-md-0">
                     <!--------------- Alert ------------------------>
@@ -30,6 +31,7 @@
                                             class="form-control rounded-0 fw-500 mb-2 text-capitalize"
                                             id="status"
                                             name="status"
+                                            value="{{$order_status_option->status}}"
                                             placeholder="Status..."
                                         >
 
@@ -45,7 +47,7 @@
                                                 class="btn btn-primary rounded-0 ms-auto mt-3"
                                                 type="submit"
                                                 >
-                                                Add Status
+                                                Update Status
                                             </button>
                                         </div>
                                     </div>

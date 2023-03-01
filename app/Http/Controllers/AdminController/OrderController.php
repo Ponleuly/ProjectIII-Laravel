@@ -29,6 +29,7 @@ class OrderController extends Controller
             )
         );
     }
+
     //======  Order Details =======//
     public function order_details($id)
     {
@@ -48,15 +49,7 @@ class OrderController extends Controller
         );
     }
 
-    //============= Update invoice status ============//
-    public function order_status($orderId, $statuId)
-    {
-        $orderStatus = Orders::where('id', $orderId)->first();
-        $orderStatus['order_status'] = $statuId;
-        $orderStatus->update();
-        return redirect()->back()
-            ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
-    }
+
     /**
      * Show the form for creating a new resource.
      *

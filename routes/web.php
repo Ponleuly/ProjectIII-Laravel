@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\UserController\FrontendController;
 use App\Http\Controllers\AdminController\DeliveryController;
 use App\Http\Controllers\AdminController\AuthAdminController;
+use App\Http\Controllers\AdminController\OrderStatusController;
 use App\Http\Controllers\AdminController\ProductSizeController;
 use App\Http\Controllers\AdminController\ProductColorController;
 use App\Http\Controllers\AdminController\ProductgroupController;
@@ -160,10 +161,20 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(OrderController::class)->group(function () {
       Route::get('/order-list', 'order_list')->name('order-list');
-
       Route::get('/order-details/{id}', 'order_details')->name('order-details');
-      Route::get('/order-status/{order_id}/{status_id}', 'order_status')->name('order_status');
       Route::get('/order-invoice/{id}', 'order_invoice')->name('order-invoice');
       Route::get('/download-invoice/{id}', 'download_invoice')->name('download-invoice');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(OrderStatusController::class)->group(function () {
+      Route::get('/order-status-action/{order_id}/{status_id}', 'order_status_action')->name('order-status-action');
+      Route::get('order-status-option', 'order_status_option')->name('order-status-option');
+
+      Route::get('/order-status-add', 'order_status_add')->name('order-status-add');
+      Route::post('/order-status-add', 'order_status_store')->name('order-status-add');
+      Route::get('/order-status-edit/{id}', 'order_status_edit')->name('order-status-edit');
+      Route::put('/order-status-edit/{id}', 'order_status_update');
+      Route::get('/order-status-delete/{id}', 'order_status_delete');
    });
 });
