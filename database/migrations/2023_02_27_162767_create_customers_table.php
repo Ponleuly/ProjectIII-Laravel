@@ -20,6 +20,12 @@ return new class extends Migration
             $table->string('c_email');
             $table->string('c_address');
             $table->string('c_note')->nullable();
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

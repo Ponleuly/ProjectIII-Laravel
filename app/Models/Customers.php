@@ -15,10 +15,11 @@ class Customers extends Model
         'c_email',
         'c_address',
         'c_note',
+        'order_id',
 
     ];
     public function rela_customer_order()
     {
-        return $this->hasMany(Orders::class, 'id');
+        return $this->belongsTo(Orders::class, 'order_id');
     }
 }

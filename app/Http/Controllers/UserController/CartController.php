@@ -171,29 +171,25 @@ class CartController extends Controller
 
     public function place_order(Request $request)
     {
-
-        $input = $request->all();
-        //==== Store data to table customer =====//
-        Customers::create($input);
-
         if (Auth::check() && Auth::user()->role == 1) {
-            // Get customer id
-            $customer = Customers::latest()->first();
-            $customerId = $customer->id;
 
             // Count order row
             $order_count = Orders::all()->count();
             // Store data to table orders
             Orders::create([
                 'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                'customer_id' => $customerId,
-                'user_id' => Auth::user()->id,
+                //'customer_id' => $customerId,
                 'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+                'user_id' => Auth::user()->id,
             ]);
-
-            // Get order id for the lastest order
+            // Get customer id
             $order = Orders::latest()->first();
             $orderId = $order->id;
+
+            $input = $request->all();
+            $input['order_id'] = $orderId;
+            //==== Store data to table customer =====//
+            Customers::create($input);
 
             // Get data from Carts model
             $carts = Carts::where('user_id', Auth::user()->id)->get();
@@ -213,24 +209,24 @@ class CartController extends Controller
             // Remove all products in carts after user completed order
             Carts::where('user_id', Auth::user()->id)->delete();
         } else {
-            // Get customer id
-            $customer = Customers::latest()->first();
-            $customerId = $customer->id;
-
             // Count order row
             $order_count = Orders::all()->count();
             // Store data to table orders
             Orders::create([
                 'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                'customer_id' => $customerId,
-                'user_id' => 0,
+                //'customer_id' => $customerId,
                 'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+                'user_id' => 0,
             ]);
 
             // Get order id
             $order = Orders::latest()->first();
             $orderId = $order->id;
 
+            //==== Store data to table customer =====//
+            $input = $request->all();
+            $input['order_id'] = $orderId;
+            Customers::create($input);
             // Get data from Cart if customer not signin
             $carts = Cart::content();
             foreach ($carts as $cart) {

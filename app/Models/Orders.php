@@ -11,14 +11,17 @@ class Orders extends Model
     protected $table = 'orders';
     protected $fillable = [
         'invoice_code',
-        'customer_id',
-        'user_id',
         'order_status',
+        'user_id',
 
     ];
+    public function rela_order_detail()
+    {
+        return $this->hasOne(Orders_Details::class, 'id');
+    }
     public function rela_customer_order()
     {
-        return $this->belongsTo(Customers::class, 'customer_id');
+        return $this->hasOne(Customers::class, 'id');
     }
     public function rela_order_status()
     {

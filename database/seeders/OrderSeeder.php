@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class OrderSeeder extends Seeder
 {
@@ -14,6 +17,15 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i = 1; $i <= 50; $i++) {
+            DB::table('orders')->insert([
+                'invoice_code' => '#iv' . sprintf('%04d', $i),
+                'user_id' => 0,
+                'order_status' => rand(1, 4),
+                'created_at' => Carbon::now()
+
+                //'customer_id ' => Str::random(10) . '@gmail.com',
+            ]);
+        }
     }
 }

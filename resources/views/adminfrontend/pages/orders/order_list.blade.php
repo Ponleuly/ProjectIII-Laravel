@@ -4,6 +4,7 @@
 	use App\Models\Products;
 	use App\Models\Invoices;
 	use App\Models\Orders_Statuses;
+	use App\Models\Customers;
 
 ?>
 @extends('adminfrontend.layouts.index')
@@ -65,9 +66,9 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                     @php
-                                        $paymentMethod = Orders_Details::where('order_id', $order->id)->first();
-                                        $fee = $paymentMethod->delivery_fee;
-
+                                        //$paymentMethod = Orders_Details::where('order_id', $order->id)->first();
+                                        $fee = $order->rela_order_detail->delivery_fee;
+                                        //$fee = 0;
                                         $total = 0;
                                         $orderDetails = Orders_Details::where('order_id', $order->id)->get();
                                         foreach ($orderDetails as  $orderDetail) {
@@ -83,7 +84,7 @@
                                     <tr class="admin-table">
                                         <th scope="row">{{$count++}}</th>
                                         <td>
-                                            {{date('Y-m-d - H:i', strtotime($order->created_at))}}
+                                            {{date('Y-m-d  H:i', strtotime($order->created_at))}}
                                         </td>
                                         <td>
                                             {{$order->invoice_code}}
@@ -95,8 +96,7 @@
                                             {{$order->rela_customer_order->c_phone}}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{$paymentMethod->payment_method}}
-                                        </td>
+                                            {{$order->rela_order_detail->payment_method}}
                                         <td>
                                             $ {{number_format($total + $fee, 2)}}
                                         </td>

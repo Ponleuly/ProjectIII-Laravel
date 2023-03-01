@@ -20,6 +20,10 @@ class Orders_Details extends Model
         'delivery_fee',
 
     ];
+    public function rela_order_detail()
+    {
+        return $this->belongsTo(Orders::class, 'order_id');
+    }
     public function rela_product_order()
     {
         return $this->belongsTo(Products::class, 'product_id');

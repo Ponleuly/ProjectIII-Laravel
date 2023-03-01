@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function order_list()
     {
-        $orders = Orders::orderBy('id')->get();
+        $orders = Orders::orderByDesc('id')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.orders.order_list',
@@ -34,7 +34,7 @@ class OrderController extends Controller
     public function order_details($id)
     {
         $order = Orders::where('id', $id)->first();
-        $customer = Customers::where('id', $order->customer_id)->first();
+        $customer = Customers::where('id', $order->id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
 
@@ -75,7 +75,7 @@ class OrderController extends Controller
     public function download_invoice($id)
     {
         $order = Orders::where('id', $id)->first();
-        $customer = Customers::where('id', $order->customer_id)->first();
+        $customer = Customers::where('id', $order->id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
         $data = [
