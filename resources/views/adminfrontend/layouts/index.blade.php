@@ -9,7 +9,7 @@
         href="{{url('frontend/assets/images/favicon.svg')}}"
         type="image/x-icon"
         />
-        <title>Mot Buoc Admin</title>
+        <title>15Steps</title>
 
         <!-- ========== All CSS files linkup ========= -->
         <link rel="stylesheet" href="{{url('frontend/assets/css/bootstrap.min.css')}}" />

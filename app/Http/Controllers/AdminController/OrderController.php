@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\Controller;
-use App\Models\Customers;
-use App\Models\Invoices;
 use App\Models\Orders;
-use App\Models\Orders_Details;
+use App\Models\Invoices;
+use App\Models\Customers;
 use Illuminate\Http\Request;
+use App\Models\Orders_Details;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -61,10 +62,40 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function order_invoice($id)
     {
-        //
+        $order = Orders::where('id', $id)->first();
+        $customer = Customers::where('id', $order->customer_id)->first();
+        $orderDetails = Orders_Details::where('order_id', $id)->get();
+        $count = 1;
+
+        return view(
+            'adminfrontend.pages.orders.order_invoice',
+            compact(
+                'count',
+                'order',
+                'customer',
+                'orderDetails'
+            )
+        );
     }
+    public function download_invoice($id)
+    {
+        $order = Orders::where('id', $id)->first();
+        $customer = Customers::where('id', $order->customer_id)->first();
+        $orderDetails = Orders_Details::where('order_id', $id)->get();
+        $count = 1;
+        $data = [
+            'count' => $count,
+            'order' =>  $order,
+            'customer' => $customer,
+            'orderDetails' => $orderDetails,
+        ];
+        $pdf = Pdf::loadView('adminfrontend.pages.orders.order_invoice', $data);
+
+        return $pdf->download($order->invoice_code . '.pdf');
+    }
+
 
     /**
      * Store a newly created resource in storage.

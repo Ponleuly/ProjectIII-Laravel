@@ -163,5 +163,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 
       Route::get('/order-details/{id}', 'order_details')->name('order-details');
       Route::get('/order-status/{order_id}/{status_id}', 'order_status')->name('order_status');
+      Route::get('/order-invoice/{id}', 'order_invoice')->name('order-invoice');
+      Route::get('/download-invoice/{id}', 'download_invoice')->name('download-invoice');
    });
 });

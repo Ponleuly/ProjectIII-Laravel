@@ -156,8 +156,9 @@
                             <a href="{{url('admin/order-list')}}">Order list</a>
                         </li>
                         <li>
-                            <a href="">Order invoices</a>
+                            <a href="{{url('admin/order-status-option')}}">Order status option</a>
                         </li>
+
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children">
