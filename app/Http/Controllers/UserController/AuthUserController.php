@@ -19,7 +19,7 @@ class AuthUserController extends Controller
     {
         $input = $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:15', 'regex:/(01)[0-9]{9}/'],
+            'phone' => ['required', 'string', 'max:20', 'regex:/(01)[0-9]{9}/'], // verify only number is acceptable
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],

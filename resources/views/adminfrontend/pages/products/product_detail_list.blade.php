@@ -44,7 +44,7 @@
                                     <th scope="col">SUBCATEGORY</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">DATE</th>
-                                    <th scope="col" class="col-2">ACTIONS</th>
+                                    <th scope="col" class="text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,30 +73,37 @@
                                         </td>
                                         <td>${{$product->product_saleprice}}</td>
                                         <td>{{$product->created_at->diffForHumans()}}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a
-                                                class="btn btn-info py-1 px-2 btn-sm"
-                                                style="font-size: 10px"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('/admin/product-detail-view/'.$product->product_code)}}"
                                                 role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="View Details"
                                                 >
-                                                View
+                                                <span class="material-icons-round" style="font-size: 16px">visibility</span>
                                             </a>
                                             <a
-                                                class="btn btn-primary py-1 px-2 btn-sm"
-                                                style="font-size: 10px"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 edit-btn"
                                                 href="{{url('/admin/product-detail-edit/'.$product->id)}}"
                                                 role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Edit Product"
                                                 >
-                                                Edit
+                                                <span class="material-icons-round" style="font-size: 16px">edit</span>
                                             </a>
+
                                             <a
-                                                class="btn btn-danger py-1 px-2 btn-sm"
-                                                style="font-size: 10px"
-                                                href="{{url('/admin/product-detail-delete/'.$product->id)}}"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
+                                                href="{{url('/admin/product-detail-edit/'.$product->id)}}"
                                                 role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Delete Product"
                                                 >
-                                                Delete
+                                                <span class="material-icons-round" style="font-size: 16px">delete</span>
                                             </a>
                                         </td>
                                     </tr>

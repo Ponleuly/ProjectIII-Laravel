@@ -15,7 +15,7 @@ class ProductSizeController extends Controller
      */
     public function product_size_list()
     {
-        $sizes = Sizes::orderBy('size_number')->get();
+        $sizes = Sizes::orderBy('size_number')->paginate(6);
         $count = 1;
         return view(
             '

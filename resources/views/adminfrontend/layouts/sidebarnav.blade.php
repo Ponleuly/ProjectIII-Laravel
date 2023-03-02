@@ -42,7 +42,7 @@
                                 href="{{url('admin/product-detail-list')}}"
                                 class="{{Request::is('admin/product-detail-list')? 'active':''}}"
                                 >
-                                Product list
+                                Product List
                             </a>
                         </li>
                         <li>
@@ -50,7 +50,7 @@
                                 href="{{url('admin/product-detail-add')}}"
                                 class="{{Request::is('admin/product-detail-add')? 'active':''}}"
                                 >
-                                Product add
+                                Product Add
                             </a>
                         </li>
                         <li>
@@ -58,7 +58,7 @@
                                 href="{{url('admin/product-group-list')}}"
                                 class="{{Request::is('admin/product-group-list')? 'active':''}}"
                                 >
-                                Product group list
+                                Product Group List
                             </a>
                         </li>
                         <li>
@@ -66,7 +66,7 @@
                                 href="{{url('admin/product-group-add')}}"
                                 class="{{Request::is('admin/product-group-add')? 'active':''}}"
                                 >
-                                Product group add
+                                Product Group Add
                             </a>
                         </li>
                         <li>
@@ -74,7 +74,7 @@
                                 href="{{url('admin/product-size-list')}}"
                                 class="{{Request::is('admin/product-size-list')? 'active':''}}"
                                 >
-                                Product size list
+                                Product Size List
                             </a>
                         </li>
                         <li>
@@ -82,7 +82,7 @@
                                 href="{{url('admin/product-size-add')}}"
                                 class="{{Request::is('admin/product-size-add')? 'active':''}}"
                                 >
-                                Product size add
+                                Product Size Add
                             </a>
                         </li>
                         <li>
@@ -90,7 +90,7 @@
                                 href="{{url('admin/delivery-list')}}"
                                 class="{{Request::is('admin/delivery-list')? 'active':''}}"
                                 >
-                                Delivery list
+                                Delivery List
                             </a>
                         </li>
                         <li>
@@ -98,12 +98,15 @@
                                 href="{{url('admin/delivery-add')}}"
                                 class="{{Request::is('admin/delivery-add')? 'active':''}}"
                                 >
-                                Delivery add
+                                Delivery Add
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-has-children {{Request::is('admin/product-category*')? 'active':''}}">
+                <li
+                    class="nav-item nav-item-has-children
+                    {{Request::is('admin/product-category*')? 'active':''}}"
+                    >
                     <a
                         href="#0"
                         class="collapsed"
@@ -153,10 +156,10 @@
                     </a>
                     <ul id="ddmenu_3" class="collapse dropdown-nav">
                         <li>
-                            <a href="{{url('admin/order-list')}}">Order list</a>
+                            <a href="{{url('admin/order-list')}}">Order List</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/order-status-option')}}">Order status option</a>
+                            <a href="{{url('admin/order-status-option')}}">Order Status Option</a>
                         </li>
 
                     </ul>
@@ -178,21 +181,58 @@
                     </a>
                     <ul id="ddmenu_4" class="collapse dropdown-nav">
                         <li>
-                            <a href="signin.html">Coupon list</a>
+                            <a
+                                href="{{url('admin/coupon-list')}}"
+                                class="{{Request::is('admin/coupon-list')? 'active':''}}"
+                                >
+                                Coupon List
+                            </a>
                         </li>
                         <li>
-                            <a href="signup.html">Coupon add</a>
+                            <a href="{{url('admin/coupon-add')}}"
+                                class="{{Request::is('admin/coupon-add')? 'active':''}}"
+                                >Coupon Add
+                            </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#0">
+                 <li
+                    class="nav-item nav-item-has-children
+                    {{Request::is('admin/customer*')? 'active':''}}"
+                    >
+                    <a
+                        href="#0"
+                        class="collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#ddmenu_5"
+                        aria-controls="ddmenu_5"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
                         <span class="icon">
                             <span class="material-icons-round">group</span>
                         </span>
                         <span class="text"><strong>Customers</strong></span>
                     </a>
+                    <ul id="ddmenu_5" class="collapse dropdown-nav">
+                        <li>
+                            <a
+                                href="{{url('admin/customer-member-list')}}"
+                                class="{{Request::is('admin/customer-member-list')? 'active':''}}"
+                                >
+                                Members List
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{url('admin/customer-list')}}"
+                                class="{{Request::is('admin/customer-list')? 'active':''}}"
+                                >
+                                Customers List</a>
+                        </li>
+                    </ul>
                 </li>
+
                 <span class="divider"><hr/></span>
                 <li class="nav-item nav-item-has-children">
                     <a

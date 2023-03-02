@@ -8,10 +8,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController\CartController;
 use App\Http\Controllers\UserController\LikeController;
 use App\Http\Controllers\AdminController\OrderController;
+use App\Http\Controllers\AdminController\CouponController;
 use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
 use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\UserController\FrontendController;
+use App\Http\Controllers\AdminController\CustomerController;
 use App\Http\Controllers\AdminController\DeliveryController;
 use App\Http\Controllers\AdminController\AuthAdminController;
 use App\Http\Controllers\AdminController\OrderStatusController;
@@ -170,11 +172,21 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(OrderStatusController::class)->group(function () {
       Route::get('/order-status-action/{order_id}/{status_id}', 'order_status_action')->name('order-status-action');
       Route::get('order-status-option', 'order_status_option')->name('order-status-option');
-
-      Route::get('/order-status-add', 'order_status_add')->name('order-status-add');
-      Route::post('/order-status-add', 'order_status_store')->name('order-status-add');
-      Route::get('/order-status-edit/{id}', 'order_status_edit')->name('order-status-edit');
-      Route::put('/order-status-edit/{id}', 'order_status_update');
-      Route::get('/order-status-delete/{id}', 'order_status_delete');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(CustomerController::class)->group(function () {
+      Route::get('/customer-list', 'customer_list')->name('customer-list');
+      Route::get('/customer-member-list', 'customer_member_list')->name('customer-member-list');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(CouponController::class)->group(function () {
+      Route::get('/coupon-list', 'coupon_list')->name('coupon-list');
+      Route::get('/coupon-add', 'coupon_add')->name('coupon-add');
+      Route::post('/coupon-add', 'coupon_store')->name('coupon-add');
+      Route::get('/coupon-edit/{id}', 'coupon_edit')->name('coupon-edit');
+      Route::put('/coupon-edit/{id}', 'coupon_update');
+      Route::get('/coupon-delete/{id}', 'coupon_delete');
    });
 });

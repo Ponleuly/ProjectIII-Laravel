@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -67,6 +68,7 @@ class UserSeeder extends Seeder
                 'role' => 1,
                 'created_at' => Carbon::now(),
             ],
+
             [
                 'id' => 6,
                 'name' => 'User4',
@@ -77,36 +79,22 @@ class UserSeeder extends Seeder
                 'role' => 1,
                 'created_at' => Carbon::now(),
             ],
-            [
-                'id' => 7,
-                'name' => 'User5',
-                'phone' => '02437347947',
-                'email' => 'user5@gmail.com',
-                'password' => bcrypt('12345678'),
-                'address' => 'So 23 Ta Quang Buu, Bach Khoa, Hai Ba Trung, Ha Noi',
-                'role' => 1,
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'id' => 8,
-                'name' => 'User6',
-                'phone' => '02437347948',
-                'email' => 'user6@gmail.com',
-                'password' => bcrypt('12345678'),
-                'address' => 'Tang 10, 24 Hoang Quoc Viet, Nghia Do, Quan Cau Giay, Ha Noi',
-                'role' => 1,
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'id' => 9,
-                'name' => 'User7',
-                'phone' => '02437347949',
-                'email' => 'user7@gmail.com',
-                'password' => bcrypt('12345678'),
-                'address' => 'So 23 Ta Quang Buu, Bach Khoa, Hai Ba Trung, Ha Noi',
-                'role' => 1,
-                'created_at' => Carbon::now(),
-            ],
+
         ]);
+
+        for ($i = 1; $i <= 50; $i++) {
+            DB::table('users')->insert([
+                'name' => fake()->name(),
+                'phone' => fake()->phoneNumber(),
+                'email' => Str::random(10) . '@gmail.com',
+                'password' => bcrypt('12345678'),
+                'address' => fake()->address(),
+                'role' => 1,
+                'created_at' => Carbon::now(),
+                //'customer_id ' => Str::random(10) . '@gmail.com',
+                //'email' => fake()->unique()->safeEmail(),
+
+            ]);
+        }
     }
 }

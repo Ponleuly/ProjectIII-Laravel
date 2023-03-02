@@ -4959,3 +4959,38 @@ tr.admin-table {
 .icon-align {
   vertical-align: middle;
 }
+a.edit-btn {
+  border: 1px solid #198754;
+  background: #198754;
+}
+a.edit-btn:hover{
+  background: #fff;
+}
+
+a.edit-btn:hover span {
+  color: #198754;
+}
+a.delete-btn {
+  border: 1px solid #dc3545;
+  background: #dc3545;
+}
+
+a.delete-btn:hover {
+  background: #fff;
+}
+
+a.delete-btn:hover span {
+  color: #dc3545;
+}
+a.view-btn {
+  border: 1px solid #087990;
+  background: #087990;
+}
+
+a.view-btn:hover {
+  background: #fff;
+}
+
+a.view-btn:hover span {
+  color: #087990;
+}
