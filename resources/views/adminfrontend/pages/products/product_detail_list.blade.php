@@ -103,6 +103,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-end">
+                            <!--- To show data by pagination --->
+                            {{$products->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
