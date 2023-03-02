@@ -29,7 +29,7 @@ use App\Models\Products_Attributes;
                 <div class="mt-3 p-3 p-lg-4 border bg-white">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="bg-primary text-light ">
                                 <th scope="col">#</th>
                                 <th scope="col">NAME</th>
                                 <th scope="col">PHONE</th>

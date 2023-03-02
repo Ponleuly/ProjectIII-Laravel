@@ -30,7 +30,7 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="bg-primary text-light text-center">
                                     <th scope="col">#</th>
                                     <th scope="col">PRODUCT GROUP</th>
                                     <th scope="col">CATEGORY</th>
@@ -40,7 +40,7 @@
                             </thead>
                             <tbody>
                                 @foreach($groups as $row)
-                                    <tr>
+                                    <tr class="text-center">
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$row->group_name}}</td>
                                         <td>

@@ -27,7 +27,7 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="bg-primary text-light text-center">
                                     <th scope="col">#</th>
                                     <th scope="col">PRODUCT SIZE</th>
                                     <th scope="col">DATE</th>
@@ -36,7 +36,7 @@
                             </thead>
                             <tbody>
                                 @foreach($sizes as $row)
-                                    <tr>
+                                    <tr class="text-center">
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$row->size_number}}</td>
                                         <td>{{$row->created_at->diffForHumans()}}</td>

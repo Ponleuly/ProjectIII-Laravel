@@ -19,7 +19,7 @@
                     @endif
                     <!---------------End Alert ------------------------>
 
-                    <h4 class="mb-2 text-black">Add Coupon</h4>
+                    <h4 class="mb-2 text-black">Edit Coupon</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-6">
@@ -44,7 +44,7 @@
                                             class="form-control rounded-0 fw-500 mb-2"
                                             id="campaign_code"
                                             name="code"
-                                            value="{{$coupon->percentage}}"
+                                            value="{{$coupon->code}}"
                                             placeholder="Campaign code"
                                             required
                                         >

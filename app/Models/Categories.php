@@ -18,4 +18,8 @@ class Categories extends Model
     {
         return $this->hasMany(Categories_Groups::class, 'id');
     }
+    public function rela_category_subcategory()
+    {
+        return $this->hasMany(Categories_Subcategories::class, 'id');
+    }
 }

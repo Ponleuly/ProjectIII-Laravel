@@ -127,7 +127,7 @@
                                 href="{{url('admin/product-category-list')}}"
                                 class="{{Request::is('admin/product-category-list')? 'active':''}}"
                                 >
-                                Category list
+                                Category List
                             </a>
                         </li>
                         <li>
@@ -135,7 +135,14 @@
                                 href="{{url('admin/product-category-add')}}"
                                 class="{{Request::is('admin/product-category-add')? 'active':''}}"
                                 >
-                                Category add</a>
+                                Category Add</a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{url('admin/product-category-sub-list')}}"
+                                class="{{Request::is('admin/product-category-sub-list')? 'active':''}}"
+                                >
+                                Subcategory List</a>
                         </li>
                     </ul>
                 </li>

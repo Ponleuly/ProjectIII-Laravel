@@ -121,6 +121,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(ProductCategoryController::class)->group(function () {
       Route::get('/product-category-list', 'product_category_list')->name('product-category-list');
+      Route::get('/product-category-sub-list', 'product_subcategory_list')->name('product-category-sub-list');
       Route::get('/product-category-view/{id}', 'product_category_view')->name('product-category-view');
       Route::get('/product-category-add', 'product_category_add')->name('product-category-add');
       Route::post('/product-category-add', 'product_category_store')->name('product-category-add');
@@ -183,6 +184,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(CouponController::class)->group(function () {
       Route::get('/coupon-list', 'coupon_list')->name('coupon-list');
+      Route::get('/coupon-view/{id}', 'coupon_view')->name('coupon-view');
       Route::get('/coupon-add', 'coupon_add')->name('coupon-add');
       Route::post('/coupon-add', 'coupon_store')->name('coupon-add');
       Route::get('/coupon-edit/{id}', 'coupon_edit')->name('coupon-edit');

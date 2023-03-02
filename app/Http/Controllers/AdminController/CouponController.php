@@ -31,6 +31,22 @@ class CouponController extends Controller
             )
         );
     }
+    public function coupon_view($id)
+    {
+        $coupon = Coupons::where('id', $id)->first();
+        $groups = Groups::orderBy('id')->get();
+        $categories = Categories::orderBy('id')->get();
+        $subcategories = Categories_Subcategories::orderBy('id')->get();
+        return view(
+            'adminfrontend.pages.coupons.coupon_view',
+            compact(
+                'coupon',
+                'groups',
+                'categories',
+                'subcategories'
+            )
+        );
+    }
 
     /**
      * Show the form for creating a new resource.

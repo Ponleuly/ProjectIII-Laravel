@@ -46,7 +46,7 @@ class ProductDetailController extends Controller
      */
     public function product_detail_list()
     {
-        $products = Products::orderByDesc('id')->paginate(10);
+        $products = Products::orderByDesc('id')->paginate(5);
         $count = 1;
         return view(
             'adminfrontend.pages.products.product_detail_list',

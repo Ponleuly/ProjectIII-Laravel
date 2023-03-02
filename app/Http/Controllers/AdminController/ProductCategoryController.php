@@ -29,6 +29,18 @@ class ProductCategoryController extends Controller
             )
         );
     }
+    public function product_subcategory_list()
+    {
+        $subcategories = Categories_Subcategories::orderBy('id')->paginate(6);
+        $count = 1;
+        return view(
+            'adminfrontend.pages.categories.product_subcategory_list',
+            compact(
+                'subcategories',
+                'count',
+            )
+        );
+    }
     public function product_category_view($id)
     {
         $category = Categories::where('id', $id)->first();
