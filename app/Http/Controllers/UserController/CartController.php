@@ -6,14 +6,15 @@ use App\Models\User;
 use App\Models\Carts;
 use App\Models\Sizes;
 use App\Models\Orders;
+use App\Models\Invoices;
 use App\Models\Products;
 use App\Models\Customers;
 use App\Models\Deliveries;
 use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 use App\Models\Orders_Details;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
-use App\Models\Invoices;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -245,8 +246,36 @@ class CartController extends Controller
             // Remove all products in Cart after user completed order
             Cart::destroy();
         }
-        return redirect('thankyou');
-        //return dd($request->toArray());
+        // Get data to display on user
+        $order = Orders::where('id', $orderId)->first();
+        $customer = Customers::where('id', $orderId)->first();
+        $orderDetails = Orders_Details::where('order_id', $orderId)->get();
+        $count = 1;
+        return view(
+            'frontend.mainPages.thankyou',
+            compact(
+                'count',
+                'order',
+                'customer',
+                'orderDetails'
+            )
+        );
+    }
+    public function download_invoice($id)
+    {
+        $order = Orders::where('id', $id)->first();
+        $customer = Customers::where('id', $order->id)->first();
+        $orderDetails = Orders_Details::where('order_id', $id)->get();
+        $count = 1;
+        $data = [
+            'count' => $count,
+            'order' =>  $order,
+            'customer' => $customer,
+            'orderDetails' => $orderDetails,
+        ];
+        $pdf = Pdf::loadView('adminfrontend.pages.orders.order_invoice', $data);
+
+        return $pdf->download($order->invoice_code . '.pdf');
     }
     /**
      * Show the form for editing the specified resource.
@@ -254,10 +283,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.

@@ -70,7 +70,6 @@ Route::controller(LikeController::class)->group(function () {
 });
 Route::controller(FrontendController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
-   Route::get('thankyou', 'thankyou')->name('thankyou');
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('shop', 'shop')->name('shop');
@@ -87,6 +86,7 @@ Route::controller(CartController::class)->group(function () {
    Route::get('remove-all-cart', 'remove_all_cart')->name('remove-all-cart');
    Route::get('checkout', 'checkout')->name('checkout');
    Route::post('place-order', 'place_order')->name('place-order');
+   Route::get('download-invoice/{id}', 'download_invoice')->name('download-invoice');
 });
 /*============= End User Frontend route ==================*/
 

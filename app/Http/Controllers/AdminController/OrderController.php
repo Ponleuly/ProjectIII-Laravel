@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function order_list()
     {
-        $orders = Orders::orderByDesc('id')->get();
+        $orders = Orders::orderByDesc('id')->paginate(10);
         $count = 1;
         return view(
             'adminfrontend.pages.orders.order_list',

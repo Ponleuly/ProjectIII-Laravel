@@ -21,7 +21,7 @@
             <div class="container-fluid mb-5 mt-3">
                 <div class="row d-flex align-items-baseline">
                     <div class="col-xl-9">
-                        <h2 class="pt-0 text-black fw-bold text-danger">15Steps</h2>
+                        <h2 class="pt-0 fw-bold text-danger">15Steps</h2>
                     </div>
                     <div class="col-xl-3">
                         <ul class="list-unstyled">

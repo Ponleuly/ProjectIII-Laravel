@@ -2,6 +2,8 @@
 	use App\Models\Products_Sizes;
 	use App\Models\Products_Attributes;
 	use App\Models\Products;
+	use App\Models\likes;
+
 ?>
 @extends('index')
 @section('content')
@@ -197,13 +199,33 @@
 									</div>
 									<div class="row mt-auto justify-content-end">
 										<div class="col-md-6 d-grid">
-											<a
-												href="#"
-												class="btn btn-danger rounded-0 btn-sm mb-2 pb-0 pt-1"
-												role="button"
-												>
-												<span class="material-icons-outlined" style="font-size: 20px">favorite</span>
-											</a>
+											@php
+                                            	if(Auth::check() && Auth::user()->role == 1){
+                                                    $userId = Auth::user()->id;
+                                                    $isLiked = Likes::where('product_id', $productId)->where('user_id',  $userId)->first();
+
+                                                }else{
+                                                    $userId = 0;
+                                                    $isLiked = 0;
+                                                }
+                                            @endphp
+                                            @if($isLiked)
+												<a
+													href="{{url('add-like/'.$productId.'/'.$userId)}}"
+													class="btn btn-danger rounded-0 btn-sm mb-2 pb-0 pt-1"
+													role="button"
+													>
+													<span class="material-icons-outlined" style="font-size: 20px">favorite</span>
+												</a>
+                                            @elseif($isLiked == 0)
+												<a
+													href="{{url('add-like/'.$productId.'/'.$userId)}}"
+													class="btn btn-danger rounded-0 btn-sm mb-2 pb-0 pt-1 cart-add"
+													role="button"
+													>
+													<span class="material-icons-outlined" style="font-size: 20px">favorite</span>
+												</a>
+                                            @endif
 											<a
 												href="{{url('remove-from-cart/'.$cartId)}}"
 												class="btn btn-danger rounded-0 btn-sm pb-0 pt-1"
