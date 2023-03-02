@@ -56,6 +56,8 @@
 						$subtotal = 0;
 						$total = 0;
 						$discount = 0;
+						$dis =  Session::get('discount');
+						$discount += $dis;
 					@endphp
 					<!---------------------->
 
@@ -81,7 +83,7 @@
 									// Quantity
 									$quantity = $cart->product_quantity;
 									//price
-									$price =  $cart->rela_product_cart->product_saleprice;
+									$price =  $cart->product_price;
 									$subtotal += $price * $quantity;
 
 								}else{
@@ -284,23 +286,40 @@
 
 								<h5 class="mb-2 text-black">Coupon</h5>
 								<div class="d-grid col-md-12">
-									<div class="input-group mb-2">
-										<input
-											type="text"
-											class="form-control rounded-0"
-											id="coupon"
-											placeholder="Enter your promo code"
-											aria-label="nhập mã"
-											aria-describedby="button-addon2"
+									@php
+                                        if(Auth::check() && Auth::user()->role == 1){
+                                            $userId = Auth::user()->id;
+                                        }else{
+                                            $userId = 0;
+                                        }
+                                    @endphp
+									<!---------------- Form to appy coupon ------------------->
+									<form
+										action="{{url('coupon-apply/'. $userId)}}"
+										method="POST"
+										enctype="multipart/form-data"
 										>
-										<button
-											class="btn btn-outline-secondary px-3 fw-semibold rounded-0"
-											type="button"
-											id="button-addon2"
+										@csrf <!-- to make form active -->
+										<div class="input-group mb-2">
+											<input
+												type="text"
+												class="form-control rounded-0 text-uppercase"
+												id="coupon"
+												name="code"
+												placeholder="Enter your promo code"
+												aria-label="coupon"
+												aria-describedby="button-addon2"
+												required
 											>
-											Apply
-										</button>
-									</div>
+											<button
+												class="btn btn-outline-secondary px-3 fw-semibold rounded-0"
+												type="submit"
+												id="button-addon2"
+												>
+												Apply
+											</button>
+										</div>
+									</form>
 								</div>
 								<hr>
 								<table class="table site-block-order-table mb-3">

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('campaign_name');
             $table->string('code');
-            $table->string('percentage');
-            $table->unsignedDecimal('discount_value');
+            $table->unsignedInteger('discount_percentage')->nullable();
+            $table->unsignedDecimal('discount_value')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->unsignedInteger('group_id');

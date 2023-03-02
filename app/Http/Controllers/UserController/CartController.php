@@ -6,14 +6,18 @@ use App\Models\User;
 use App\Models\Carts;
 use App\Models\Sizes;
 use App\Models\Orders;
+use App\Models\Coupons;
 use App\Models\Invoices;
 use App\Models\Products;
 use App\Models\Customers;
 use App\Models\Deliveries;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 use App\Models\Orders_Details;
+use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Products_Attributes;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -63,26 +67,29 @@ class CartController extends Controller
                 $update_qty->product_quantity += $request->product_quantity;
                 $update_qty->update();
             } else {
+                $product = Products::findOrFail($id);
                 $input = $request->all();
                 $input['user_id'] = $user_id;
                 $input['product_id'] = $id;
                 $input['size_id'] = $request->size_id;
                 $input['product_quantity'] = $request->product_quantity;
+                $input['product_price'] =  $product->product_saleprice;
+
                 Carts::create($input);
             }
         }
         //========== If User is guest then save data to Cart (Cart is a model from package) ==============//
         else {
-            $products = Products::findOrFail($id);
+            $product = Products::findOrFail($id);
             Cart::add(
                 [
-                    'id' => $products->id,
-                    'name' => $products->product_name,
-                    'price' => $products->product_saleprice,
+                    'id' => $product->id,
+                    'name' => $product->product_name,
+                    'price' => $product->product_saleprice,
                     'qty' => $request->product_quantity,
                     'weight' => 0, //defualt column in Cart
                     'options' => [
-                        'image' => $products->product_imgcover,
+                        'image' => $product->product_imgcover,
                         'size' => $request->size_id
                     ],
                 ]
@@ -141,9 +148,75 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // ============================ Coupon Apply ===========================//
+    public function coupon_apply(Request $request, $userId)
     {
-        //
+        //==== Convert input to uppercase ===//
+        $code = Str::upper($request->code);
+        //======== For User Sign in ===========//
+        if (Auth::check() && Auth::user()->role == 1) {
+            //===== get coupon by input code =====//
+            $coupon = Coupons::where('code', $code)->first();
+            $percentage = $coupon->discount_percentage;
+            $value = $coupon->discount_value;
+            //========= Coupon Founded =======//
+            if ($coupon) {
+                //====== Get Coupon Status ===== ///
+                $start = date('M d, Y', strtotime($coupon->start_date));
+                $end = date('M d, Y', strtotime($coupon->end_date));
+                $current = Carbon::now();
+                if ($current->gt($start) && $current->gt($end)) {
+                    //$status = 0; //expired
+                    return redirect()->back()->with(
+                        'alert',
+                        'Your promo code is expired !',
+                    );
+                } elseif ($current->gte($start) && $current->lt($end)) {
+                    //$status = 1; //active
+                    // ===== Get User Cart =============//
+                    $user_carts = Carts::where('user_id', $userId)->get();
+                    $discount = 0;
+                    $subtotal = 0;
+                    foreach ($user_carts as $cart) {
+                        $productId = $cart->product_id;
+                        $productAtts = Products_Attributes::where('product_id', $productId)->get();
+
+                        foreach ($productAtts as $productAtt) {
+                            // ==== Compare id between Product_Attributes and Coupons dicount group category subcategory ===//
+                            $group = $productAtt->group_id == $coupon->group_id;
+                            $category = $productAtt->category_id == $coupon->category_id;
+                            $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
+
+                            //=== For discout product ===//
+                            if ($group && $category && $subcategory) {
+                                $subtotal = $cart->product_quantity * $cart->product_price;
+                                if ($value == 0) {
+                                    $discount += ($subtotal * $percentage) / 100;
+                                } elseif ($percentage == 0) {
+                                    $discount += $value * $cart->product_quantity;
+                                }
+                            }
+                            //=== Not discount ===//
+                            else {
+                                $discount;
+                            }
+                        }
+                    }
+                    return redirect()->back()
+                        ->with('discount', $discount);
+                }
+            } else {
+                return redirect()->back()->with(
+                    'alert',
+                    'Your promo code not found !',
+                );
+            }
+        }
+        //=========== For Customer is Guest =============//
+        else {
+        }
+
+        //return dd($user_cart->toArray());
     }
 
     /**

@@ -32,6 +32,7 @@ return new class extends Migration
 
             $table->unsignedInteger('size_id');
             $table->unsignedInteger('product_quantity');
+            $table->unsignedDecimal('product_price');
             $table->timestamps();
         });
     }

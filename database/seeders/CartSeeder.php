@@ -23,6 +23,7 @@ class CartSeeder extends Seeder
                 'product_id' => 1,
                 'size_id' => 7,
                 'product_quantity' => 1,
+                'product_price' => 22.00,
                 'created_at' => Carbon::now()
             ],
             [
@@ -31,6 +32,7 @@ class CartSeeder extends Seeder
                 'product_id' => 12,
                 'size_id' => 12,
                 'product_quantity' => 1,
+                'product_price' => 10.00,
                 'created_at' => Carbon::now()
             ],
             [
@@ -39,6 +41,7 @@ class CartSeeder extends Seeder
                 'product_id' => 9,
                 'size_id' => 8,
                 'product_quantity' => 1,
+                'product_price' => 25.00,
                 'created_at' => Carbon::now()
             ],
             [
@@ -47,6 +50,7 @@ class CartSeeder extends Seeder
                 'product_id' => 13,
                 'size_id' => 12,
                 'product_quantity' => 2,
+                'product_price' => 11.00,
                 'created_at' => Carbon::now()
             ],
 

@@ -14,6 +14,7 @@ class Carts extends Model
         'product_id',
         'size_id',
         'product_quantity',
+        'product_price'
     ];
     public function rela_product_cart()
     {

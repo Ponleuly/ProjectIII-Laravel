@@ -82,6 +82,7 @@ Route::controller(ProductController::class)->group(function () {
 });
 Route::controller(CartController::class)->group(function () {
    Route::get('cart', 'cart')->name('cart');
+   Route::post('coupon-apply/{userId}', 'coupon_apply')->name('coupon-apply');
    Route::post('add-to-cart/{id}', 'add_to_cart')->name('add-to-cart');
    Route::put('update-cart/{id}', 'update_cart')->name('update-cart');
    Route::get('remove-from-cart/{id}', 'remove_from_cart')->name('remove-from-cart');

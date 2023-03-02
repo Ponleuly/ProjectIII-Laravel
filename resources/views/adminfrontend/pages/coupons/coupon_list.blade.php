@@ -68,7 +68,7 @@
                                         <td>{{date('M d, Y', strtotime($coupon->end_date));}}</td>
                                         <td>{{$coupon->campaign_name}}</td>
                                         <td>{{$coupon->code}}</td>
-                                        <td>{{$coupon->percentage}} %</td>
+                                        <td>{{$coupon->discount_percentage}} %</td>
                                         <td>{{$coupon->discount_value}} $</td>
                                         <td>
                                             @php

@@ -48,34 +48,42 @@
                                             placeholder="Campaign code"
                                             required
                                         >
-
-                                        <label for="percentage">
-                                            <p class="text-label">Discount Percentage (%)</p>
-                                        </label>
-                                        <input type="number"
-                                            class="form-control rounded-0 fw-500 mb-2"
-                                            id="percentage"
-                                            name="percentage"
-                                            value="{{$coupon->percentage}}"
-                                            min="1"
-                                            max="100"
-                                            placeholder="Discount percentage"
-                                            required
-                                        >
-
-                                        <label for="discount_value">
-                                            <p class="text-label">Discount Value ($)</p>
-                                        </label>
-                                        <input type="number"
-                                            class="form-control rounded-0 fw-500 mb-2"
-                                            id="discount_value"
-                                            name="discount_value"
-                                            value="{{$coupon->discount_value}}"
-                                            min="1"
-                                            max="100"
-                                            placeholder="Discount Value"
-                                            required
-                                        >
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <label for="percentage">
+                                                    <p class="text-label">Discount Percentage (%)</p>
+                                                </label>
+                                                <input type="number"
+                                                    class="form-control rounded-0 fw-500 mb-2"
+                                                    id="percentage"
+                                                    name="discount_percentage"
+                                                    min="0"
+                                                    max="100"
+                                                    value="{{$coupon->discount_percentage}}"
+                                                    placeholder="Discount percentage"
+                                                    required
+                                                >
+                                            </div>
+                                            <div class="col-md-2 d-flex flex-column justify-content-center text-center">
+                                                    <p class="text-label">OR</p>
+                                                    <p class="text-label">(Input one)</p>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="discount_value">
+                                                    <p class="text-label">Discount Value ($)</p>
+                                                </label>
+                                                <input type="number"
+                                                    class="form-control rounded-0 fw-500 mb-2"
+                                                    id="discount_value"
+                                                    name="discount_value"
+                                                    min="0"
+                                                    max="100"
+                                                    value="{{$coupon->discount_value}}"
+                                                    placeholder="Discount Value"
+                                                    required
+                                                >
+                                            </div>
+                                        </div>
 
                                         <label for="start_date">
                                             <p class="text-label">Start Date</p>

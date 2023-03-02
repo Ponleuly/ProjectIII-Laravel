@@ -12,7 +12,7 @@ class Coupons extends Model
     protected $fillable = [
         'campaign_name',
         'code',
-        'percentage',
+        'discount_percentage',
         'discount_value',
         'start_date',
         'end_date',
