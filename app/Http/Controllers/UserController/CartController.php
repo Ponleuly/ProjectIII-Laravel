@@ -148,24 +148,35 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     // ============================ Coupon Apply ====================================================================================//
     public function coupon_apply(Request $request, $userId)
     {
         //==== Convert input to uppercase ===//
         $code = Str::upper($request->code);
+        //==== passing route name to $routeName ===//
+        $routeName = 'cart';
+        //=== Return with calling method coupon_cal to get discount value ======///
+        return $this->coupon_cal($code, $userId, $routeName);
+    }
+    //================= Create Method to return discount value ================================//
+    //======= Method will get parameter code, userId, routeName====//
+    //======= After calculated discount will redirect to routeName ===//
+    public function coupon_cal($code, $userId, $routeName)
+    {
         //===== get coupon by input code =====//
         $coupon = Coupons::where('code', $code)->first();
-        $percentage = $coupon->discount_percentage;
-        $value = $coupon->discount_value;
         //========= Coupon Founded =======//
         if ($coupon) {
+            $percentage = $coupon->discount_percentage;
+            $value = $coupon->discount_value;
             //====== Get Coupon Status ===== ///
             $start = date('M d, Y', strtotime($coupon->start_date));
             $end = date('M d, Y', strtotime($coupon->end_date));
             $current = Carbon::now();
             if ($current->gt($start) && $current->gt($end)) {
                 //$status = 0; //expired
-                return redirect()->back()->with(
+                return redirect($routeName)->with(
                     'alert',
                     'Your promo code is expired !',
                 );
@@ -205,6 +216,7 @@ class CartController extends Controller
                         //=== For discout product ===//
                         if ($group && $category && $subcategory) {
                             $subtotal = $quantity * $price;
+                            //== Check in table coupons if there are discount is value or percentage ===//
                             if ($value == 0) {
                                 $discount += ($subtotal * $percentage) / 100;
                             } elseif ($percentage == 0) {
@@ -217,19 +229,16 @@ class CartController extends Controller
                         }
                     }
                 }
-                return redirect()->back()
+                return redirect($routeName)
                     ->with('discount', $discount);
             }
         } else {
-            return redirect()->back()->with(
+            return redirect($routeName)->with(
                 'alert',
                 'Your promo code not found !',
             );
         }
-
-        //return dd($user_cart->toArray());
     }
-
     /**
      * Display the specified resource.
      *
@@ -256,95 +265,137 @@ class CartController extends Controller
 
     public function place_order(Request $request)
     {
-        if (Auth::check() && Auth::user()->role == 1) {
+        //====================== Place Order without input Coupon code ==============//
+        if ($request->action == 'placeorder') {
+            if (Auth::check() && Auth::user()->role == 1) {
 
-            // Count order row
-            $order_count = Orders::all()->count();
-            // Store data to table orders
-            Orders::create([
-                'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                //'customer_id' => $customerId,
-                'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
-                'user_id' => Auth::user()->id,
-            ]);
-            // Get customer id
-            $order = Orders::latest()->first();
-            $orderId = $order->id;
-
-            $input = $request->all();
-            $input['order_id'] = $orderId;
-            //==== Store data to table customer =====//
-            Customers::create($input);
-
-            // Get data from Carts model
-            $carts = Carts::where('user_id', Auth::user()->id)->get();
-            foreach ($carts as $cart) {
-                // Store data to table orderDetails
-                Orders_Details::create([
-                    'order_id' => $orderId,
-                    'product_id' => $cart->product_id,
-                    'product_price' => $cart->rela_product_cart->product_saleprice,
-                    'product_quantity' => $cart->product_quantity,
-                    'size_id' => $cart->size_id,
-                    'discount' => floatval($request->discount),
-                    'payment_method' => $request->payment,
-                    'delivery_fee' => $request->delivery_fee,
+                // Count order row
+                $order_count = Orders::all()->count();
+                // Store data to table orders
+                Orders::create([
+                    'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
+                    //'customer_id' => $customerId,
+                    'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+                    'user_id' => Auth::user()->id,
                 ]);
-            }
-            // Remove all products in carts after user completed order
-            Carts::where('user_id', Auth::user()->id)->delete();
-        } else {
-            // Count order row
-            $order_count = Orders::all()->count();
-            // Store data to table orders
-            Orders::create([
-                'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                //'customer_id' => $customerId,
-                'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
-                'user_id' => 0,
-            ]);
+                // Get customer id
+                $order = Orders::latest()->first();
+                $orderId = $order->id;
 
-            // Get order id
-            $order = Orders::latest()->first();
-            $orderId = $order->id;
+                $input = $request->all();
+                $input['order_id'] = $orderId;
+                //==== Store data to table customer =====//
+                Customers::create($input);
 
-            //==== Store data to table customer =====//
-            $input = $request->all();
-            $input['order_id'] = $orderId;
-            Customers::create($input);
-            // Get data from Cart if customer not signin
-            $carts = Cart::content();
-            foreach ($carts as $cart) {
-                // Store data to table orderDetails
-                Orders_Details::create([
-                    'order_id' => $orderId,
-                    'product_id' => $cart->id,
-                    'product_price' => $cart->price,
-                    'product_quantity' => $cart->qty,
-                    'size_id' => $cart->options->size,
-                    'discount' => floatval($request->discount),
-                    'payment_method' => $request->payment,
-                    'delivery_fee' => $request->delivery_fee,
+                // Get data from Carts model
+                $carts = Carts::where('user_id', Auth::user()->id)->get();
+                foreach ($carts as $cart) {
+                    // Store data to table orderDetails
+                    Orders_Details::create([
+                        'order_id' => $orderId,
+                        'product_id' => $cart->product_id,
+                        'product_price' => $cart->rela_product_cart->product_saleprice,
+                        'product_quantity' => $cart->product_quantity,
+                        'size_id' => $cart->size_id,
+                        'discount' => floatval($request->discount),
+                        'payment_method' => $request->payment,
+                        'delivery_fee' => $request->delivery_fee,
+                    ]);
+                }
+                // Remove all products in carts after user completed order
+                Carts::where('user_id', Auth::user()->id)->delete();
+            } else {
+                // Count order row
+                $order_count = Orders::all()->count();
+                // Store data to table orders
+                Orders::create([
+                    'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
+                    //'customer_id' => $customerId,
+                    'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
+                    'user_id' => 0,
                 ]);
+
+                // Get order id
+                $order = Orders::latest()->first();
+                $orderId = $order->id;
+
+                //==== Store data to table customer =====//
+                $input = $request->all();
+                $input['order_id'] = $orderId;
+                Customers::create($input);
+                // Get data from Cart if customer not signin
+                $carts = Cart::content();
+                foreach ($carts as $cart) {
+                    // Store data to table orderDetails
+                    Orders_Details::create([
+                        'order_id' => $orderId,
+                        'product_id' => $cart->id,
+                        'product_price' => $cart->price,
+                        'product_quantity' => $cart->qty,
+                        'size_id' => $cart->options->size,
+                        'discount' => floatval($request->discount),
+                        'payment_method' => $request->payment,
+                        'delivery_fee' => $request->delivery_fee,
+                    ]);
+                }
+                // Remove all products in Cart after user completed order
+                Cart::destroy();
             }
-            // Remove all products in Cart after user completed order
-            Cart::destroy();
+            // Get data to display on user
+            $order = Orders::where('id', $orderId)->first();
+            $customer = Customers::where('id', $orderId)->first();
+            $orderDetails = Orders_Details::where('order_id', $orderId)->get();
+            $count = 1;
+            return view(
+                'frontend.mainPages.thankyou',
+                compact(
+                    'count',
+                    'order',
+                    'customer',
+                    'orderDetails'
+                )
+            );
         }
-        // Get data to display on user
-        $order = Orders::where('id', $orderId)->first();
-        $customer = Customers::where('id', $orderId)->first();
-        $orderDetails = Orders_Details::where('order_id', $orderId)->get();
-        $count = 1;
-        return view(
-            'frontend.mainPages.thankyou',
-            compact(
-                'count',
-                'order',
-                'customer',
-                'orderDetails'
-            )
-        );
+        //====================== If Submit input Coupon code ============================//
+
+        elseif ($request->action == 'apply') {
+            if (Auth::check() && Auth::user()->role == 1) {
+                $userId = Auth::user()->id;
+                //==== Convert input to uppercase ===//
+                $code = Str::upper($request->code);
+                //==== passing route name to $routeName ===//
+                $routeName = 'checkout';
+                $input = $request->all();
+                //=== Return with calling method coupon_cal to get discount value ======//
+                return $this->coupon_cal($code, $userId, $routeName)
+                    ->withInput($input)
+                    ->with(
+                        'message',
+                        'Your promo code is applied !',
+                    );
+            } else {
+                $userId = 0;
+                //==== Convert input to uppercase ===//
+                $code = Str::upper($request->code);
+                //==== passing route name to $routeName ===//
+                $routeName = 'checkout';
+                //=== Return with calling method coupon_cal to get discount value ======//
+                //== Get input request in old page ===//
+                $input = $request->all();
+
+                return $this->coupon_cal($code, $userId, $routeName)
+                    ->withInput($input)
+                    ->with(
+                        'message',
+                        'Your promo code is applied !',
+                    );
+            }
+        }
     }
+
+    //======================================================================================================================//
+
+    //====================== Download Invoice ============================//
     public function download_invoice($id)
     {
         $order = Orders::where('id', $id)->first();

@@ -308,7 +308,6 @@
 												placeholder="Enter your promo code"
 												aria-label="coupon"
 												aria-describedby="button-addon2"
-												required
 											>
 											<button
 												class="btn btn-outline-secondary px-3 fw-semibold rounded-0"

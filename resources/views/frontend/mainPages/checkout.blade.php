@@ -19,10 +19,25 @@
 		  	<li class="breadcrumb-item text-light">Checkout</li>
 		</ol>
 	</nav>
+
 	<!-- End breabcrumb Section -->
 	<div class="untree_co-section">
 
 			<div class="container">
+				<!--------------- Alert ------------------------>
+				@if(Session::has('alert'))
+					<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+						{{Session::get('alert')}}
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+					@elseif(Session::has('message'))
+						<div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+							{{Session::get('message')}}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+				@endif
+				<!------------------End Alert ------------------------>
+
 				<!---------------Sign in link ------------------------>
 				@if(!(Auth::check() && Auth::user()->role == 1))
 					<div class="row mb-3">
@@ -47,15 +62,48 @@
 						<div class="col-md-6 mb-5 mb-md-0">
 							<div class="p-3 p-lg-4 border bg-white">
 								<h2 class="h3 mb-3 text-black">Delivery Informations</h2>
+								@php
+									if (Auth::check() && Auth::user()->role == 1) {
+										if(Request::old('c_name')){
+											$c_name =  Request::old('c_name');
+										}else{
+											$c_name =  Auth::user()->name;
+										}
+										if(Request::old('c_phone')){
+											$c_phone =  Request::old('c_phone');
+										}else{
+											$c_phone =  Auth::user()->phone;
+										}
+										if(Request::old('c_email')){
+											$c_email =  Request::old('c_email');
+										}else{
+											$c_email =  Auth::user()->email;
+										}
+										if(Request::old('c_address')){
+											$c_address =  Request::old('c_address');
+										}else{
+											$c_address =  Auth::user()->address;
+										}
+										$c_note =  Request::old('c_note');
+									}
+									else{
+										$c_name =  Request::old('c_name');
+										$c_phone =  Request::old('c_phone');
+										$c_email =  Request::old('c_email');
+										$c_address =  Request::old('c_address');
+										$c_note =  Request::old('c_note');
+									}
+								@endphp
 								<div class="form-group row mb-3">
 									<div class="col-md-12">
+
 										<label for="c_name" class="text-black mb-1">Customer Name <span class="text-danger">*</span></label>
 										<input
 											type="text"
 											class="form-control rounded-0"
 											id="c_name"
 											name="c_name"
-											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->name : ''}}"
+											value="{{$c_name}}"
 											placeholder="Full Name"
 											required
 										>
@@ -70,7 +118,7 @@
 											class="form-control rounded-0"
 											id="c_phone"
 											name="c_phone"
-											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->phone : ''}}"
+											value="{{$c_phone}}"
 											placeholder="Phone Number"
 											required
 										>
@@ -85,7 +133,7 @@
 											class="form-control rounded-0"
 											id="c_email"
 											name="c_email"
-											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->email : ''}}"
+											value="{{$c_email}}"
 											placeholder="Example@gmail.com"
 											required
 										>
@@ -100,7 +148,7 @@
 											class="form-control rounded-0"
 											id="c_address"
 											name="c_address"
-											value="{{(Auth::check() && Auth::user()->role == 1)? Auth::user()->address: ''}}"
+											value="{{$c_address}}"
 											placeholder="House number, City ...."
 											required
 										>
@@ -109,7 +157,14 @@
 
 								<div class="form-group mb-3">
 									<label for="c_note" class="text-black mb-1">Order Note</label>
-									<textarea name="c_note" id="c_note" cols="30" rows="5" class="form-control rounded-0" placeholder="Write here..."></textarea>
+									<textarea
+										name="c_note"
+										id="c_note"
+										cols="30"
+										rows="5"
+										class="form-control rounded-0"
+										placeholder="Write here..."
+										>{{$c_note}}</textarea>
 								</div>
 
 								<h2 class="h3 mb-3 text-black">Delivery Method</h2>
@@ -155,17 +210,19 @@
 										<div class="input-group mb-2">
 											<input
 												type="text"
-												name="coupon"
-												class="form-control rounded-0"
+												class="form-control rounded-0 text-uppercase"
 												id="coupon"
+												name="code"
 												placeholder="Enter your promo code"
-												aria-label="nhập mã"
+												aria-label="coupon"
 												aria-describedby="button-addon2"
 											>
 											<button
 												class="btn btn-outline-secondary px-3 fw-semibold rounded-0"
-												type="button"
+												type="submit"
 												id="button-addon2"
+												name="action"
+												value="apply"
 												>
 												Apply
 											</button>
@@ -191,6 +248,8 @@
 													$subtotal = 0;
 													$total = 0;
 													$discount = 0; // Need to create discount method
+													$discount  =  Session::get('discount');
+
 												@endphp
 												@foreach ($carts as $cart)
 													@php
@@ -274,16 +333,28 @@
 															<strong>$ {{number_format($subtotal, 2)}}</strong>
 														</td>
 													</tr>
+
 													<tr>
-														<td class="text-black font-weight-bold border-bottom-0 d-flex justify-content-even">
-															<strong>Discount</strong>
+														<td class="text-black font-weight-bold border-bottom-0">
+															<strong>Delivery Fee</strong>
 														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
-														<td class="text-black font-weight-bold border-bottom-0 d-flex justify-content-end">
+														<td class="text-black text-end font-weight-bold border-bottom-0 ">
+															<strong>$ {{$deliveryFee}}</strong>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-black font-weight-bold">
+															<strong>Discount</strong>
+														</td>
+														<td ></td>
+														<td ></td>
+														<td ></td>
+														<td class="text-black font-weight-bold d-flex justify-content-end">
 															<input
-																class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white"
+																class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white text-danger"
 																name="discount"
 																value="$ {{number_format($discount, 2)}}"
 																aria-label=".form-control-sm example"
@@ -293,24 +364,13 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="text-black font-weight-bold">
-															<strong>Delivery Fee</strong>
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td class="text-black text-end font-weight-bold">
-															<strong>$ {{$deliveryFee}}</strong>
-														</td>
-													</tr>
-													<tr>
 														<td class="text-black h6  border-bottom-0">
 															<strong>Total Amount</strong>
 														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
-														<td class="text-danger text-end h5 border-bottom-0">
+														<td class="text-danger text-end h6 border-bottom-0">
 															<strong>
 																$ {{$total  = number_format((($subtotal + $deliveryFee) - $discount) ,2)}}
 															</strong>
@@ -404,12 +464,12 @@
 												<button
 													type="submit"
 													class="btn btn-block px-4 py-2 fw-semibold  rounded-0"
+													name="action"
+													value="placeorder"
 													>
 													Place Order
 												</button>
 											</div>
-
-
 										</div>
 									</div>
 								</div>
