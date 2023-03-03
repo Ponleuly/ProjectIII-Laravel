@@ -53,7 +53,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ORDER DATE</th>
-                                    <th scope="col">INVOICE CODE</th>
+                                    <th scope="col">CODE</th>
                                     <th scope="col">CUSTOMER</th>
                                     <th scope="col">PHONE</th>
                                     <th scope="col">PAYMENT</th>
@@ -66,17 +66,18 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                     @php
-                                        //$paymentMethod = Orders_Details::where('order_id', $order->id)->first();
-                                        $fee = $order->rela_order_detail->delivery_fee;
-                                        //$fee = 0;
+                                        $deliveryFee = $order->delivery_fee;
+                                        $discount = $order->discount;
+
+                                        $totalAmount = 0;
                                         $total = 0;
                                         $orderDetails = Orders_Details::where('order_id', $order->id)->get();
                                         foreach ($orderDetails as  $orderDetail) {
                                             $price = $orderDetail->product_price;
                                             $qty = $orderDetail->product_quantity;
-                                            $total += $price * $qty;
+                                            $totalAmount += $price * $qty;
                                         }
-
+                                        $total = $totalAmount + $deliveryFee - $discount;
                                          // Get delivery statuses
                                         $statuses = Orders_Statuses::orderBy('id')->get();
                                         $status_name = Orders_Statuses::where('id', $order->order_status)->first();
@@ -96,9 +97,9 @@
                                             {{$order->rela_customer_order->c_phone}}
                                         </td>
                                         <td class="text-capitalize">
-                                            {{$order->rela_order_detail->payment_method}}
+                                            {{$order->payment_method}}
                                         <td>
-                                            $ {{number_format($total + $fee, 2)}}
+                                            $ {{number_format($total, 2)}}
                                         </td>
                                         <td class="text-center">
                                             <button

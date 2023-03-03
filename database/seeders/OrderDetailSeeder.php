@@ -24,9 +24,6 @@ class OrderDetailSeeder extends Seeder
                 'product_price' => floatval(rand(22, 25)),
                 'product_quantity' => rand(1, 2),
                 'size_id' => rand(1, 12),
-                'discount' => floatval(rand(2, 5)),
-                'delivery_fee' => 2.00,
-                'payment_method' => rand(0, 1) ? 'Bank' : 'Cash',
                 'created_at' => Carbon::now()
 
                 //'customer_id ' => Str::random(10) . '@gmail.com',

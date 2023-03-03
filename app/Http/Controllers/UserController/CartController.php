@@ -267,16 +267,22 @@ class CartController extends Controller
     {
         //====================== Place Order without input Coupon code ==============//
         if ($request->action == 'placeorder') {
+
             if (Auth::check() && Auth::user()->role == 1) {
 
                 // Count order row
                 $order_count = Orders::all()->count();
+                $dis = preg_replace('/[^0-9]/', '', $request->discount);
+                //=== Passing total discount to discount value by each product ====//
+                $discount = $dis / 100;
                 // Store data to table orders
                 Orders::create([
                     'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                    //'customer_id' => $customerId,
                     'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
                     'user_id' => Auth::user()->id,
+                    'discount' => number_format($discount, 2),
+                    'payment_method' => $request->payment,
+                    'delivery_fee' => $request->delivery_fee,
                 ]);
                 // Get customer id
                 $order = Orders::latest()->first();
@@ -286,7 +292,6 @@ class CartController extends Controller
                 $input['order_id'] = $orderId;
                 //==== Store data to table customer =====//
                 Customers::create($input);
-
                 // Get data from Carts model
                 $carts = Carts::where('user_id', Auth::user()->id)->get();
                 foreach ($carts as $cart) {
@@ -297,9 +302,6 @@ class CartController extends Controller
                         'product_price' => $cart->rela_product_cart->product_saleprice,
                         'product_quantity' => $cart->product_quantity,
                         'size_id' => $cart->size_id,
-                        'discount' => floatval($request->discount),
-                        'payment_method' => $request->payment,
-                        'delivery_fee' => $request->delivery_fee,
                     ]);
                 }
                 // Remove all products in carts after user completed order
@@ -307,18 +309,23 @@ class CartController extends Controller
             } else {
                 // Count order row
                 $order_count = Orders::all()->count();
+                //=== Get total discount without string $ ====//
+                $dis = preg_replace('/[^0-9]/', '', $request->discount);
+                //=== Passing total discount to discount value by each product ====//
+                $discount = $dis / 100;
                 // Store data to table orders
                 Orders::create([
                     'invoice_code' => '#iv' . sprintf('%04d', ++$order_count),
-                    //'customer_id' => $customerId,
                     'order_status' => 1, // set t default status = 1 is pending, 2=processing, 3=derliverd, 4=cancel
                     'user_id' => 0,
+                    'discount' => number_format($discount, 2),
+                    'payment_method' => $request->payment,
+                    'delivery_fee' => $request->delivery_fee,
                 ]);
 
                 // Get order id
                 $order = Orders::latest()->first();
                 $orderId = $order->id;
-
                 //==== Store data to table customer =====//
                 $input = $request->all();
                 $input['order_id'] = $orderId;
@@ -333,15 +340,12 @@ class CartController extends Controller
                         'product_price' => $cart->price,
                         'product_quantity' => $cart->qty,
                         'size_id' => $cart->options->size,
-                        'discount' => floatval($request->discount),
-                        'payment_method' => $request->payment,
-                        'delivery_fee' => $request->delivery_fee,
                     ]);
                 }
                 // Remove all products in Cart after user completed order
                 Cart::destroy();
             }
-            // Get data to display on user
+            //==== Get data to display on user invoice ====//
             $order = Orders::where('id', $orderId)->first();
             $customer = Customers::where('id', $orderId)->first();
             $orderDetails = Orders_Details::where('order_id', $orderId)->get();
@@ -355,9 +359,10 @@ class CartController extends Controller
                     'orderDetails'
                 )
             );
+
+            //return dd(number_format($dis / 100, 2));
         }
         //====================== If Submit input Coupon code ============================//
-
         elseif ($request->action == 'apply') {
             if (Auth::check() && Auth::user()->role == 1) {
                 $userId = Auth::user()->id;

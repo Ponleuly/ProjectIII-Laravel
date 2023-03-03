@@ -13,6 +13,9 @@ class Orders extends Model
         'invoice_code',
         'order_status',
         'user_id',
+        'discount',
+        'payment_method',
+        'delivery_fee',
 
     ];
     public function rela_order_detail()

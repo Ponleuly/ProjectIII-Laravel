@@ -15,9 +15,7 @@ class Orders_Details extends Model
         'product_price',
         'product_quantity',
         'size_id',
-        'discount',
-        'payment_method',
-        'delivery_fee',
+
 
     ];
     public function rela_order_detail()

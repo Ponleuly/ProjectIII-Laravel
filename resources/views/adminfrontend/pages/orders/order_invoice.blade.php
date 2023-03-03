@@ -135,7 +135,7 @@
                     <div class="row">
                         <div class="col-xl-9">
                             <p class=" fs-6 fw-bold mb-1 text-muted">PAYMENT METHOD</p>
-                            <p class=" fs-6 mb-1 text-muted">{{$orderDetail->payment_method}}</p>
+                            <p class=" fs-6 mb-1 text-muted">{{$order->payment_method}}</p>
                         </div>
                         <div class="col-xl-3">
                             <ul class="list-unstyled">
@@ -145,22 +145,22 @@
                                     </p>
                                 </li>
                                 <li class="text-muted ">
-                                    <p class="text-muted  mb-1">Discount :
-                                        <span class="fw-normal"> $ {{number_format($orderDetail->discount, 2)}}</span>
-                                    </p>
-                                </li>
-                                <li class="text-muted ">
                                     <p class="text-muted  mb-1">Delivery Fee :
-                                        <span class="fw-normal">$ {{$orderDetail->delivery_fee}}</span>
+                                        <span class="fw-normal">$ {{$order->delivery_fee}}</span>
                                     </p>
                                 </li>
                                 <li class="text-muted ">
-                                    <p class="text-muted fs-4 fw-bold mb-1">Total amount :
+                                    <p class="text-muted  mb-1">Discount :
+                                        <span class="fw-normal"> $ {{number_format($order->discount, 2)}}</span>
+                                    </p>
+                                </li>
+                                <li class="text-muted ">
+                                    <p class="text-muted fs-4 fw-bold mb-1">Total paid :
                                         <span class="text-danger ">
                                              @php
-                                                $total = $totalAmount + ($orderDetail->delivery_fee) - ($orderDetail->discount);
+                                                $totalPaid = $totalAmount + ($order->delivery_fee) - ($order->discount);
                                             @endphp
-                                            $ {{number_format($total, 2)}}
+                                            $ {{number_format($totalPaid, 2)}}
                                         </span>
                                     </p>
                                 </li>
