@@ -56,8 +56,7 @@
 						$subtotal = 0;
 						$total = 0;
 						$discount = 0;
-						$dis =  Session::get('discount');
-						$discount += $dis;
+						$discount  =  Session::get('discount');
 					@endphp
 					<!---------------------->
 
@@ -338,7 +337,7 @@
 											</td>
 											<td class="text-black font-weight-bold d-flex justify-content-end">
 												<input
-													class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white"
+													class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white text-danger"
 													name="discount"
 													value="$ {{number_format($discount, 2)}}"
 													aria-label=".form-control-sm example"

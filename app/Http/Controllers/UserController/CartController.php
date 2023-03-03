@@ -148,72 +148,83 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // ============================ Coupon Apply ===========================//
+    // ============================ Coupon Apply ====================================================================================//
     public function coupon_apply(Request $request, $userId)
     {
         //==== Convert input to uppercase ===//
         $code = Str::upper($request->code);
-        //======== For User Sign in ===========//
-        if (Auth::check() && Auth::user()->role == 1) {
-            //===== get coupon by input code =====//
-            $coupon = Coupons::where('code', $code)->first();
-            $percentage = $coupon->discount_percentage;
-            $value = $coupon->discount_value;
-            //========= Coupon Founded =======//
-            if ($coupon) {
-                //====== Get Coupon Status ===== ///
-                $start = date('M d, Y', strtotime($coupon->start_date));
-                $end = date('M d, Y', strtotime($coupon->end_date));
-                $current = Carbon::now();
-                if ($current->gt($start) && $current->gt($end)) {
-                    //$status = 0; //expired
-                    return redirect()->back()->with(
-                        'alert',
-                        'Your promo code is expired !',
-                    );
-                } elseif ($current->gte($start) && $current->lt($end)) {
-                    //$status = 1; //active
-                    // ===== Get User Cart =============//
-                    $user_carts = Carts::where('user_id', $userId)->get();
-                    $discount = 0;
-                    $subtotal = 0;
-                    foreach ($user_carts as $cart) {
-                        $productId = $cart->product_id;
-                        $productAtts = Products_Attributes::where('product_id', $productId)->get();
-
-                        foreach ($productAtts as $productAtt) {
-                            // ==== Compare id between Product_Attributes and Coupons dicount group category subcategory ===//
-                            $group = $productAtt->group_id == $coupon->group_id;
-                            $category = $productAtt->category_id == $coupon->category_id;
-                            $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
-
-                            //=== For discout product ===//
-                            if ($group && $category && $subcategory) {
-                                $subtotal = $cart->product_quantity * $cart->product_price;
-                                if ($value == 0) {
-                                    $discount += ($subtotal * $percentage) / 100;
-                                } elseif ($percentage == 0) {
-                                    $discount += $value * $cart->product_quantity;
-                                }
-                            }
-                            //=== Not discount ===//
-                            else {
-                                $discount;
-                            }
-                        }
-                    }
-                    return redirect()->back()
-                        ->with('discount', $discount);
-                }
-            } else {
+        //===== get coupon by input code =====//
+        $coupon = Coupons::where('code', $code)->first();
+        $percentage = $coupon->discount_percentage;
+        $value = $coupon->discount_value;
+        //========= Coupon Founded =======//
+        if ($coupon) {
+            //====== Get Coupon Status ===== ///
+            $start = date('M d, Y', strtotime($coupon->start_date));
+            $end = date('M d, Y', strtotime($coupon->end_date));
+            $current = Carbon::now();
+            if ($current->gt($start) && $current->gt($end)) {
+                //$status = 0; //expired
                 return redirect()->back()->with(
                     'alert',
-                    'Your promo code not found !',
+                    'Your promo code is expired !',
                 );
+            } elseif ($current->gte($start) && $current->lt($end)) {
+                //$status = 1; //active
+                $discount = 0;
+                $subtotal = 0;
+
+                // ============================= Get User Cart =========================//
+                if (Auth::check() && Auth::user()->role == 1) {
+                    $carts = Carts::where('user_id', $userId)->get();
+                } else {
+                    // ========================= Get System Cart ======================//
+                    $carts = Cart::content();
+                }
+                // ====== Check each products in carts ================//
+                foreach ($carts as $cart) {
+                    //==== Get product_id, price, quantity from user Carts ====//
+                    if (Auth::check() && Auth::user()->role == 1) {
+                        $productId = $cart->product_id;
+                        $quantity = $cart->product_quantity;
+                        $price = $cart->product_price;
+                    } else {
+                        //==== Get product_id, price, quantity from System Cart ====//
+                        $productId = $cart->id;
+                        $quantity = $cart->qty;
+                        $price = $cart->price;
+                    }
+                    //==== Get product attributes by product_id ====//
+                    $productAtts = Products_Attributes::where('product_id', $productId)->get();
+                    foreach ($productAtts as $productAtt) {
+                        // ==== Compare id between Product_Attributes and Coupons dicount group category subcategory ===//
+                        $group = $productAtt->group_id == $coupon->group_id;
+                        $category = $productAtt->category_id == $coupon->category_id;
+                        $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
+
+                        //=== For discout product ===//
+                        if ($group && $category && $subcategory) {
+                            $subtotal = $quantity * $price;
+                            if ($value == 0) {
+                                $discount += ($subtotal * $percentage) / 100;
+                            } elseif ($percentage == 0) {
+                                $discount += $value * $quantity;
+                            }
+                        }
+                        //=== Not discount ===//
+                        else {
+                            $discount;
+                        }
+                    }
+                }
+                return redirect()->back()
+                    ->with('discount', $discount);
             }
-        }
-        //=========== For Customer is Guest =============//
-        else {
+        } else {
+            return redirect()->back()->with(
+                'alert',
+                'Your promo code not found !',
+            );
         }
 
         //return dd($user_cart->toArray());
