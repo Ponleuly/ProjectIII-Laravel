@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <form  action="{{url('admin/coupon-edit/'. $coupon->id)}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
+            @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
                     <!--------------- Alert ------------------------>

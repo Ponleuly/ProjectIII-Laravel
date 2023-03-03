@@ -85,12 +85,12 @@ class CouponController extends Controller
 
             return redirect()->back()->with(
                 'alert',
-                'Your Date is expired !'
+                'Your Start Date is expired !'
             );
         } elseif ($start_date->gt($end_date)) {
             return redirect()->back()->with(
                 'alert',
-                'Your Start Date is expired !'
+                'Your Date is expired ! '
             );
         } else {
             $input = $request->all();
@@ -146,7 +146,9 @@ class CouponController extends Controller
         $update_coupon = Coupons::where('id', $id)->first();
         $update_coupon->campaign_name = $request->input('campaign_name');
         $update_coupon->code = $request->input('code');
-        $update_coupon->percentage = $request->input('percentage');
+        $update_coupon->discount_percentage = $request->input('discount_percentage');
+        $update_coupon->discount_value = $request->input('discount_value');
+        $update_coupon->start_date = $request->input('start_date');
         $update_coupon->end_date = $request->input('end_date');
         $update_coupon->group_id = $request->input('group_id');
         $update_coupon->category_id = $request->input('category_id');
