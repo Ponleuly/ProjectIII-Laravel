@@ -9,15 +9,7 @@ use App\Http\Controllers\Controller;
 
 class OrderStatusController extends Controller
 {
-    //============= Update invoice status ============//
-    public function order_status_action($orderId, $statuId)
-    {
-        $orderStatus = Orders::where('id', $orderId)->first();
-        $orderStatus['order_status'] = $statuId;
-        $orderStatus->update();
-        return redirect()->back()
-            ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
-    }
+
 
     public function order_status_option()
     {

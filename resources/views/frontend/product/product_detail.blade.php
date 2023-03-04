@@ -165,9 +165,17 @@
                                             required
                                             >
                                             <option selected disabled value="">choose size</option>
-                                            @foreach ($productSize as $size)
-                                                <option value="{{$size->size_id}}">
+                                            @foreach ($productSizes as $size)
+                                                @php
+                                                    $quantity = Products_Sizes::where('product_id',  $productDetails->id)
+                                                        ->where('size_id', $size->size_id)->first();
+                                                @endphp
+                                                <option class="{{($quantity->size_quantity == 0)? 'text-danger' : ''}}"
+                                                    value="{{$size->size_id}}"
+                                                    {{($quantity->size_quantity == 0)? 'disabled':''}}
+                                                    >
                                                     {{$size->rela_product_size->size_number}}
+                                                    {{($quantity->size_quantity == 0)? '(Out of stock)':''}}
                                                 </option>
                                             @endforeach
                                         </select>

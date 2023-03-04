@@ -37,7 +37,7 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="text-light bg-primary text-center">
                                     <th scope="col">#</th>
                                     <th scope="col">STATUS</th>
                                     <th scope="col">DATE</th>
@@ -46,7 +46,7 @@
                             </thead>
                             <tbody>
                                 @foreach($statuses as $status)
-                                    <tr>
+                                    <tr class="text-center">
                                         <th scope="row">{{$count++}}</th>
                                         <td>{{$status->status}}</td>
                                         <td>{{$status->created_at->diffForHumans()}}</td>

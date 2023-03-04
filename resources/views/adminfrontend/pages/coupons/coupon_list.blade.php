@@ -48,7 +48,7 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-center text-light bg-primary">
                                     <th scope="col">#</th>
                                     <th scope="col">START DATE</th>
                                     <th scope="col">END DATE</th>

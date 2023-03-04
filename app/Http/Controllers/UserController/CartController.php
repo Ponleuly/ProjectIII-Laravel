@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\UserController;
 
-use App\Models\User;
 use App\Models\Carts;
-use App\Models\Sizes;
+use App\Models\Products_Sizes;
 use App\Models\Orders;
 use App\Models\Coupons;
-use App\Models\Invoices;
 use App\Models\Products;
 use App\Models\Customers;
 use App\Models\Deliveries;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Laravel\Ui\Presets\React;
 use App\Models\Orders_Details;
 use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -24,11 +21,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function cart()
     {
         if (Auth::check() && Auth::user()->role == 1) {
@@ -48,11 +41,9 @@ class CartController extends Controller
         //return dd($carts->toArray());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function add_to_cart(Request $request, $id)
     {
         //========== If User Sign in then save to Carts table============== //
@@ -108,6 +99,10 @@ class CartController extends Controller
         //return dd($request->toArray());
     }
 
+
+
+
+
     public function update_cart(Request $request, $cartId)
     {
         if (Auth::check() && Auth::user()->role == 1) {
@@ -142,14 +137,11 @@ class CartController extends Controller
 
         //return dd(Cart::content());
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
-    // ============================ Coupon Apply ====================================================================================//
+
+
+
+    // ============================ Coupon Apply ===========================================//
     public function coupon_apply(Request $request, $userId)
     {
         //==== Convert input to uppercase ===//
@@ -157,8 +149,17 @@ class CartController extends Controller
         //==== passing route name to $routeName ===//
         $routeName = 'cart';
         //=== Return with calling method coupon_cal to get discount value ======///
-        return $this->coupon_cal($code, $userId, $routeName);
+        return $this->coupon_cal($code, $userId, $routeName)
+            ->with(
+                'message',
+                'Your promo code is applied !',
+            );;
     }
+
+
+
+
+
     //================= Create Method to return discount value ================================//
     //======= Method will get parameter code, userId, routeName====//
     //======= After calculated discount will redirect to routeName ===//
@@ -179,6 +180,12 @@ class CartController extends Controller
                 return redirect($routeName)->with(
                     'alert',
                     'Your promo code is expired !',
+                );
+            } elseif ($current->lt($start) && $current->lt($end)) {
+                //$status = 0; //expired
+                return redirect($routeName)->with(
+                    'alert',
+                    'This promo code is start from ' . $start . ' to ' . $end
                 );
             } elseif ($current->gte($start) && $current->lt($end)) {
                 //$status = 1; //active
@@ -239,12 +246,10 @@ class CartController extends Controller
             );
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function checkout()
     {
         if (Auth::check() && Auth::user()->role == 1) {
@@ -262,6 +267,9 @@ class CartController extends Controller
             )
         );
     }
+
+
+
 
     public function place_order(Request $request)
     {
@@ -345,6 +353,19 @@ class CartController extends Controller
                 // Remove all products in Cart after user completed order
                 Cart::destroy();
             }
+            //===================== Update product stock after ordered =======================//
+            $placeOrder = Orders::latest()->first();
+            $orderId = $placeOrder->id;
+            $orderDetails = Orders_Details::where('order_id', $orderId)->get();
+            foreach ($orderDetails as $orderDetail) {
+                $sizeId = $orderDetail->size_id;
+                $quantity = $orderDetail->product_quantity;
+                $productId = $orderDetail->product_id;
+                $productSize_qty = Products_Sizes::where('product_id', $productId)
+                    ->where('size_id', $sizeId)->first();
+                $productSize_qty->size_quantity = ($productSize_qty->size_quantity) - $quantity;
+                $productSize_qty->update();
+            }
             //==== Get data to display on user invoice ====//
             $order = Orders::where('id', $orderId)->first();
             $customer = Customers::where('id', $orderId)->first();
@@ -359,8 +380,7 @@ class CartController extends Controller
                     'orderDetails'
                 )
             );
-
-            //return dd(number_format($dis / 100, 2));
+            //return dd($orderDetails->toArray());
         }
         //====================== If Submit input Coupon code ============================//
         elseif ($request->action == 'apply') {
@@ -400,6 +420,9 @@ class CartController extends Controller
 
     //======================================================================================================================//
 
+
+
+
     //====================== Download Invoice ============================//
     public function download_invoice($id)
     {
@@ -417,32 +440,10 @@ class CartController extends Controller
 
         return $pdf->download($order->invoice_code . '.pdf');
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function remove_from_cart($id)
     {
         if (Auth::check() && Auth::user()->role == 1) {
@@ -462,6 +463,10 @@ class CartController extends Controller
             );
         //return dd($rowId);
     }
+
+
+
+
     public function remove_all_cart()
     {
         if (Auth::check() && Auth::user()->role == 1) {

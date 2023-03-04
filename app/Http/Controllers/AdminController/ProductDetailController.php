@@ -17,11 +17,7 @@ use Illuminate\Support\Facades\File;
 
 class ProductDetailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_detail_add()
     {
         $sizes = Sizes::orderBy('size_number')->get();
@@ -39,11 +35,8 @@ class ProductDetailController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function product_detail_list()
     {
         $products = Products::orderByDesc('id')->paginate(5);
@@ -57,6 +50,9 @@ class ProductDetailController extends Controller
 
         );
     }
+
+
+
     public function product_detail_view($code)
     {
         $product_view = Products::where('product_code', $code)->first();
@@ -68,17 +64,22 @@ class ProductDetailController extends Controller
         $sizeStock = 0;
         $headCode = trim($code, " 0..9");
         $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
-
+        //==== Calculate total quantity of each size ====//
         foreach ($productSize as $row) {
             $sizeStock += $row->size_quantity;
         }
-        $totalStock = $sizeStock;
-
+        $stockLeft = $sizeStock;
+        //===== Update product status if product stock sold out ======//
+        if ($stockLeft == 0) {
+            $status = Products::where('product_code', $code)->first();
+            $status->product_status = 3; // is sold out
+            $status->update();
+        }
         return view(
             'adminfrontend.pages.products.product_detail_view',
             compact(
                 'product_view',
-                'totalStock',
+                'stockLeft',
                 'productCode',
                 'productGroups',
                 'productCategory'
@@ -86,12 +87,8 @@ class ProductDetailController extends Controller
 
         );
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
 
     public function product_detail_store(Request $request)
     {
@@ -131,7 +128,7 @@ class ProductDetailController extends Controller
             }
         }
         //=======================================//
-
+        $total_stock = 0;
         //========= Storing data for table products_sizes ======//
         if ($request->size_id) {
             foreach ($request->size_id as $key => $sizeId) {
@@ -142,8 +139,13 @@ class ProductDetailController extends Controller
                         'size_quantity' => $request->size_quantity[$key] ?? 0
                     ]
                 );
+                $total_stock += $request->size_quantity[$key] ?? 0;
             }
         }
+        // =========== Store Total stock ==================//
+        $stock = Products::latest()->first();
+        $stock->product_stock = $total_stock;
+        $stock->update();
         //========= Storing data for table products_attributes ======//
         /*
         foreach ($request->group_id as  $row => $value) {
@@ -162,26 +164,11 @@ class ProductDetailController extends Controller
         return redirect('/admin/product-detail-add')
             ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
 
-        //return dd($value);
+        //return dd($total_stock);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_detail_edit($id)
     {
         $sizes = Sizes::orderBy('size_number')->get();
@@ -191,8 +178,6 @@ class ProductDetailController extends Controller
         $categories = Categories::orderBy('id')->get();
         $subCategories = Categories_Subcategories::orderBy('id')->get();
         $products = Products::where('id', $id)->first();
-
-
         return view(
             'adminfrontend.pages.products.product_detail_edit',
             compact(
@@ -209,13 +194,9 @@ class ProductDetailController extends Controller
         //return dd($colors->toArray());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function product_detail_update(Request $request, $id)
     {
         //======== Update data on table products ========//
@@ -226,7 +207,6 @@ class ProductDetailController extends Controller
         $update_product->product_price = $request->input('product_price');
         $update_product->product_color = $request->input('product_color');
         $update_product->product_saleprice = $request->input('product_saleprice');
-
         //========= Update data for table products ======//
         if ($request->hasFile('product_imgcover')) {
 
@@ -277,12 +257,12 @@ class ProductDetailController extends Controller
         $productSize = Products_Sizes::where('product_id', $productId)->get();
 
         if ($request->size_id) {
-            //==== Delete all data on table products_sizes if request has new size_id value
+            //==== Delete all data on table products_sizes if request has new size_id and value
             for ($i = 0; $i < count($productSize); $i++) {
                 $deleteSize = Products_Sizes::where('product_id', $productId)->first();
                 $deleteSize->delete();
             }
-
+            $total_stock = 0;
             foreach ($request->size_id as $key => $sizeId) {
                 $update_product->rela_product_size()->create(
                     [
@@ -291,9 +271,14 @@ class ProductDetailController extends Controller
                         'size_quantity' => $request->size_quantity[$key] ?? 0
                     ]
                 );
+                $total_stock += $request->size_quantity[$key] ?? 0;
             }
         }
-        //=======================================================//
+        // =========== Update Total stock ==================//
+        $stock = Products::where('id', $id)->first();
+        $stock->product_stock = $total_stock;
+        $stock->update();
+        //=============================================================================//
 
         //========= Update data for table products_groups ======//
         $deleteGroup = Products_Attributes::where('product_id', $productId)->get();
@@ -310,26 +295,28 @@ class ProductDetailController extends Controller
         }
         return redirect('/admin/product-detail-list')
             ->with('alert', 'Product ' . $request->product_name . ' is updated successfully!');
-
-        //return dd($request->toArray());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_detail_delete($id)
     {
         $delete_product = Products::where('id', $id)->first();
         $delete_product->delete();
-
         return redirect('/admin/product-detail-list')
             ->with(
                 'alert',
                 'Product ' . '"' . $delete_product->product_name . '"' .
                     ' is deleted successfully !'
             );
+    }
+
+    //============= Update product status ============//
+    public function product_detail_status($productId, $statusId)
+    {
+        $productStatus = Products::where('id', $productId)->first();
+        $productStatus['product_status'] = $statusId;
+        $productStatus->update();
+        return redirect()->back()
+            ->with('message', 'Product ' . $productStatus->product_name  . ' updated status successfully !');
     }
 }

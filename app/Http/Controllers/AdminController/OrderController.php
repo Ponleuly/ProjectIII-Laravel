@@ -12,11 +12,7 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function order_list()
     {
         $orders = Orders::orderByDesc('id')->paginate(10); // Showing only 10 ordered per page
@@ -50,11 +46,6 @@ class OrderController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function order_invoice($id)
     {
         $order = Orders::where('id', $id)->first();
@@ -72,6 +63,9 @@ class OrderController extends Controller
             )
         );
     }
+
+
+
     public function download_invoice($id)
     {
         $order = Orders::where('id', $id)->first();
@@ -90,15 +84,14 @@ class OrderController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //============= Update invoice status ============//
+    public function order_status_action($orderId, $statusId)
     {
-        //
+        $orderStatus = Orders::where('id', $orderId)->first();
+        $orderStatus['order_status'] = $statusId;
+        $orderStatus->update();
+        return redirect()->back()
+            ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
     }
 
     /**

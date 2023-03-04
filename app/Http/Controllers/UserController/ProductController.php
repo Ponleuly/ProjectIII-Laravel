@@ -45,15 +45,14 @@ class ProductController extends Controller
         $productDetails = Products::where('product_code', $code)->first();
         $productId = $productDetails->id;
 
-        $productSize = Products_Sizes::where('product_id', $productId)->get();
+        $productSizes = Products_Sizes::where('product_id', $productId)->get();
         $productGroups = Products_Attributes::where('product_id', $productId)->get();
         $productAttribute = Products_Attributes::where('product_id', $productId)->first();
         $sizeStock = 0;
         $headCode = trim($code, "0..9");
         $productCode = Products::where('product_code', 'LIKE', '%' . $headCode . '%')->get();
 
-
-        foreach ($productSize as $row) {
+        foreach ($productSizes as $row) {
             $sizeStock += $row->size_quantity;
         }
         $totalStock = $sizeStock;
@@ -64,7 +63,7 @@ class ProductController extends Controller
                 'totalStock',
                 'productCode',
                 'productGroups',
-                'productSize',
+                'productSizes',
                 'productAttribute'
             )
         );

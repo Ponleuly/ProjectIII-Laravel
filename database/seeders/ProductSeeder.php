@@ -26,8 +26,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 22.00,
                 'product_imgcover' => 'Pro_ba0001_1.jpg',
                 'product_color' => '#000091',
-                /*'category_id' => 2,
-                'subcategory_id' => 4,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -40,8 +40,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 22.00,
                 'product_imgcover' => 'Pro_ba0002_1.jpg',
                 'product_color' => '#000000',
-                /*'category_id' => 2,
-                'subcategory_id' => 4,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -54,8 +54,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 22.00,
                 'product_imgcover' => 'Pro_ba0003_1.jpg',
                 'product_color' => '#408080',
-                /*'category_id' => 2,
-                'subcategory_id' => 4,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -68,8 +68,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_va0001_1.jpg',
                 'product_color' => '#ff8000',
-                /*'category_id' => 2,
-                'subcategory_id' => 5,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -82,8 +82,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_va0002_1.jpg',
                 'product_color' => '#804000',
-                /*'category_id' => 2,
-                'subcategory_id' => 5,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -96,8 +96,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_va0003_1.jpg',
                 'product_color' => '#808040',
-                /*'category_id' => 2,
-                'subcategory_id' => 5,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -110,8 +110,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_ua0001_1.jpg',
                 'product_color' => '#64b1ff',
-                /*'category_id' => 2,
-                'subcategory_id' => 6,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -124,8 +124,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_ua0002_1.jpg',
                 'product_color' => '#800040',
-                /*'category_id' => 2,
-                'subcategory_id' => 6,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -138,8 +138,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_ua0003_1.jpg',
                 'product_color' => '#ffff00',
-                /*'category_id' => 2,
-                'subcategory_id' => 6,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -152,8 +152,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 25.00,
                 'product_imgcover' => 'Pro_ua0004_1.jpg',
                 'product_color' => '#008000',
-                /*'category_id' => 2,
-                'subcategory_id' => 6,*/
+                'product_stock' => 110,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -166,8 +166,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 10.00,
                 'product_imgcover' => 'Pro_hac0001_1.jpg',
                 'product_color' => '#ebebeb',
-                /*'category_id' => 3,
-                'subcategory_id' => 9,*/
+                'product_status' => 2,
+                'product_stock' => 10,
                 'created_at' => Carbon::now()
             ],
 
@@ -180,8 +180,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 10.00,
                 'product_imgcover' => 'Pro_hac0002_1.jpg',
                 'product_color' => '#0080ff',
-                /*'category_id' => 3,
-                'subcategory_id' => 9,*/
+                'product_stock' => 10,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
 
@@ -194,8 +194,8 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 11.00,
                 'product_imgcover' => 'Pro_hac0003_1.jpg',
                 'product_color' => '#ffe1c4',
-                /*'category_id' => 3,
-                'subcategory_id' => 9,*/
+                'product_stock' => 10,
+                'product_status' => 2,
                 'created_at' => Carbon::now()
             ],
         ]);

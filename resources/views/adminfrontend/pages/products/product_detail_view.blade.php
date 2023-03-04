@@ -11,12 +11,19 @@
             @csrf <!-- to make form active -->
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
+                     <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
-                        <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-		            @endif
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                    <!---------------End Alert ------------------------>
 
                     <h4 class="mb-2 text-black">Product Details</h4>
                     <div class="p-3 p-lg-4 border bg-white">
@@ -59,7 +66,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
-                                            <h5 class="text-black fw-bold mt-1">Sale price:</h5>
+                                            <h5 class="text-black fw-bold mt-1">Sale Price:</h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
                                             <p>${{$product_view->product_saleprice}}</p>
@@ -96,7 +103,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
-                                            <h5 class="text-black fw-bold mt-1">Sub category: </h5>
+                                            <h5 class="text-black fw-bold mt-1">Sub Category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
                                             <p>{{$productCategory->rela_product_subcategory->sub_category}}</p>
@@ -104,10 +111,46 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-3">
-                                            <h5 class="text-black fw-bold mt-1">Total stock: </h5>
+                                            <h5 class="text-black fw-bold mt-1">Total Stock: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$totalStock}}</p>
+                                            <p>{{$product_view->product_stock}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-3">
+                                            <h5 class="text-black fw-bold mt-1">Stock Left: </h5>
+                                        </div>
+                                        <div class="col-9 ms-0 ps-0">
+                                            <p>{{$stockLeft}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-3">
+                                            <h5 class="text-black fw-bold mt-1">Product Status: </h5>
+                                        </div>
+                                        <div class="col-9 ms-0 ps-0">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm py-1 px-0
+                                                    {{($product_view->product_status == 1)?  'btn-primary' : ''}}
+                                                    {{($product_view->product_status == 2)?  'btn-success' : ''}}
+                                                    {{($product_view->product_status == 3)?  'btn-danger' : ''}}
+                                                    "
+                                                    style="width: 65px;"
+                                                >
+                                                {{($product_view->product_status == 1)?  'New' : ''}}
+                                                {{($product_view->product_status == 2)?  'Selling' : ''}}
+                                                {{($product_view->product_status == 3)?  'Sold Out' : ''}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-3">
+                                            <h5 class="text-black fw-bold mt-1">Date: </h5>
+                                        </div>
+                                        <div class="col-9 ms-0 ps-0">
+                                            <p>{{$product_view->created_at->diffForHumans()}}</p>
                                         </div>
                                     </div>
                                     <hr>

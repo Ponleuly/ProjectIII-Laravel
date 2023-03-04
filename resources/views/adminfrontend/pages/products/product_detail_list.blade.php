@@ -1,5 +1,7 @@
 <?php
 	use App\Models\Products_Attributes;
+	use App\Models\Products_Sizes;
+
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
@@ -8,12 +10,19 @@
             @csrf <!-- to make form active -->
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
+                    <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
-                        <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-		            @endif
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                    <!---------------End Alert ------------------------>
 
                     <h4 class="mb-2 text-black">Product Details</h4>
                     <div class="p-3 p-lg-4 border bg-white">
@@ -35,45 +44,90 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="text-center bg-primary text-light" style="font-size:13px">
                                     <th scope="col">#</th>
                                     <th scope="col">IMAGE</th>
-                                    <th scope="col">PRODUCT NAME</th>
-                                    <th scope="col">GROUP</th>
+                                    <th scope="col" class="text-start">PRODUCT NAME</th>
                                     <th scope="col">CATEGORY</th>
-                                    <th scope="col">SUBCATEGORY</th>
                                     <th scope="col">PRICE</th>
+                                    <th scope="col">STOCK</th>
+                                    <th scope="col">STOCKLEFT</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col">STATUS_ACTION</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col" class="text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($products as $product)
-                                    <tr class="admin-table">
+                                    @php
+                                        $stockLeft = 0;
+                                        $groupAttribute = Products_Attributes::where('product_id', $product->id)->get();
+                                        $categoryAttribute = Products_Attributes::where('product_id', $product->id)->first();
+                                        $productSize = Products_Sizes::where('product_id', $product->id)->get();
+                                        foreach ($productSize as $row) {
+                                            $stockLeft  += $row->size_quantity;
+                                        }
+                                    @endphp
+
+                                    <tr class="admin-table text-center">
                                         <th scope="row">{{$count++}}</th>
                                         <td>
                                             <img src="/product_img/imgcover/{{$product->product_imgcover}}" class="img-fluid product-thumbnail product-img">
                                         </td>
-                                        <td>{{$product->product_name}}</td>
-                                        <td>
-                                            @php
-                                                $groupAttribute = Products_Attributes::where('product_id', $product->id)->get();
-                                                $categoryAttribute = Products_Attributes::where('product_id', $product->id)->first();
-                                            @endphp
-                                            @foreach ($groupAttribute as $attribute)
-                                                {{$attribute->rela_product_group->group_name}}
-                                                {{($loop->last)? '':'&'}}
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            {{$categoryAttribute->rela_product_category->category_name}}
-                                        </td>
-                                        <td>
-                                            {{$categoryAttribute->rela_product_subcategory->sub_category}}
-                                        </td>
+                                        <td  class="text-start">{{$product->product_name}}</td>
+                                        <td>{{$categoryAttribute->rela_product_category->category_name}}</td>
                                         <td>${{$product->product_saleprice}}</td>
+                                        <td>{{$product->product_stock}}</td>
+                                        <td>{{$stockLeft}}</td>
+                                        <td class="text-center py-0">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm py-1 px-0
+                                                    {{($product->product_status == 1)?  'btn-primary' : ''}}
+                                                    {{($product->product_status == 2)?  'btn-success' : ''}}
+                                                    {{($product->product_status == 3)?  'btn-danger' : ''}}
+                                                    "
+                                                    style="width: 65px;"
+                                                >
+                                                {{($product->product_status == 1)?  'New' : ''}}
+                                                {{($product->product_status == 2)?  'Selling' : ''}}
+                                                {{($product->product_status == 3)?  'Sold Out' : ''}}
+                                            </button>
+                                        </td>
+                                        <td class="text-center" >
+                                            <select
+                                                class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                >
+                                                <option
+                                                    value ="{{$product->product_status}}"
+                                                    {{($product->product_status == 1)? 'selected': ''}}
+                                                    onClick="window.location =
+                                                    '{{url('admin/product-detail-status/'.$product->id .'/1')}}'"
+                                                    >
+                                                    New
+                                                </option>
+                                                <option
+                                                    value ="{{$product->product_status}}"
+                                                    {{($product->product_status == 2)? 'selected': ''}}
+                                                    onClick="window.location =
+                                                    '{{url('admin/product-detail-status/'.$product->id .'/2')}}'"
+                                                    >
+                                                    Selling
+                                                </option>
+                                                <option
+                                                    value ="{{$product->product_status}}"
+                                                    {{($product->product_status == 3)? 'selected': ''}}
+                                                    onClick="window.location =
+                                                    '{{url('admin/product-detail-status/'.$product->id .'/3')}}'"
+                                                    >
+                                                    Sold Out
+                                                </option>
+                                            </select>
+                                        </td>
                                         <td>{{$product->created_at->diffForHumans()}}</td>
-                                        <td class="text-center">
+                                        <td class="text-center col-2">
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('/admin/product-detail-view/'.$product->product_code)}}"
@@ -94,10 +148,9 @@
                                                 >
                                                 <span class="material-icons-round" style="font-size: 16px">edit</span>
                                             </a>
-
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
-                                                href="{{url('/admin/product-detail-edit/'.$product->id)}}"
+                                                href="{{url('/admin/product-detail-delete/'.$product->id)}}"
                                                 role="button"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"

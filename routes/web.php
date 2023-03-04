@@ -150,6 +150,8 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-detail-edit/{id}', 'product_detail_edit')->name('product-detail-edit');
       Route::put('/product-detail-edit/{id}', 'product_detail_update');
       Route::get('/product-detail-delete/{id}', 'product_detail_delete');
+      Route::get('/product-detail-status/{product_id}/{status_id}', 'product_detail_status')
+         ->name('product-detail-status');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -168,11 +170,11 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/order-details/{id}', 'order_details')->name('order-details');
       Route::get('/order-invoice/{id}', 'order_invoice')->name('order-invoice');
       Route::get('/download-invoice/{id}', 'download_invoice')->name('download-invoice');
+      Route::get('/order-status-action/{order_id}/{status_id}', 'order_status_action')->name('order-status-action');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(OrderStatusController::class)->group(function () {
-      Route::get('/order-status-action/{order_id}/{status_id}', 'order_status_action')->name('order-status-action');
       Route::get('order-status-option', 'order_status_option')->name('order-status-option');
    });
 });

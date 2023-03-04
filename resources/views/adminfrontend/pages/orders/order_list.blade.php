@@ -50,7 +50,7 @@
                     <div class="mt-3 p-3 p-lg-4 border bg-white">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr class="text-light bg-primary">
                                     <th scope="col">#</th>
                                     <th scope="col">ORDER DATE</th>
                                     <th scope="col">CODE</th>

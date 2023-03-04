@@ -17,10 +17,8 @@ class Products extends Model
         'product_price',
         'product_saleprice',
         'product_color',
-        /*
-        'category_id',
-        'subcategory_id',
-        */
+        'product_status',
+
     ];
     public function pro_img()
     {
