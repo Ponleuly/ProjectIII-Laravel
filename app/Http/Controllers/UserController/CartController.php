@@ -236,8 +236,18 @@ class CartController extends Controller
                         }
                     }
                 }
-                return redirect($routeName)
-                    ->with('discount', $discount);
+                //=== If there is no discount product in cart ===//
+                if ($discount == 0) {
+                    return redirect($routeName)->with(
+                        'alert',
+                        'This promo code is not availabled to this product !',
+                    );
+                }
+                //=== If there is discount product in cart ===//
+                else {
+                    return redirect($routeName)
+                        ->with('discount', $discount);
+                }
             }
         } else {
             return redirect($routeName)->with(

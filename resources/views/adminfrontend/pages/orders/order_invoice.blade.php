@@ -169,8 +169,8 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-xl-10">
-                            <p>Thanks you for your purchase !</p>
+                        <div class="col-xl-10 text-danger">
+                            <p>Thanks for your purchase !</p>
                         </div>
 
                     </div>

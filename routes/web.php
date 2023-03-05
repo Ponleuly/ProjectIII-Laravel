@@ -60,6 +60,8 @@ Route::middleware('authUser')->group(function () {
       Route::put('profile-update/{id}', 'profile_update')->name('profile-update');
       Route::get('change-password', 'change_password')->name('change-password');
       Route::put('change-password/{id}', 'update_password')->name('change-password');
+      Route::get('purchase-history', 'purchase_history')->name('purchase-history');
+      Route::get('purchase-order-detail/{orderId}', 'purchase_order_detail')->name('purchase-order-detail');
    });
 });
 //==============Like Route with Middleware =====================//

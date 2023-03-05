@@ -768,13 +768,12 @@ textarea {
 
 .site-block-order-table td, .site-block-order-table th {
   color: #000000; }
-
 .couponcode-wrap input {
   border-radius: 10px !important; }
-
+/*
 .text-primary {
   color: #CC2936 !important; }
-
+*/
 .thankyou-icon {
   position: relative;
   color: #CC2936; }
@@ -862,4 +861,15 @@ img.icon-over  {
   width: 100%;
   max-width: 150px;
   object-fit: cover;
+}
+.product-img {
+  width: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+tr.admin-table {
+  padding: 20px;
+  text-align: start;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.8);
 }

@@ -168,7 +168,7 @@
 								<li><a class="dropdown-item " href="{{url('logout')}}">Log out</a></li>
 								@else
 								<li><a class="dropdown-item " href="{{url('register')}}">Register</a></li>
-								<li><a class="dropdown-item " href="{{url('login')}}">Sign In</a></li>
+								<li><a class="dropdown-item " href="{{url('login')}}">Log In</a></li>
 							@endif
 						</ul>
 					</div>

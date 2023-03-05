@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Models\User;
+use App\Models\Orders;
+use App\Models\Customers;
 use Illuminate\Http\Request;
+use App\Models\Orders_Details;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     public function profile()
     {
-        return view('frontend.mainPages.profile');
+        return view('frontend.userProfile.general_profile');
     }
 
     public function profile_update(Request $request, $id)
@@ -38,8 +42,10 @@ class ProfileController extends Controller
     }
     public function change_password()
     {
-        return view('frontend.auth.changepassword');
+        return view('frontend.userProfile.change_password');
     }
+
+
     public function update_password(Request $request, $id)
     {
 
@@ -66,5 +72,51 @@ class ProfileController extends Controller
 
         return redirect('profile')
             ->with('alert', 'Password has been changed successfully !');
+    }
+
+    public function purchase_history()
+    {
+        $userId = Auth::user()->id;
+        $orders = Orders::where('user_id', $userId)->paginate(5);
+        $orderCount = 0;
+        $totalPurchase = 0;
+        foreach ($orders as $order) {
+            $orderDetails = Orders_Details::where('order_id', $order->id)->get();
+            $orderCount += $orderDetails->count();
+            $totalAmount = 0;
+            $deliveryFee = $order->delivery_fee;
+            $discount = $order->discount;
+            foreach ($orderDetails as  $orderDetail) {
+                $price = $orderDetail->product_price;
+                $qty = $orderDetail->product_quantity;
+                $totalAmount += $price * $qty;
+                $total = $totalAmount + $deliveryFee - $discount;
+            }
+            $totalPurchase += $total;
+        }
+        return view(
+            'frontend.userProfile.purchase_history',
+            compact(
+                'orders',
+                'orderCount',
+                'totalPurchase'
+            )
+        );
+    }
+    public function purchase_order_detail($orderId)
+    {
+        $order = Orders::where('id', $orderId)->first();
+        $customer = Customers::where('id', $orderId)->first();
+        $orderDetails = Orders_Details::where('order_id', $orderId)->get();
+        $count = 1;
+        return view(
+            'frontend.userProfile.order_history',
+            compact(
+                'count',
+                'order',
+                'customer',
+                'orderDetails'
+            )
+        );
     }
 }
