@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function shop()
     {
-        $allProducts = Products::orderBy('id')->get();
+        $allProducts = Products::orderBy('id')->paginate(8);
         return view(
             'frontend.product.shop',
             compact('allProducts')
@@ -32,7 +32,7 @@ class ProductController extends Controller
         $groupName = Groups::where('group_name', ucfirst($group))->first();
         $groupId = $groupName->id;
         $group_name = $groupName->group_name;
-        $productGroups = Products_Attributes::where('group_id', $groupId)->get();
+        $productGroups = Products_Attributes::where('group_id', $groupId)->paginate('8');
         return view(
             'frontend.product.product',
             compact('productGroups', 'group_name')
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $categoryName = Categories::where('category_name', ucfirst($category))->first();
         $categoryId = $categoryName->id;
         $productCategory = Products_Attributes::where('group_id', $groupId)
-            ->where('category_id', $categoryId)->get();
+            ->where('category_id', $categoryId)->paginate(8);
 
         $group_name = $groupName->group_name;
         $category_name = $categoryName->category_name;
@@ -110,7 +110,7 @@ class ProductController extends Controller
         $productSubcategory = Products_Attributes::where('group_id', $groupId)
             ->where('category_id', $categoryId)
             ->where('subcategory_id', $subcategoryId)
-            ->get();
+            ->paginate('8');
 
         $group_name = $groupName->group_name;
         $category_name = $categoryName->category_name;

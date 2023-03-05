@@ -6,19 +6,18 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController\CartController;
+use App\Http\Controllers\UserController\HomeController;
 use App\Http\Controllers\UserController\LikeController;
 use App\Http\Controllers\AdminController\OrderController;
 use App\Http\Controllers\AdminController\CouponController;
 use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
 use App\Http\Controllers\UserController\AuthUserController;
-use App\Http\Controllers\UserController\FrontendController;
 use App\Http\Controllers\AdminController\CustomerController;
 use App\Http\Controllers\AdminController\DeliveryController;
 use App\Http\Controllers\AdminController\AuthAdminController;
 use App\Http\Controllers\AdminController\OrderStatusController;
 use App\Http\Controllers\AdminController\ProductSizeController;
-use App\Http\Controllers\AdminController\ProductColorController;
 use App\Http\Controllers\AdminController\ProductgroupController;
 use App\Http\Controllers\AdminController\AdminFrontendController;
 use App\Http\Controllers\AdminController\ProductDetailController;
@@ -72,7 +71,7 @@ Route::controller(LikeController::class)->group(function () {
    Route::get('remove-like/{id}', 'remove_like')->name('remove-like');
    Route::get('remove-all-like', 'remove_all_like')->name('remove-all-like');
 });
-Route::controller(FrontendController::class)->group(function () {
+Route::controller(HomeController::class)->group(function () {
    Route::get('/home', 'home')->name('home');
 });
 Route::controller(ProductController::class)->group(function () {

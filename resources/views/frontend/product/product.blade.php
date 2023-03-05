@@ -12,23 +12,12 @@
 		</ol>
 	</nav>
 	<!-- End breabcrumb Section -->
-
-		<!--	<div class="hero"> -->
-			<div class="container">
-
-				<div class="row justify-content-between">
-					<img src="frontend/images/shop_banner.jpg" class="img-fluid">
-				</div>
-
-			</div>
-	<!--	</div>-->
-
-	<div class="untree_co-section product-section before-footer-section">
+	<div class="untree_co-section product-section">
 		<div class="container">
-			  <div class="row">
+			<div class="row">
 				@foreach ($productGroups as $product)
 					<!-- Start Column 1 -->
-					<div class="col-12 col-md-4 col-lg-3 mb-5">
+					<div class="col-12 col-md-4 col-lg-3">
 						<a class="product-item" href="{{url('product-detail/'.$product->rela_group->product_code)}}">
 							<img
 								src="/product_img/imgcover/{{$product->rela_group->product_imgcover}}"
@@ -44,7 +33,13 @@
 					</div>
 					<!-- End Column 1 -->
 				@endforeach
-			  </div>
+			</div>
+			<div class="row mt-4">
+				<div class="d-flex justify-content-end">
+					<!--- To show data by pagination --->
+					{{$productGroups->links()}}
+                </div>
+			</div>
 		</div>
 	</div>
 @endsection()

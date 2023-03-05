@@ -32,11 +32,6 @@
 					<div class="col-md-6 mx-auto text-center">
 						<h2 class="section-title">PRODUCT CATEGORIES</h2>
 					</div>
-					<!--
-					<div class="col-md-6 text-start text-md-end">
-						<a href="#" class="more">View All Posts</a>
-					</div>
-					-->
 				</div>
 
 				<div class="row">
@@ -97,47 +92,34 @@
 					<!-- End Column 1 -->
 				</div>
 				<div class="row">
-					<!-- Start Column 2 -->
-					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 ">
-						<a class="product-item" href="{{url('product-detail')}}">
-							<img src="frontend/images/Giay_1.jpeg" class="img-fluid product-thumbnail">
-							<h3 class="product-title">Vintas Monoguso</h3>
-							<strong class="product-price">$50.00</strong>
-							<span class="icon-cross">
-								<img src="frontend/images/cross.svg" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 2 -->
-
-					<!-- Start Column 3 -->
-					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
-						<a class="product-item" href="{{url('product-detail')}}">
-							<img src="frontend/images/Giay_4.jpeg" class="img-fluid product-thumbnail">
-							<h3 class="product-title">Vanss Sneaker</h3>
-							<strong class="product-price">$78.00</strong>
-
-							<span class="icon-cross">
-								<img src="frontend/images/cross.svg" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 3 -->
-
-					<!-- Start Column 4 -->
-					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0">
-						<a class="product-item" href="{{url('product-detail')}}">
-							<img src="frontend/images/Giay_3.jpeg" class="img-fluid product-thumbnail">
-							<h3 class="product-title">Ananas Urba</h3>
-							<strong class="product-price">$43.00</strong>
-
-							<span class="icon-cross">
-								<img src="frontend/images/cross.svg" class="img-fluid">
-							</span>
-						</a>
-					</div>
-					<!-- End Column 4 -->
-
+					@foreach ($newProducts as $product)
+						<!-- Start Column 2 -->
+						<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 ">
+							<a
+								class="product-item"
+								href="{{url('product-detail/'.$product->product_code)}}"
+							>
+								<img
+									src="/product_img/imgcover/{{$product->product_imgcover}}"
+									class="img-fluid product-thumbnail"
+								>
+								<h3 class="product-title">{{$product->product_name}}</h3>
+								<strong class="product-price">
+									$ {{floatval($product->product_saleprice)}}
+								</strong>
+								<span class="icon-cross">
+									<img src="frontend/images/cross.svg" class="img-fluid">
+								</span>
+							</a>
+						</div>
+						<!-- End Column 2 -->
+					@endforeach
+				</div>
+				<div class="row mt-4">
+					<div class="d-flex justify-content-end">
+						<!--- To show data by pagination --->
+						{{$newProducts->links()}}
+                	</div>
 				</div>
 			</div>
 		</div>
@@ -167,7 +149,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
@@ -186,7 +168,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
@@ -205,7 +187,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
@@ -218,13 +200,10 @@
 								</div>
 								<!-- END item -->
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End Testimonial Slider -->
-
-
 @endsection()

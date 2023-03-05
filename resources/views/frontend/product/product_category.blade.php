@@ -29,16 +29,16 @@
 		</div>
 	</div>
 
-	<div class="untree_co-section product-section before-footer-section">
+	<div class="untree_co-section product-section ">
 		<div class="container">
-			  <div class="row">
-				@foreach ( $productCategory as $category)
+			<div class="row">
+				@foreach ($productCategory as $category)
 					@php
 						$products = Products::where('id', $category->product_id)->get();
 					@endphp
 					@foreach ($products as $product)
 						<!-- Start Column 1 -->
-						<div class="col-12 col-md-4 col-lg-3 mb-5">
+						<div class="col-12 col-md-4 col-lg-3">
 							<a class="product-item" href="{{url('product-detail/'.$product->product_code)}}">
 								<img
 									src="/product_img/imgcover/{{$product->product_imgcover}}"
@@ -55,7 +55,13 @@
 						<!-- End Column 1 -->
 					@endforeach
 				@endforeach
-			  </div>
+			</div>
+			<div class="row mt-4">
+				<div class="d-flex justify-content-end">
+					<!--- To show data by pagination --->
+					{{$productCategory->links()}}
+                </div>
+			</div>
 		</div>
 	</div>
 @endsection()
