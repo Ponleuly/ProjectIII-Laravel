@@ -221,19 +221,32 @@ class CartController extends Controller
                     $category = $productAtt->category_id == $coupon->category_id;
                     $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
 
-                    //=== For discout product ===//
-                    if ($category && $subcategory) {
-                        $subtotal = $quantity * $price;
-                        //== Check in table coupons if there are discount is value or percentage ===//
-                        if ($value == 0) {
-                            $discount += ($subtotal * $percentage) / 100;
-                        } elseif ($percentage == 0) {
-                            $discount += $value * $quantity;
+                    //=== For discount coupon with only category ===//
+                    if ($coupon->subcategory_id == null) {
+                        if ($category) {
+                            $subtotal = $quantity * $price;
+                            //== Check in table coupons if there are discount is value or percentage ===//
+                            if ($value == 0) {
+                                $discount += ($subtotal * $percentage) / 100;
+                            } elseif ($percentage == 0) {
+                                $discount += $value * $quantity;
+                            }
+                        } //=== Not discount ===//
+                        else {
+                            $discount;
                         }
-                    }
-                    //=== Not discount ===//
-                    else {
-                        $discount;
+                    } else {  //=== For discount coupon with category and subcategory ===//
+                        if ($category && $subcategory) {
+                            $subtotal = $quantity * $price;
+                            //== Check in table coupons if there are discount is value or percentage ===//
+                            if ($value == 0) {
+                                $discount += ($subtotal * $percentage) / 100;
+                            } elseif ($percentage == 0) {
+                                $discount += $value * $quantity;
+                            }
+                        } else {
+                            $discount;
+                        }
                     }
                     //}
                 }

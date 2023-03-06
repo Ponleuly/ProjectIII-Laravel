@@ -152,7 +152,7 @@
                                             disabled
                                             required
                                             >
-                                            <option selected disabled>Select Subcategory</option>
+                                            <option selected disabled>None</option>
                                             @foreach ($subcategories as $subcategory)
                                                 <option value="{{$subcategory->id}}"
                                                     {{($subcategory->id == $coupon->subcategory_id)? 'selected':''}}
