@@ -64,8 +64,32 @@
 												$categories = Categories_Groups::where('group_id', $group->id)->get();
 												$category_count = $categories->count();
 											@endphp
+											<!--====================== New and Featured Menu ===============================-->
+											<div class="col-md-{{($category_count > 2)? 3:4}}">
+												<a href="{{url('product-category/new-featured')}}">
+													<h5 class="text-center text-black py-4">
+														<strong>New & Featured</strong>
+													</h5>
+												</a>
+												<div class="list-group list-group-light text-center">
+													<a
+														href="{{url('product-subcategory/new-arrival')}}"
+														class="list-group-item px-0 py-1 border-0"
+														>
+														<h6>New Arrival</h6>
+													</a>
+													<a
+														href="{{url('product-subcategory/sale-off')}}"
+														class="list-group-item px-0 py-1 border-0"
+														>
+														<h6>Sale Off</h6>
+													</a>
+												</div>
+											</div>
+											<!--====================== New and Featured Menu ===============================-->
+											<!--====================== Category Menu ===============================-->
 											@foreach ($categories as $category)
-												<div class="col-12 col-md-{{($category_count >= 4)? 3:4}}">
+												<div class="col-md-{{($category_count >= 2)? 3:4}}">
 													<a href="{{url('product-group-category/'.strtolower($group->group_name).'/'.strtolower($category->rela_category->category_name))}}">
 														<h5 class="text-center text-black py-4">
 															<strong>{{$category->rela_category->category_name}}</strong>
@@ -75,6 +99,7 @@
 														$subCategories = Categories_Subcategories::where('category_id', $category->category_id)->get();
 													@endphp
 													<div class="list-group list-group-light text-center">
+														<!--================ Sub Category Menu ==================-->
 														@foreach ($subCategories as $subCategory)
 															<a
 																href="{{url('product-subcategory/'
@@ -87,9 +112,11 @@
 																<h6>{{$subCategory->sub_category}}</h6>
 															</a>
 														@endforeach
+														<!--================ End Sub Category Menu ==================-->
 													</div>
 												</div>
 											@endforeach
+											<!--====================== End Category Menu ===============================-->
 										</div>
 									</div>
 								</div>

@@ -102,18 +102,18 @@
                                     @if($productDetails->product_price > $productDetails->product_saleprice)
                                         <div class="col-2 ">
                                             <h5 class="text-danger fw-bold py-2">
-                                                ${{floatval($productDetails->product_saleprice)}}
+                                                $ {{number_format($productDetails->product_saleprice, 2)}}
                                             </h5>
                                         </div>
                                         <div class="col-2">
                                             <p class="fw-bold">
-                                                <del>${{floatval($productDetails->product_price)}}</del>
+                                                <del>$ {{number_format($productDetails->product_price, 2)}}</del>
                                             </p>
                                         </div>
                                         @else
                                             <div class="col-2">
                                                 <h5 class="text-danger fw-bold py-2">
-                                                    ${{floatval($productDetails->product_saleprice)}}
+                                                    $ {{number_format($productDetails->product_saleprice, 2)}}
                                                 </h5>
                                             </div>
                                     @endif

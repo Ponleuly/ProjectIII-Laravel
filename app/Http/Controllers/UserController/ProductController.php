@@ -72,40 +72,76 @@ class ProductController extends Controller
 
     public function product_category($category)
     {
+        if ($category == 'new-featured') {
+            //=== Get new product and sale off pruduct that have saleprice < price
+            $products = Products::where('product_status', 1)
+                ->orWhereColumn('product_price', '>', 'product_saleprice')->paginate(8);
+            $category_name = 'New & Featured';
+            return view(
+                'frontend.product.product_new_featured',
+                compact(
+                    'products',
+                    'category_name'
+                )
+            );
+        } else {
+            $categoryName = Categories::where('category_name', ucfirst($category))->first();
+            $categoryId = $categoryName->id;
+            $products = Products_Attributes::where('category_id', $categoryId)
+                ->distinct('product_id')->paginate('8', 'product_id');
+            $category_name = $categoryName->category_name;
+            return view(
+                'frontend.product.product_category',
+                compact(
+                    'products',
+                    'category_name'
+                )
+            );
+        }
 
-        $categoryName = Categories::where('category_name', ucfirst($category))->first();
-        $categoryId = $categoryName->id;
-        $products = Products_Attributes::where('category_id', $categoryId)
-            ->distinct('product_id')->paginate('8', 'product_id');
-        $category_name = $categoryName->category_name;
-
-        return view(
-            'frontend.product.product_category',
-            compact(
-                'products',
-                'category_name'
-            )
-        );
 
         //return dd($products->toArray());
     }
 
     public function product_subcategory($sub)
     {
+        if ($sub == 'new-arrival') {
+            //=== Get new product
+            $products = Products::where('product_status', 1)->paginate(8);
+            $category_name = 'New Arrival';
+            return view(
+                'frontend.product.product_new_featured',
+                compact(
+                    'products',
+                    'category_name'
+                )
+            );
+        } elseif ($sub == 'sale-off') {
+            //=== Get sale off pruduct that have saleprice < price
+            $products = Products::whereColumn('product_price', '>', 'product_saleprice')->paginate(8);
+            $category_name = 'Sale Off';
+            return view(
+                'frontend.product.product_new_featured',
+                compact(
+                    'products',
+                    'category_name'
+                )
+            );
+        } else {
+            $subName = Categories_Subcategories::where('sub_category', ucfirst($sub))->first();
+            $subId = $subName->id;
+            $products = Products_Attributes::where('subcategory_id', $subId)
+                ->distinct('product_id')->paginate('8', 'product_id');
+            $sub_name = $subName->sub_category;
 
-        $subName = Categories_Subcategories::where('sub_category', ucfirst($sub))->first();
-        $subId = $subName->id;
-        $products = Products_Attributes::where('subcategory_id', $subId)
-            ->distinct('product_id')->paginate('8', 'product_id');
-        $sub_name = $subName->sub_category;
-
-        return view(
-            'frontend.product.product_subcategory',
-            compact(
-                'products',
-                'sub_name'
-            )
-        );
+            return view(
+                'frontend.product.product_subcategory',
+                compact(
+                    'products',
+                    'sub_name'
+                )
+            );
+        }
 
         //return dd($products->toArray());
     }

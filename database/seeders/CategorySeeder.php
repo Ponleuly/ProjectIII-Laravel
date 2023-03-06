@@ -19,18 +19,12 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'id' => 1,
-                'category_name' => "New & Featured",
-                'category_img' => 'new_feature.jpg',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'id' => 2,
                 'category_name' => "Shoes",
                 'category_img' => 'shoes.jpg',
                 'created_at' => Carbon::now()
             ],
             [
-                'id' => 3,
+                'id' => 2,
                 'category_name' => "Accessories",
                 'category_img' => 'accessories.jpg',
                 'created_at' => Carbon::now()

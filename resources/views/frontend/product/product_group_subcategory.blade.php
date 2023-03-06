@@ -18,7 +18,7 @@
 			</li>
 			<li class="breadcrumb-item text-light active" aria-current="page">
 				<a
-					href="{{url('product-category/'.strtolower($group_name).'/'.strtolower($category_name))}}"
+					href="{{url('product-group-category/'.strtolower($group_name).'/'.strtolower($category_name))}}"
 					 class="text-light">{{$category_name}}
 				</a>
 			</li>
@@ -51,8 +51,9 @@
 									class="img-fluid product-thumbnail"
 								>
 								<h3 class="product-title">{{$product->product_name}}</h3>
-								<strong class="product-price">${{floatval($product->product_saleprice)}}</strong>
-
+								<strong class="product-price">
+									$ {{number_format($product->product_saleprice, 2)}}
+								</strong>
 								<span class="icon-cross">
 									<img src="/frontend/images/cross.svg" class="img-fluid">
 								</span>

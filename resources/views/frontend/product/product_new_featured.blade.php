@@ -13,7 +13,7 @@ use App\Models\Products;
 		</li>
 
 		<li class="breadcrumb-item text-light active" aria-current="page">
-			{{$sub_name}}
+			{{$category_name}}
 		</li>
 	</ol>
 </nav>
@@ -28,15 +28,13 @@ use App\Models\Products;
 <div class="untree_co-section product-section ">
 	<div class="container">
 		<div class="row">
-
 			@foreach ($products as $product)
 			<!-- Start Column 1 -->
 			<div class="col-12 col-md-4 col-lg-3">
-				<a class="product-item" href="{{url('product-detail/'.$product->rela_product->product_code)}}">
-					<img src="/product_img/imgcover/{{$product->rela_product->product_imgcover}}" class="img-fluid product-thumbnail">
-					<h3 class="product-title">{{$product->rela_product->product_name}}</h3>
-					<strong class="product-price">$ {{number_format($product->rela_product->product_saleprice, 2)}}</strong>
-
+				<a class="product-item" href="{{url('product-detail/'.$product->product_code)}}">
+					<img src="/product_img/imgcover/{{$product->product_imgcover}}" class="img-fluid product-thumbnail">
+					<h3 class="product-title">{{$product->product_name}}</h3>
+					<strong class="product-price">$ {{number_format($product->product_saleprice, 2)}}</strong>
 					<span class="icon-cross">
 						<img src="/frontend/images/cross.svg" class="img-fluid">
 					</span>

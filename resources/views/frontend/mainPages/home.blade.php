@@ -38,6 +38,37 @@
 				</div>
 
 				<div class="row">
+						<div class="col-12 col-sm-6 col-md-4 mb-2 mb-md-0">
+							<div class="post-entry">
+								<a href="{{url('product-category/new-featured')}}"
+									class="post-thumbnail">
+									<img
+										src="/product_img/imgcategory/new_feature.jpg"
+										alt="Image" class="img-fluid category-img "
+									>
+								</a>
+								<div class="post-content-entry">
+									<h3>
+										<a href="{{url('product-category/new-featured')}}">
+											New & Featured
+										</a>
+									</h3>
+									<div class="meta">
+										<span>
+											<a href="{{url("product-subcategory/new-arrival")}}">
+												New Arrival
+											</a>
+										</span>
+										<label class="text-black-50 h6">|</label>
+										<span>
+											<a href="{{url("product-subcategory/sale-off")}}">
+												Sale Off
+											</a>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					@foreach ($categories as $category)
 						<div class="col-12 col-sm-6 col-md-4 mb-2 mb-md-0">
 							<div class="post-entry">
@@ -102,7 +133,7 @@
 									>
 									<h3 class="product-title">{{$product->product_name}}</h3>
 									<strong class="product-price">
-										$ {{floatval($product->product_saleprice)}}
+										$ {{number_format($product->product_saleprice, 2)}}
 									</strong>
 									<span class="icon-cross">
 										<img src="frontend/images/cross.svg" class="img-fluid">

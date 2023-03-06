@@ -45,8 +45,9 @@
 									class="img-fluid product-thumbnail"
 								>
 								<h3 class="product-title">{{$product->product_name}}</h3>
-								<strong class="product-price">${{floatval($product->product_saleprice)}}</strong>
-
+								<strong class="product-price">
+									$ {{number_format($product->product_saleprice, 2)}}
+								</strong>
 								<span class="icon-cross">
 									<img src="/frontend/images/cross.svg" class="img-fluid">
 								</span>

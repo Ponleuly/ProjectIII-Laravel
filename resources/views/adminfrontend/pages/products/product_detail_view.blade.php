@@ -98,7 +98,9 @@
                                             <h5 class="text-black fw-bold mt-1">Category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$productCategory->rela_product_category->category_name}}</p>
+                                            <p>
+                                                {{($productCategory)? $productCategory->rela_product_category->category_name: 'Deleted'}}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -106,7 +108,9 @@
                                             <h5 class="text-black fw-bold mt-1">Sub Category: </h5>
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
-                                            <p>{{$productCategory->rela_product_subcategory->sub_category}}</p>
+                                            <p>
+                                                {{($productCategory)? $productCategory->rela_product_subcategory->sub_category : 'Deleted'}}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row mb-2">

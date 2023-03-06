@@ -76,7 +76,7 @@
                                             <img src="/product_img/imgcover/{{$product->product_imgcover}}" class="img-fluid product-thumbnail product-img">
                                         </td>
                                         <td  class="text-start">{{$product->product_name}}</td>
-                                        <td>{{$categoryAttribute->rela_product_category->category_name}}</td>
+                                        <td>{{($categoryAttribute)? $categoryAttribute->rela_product_category->category_name: 'Deleted'}}</td>
                                         <td>${{$product->product_saleprice}}</td>
                                         <td>{{$product->product_stock}}</td>
                                         <td>{{$stockLeft}}</td>
