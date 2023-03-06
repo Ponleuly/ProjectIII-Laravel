@@ -34,10 +34,12 @@ use App\Http\Controllers\AdminController\ProductCategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
    return view('frontend.mainPages.home');
 });
+*/
+
 Route::get('/index', function () {
    return view('index');
 });
@@ -72,13 +74,15 @@ Route::controller(LikeController::class)->group(function () {
    Route::get('remove-all-like', 'remove_all_like')->name('remove-all-like');
 });
 Route::controller(HomeController::class)->group(function () {
+   Route::get('/', 'home')->name('home');
    Route::get('/home', 'home')->name('home');
 });
 Route::controller(ProductController::class)->group(function () {
    Route::get('shop', 'shop')->name('shop');
    Route::get('product-{group}', 'product')->name('product-{group}');
    Route::get('product-detail/{code}', 'product_detail')->name('product-detail');
-   Route::get('product-category/{group}/{category}', 'product_category')->name('product-category');
+   Route::get('product-category/{category}', 'product_category')->name('product-category');
+   Route::get('product-group-category/{group}/{category}', 'product_group_category')->name('product-group-category');
    Route::get('product-subcategory/{group}/{category}/{subcategory}', 'product_subcategory')->name('product-subcategory');
 });
 Route::controller(CartController::class)->group(function () {

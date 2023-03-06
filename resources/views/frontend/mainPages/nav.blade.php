@@ -66,7 +66,7 @@
 											@endphp
 											@foreach ($categories as $category)
 												<div class="col-12 col-md-{{($category_count >= 4)? 3:4}}">
-													<a href="{{url('product-category/'.strtolower($group->group_name).'/'.strtolower($category->rela_category->category_name))}}">
+													<a href="{{url('product-group-category/'.strtolower($group->group_name).'/'.strtolower($category->rela_category->category_name))}}">
 														<h5 class="text-center text-black py-4">
 															<strong>{{$category->rela_category->category_name}}</strong>
 														</h5>

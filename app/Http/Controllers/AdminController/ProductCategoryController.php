@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Categories;
-use App\Models\Categories_Groups;
-use App\Models\Categories_Subcategories;
 use App\Models\Groups;
-use Illuminate\Cache\TagSet;
+use App\Models\Categories;
+use Illuminate\Http\Request;
+use App\Models\Categories_Groups;
+use App\Http\Controllers\Controller;
+use App\Models\Categories_Subcategories;
+use Illuminate\Support\Facades\File;
 
 class ProductCategoryController extends Controller
 {
@@ -65,6 +65,7 @@ class ProductCategoryController extends Controller
     {
         $groups = Groups::orderBy('id')->get();
         $groups_count = Groups::all()->count();
+
         return view(
             'adminfrontend.pages.categories.product_category_add',
             compact('groups', 'groups_count')
@@ -80,11 +81,20 @@ class ProductCategoryController extends Controller
     public function product_category_store(Request $request)
     {
         $input = $request->all();
+        if ($request->hasFile('category_img')) {
+            $destination_path = 'product_img/imgcategory/';
+            $image = $request->file('category_img');
+
+            $image_name = $image->getClientOriginalName();
+            $image->move($destination_path, $image_name);
+
+            $input['category_img'] = $image_name;
+        }
         // Storing category_name data to table categories
         Categories::create($input);
 
         // Storing category_id and group_id to table product_group_cate
-        $category = Categories::where('category_name', $request->category_name)->latest()->first();
+        $category = Categories::latest()->first();
         $categoryId = $category->id;
         $groupId = $request->group_id;
         for ($i = 0; $i < count($groupId); $i++) {
@@ -147,6 +157,17 @@ class ProductCategoryController extends Controller
 
         $update_category_name = Categories::where('id', $id)->first();
         $update_category_name->category_name = $request->input('category_name');
+        if ($request->hasFile('category_img')) {
+            $destination_path = 'product_img/imgcategory';
+            $image = $request->file('category_img');
+            if (File::exists(public_path($destination_path))) {
+                File::delete(public_path($destination_path));
+            }
+            $image_name = $image->getClientOriginalName();
+            $image->move($destination_path, $image_name);
+
+            $update_category_name['category_img'] = $image_name;
+        }
         $update_category_name->update();
 
         $categoryId = $update_category_name->id;

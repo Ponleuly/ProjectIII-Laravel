@@ -28,54 +28,35 @@
 		<!-- Start Blog Section -->
 		<div class="blog-section">
 			<div class="container">
-				<div class="row mb-5">
+				<div class="row mb-2">
 					<div class="col-md-6 mx-auto text-center">
 						<h2 class="section-title">PRODUCT CATEGORIES</h2>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-						<div class="post-entry">
-							<a href="#" class="post-thumbnail"><img src="frontend/images/Menu_nam.jpg" alt="Image" class="img-fluid"></a>
-							<div class="post-content-entry">
-								<h3><a href="#">MEN</a></h3>
-								<div class="meta">
-									<span><a href="#">New Arrivals | </a></span>
-									<span><a href="#">Best Seller</a></span>
+					@foreach ($categories as $category)
+						<div class="col-12 col-sm-6 col-md-4 mb-2 mb-md-0">
+							<div class="post-entry">
+								<a href="{{url('product-category/'.strtolower($category->category_name))}}"
+									class="post-thumbnail">
+									<img
+										src="/product_img/imgcategory/{{$category->category_img}}"
+										alt="Image" class="img-fluid category-img "
+									>
+								</a>
+								<div class="post-content-entry">
+									<h3>
+										<a href="#">{{$category->category_name}}</a>
+									</h3>
+									<div class="meta">
+										<span><a href="#">New Arrivals | </a></span>
+										<span><a href="#">Best Seller</a></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-						<div class="post-entry">
-							<a href="#" class="post-thumbnail"><img src="frontend/images/Menu_nu.jpg" alt="Image" class="img-fluid"></a>
-							<div class="post-content-entry">
-								<h3><a href="#">WOMEN</a></h3>
-								<div class="meta">
-									<span><a href="#">New Arrivals | </a></span>
-									<span><a href="#">Best Seller</a></span>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-						<div class="post-entry">
-							<a href="#" class="post-thumbnail"><img src="frontend/images/Menu_all.jpg" alt="Image" class="img-fluid"></a>
-							<div class="post-content-entry">
-								<h3><a href="#">SHOES</a></h3>
-								<div class="meta">
-									<span><a href="#">Basas | </a><span></span></span>
-									<span><a href="#">Pattas | </a></span>
-									<span><a href="#">Vintas | </a></span>
-									<span><a href="#">Urbas | </a></span>
-								</div>
-							</div>
-						</div>
-					</div>
-
+					@endforeach
 				</div>
 			</div>
 		</div>
@@ -86,7 +67,7 @@
 			<div class="container">
 				<div class="row">
 					<!-- Start Column 1 -->
-					<div class="col-md-6 mb-5 mx-auto text-center">
+					<div class="col-md-6 mb-4 mx-auto text-center">
 						<h2 class="section-title">NEW ARRIVAL</h2>
 					</div>
 					<!-- End Column 1 -->

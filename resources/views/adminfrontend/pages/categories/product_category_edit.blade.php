@@ -19,8 +19,36 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
+                                        <label for="product_imgcover">
+                                            <p class="text-label mt-3">Category Image</p>
+                                        </label>
+                                        <div class="col-md-12">
+                                            <img
+                                                src="/product_img/imgcategory/{{$category->category_img}}"
+                                                class="img-fluid product-thumbnail"
+                                            >
+                                        </div>
+
+                                        <label for="category_img">
+                                            <p class="text-label mt-3">Update Category Image</p>
+                                        </label>
+                                        <input
+                                            class="form-control rounded-0 mb-2"
+                                            type="file"
+                                            id="category_img"
+                                            name="category_img"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                        >
+
                                         <label for="category_name"><p class="text-label">Category name</p></label>
-                                        <input type="text" class="form-control rounded-0 fw-500 mb-2" id="category_name" name="category_name" value="{{$category->category_name}}" placeholder="category name..." required>
+                                        <input
+                                            type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="category_name"
+                                            name="category_name"
+                                            value="{{$category->category_name}}"
+                                            placeholder="category name..." required
+                                        >
 
                                         <label for="sub_category">
                                             <p class="text-label mt-2">

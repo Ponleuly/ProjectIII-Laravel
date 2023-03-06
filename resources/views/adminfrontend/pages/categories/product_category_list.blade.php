@@ -34,6 +34,7 @@
                             <thead>
                                 <tr class="bg-primary text-light text-center">
                                     <th scope="col">#</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">CATEGORY</th>
                                     <th scope="col">SUB CATEGORY</th>
                                     <th scope="col">PRODUCTS</th>
@@ -48,8 +49,15 @@
                                         $groups =  Categories_Groups::where('category_id', $category->id)->get();
                                         $productCount =  Products_Attributes::where('category_id', $category->id)->distinct('product_id')->count();
                                     @endphp
-                                    <tr class="text-center">
+                                    <tr class="text-center admin-table">
                                         <th scope="row">{{$count++}}</th>
+                                        <td>
+                                            <img
+                                                src="/product_img/imgcategory/{{$category->category_img}}"
+                                                class="img-fluid product-thumbnail"
+                                                style="width: 120px"
+                                            >
+                                        </td>
                                         <td>{{$category->category_name}}</td>
                                         <td>
                                             @php

@@ -18,7 +18,19 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
-                                        <label for="category_name"><p class="text-label">Category name</p></label>
+                                        <label for="category_img">
+                                            <p class="text-label mt-3">Category Image</p>
+                                        </label>
+                                        <input
+                                            class="form-control rounded-0 mb-2"
+                                            type="file"
+                                            id="category_img"
+                                            name="category_img"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            required
+                                        >
+
+                                        <label for="category_name"><p class="text-label mt-2">Category Name</p></label>
                                         <input type="text"
                                             class="form-control rounded-0 fw-500 mb-2"
                                             id="category_name"
@@ -29,7 +41,7 @@
 
                                         <label for="sub_category">
                                             <p class="text-label mt-2">
-                                                Sub category :  (Write then press enter to add new sub category)
+                                                Sub Category :  (Write then press enter to add new sub category)
                                             </p>
                                         </label>
                                         <input
@@ -42,7 +54,7 @@
 
                                         <label>
                                             <p class="text-label mt-2">
-                                                Product group
+                                                Product Group
                                                 @if($groups_count == 0)
                                                         <span class="text-label text-danger">(Please create product group before adding category!)</span>
                                                     @else
@@ -57,7 +69,7 @@
                                                     class="form-check-input"
                                                     id="{{$row->group_name}}"
                                                     value="{{$row->id}}"
-                                                    name="group_id"
+                                                    name="group_id[]"
                                                     @if ($loop->first)
                                                         checked
                                                     @endif

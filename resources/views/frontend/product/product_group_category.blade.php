@@ -10,7 +10,12 @@
 		  	<li class="breadcrumb-item ">
 				<a href="{{url("home")}}" class="text-light">Home</a>
 			</li>
-
+		  	<li class="breadcrumb-item ">
+				<a
+					href="{{url('product-' .strtolower($group_name))}}"
+					 class="text-light">{{$group_name}}
+				</a>
+			</li>
 			<li class="breadcrumb-item text-light active" aria-current="page">
 				{{$category_name}}
 			</li>
@@ -27,17 +32,20 @@
 	<div class="untree_co-section product-section ">
 		<div class="container">
 			<div class="row">
-
+				@foreach ($group_categories as $category)
+					@php
+						$products = Products::where('id', $category->product_id)->get();
+					@endphp
 					@foreach ($products as $product)
 						<!-- Start Column 1 -->
 						<div class="col-12 col-md-4 col-lg-3">
-							<a class="product-item" href="{{url('product-detail/'.$product->rela_product->product_code)}}">
+							<a class="product-item" href="{{url('product-detail/'.$product->product_code)}}">
 								<img
-									src="/product_img/imgcover/{{$product->rela_product->product_imgcover}}"
+									src="/product_img/imgcover/{{$product->product_imgcover}}"
 									class="img-fluid product-thumbnail"
 								>
-								<h3 class="product-title">{{$product->rela_product->product_name}}</h3>
-								<strong class="product-price">${{floatval($product->rela_product->product_saleprice)}}</strong>
+								<h3 class="product-title">{{$product->product_name}}</h3>
+								<strong class="product-price">${{floatval($product->product_saleprice)}}</strong>
 
 								<span class="icon-cross">
 									<img src="/frontend/images/cross.svg" class="img-fluid">
@@ -46,11 +54,12 @@
 						</div>
 						<!-- End Column 1 -->
 					@endforeach
+				@endforeach
 			</div>
 			<div class="row mt-4">
 				<div class="d-flex justify-content-end">
 					<!--- To show data by pagination --->
-					{{$products->links()}}
+					{{$group_categories->links()}}
                 </div>
 			</div>
 		</div>

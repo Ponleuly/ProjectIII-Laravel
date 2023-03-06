@@ -9,7 +9,10 @@ class Categories extends Model
 {
     use HasFactory;
     protected $table = 'categories';
-    protected $fillable = ['category_name'];
+    protected $fillable = [
+        'category_name',
+        'category_img'
+    ];
     public function rela_product_category()
     {
         return $this->hasMany(Products_Attributes::class, 'id');
