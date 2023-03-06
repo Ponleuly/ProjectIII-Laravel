@@ -8,7 +8,6 @@ use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Products_Sizes;
 use App\Models\Products_Attributes;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Categories_Subcategories;
 
@@ -146,6 +145,7 @@ class ProductController extends Controller
         //return dd($products->toArray());
     }
 
+
     public function product_group_category($group, $category)
     {
         $groupName = Groups::where('group_name', ucfirst($group))->first();
@@ -169,7 +169,6 @@ class ProductController extends Controller
         );
         //return dd($subcategoryName);
     }
-
 
 
 

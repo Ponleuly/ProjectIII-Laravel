@@ -84,7 +84,6 @@
 									//price
 									$price =  $cart->product_price;
 									$subtotal += $price * $quantity;
-
 								}else{
 									$cartId = $cart->id;
 									$productId = $cart->id; // becoz in Cart model, column id is product_id

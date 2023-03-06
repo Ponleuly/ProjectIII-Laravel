@@ -127,10 +127,17 @@
 									class="product-item"
 									href="{{url('product-detail/'.$product->product_code)}}"
 								>
-									<img
-										src="/product_img/imgcover/{{$product->product_imgcover}}"
-										class="img-fluid product-thumbnail"
-									>
+									<div class="img-container">
+										<img
+											src="/product_img/imgcover/{{$product->product_imgcover}}"
+											class="img-fluid product-thumbnail"
+										>
+										@if($product->product_status == 1)
+											<h6 class="text-new bg-danger">New Arrival</h6>
+											@elseif($product->product_price > $product->product_saleprice)
+												<h6 class="text-new bg-black">Sale Off</h6>
+										@endif
+									</div>
 									<h3 class="product-title">{{$product->product_name}}</h3>
 									<strong class="product-price">
 										$ {{number_format($product->product_saleprice, 2)}}

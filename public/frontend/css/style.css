@@ -879,3 +879,16 @@ tr.admin-table {
   height: 250px;
   object-fit: cover;
 }
+.img-container{
+  position: relative;
+}
+.text-new {
+  position: absolute;
+  top: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

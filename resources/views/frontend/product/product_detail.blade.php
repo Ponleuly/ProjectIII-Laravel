@@ -64,10 +64,17 @@
                 <div class="row">
                     <!-- Start first colume section -->
                     <div class="col-md-6 mb-5 mb-md-0">
-                        <img
-                            src="/product_img/imgcover/{{$productDetails->product_imgcover}}"
-                            class="img-fluid product-thumbnail"
-                        >
+						<div class="img-container">
+                            <img
+                                src="/product_img/imgcover/{{$productDetails->product_imgcover}}"
+                                class="img-fluid product-thumbnail"
+                            >
+                            @if($productDetails->product_status == 1)
+								<h6 class="text-new bg-danger">New Arrival</h6>
+								@elseif($productDetails->product_price > $productDetails->product_saleprice)
+									<h6 class="text-new bg-black">Sale Off</h6>
+							@endif
+						</div>
                         <div class="container px-0">
                             <div class="row">
                                 @php

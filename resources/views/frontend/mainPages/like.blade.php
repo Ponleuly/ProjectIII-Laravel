@@ -44,10 +44,18 @@
                         <div class="row my-5">
                             <div class="col-md-2">
                                 <a  href="{{url('product-detail/'.$like->rela_product_like->product_code)}}">
-                                    <img
-                                        src="/product_img/imgcover/{{$like->rela_product_like->product_imgcover}}"
-                                        class="img-fluid product-thumbnail"
-                                    >
+								    <div class="img-container">
+                                        <img
+                                            src="/product_img/imgcover/{{$like->rela_product_like->product_imgcover}}"
+                                            class="img-fluid product-thumbnail"
+                                        >
+                                        @if($like->rela_product_like->product_status == 1)
+											<h6 class="text-new bg-danger">New Arrival</h6>
+											@elseif($like->rela_product_like->product_price
+                                                    > $like->rela_product_like->product_saleprice)
+												<h6 class="text-new bg-black">Sale Off</h6>
+										@endif
+									</div>
                                 </a>
                             </div>
                             <div class="col-md-6">
