@@ -1,3 +1,6 @@
+<?php
+	use App\Models\Products_Sizes;
+?>
 @extends('index')
 @section('content')
     <!-- Start Hero Section -->
@@ -13,7 +16,10 @@
 					@foreach ($allProducts as $product)
 						<!-- Start Column 1 -->
 						<div class="col-12 col-md-4 col-lg-3 mb-4">
-							<a class="product-item" href="{{url('product-detail/'.$product->product_code)}}">
+							<a
+								class="product-item"
+								href="{{url('product-detail/'.$product->product_code)}}"
+								>
 								<div class="img-container">
 									<img
 										src="/product_img/imgcover/{{$product->product_imgcover}}"

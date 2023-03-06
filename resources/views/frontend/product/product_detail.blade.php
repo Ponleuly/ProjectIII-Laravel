@@ -67,13 +67,17 @@
 						<div class="img-container">
                             <img
                                 src="/product_img/imgcover/{{$productDetails->product_imgcover}}"
-                                class="img-fluid product-thumbnail"
+                                class="img-fluid product-thumbnail {{($stockLeft == 0)? 'opacity-50':''}}"
                             >
                             @if($productDetails->product_status == 1)
 								<h6 class="text-new bg-danger">New Arrival</h6>
 								@elseif($productDetails->product_price > $productDetails->product_saleprice)
 									<h6 class="text-new bg-black">Sale Off</h6>
+
 							@endif
+                            @if($stockLeft == 0)
+								<h4 class="text-sold-out bg-secondary">Sold Out</h4>
+                            @endif
 						</div>
                         <div class="container px-0">
                             <div class="row">

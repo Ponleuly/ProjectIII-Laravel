@@ -54,12 +54,12 @@ class ProductController extends Controller
         foreach ($productSizes as $row) {
             $sizeStock += $row->size_quantity;
         }
-        $totalStock = $sizeStock;
+        $stockLeft = $sizeStock;
         return view(
             'frontend.product.product_detail',
             compact(
                 'productDetails',
-                'totalStock',
+                'stockLeft',
                 'productCode',
                 'productGroups',
                 'productSizes',

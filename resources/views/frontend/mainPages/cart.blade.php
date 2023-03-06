@@ -155,11 +155,20 @@
 													name="size_id"
 													>
 													@foreach ($productSizes as $productSize)
+														@php
+															$sizeLeft = Products_Sizes::where('product_id',  $productId)
+																->where('size_id', $productSize->size_id)->first();
+														@endphp
 														<option
+															class="{{($sizeLeft->size_quantity == 0)? 'text-danger' : ''}}"
 															value="{{$productSize->size_id}}"
 															{{($productSize->size_id == $size) ? 'selected' : ''}}
-														>
-														{{$productSize->rela_product_size->size_number}}
+															{{($sizeLeft->size_quantity == 0)? 'disabled':''}}
+															>
+															{{$productSize->rela_product_size->size_number}}
+															{{($sizeLeft->size_quantity == 0)? '(Out of stock)':''}}
+														</option>
+
 													@endforeach
 												</select>
 											</div>

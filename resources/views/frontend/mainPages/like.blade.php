@@ -36,8 +36,13 @@
             @if($likes_count > 0)
                 @foreach ($likes as $like)
                     @php
+                        $sizeStock = 0;
                         $productGroups = Products_Attributes::where('product_id', $like->product_id)->get();
                         $productSizes = Products_Sizes::where('product_id', $like->product_id)->get();
+                        foreach ($productSizes as $row) {
+                            $sizeStock += $row->size_quantity;
+                        }
+                        $stockLeft = $sizeStock;
                     @endphp
                     <form action="{{url('add-to-cart/'. $like->product_id)}}" method="POST" enctype="multipart/form-data">
                         @csrf <!-- to make form active -->
@@ -47,7 +52,7 @@
 								    <div class="img-container">
                                         <img
                                             src="/product_img/imgcover/{{$like->rela_product_like->product_imgcover}}"
-                                            class="img-fluid product-thumbnail"
+                                            class="img-fluid product-thumbnail {{($stockLeft == 0)? 'opacity-50':''}}"
                                         >
                                         @if($like->rela_product_like->product_status == 1)
 											<h6 class="text-new bg-danger">New Arrival</h6>
@@ -55,6 +60,9 @@
                                                     > $like->rela_product_like->product_saleprice)
 												<h6 class="text-new bg-black">Sale Off</h6>
 										@endif
+                                        @if($stockLeft == 0)
+                                            <h6 class="text-sold-out-sm bg-secondary">Sold Out</h6>
+                                        @endif
 									</div>
                                 </a>
                             </div>
@@ -80,17 +88,27 @@
                                 <div class="row">
                                     <div class="col-md-3 pt-3">
                                         <h6 class="text-black fw-bold">Size</h6>
+
                                         <select
                                             class="form-select form-control rounded-0"
                                             aria-label="Default select example"
                                             id="size"
                                             name="size_id"
+                                            required
                                             >
                                             @foreach ($productSizes as $productSize)
+                                                @php
+                                                    $quantity = Products_Sizes::where('product_id',  $like->product_id)
+                                                        ->where('size_id', $productSize->size_id)->first();
+                                                @endphp
                                                 <option
+                                                    class="{{($quantity->size_quantity == 0)? 'text-danger' : ''}}"
                                                     value="{{$productSize->size_id}}"
-                                                >
-                                                {{$productSize->rela_product_size->size_number}}
+                                                    {{($quantity->size_quantity == 0)? 'disabled':''}}
+                                                    >
+                                                    {{$productSize->rela_product_size->size_number}}
+                                                    {{($quantity->size_quantity == 0)? '(Out of stock)':''}}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>

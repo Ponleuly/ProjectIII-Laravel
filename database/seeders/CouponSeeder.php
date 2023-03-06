@@ -25,8 +25,8 @@ class CouponSeeder extends Seeder
                 'discount_value' => 2,
                 'start_date' => '2023-01-03 00:00:00',
                 'end_date' => '2023-02-03 00:00:00',
-                'category_id' => 2,
-                'subcategory_id' => 4,
+                'category_id' => 1,
+                'subcategory_id' => null,
                 'created_at' => Carbon::now()
             ],
             [
@@ -37,8 +37,8 @@ class CouponSeeder extends Seeder
                 'discount_value' => 2,
                 'start_date' => '2023-03-02 00:00:00',
                 'end_date' => '2023-05-03 00:00:00',
-                'category_id' => 2,
-                'subcategory_id' => 4,
+                'category_id' => 1,
+                'subcategory_id' => 1,
                 'created_at' => Carbon::now()
             ],
             [
@@ -49,7 +49,7 @@ class CouponSeeder extends Seeder
                 'discount_value' => 0,
                 'start_date' => '2023-03-06 00:00:00',
                 'end_date' => '2023-03-30 00:00:00',
-                'category_id' => 2,
+                'category_id' => 1,
                 'subcategory_id' => null,
                 'created_at' => Carbon::now()
             ],
@@ -61,8 +61,8 @@ class CouponSeeder extends Seeder
                 'discount_value' => 0,
                 'start_date' => '2023-05-03 00:00:00',
                 'end_date' => '2023-06-03 00:00:00',
-                'category_id' => 2,
-                'subcategory_id' => 5,
+                'category_id' => 1,
+                'subcategory_id' => null,
                 'created_at' => Carbon::now()
             ],
 
