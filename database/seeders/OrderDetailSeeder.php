@@ -20,7 +20,7 @@ class OrderDetailSeeder extends Seeder
         for ($i = 1; $i <= 50; $i++) {
             DB::table('orders_details')->insert([
                 'order_id' => $i,
-                'product_id' => rand(1, 13),
+                'product_id' => rand(1, 16),
                 'product_price' => floatval(rand(22, 25)),
                 'product_quantity' => rand(1, 2),
                 'size_id' => rand(1, 12),

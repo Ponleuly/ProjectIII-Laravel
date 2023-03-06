@@ -13,11 +13,13 @@ class HomeController extends Controller
     {
         $newProducts = Products::where('product_status', 1)->paginate(6);
         $categories = Categories::orderBy('id')->get();
+        $newProduct_count = $newProducts->count();
         return view(
             'frontend.mainPages.home',
             compact(
                 'newProducts',
-                'categories'
+                'categories',
+                'newProduct_count'
             )
         );
     }

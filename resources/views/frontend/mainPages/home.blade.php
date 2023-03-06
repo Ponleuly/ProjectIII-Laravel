@@ -1,3 +1,6 @@
+<?php
+	use App\Models\Categories_Subcategories;
+?>
 @extends('index')
 @section('content')
         <!-- Start Hero Section -->
@@ -47,11 +50,20 @@
 								</a>
 								<div class="post-content-entry">
 									<h3>
-										<a href="#">{{$category->category_name}}</a>
+										<a href="{{url('product-category/'.strtolower($category->category_name))}}">
+											{{$category->category_name}}
+										</a>
 									</h3>
 									<div class="meta">
-										<span><a href="#">New Arrivals | </a></span>
-										<span><a href="#">Best Seller</a></span>
+										@php
+											$subcategories = Categories_Subcategories::where('category_id', $category->id)->get();
+										@endphp
+										@foreach ($subcategories  as $subcategory)
+											<span>{{$subcategory->sub_category}}</span>
+											<label class="text-black-50 h6">
+												{{($loop->last)? '':'|'}}
+											</label>
+										@endforeach
 									</div>
 								</div>
 							</div>
@@ -61,50 +73,50 @@
 			</div>
 		</div>
 		<!-- End Blog Section -->
-
-		<!-- Start Product Section -->
-		<div class="product-section">
-			<div class="container">
-				<div class="row">
-					<!-- Start Column 1 -->
-					<div class="col-md-6 mb-4 mx-auto text-center">
-						<h2 class="section-title">NEW ARRIVAL</h2>
-					</div>
-					<!-- End Column 1 -->
-				</div>
-				<div class="row">
-					@foreach ($newProducts as $product)
-						<!-- Start Column 2 -->
-						<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 ">
-							<a
-								class="product-item"
-								href="{{url('product-detail/'.$product->product_code)}}"
-							>
-								<img
-									src="/product_img/imgcover/{{$product->product_imgcover}}"
-									class="img-fluid product-thumbnail"
-								>
-								<h3 class="product-title">{{$product->product_name}}</h3>
-								<strong class="product-price">
-									$ {{floatval($product->product_saleprice)}}
-								</strong>
-								<span class="icon-cross">
-									<img src="frontend/images/cross.svg" class="img-fluid">
-								</span>
-							</a>
+		@if($newProduct_count > 0)
+			<!-- Start Product Section -->
+			<div class="product-section">
+				<div class="container">
+					<div class="row">
+						<!-- Start Column 1 -->
+						<div class="col-md-6 mb-4 mx-auto text-center">
+							<h2 class="section-title">NEW ARRIVAL</h2>
 						</div>
-						<!-- End Column 2 -->
-					@endforeach
-				</div>
-				<div class="row mt-4">
-					<div class="d-flex justify-content-end">
-						<!--- To show data by pagination --->
-						{{$newProducts->links()}}
-                	</div>
+						<!-- End Column 1 -->
+					</div>
+					<div class="row">
+						@foreach ($newProducts as $product)
+							<!-- Start Column 2 -->
+							<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 ">
+								<a
+									class="product-item"
+									href="{{url('product-detail/'.$product->product_code)}}"
+								>
+									<img
+										src="/product_img/imgcover/{{$product->product_imgcover}}"
+										class="img-fluid product-thumbnail"
+									>
+									<h3 class="product-title">{{$product->product_name}}</h3>
+									<strong class="product-price">
+										$ {{floatval($product->product_saleprice)}}
+									</strong>
+									<span class="icon-cross">
+										<img src="frontend/images/cross.svg" class="img-fluid">
+									</span>
+								</a>
+							</div>
+							<!-- End Column 2 -->
+						@endforeach
+					</div>
+					<div class="row mt-4">
+						<div class="d-flex justify-content-end">
+							<!--- To show data by pagination --->
+							{{$newProducts->links()}}
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-
+		@endif
 		<!-- Start Testimonial Slider -->
 		<div class="testimonial-section">
 			<div class="container">

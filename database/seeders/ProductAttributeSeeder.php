@@ -40,12 +40,16 @@ class ProductAttributeSeeder extends Seeder
             ['id' => 19, 'product_id' => 10, 'subcategory_id' => 6, 'category_id' => 2, 'group_id' => 1, 'created_at' => Carbon::now()],
             ['id' => 20, 'product_id' => 10, 'subcategory_id' => 6, 'category_id' => 2, 'group_id' => 2, 'created_at' => Carbon::now()],
 
-            ['id' => 21, 'product_id' => 11, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
-            ['id' => 22, 'product_id' => 11, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
-            ['id' => 23, 'product_id' => 12, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
-            ['id' => 24, 'product_id' => 12, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
-            ['id' => 25, 'product_id' => 13, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
-            ['id' => 26, 'product_id' => 13, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 21, 'product_id' => 11, 'subcategory_id' => 1, 'category_id' => 1, 'group_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 22, 'product_id' => 12, 'subcategory_id' => 1, 'category_id' => 1, 'group_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 23, 'product_id' => 13, 'subcategory_id' => 1, 'category_id' => 1, 'group_id' => 2, 'created_at' => Carbon::now()],
+
+            ['id' => 24, 'product_id' => 14, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 25, 'product_id' => 14, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 26, 'product_id' => 15, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 27, 'product_id' => 15, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
+            ['id' => 28, 'product_id' => 16, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 29, 'product_id' => 16, 'subcategory_id' => 9, 'category_id' => 3, 'group_id' => 2, 'created_at' => Carbon::now()],
         ]);
     }
 }

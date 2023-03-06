@@ -17,8 +17,8 @@ class CategorySubcategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories_subcategories')->insert([
-            ['id' => 1, 'sub_category' => 'Best Seller', 'category_id' => 1, 'created_at' => Carbon::now()],
-            ['id' => 2, 'sub_category' => 'New Arrival', 'category_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 1, 'sub_category' => 'New Arrival', 'category_id' => 1, 'created_at' => Carbon::now()],
+            ['id' => 2, 'sub_category' => 'Best Seller', 'category_id' => 1, 'created_at' => Carbon::now()],
             ['id' => 3, 'sub_category' => 'Sale Off', 'category_id' => 1, 'created_at' => Carbon::now()],
 
             ['id' => 4, 'sub_category' => 'Basas', 'category_id' => 2, 'created_at' => Carbon::now()],

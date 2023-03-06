@@ -74,6 +74,25 @@ class ProductImgreviewSeeder extends Seeder
             DB::table('products_imgreviews')->insert([
                 [
                     'id' => $a,
+                    'product_imgreview' => 'Pro_pa000' . $b . '_' . $c++ . '.jpg',
+                    'product_id' => $d,
+                    'created_at' => Carbon::now()
+                ],
+            ]);
+            if ($a == $d * 4) $b++;
+            if ($c == 5) $c = 1;
+            if ($a == $d * 4) $d++;
+        }
+
+
+        //===========================================//
+        $b = 1;
+        $c = 1;
+        $d = 14;
+        for ($a = 53; $a <= 64; $a++) {
+            DB::table('products_imgreviews')->insert([
+                [
+                    'id' => $a,
                     'product_imgreview' => 'Pro_hac000' . $b . '_' . $c++ . '.jpg',
                     'product_id' => $d,
                     'created_at' => Carbon::now()

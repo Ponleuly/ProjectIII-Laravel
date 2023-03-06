@@ -18,7 +18,7 @@ class ProductSizeSeeder extends Seeder
     {
         $j = 1;
         $k = 1;
-        for ($i = 1; $i <= 110; $i++) {
+        for ($i = 1; $i <= 156; $i++) {
             DB::table('products_sizes')->insert([
                 [
                     'id' => $i,
@@ -29,28 +29,29 @@ class ProductSizeSeeder extends Seeder
                 ],
             ]);
 
-            if ($i == $j * 11) $j++;
-            if ($k == 12) $k = 1;
+            if ($i == $j * 12) $j++;
+            if ($k == 13) $k = 1;
         }
+        //==== For Hat product free size ====//
         DB::table('products_sizes')->insert([
             [
-                'id' => 111,
-                'product_id' => 11,
-                'size_id' => 12,
+                'id' => 157,
+                'product_id' => 14,
+                'size_id' => 13,
                 'size_quantity' => 10,
                 'created_at' => Carbon::now()
             ],
             [
-                'id' => 112,
-                'product_id' => 12,
-                'size_id' => 12,
+                'id' => 158,
+                'product_id' => 15,
+                'size_id' => 13,
                 'size_quantity' => 10,
                 'created_at' => Carbon::now()
             ],
             [
-                'id' => 113,
-                'product_id' => 13,
-                'size_id' => 12,
+                'id' => 159,
+                'product_id' => 16,
+                'size_id' => 13,
                 'size_quantity' => 10,
                 'created_at' => Carbon::now()
             ],
