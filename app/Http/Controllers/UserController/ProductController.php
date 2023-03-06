@@ -23,6 +23,8 @@ class ProductController extends Controller
             compact('allProducts')
         );
     }
+
+
     public function product($group)
     {
         $groupName = Groups::where('group_name', ucfirst($group))->first();
@@ -88,6 +90,26 @@ class ProductController extends Controller
         //return dd($products->toArray());
     }
 
+    public function product_subcategory($sub)
+    {
+
+        $subName = Categories_Subcategories::where('sub_category', ucfirst($sub))->first();
+        $subId = $subName->id;
+        $products = Products_Attributes::where('subcategory_id', $subId)
+            ->distinct('product_id')->paginate('8', 'product_id');
+        $sub_name = $subName->sub_category;
+
+        return view(
+            'frontend.product.product_subcategory',
+            compact(
+                'products',
+                'sub_name'
+            )
+        );
+
+        //return dd($products->toArray());
+    }
+
     public function product_group_category($group, $category)
     {
         $groupName = Groups::where('group_name', ucfirst($group))->first();
@@ -115,7 +137,7 @@ class ProductController extends Controller
 
 
 
-    public function product_subcategory($group, $category, $subcategory)
+    public function product_group_subcategory($group, $category, $subcategory)
     {
         $groupName = Groups::where('group_name', ucfirst($group))->first();
         $groupId = $groupName->id;
@@ -136,7 +158,7 @@ class ProductController extends Controller
         $subcategory_name = $subcategoryName->sub_category;
 
         return view(
-            'frontend.product.product_subcategory',
+            'frontend.product.product_group_subcategory',
             compact(
                 'productSubcategory',
                 'group_name',

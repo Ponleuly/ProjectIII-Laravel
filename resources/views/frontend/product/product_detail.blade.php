@@ -22,7 +22,7 @@
             </li>
 		    <li class="breadcrumb-item ">
                 <a
-                    href="{{url("shop")}}"
+                    href="{{url('product-category/'.strtolower($productAttribute->rela_product_category->category_name))}}"
                     class="text-light"
                     >
                     {{$productAttribute->rela_product_category->category_name}}
@@ -30,7 +30,7 @@
             </li>
 		    <li class="breadcrumb-item">
                 <a
-                    href="{{url("shop")}}"
+                    href="{{url("product-subcategory/". strtolower($productAttribute->rela_product_subcategory->sub_category))}}"
                     class="text-light"
                     >
                     {{$productAttribute->rela_product_subcategory->sub_category}}

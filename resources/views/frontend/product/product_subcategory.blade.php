@@ -1,73 +1,56 @@
 <?php
-	use App\Models\Products_Sizes;
-	use App\Models\Products;
+
+use App\Models\Products_Sizes;
+use App\Models\Products;
 ?>
 @extends('index')
 @section('content')
-	<!-- Start breabcrumb Section -->
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
-		  	<li class="breadcrumb-item ">
-				<a href="{{url("home")}}" class="text-light">Home</a>
-			</li>
-		  	<li class="breadcrumb-item ">
-				<a
-					href="{{url('product-' .strtolower($group_name))}}"
-					 class="text-light">{{$group_name}}
-				</a>
-			</li>
-			<li class="breadcrumb-item text-light active" aria-current="page">
-				<a
-					href="{{url('product-category/'.strtolower($group_name).'/'.strtolower($category_name))}}"
-					 class="text-light">{{$category_name}}
-				</a>
-			</li>
-			<li class="breadcrumb-item text-light active" aria-current="page">
-				{{$subcategory_name}}
-			</li>
-		</ol>
-	</nav>
-	<!-- End breabcrumb Section -->
+<!-- Start breabcrumb Section -->
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb px-3 py-2 mb-0" style="background: #cc2936">
+		<li class="breadcrumb-item ">
+			<a href="{{url('home')}}" class="text-light">Home</a>
+		</li>
 
+		<li class="breadcrumb-item text-light active" aria-current="page">
+			{{$sub_name}}
+		</li>
+	</ol>
+</nav>
+<!-- End breabcrumb Section -->
+
+<div class="container">
+	<div class="row justify-content-between">
+		<img src="/frontend/images/shop_banner.jpg" class="img-fluid">
+	</div>
+</div>
+
+<div class="untree_co-section product-section ">
 	<div class="container">
-		<div class="row justify-content-between">
-			<img src="/frontend/images/shop_banner.jpg" class="img-fluid">
-		</div>
-	</div>
+		<div class="row">
 
-	<div class="untree_co-section product-section ">
-		<div class="container">
-			<div class="row">
-				@foreach ($productSubcategory as $subcategory)
-					@php
-						$products = Products::where('id', $subcategory->product_id)->get();
-					@endphp
-					@foreach ($products as $product)
-						<!-- Start Column 1 -->
-						<div class="col-12 col-md-4 col-lg-3">
-							<a class="product-item" href="{{url('product-detail/'.$product->product_code)}}">
-								<img
-									src="/product_img/imgcover/{{$product->product_imgcover}}"
-									class="img-fluid product-thumbnail"
-								>
-								<h3 class="product-title">{{$product->product_name}}</h3>
-								<strong class="product-price">${{floatval($product->product_saleprice)}}</strong>
+			@foreach ($products as $product)
+			<!-- Start Column 1 -->
+			<div class="col-12 col-md-4 col-lg-3">
+				<a class="product-item" href="{{url('product-detail/'.$product->rela_product->product_code)}}">
+					<img src="/product_img/imgcover/{{$product->rela_product->product_imgcover}}" class="img-fluid product-thumbnail">
+					<h3 class="product-title">{{$product->rela_product->product_name}}</h3>
+					<strong class="product-price">${{floatval($product->rela_product->product_saleprice)}}</strong>
 
-								<span class="icon-cross">
-									<img src="/frontend/images/cross.svg" class="img-fluid">
-								</span>
-							</a>
-						</div>
-						<!-- End Column 1 -->
-					@endforeach
-				@endforeach
+					<span class="icon-cross">
+						<img src="/frontend/images/cross.svg" class="img-fluid">
+					</span>
+				</a>
 			</div>
-			<div class="row mt-4">
-				<div class="d-flex justify-content-end">
-					<!--- To show data by pagination --->
-					{{$productSubcategory->links()}}
-                </div>
+			<!-- End Column 1 -->
+			@endforeach
+		</div>
+		<div class="row mt-4">
+			<div class="d-flex justify-content-end">
+				<!--- To show data by pagination --->
+				{{$products->links()}}
 			</div>
 		</div>
 	</div>
+</div>
 @endsection()

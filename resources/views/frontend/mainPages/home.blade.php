@@ -59,7 +59,11 @@
 											$subcategories = Categories_Subcategories::where('category_id', $category->id)->get();
 										@endphp
 										@foreach ($subcategories  as $subcategory)
-											<span>{{$subcategory->sub_category}}</span>
+											<span>
+												<a href="{{url("product-subcategory/". strtolower($subcategory->sub_category))}}">
+													{{$subcategory->sub_category}}
+												</a>
+											</span>
 											<label class="text-black-50 h6">
 												{{($loop->last)? '':'|'}}
 											</label>

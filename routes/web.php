@@ -82,8 +82,9 @@ Route::controller(ProductController::class)->group(function () {
    Route::get('product-{group}', 'product')->name('product-{group}');
    Route::get('product-detail/{code}', 'product_detail')->name('product-detail');
    Route::get('product-category/{category}', 'product_category')->name('product-category');
+   Route::get('product-subcategory/{subcategory}', 'product_subcategory')->name('product-subcategory');
    Route::get('product-group-category/{group}/{category}', 'product_group_category')->name('product-group-category');
-   Route::get('product-subcategory/{group}/{category}/{subcategory}', 'product_subcategory')->name('product-subcategory');
+   Route::get('product-subcategory/{group}/{category}/{subcategory}', 'product_group_subcategory')->name('product-subcategory');
 });
 Route::controller(CartController::class)->group(function () {
    Route::get('cart', 'cart')->name('cart');
