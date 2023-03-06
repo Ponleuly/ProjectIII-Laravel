@@ -36,16 +36,6 @@
                                             required
                                         >
 
-                                        <label for="campaign_code">
-                                            <p class="text-label">Campaign Code</p>
-                                        </label>
-                                        <input type="text"
-                                            class="form-control rounded-0 fw-500 mb-2"
-                                            id="campaign_code"
-                                            name="code"
-                                            placeholder="Campaign code"
-                                            required
-                                        >
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <label for="percentage">
@@ -111,21 +101,16 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
-                                        <label for="group_id" >
-                                            <p class="text-label" >Product Group</p>
+                                        <label for="campaign_code">
+                                            <p class="text-label">Campaign Code</p>
                                         </label>
-                                        <select
-                                            class="form-select rounded-0 mb-2"
-                                            aria-label="group_id"
-                                            name="group_id"
-                                            id="group_id"
+                                        <input type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="campaign_code"
+                                            name="code"
+                                            placeholder="Campaign code"
                                             required
-                                            >
-                                            <option selected disabled>Select Group</option>
-                                            @foreach ($groups as $group)
-                                                <option value="{{$group->id}}">{{$group->group_name}}</option>
-                                            @endforeach
-                                        </select>
+                                        >
 
                                         <label for="category_id" >
                                             <p class="text-label" >Product Category</p>
@@ -137,7 +122,7 @@
                                             id="category_id"
                                             required
                                             >
-                                            <option selected disabled>Select Group</option>
+                                            <option selected disabled value="">Select Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                                             @endforeach
@@ -151,9 +136,8 @@
                                             aria-label="subcategory_id"
                                             name="subcategory_id"
                                             id="subcategory_id"
-                                            required
                                             >
-                                            <option selected disabled>Select Subcategory</option>
+                                            <option selected disabled value="">None</option>
                                             @foreach ($subcategories as $subcategory)
                                                 <option value="{{$subcategory->id}}">
                                                     {{$subcategory->sub_category}}
@@ -167,7 +151,7 @@
                                                 href="{{url('/admin/coupon-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
                                             <button
                                                 class="btn btn-primary rounded-0 ms-auto mt-3"

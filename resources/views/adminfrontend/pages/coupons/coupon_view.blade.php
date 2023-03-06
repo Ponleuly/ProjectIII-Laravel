@@ -119,26 +119,6 @@
                                             placeholder="Campaign code"
                                             disabled
                                         >
-                                        <label for="group_id" >
-                                            <p class="text-label" >Product Group</p>
-                                        </label>
-                                        <select
-                                            class="form-select rounded-0 mb-2 text-dark fw-500"
-                                            aria-label="group_id"
-                                            name="group_id"
-                                            id="group_id"
-                                            disabled
-                                            required
-                                            >
-                                                <option selected disabled>Select Group</option>
-                                            @foreach ($groups as $group)
-                                                <option value="{{$group->id}}"
-                                                    {{($group->id == $coupon->group_id)? 'selected':''}}
-                                                    >
-                                                    {{$group->group_name}}
-                                                </option>
-                                            @endforeach
-                                        </select>
 
                                         <label for="category_id" >
                                             <p class="text-label" >Product Category</p>
@@ -151,7 +131,7 @@
                                             disabled
                                             required
                                             >
-                                                <option selected disabled>Select Group</option>
+                                                <option selected disabled>Select Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}"
                                                     {{($category->id == $coupon->category_id)? 'selected':''}}

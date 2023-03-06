@@ -51,14 +51,12 @@ class CouponController extends Controller
 
     public function coupon_add()
     {
-        $groups = Groups::orderBy('id')->get();
         $categories = Categories::orderBy('id')->get();
         $subcategories = Categories_Subcategories::orderBy('id')->get();
 
         return view(
             'adminfrontend.pages.coupons.coupon_add',
             compact(
-                'groups',
                 'categories',
                 'subcategories'
             )
@@ -98,14 +96,12 @@ class CouponController extends Controller
     public function coupon_edit($id)
     {
         $coupon = Coupons::where('id', $id)->first();
-        $groups = Groups::orderBy('id')->get();
         $categories = Categories::orderBy('id')->get();
         $subcategories = Categories_Subcategories::orderBy('id')->get();
         return view(
             'adminfrontend.pages.coupons.coupon_edit',
             compact(
                 'coupon',
-                'groups',
                 'categories',
                 'subcategories'
             )
@@ -123,7 +119,6 @@ class CouponController extends Controller
         $update_coupon->discount_value = $request->input('discount_value');
         $update_coupon->start_date = $request->input('start_date');
         $update_coupon->end_date = $request->input('end_date');
-        $update_coupon->group_id = $request->input('group_id');
         $update_coupon->category_id = $request->input('category_id');
         $update_coupon->subcategory_id = $request->input('subcategory_id');
         $update_coupon->update();

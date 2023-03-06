@@ -21,9 +21,8 @@ return new class extends Migration
             $table->unsignedDecimal('discount_value')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->unsignedInteger('group_id');
             $table->unsignedInteger('category_id');
-            $table->unsignedInteger('subcategory_id');
+            $table->unsignedInteger('subcategory_id')->nullable();
 
             $table->timestamps();
         });

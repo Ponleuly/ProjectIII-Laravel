@@ -213,28 +213,29 @@ class CartController extends Controller
                         $price = $cart->price;
                     }
                     //==== Get product attributes by product_id ====//
-                    $productAtts = Products_Attributes::where('product_id', $productId)->get();
-                    foreach ($productAtts as $productAtt) {
-                        // ==== Compare id between Product_Attributes and Coupons dicount group category subcategory ===//
-                        $group = $productAtt->group_id == $coupon->group_id;
-                        $category = $productAtt->category_id == $coupon->category_id;
-                        $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
+                    $productAtt = Products_Attributes::where('product_id', $productId)
+                        ->first();
+                    //foreach ($productAtts as $productAtt) {
+                    // ==== Compare id between Product_Attributes and Coupons dicount category subcategory ===//
+                    //$group = $productAtt->group_id == $coupon->group_id;
+                    $category = $productAtt->category_id == $coupon->category_id;
+                    $subcategory = $productAtt->subcategory_id == $coupon->subcategory_id;
 
-                        //=== For discout product ===//
-                        if ($group && $category && $subcategory) {
-                            $subtotal = $quantity * $price;
-                            //== Check in table coupons if there are discount is value or percentage ===//
-                            if ($value == 0) {
-                                $discount += ($subtotal * $percentage) / 100;
-                            } elseif ($percentage == 0) {
-                                $discount += $value * $quantity;
-                            }
-                        }
-                        //=== Not discount ===//
-                        else {
-                            $discount;
+                    //=== For discout product ===//
+                    if ($category && $subcategory) {
+                        $subtotal = $quantity * $price;
+                        //== Check in table coupons if there are discount is value or percentage ===//
+                        if ($value == 0) {
+                            $discount += ($subtotal * $percentage) / 100;
+                        } elseif ($percentage == 0) {
+                            $discount += $value * $quantity;
                         }
                     }
+                    //=== Not discount ===//
+                    else {
+                        $discount;
+                    }
+                    //}
                 }
                 //=== If there is no discount product in cart ===//
                 if ($discount == 0) {

@@ -19,7 +19,7 @@
                                 <div class="form-group row mb-2">
                                     <div class="col-md-12">
 
-                                        <label for="product_name"><p class="text-label">Product name</p></label>
+                                        <label for="product_name"><p class="text-label">Product Name</p></label>
                                         <input
                                             type="text"
                                             class="form-control rounded-0 fw-500 mb-2"
@@ -29,7 +29,7 @@
                                             required
                                         >
 
-                                        <label for="product_code"><p class="text-label mt-2">Product code</p></label>
+                                        <label for="product_code"><p class="text-label mt-2">Product Code</p></label>
                                         <input
                                             type="text"
                                             class="form-control rounded-0 fw-500 mb-2"
@@ -46,7 +46,7 @@
                                             id="product_des">
                                         </textarea>
 
-                                        <label for="product_imgcover"><p class="text-label mt-3">Image cover (1 picture)</p></label>
+                                        <label for="product_imgcover"><p class="text-label mt-3">Image Cover (1 picture)</p></label>
                                         <input
                                             class="form-control rounded-0 mb-2"
                                             type="file"
@@ -56,7 +56,7 @@
                                             required
                                         >
 
-                                        <label for="product_imgreview"><p class="text-label mt-2">Images review (4 pictures)</p></label>
+                                        <label for="product_imgreview"><p class="text-label mt-2">Images Review (4 pictures)</p></label>
                                         <input
                                             class="form-control rounded-0 mb-2"
                                             type="file"
@@ -67,7 +67,7 @@
                                             required
                                         >
 
-                                        <label for="product_price"><p class="text-label mt-2">Product price ($)</p></label>
+                                        <label for="product_price"><p class="text-label mt-2">Product Price ($)</p></label>
                                         <input
                                             class="form-control rounded-0 fw-500 mb-2"
                                             type="number"
@@ -79,7 +79,7 @@
                                             required
                                         >
 
-                                        <label for="product_saleprice"><p class="text-label mt-2">Product sale price ($)</p></label>
+                                        <label for="product_saleprice"><p class="text-label mt-2">Product Sale Price ($)</p></label>
                                         <input
                                             class="form-control rounded-0 fw-500 mb-2"
                                             type="number"
@@ -91,7 +91,7 @@
                                             required
                                         >
 
-                                        <label for="group_id"><p class="text-label mt-2">Product group</p></label><br>
+                                        <label for="group_id"><p class="text-label mt-2">Product Group</p></label><br>
                                         @foreach ($groups as $row)
                                             <div class="form-check form-check-inline">
                                                 <input
@@ -116,7 +116,7 @@
                                 <div class="col-md-12 mb-2">
                                     <div class="form-group mb-2">
 
-                                        <label for="category_id" ><p class="text-label" >Product category</p></label>
+                                        <label for="category_id" ><p class="text-label" >Product Category</p></label>
                                         <select
                                             class="form-select rounded-0 mb-2"
                                             aria-label="category select"
@@ -124,13 +124,13 @@
                                             id="category_id"
                                             required
                                             >
-                                            <option selected disabled>Select category</option>
+                                            <option selected disabled value="">Select Category</option>
                                             @foreach ($categories as $item2)
                                                 <option value="{{$item2->id}}">{{$item2->category_name}}</option>
                                             @endforeach
                                         </select>
 
-                                        <label for="subcategory_id" ><p class="text-label mt-2" >Product subcategory</p></label>
+                                        <label for="subcategory_id" ><p class="text-label mt-2" >Product Subcategory</p></label>
                                         <select
                                             class="form-select rounded-0 mb-2"
                                             aria-label="category select"
@@ -138,13 +138,13 @@
                                             id="subcategory_id"
                                             required
                                             >
-                                            <option selected disabled value="">Select subcategory</option>
+                                            <option selected disabled value="">Select Subcategory</option>
                                             @foreach ($subCategories as $item1)
                                                 <option value="{{$item1->id}}">{{$item1->sub_category}}</option>
                                             @endforeach
                                         </select>
                                         <!-- Start Product color and quantity -->
-                                        <label for="color_id[]"><p class="text-label mt-2">Product color</p></label><br>
+                                        <label for="color_id[]"><p class="text-label mt-2">Product Color</p></label><br>
                                         <input
                                             type="color"
                                             class="form-control form-control-color d-flex w-100 rounded-0 mb-2"
@@ -157,7 +157,7 @@
                                         <!-- End Product color and quantity -->
 
                                         <!-- Start Product size and quantity -->
-                                        <label for="size"><p class="text-label mt-2">Product size and quantity</p></label><br>
+                                        <label for="size"><p class="text-label mt-2">Product Size and Quantity</p></label><br>
                                         <div class="border border-1 p-3 mb-2">
                                             <div class="row">
                                                  @foreach ($sizes as $item1)
@@ -221,9 +221,9 @@
                                                 href="{{url('/admin/product-detail-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-2" type="submit">Add product</button>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-2" type="submit">Add Product</button>
                                         </div>
                                         <!--formnovalidate="formnovalidate" => for textarea input with CKeditor-->
                                     </div>

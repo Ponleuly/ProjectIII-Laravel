@@ -16,7 +16,6 @@ class Coupons extends Model
         'discount_value',
         'start_date',
         'end_date',
-        'group_id',
         'category_id',
         'subcategory_id',
     ];
