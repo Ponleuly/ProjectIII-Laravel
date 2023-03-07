@@ -1,98 +1,142 @@
-        <footer class="footer-section">
-			<div class="container relative">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="subscription-form">
-							<h3 class="d-flex align-items-center">
-								<span class="me-1">
-									<img src="frontend/images/envelope-outline.svg" alt="Image" class="img-fluid">
-								</span><span>SUBCRIBE TO GET MAIL</span>
-							</h3>
-
-							<form action="#" class="row g-3">
-								<div class="col-auto">
-									<input type="text" class="form-control  rounded-0" placeholder="Enter your name">
-								</div>
-								<div class="col-auto">
-									<input type="email" class="form-control  rounded-0" placeholder="Enter your email">
-								</div>
-								<div class="col-auto">
-									<button class="btn btn-primary px-4  rounded-0 border-1">
-										<span class="fa fa-paper-plane"></span>
-									</button>
-								</div>
-							</form>
-
+<?php
+	use App\Models\Categories_Subcategories;
+	use App\Models\Categories;
+	use App\Models\Settings;
+?>
+<footer class="footer-section">
+	<div class="container relative">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="subscription-form">
+					<h3 class="d-flex align-items-center">
+						<span>SUBCRIBE TO GET MAIL</span>
+					</h3>
+					<form action="#" class="row g-3">
+						<div class="col-auto">
+							<input type="text" class="form-control  rounded-0" placeholder="Enter your name">
 						</div>
-					</div>
+						<div class="col-auto">
+							<input type="email" class="form-control  rounded-0" placeholder="Enter your email">
+						</div>
+						<div class="col-auto">
+							<button class="btn btn-primary px-3 rounded-0 border-1">
+								<span class="fw-bold">SUB</span>
+							</button>
+						</div>
+					</form>
 				</div>
+			</div>
+		</div>
 
-				<div class="row g-5 mb-5">
-					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="{{url("home")}}" class="footer-logo">15Steps<span>.</span></a></div>
-						<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
+		<div class="row g-5 mb-5">
+			@php
+				$setting = Settings::all()->first();
+			@endphp
+			<div class="col-lg-4">
+				<div class="mb-2 footer-logo-wrap">
+					<a href="{{url("home")}}" class="footer-logo fw-bold">
+						{{$setting->website_name}}<span>.</span>
+					</a>
+				</div>
+				<p class="text-danger fw-bold text-capitalize">
+					{{$setting->home_pageSlogan}}
+				</p>
+				<p class="mb-4">
+					{{$setting->home_pageText}}
+				</p>
 
-						<ul class="list-unstyled custom-social">
-							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+				<ul class="list-unstyled custom-social">
+					<li>
+						<a href="{{$setting->facebook_link}}">
+							<span class="fa fa-brands fa-facebook-f"></span>
+						</a>
+					</li>
+					<li>
+						<a href="{{$setting->instagram_link}}">
+							<span class="fa fa-brands fa-instagram"></span>
+						</a>
+					</li>
+					<li>
+						<a href="{{$setting->youtube_link}}">
+							<span class="fa fa-brands fa-youtube"></span>
+						</a>
+					</li>
+					<li>
+						<a href="{{$setting->tiktok_link}}">
+							<span class="fa fa-brands fa-tiktok"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-8">
+				<div class="row links-wrap">
+					<div class="col-6 col-sm-6 col-md-3">
+						<ul class="list-unstyled">
+							<li>
+								<a
+									href="{{url('product-category/new-featured')}}"
+									class="text-danger fw-bold"
+									>
+									New & Featured
+								</a>
+							</li>
+							<li>
+								<a href="{{url("product-subcategory/new-arrival")}}">
+									New Arrival
+								</a>
+							</li>
+							<li>
+								<a href="{{url("product-subcategory/sale-off")}}">
+									Sale Off
+								</a>
+							</li>
 						</ul>
 					</div>
-
-					<div class="col-lg-8">
-						<div class="row links-wrap">
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Knowledge base</a></li>
-									<li><a href="#">Live chat</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Our team</a></li>
-									<li><a href="#">Leadership</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Nordic Chair</a></li>
-									<li><a href="#">Kruzo Aero</a></li>
-									<li><a href="#">Ergonomic Chair</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="border-top copyright">
-					<div class="row pt-4">
-						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            </p>
-						</div>
-
-						<div class="col-lg-6 text-center text-lg-end">
-							<ul class="list-unstyled d-inline-flex ms-auto">
-								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
+						@php
+							$categories = Categories::orderBy('id')->get();
+						@endphp
+					@foreach ($categories as $category)
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li>
+									<a href="{{url('product-category/'.strtolower($category->category_name))}}"
+										class="text-danger fw-bold"
+										>
+										{{$category->category_name}}
+									</a>
+								</li>
+									@php
+										$subs = Categories_Subcategories::where('category_id', $category->id)->get();
+									@endphp
+								@foreach ($subs as $sub)
+									<li>
+										<a href="{{url("product-subcategory/". strtolower($sub->sub_category))}}">
+											{{$sub->sub_category}}
+										</a>
+									</li>
+								@endforeach
 							</ul>
 						</div>
+					@endforeach
+					<div class="col-6 col-sm-6 col-md-3">
+						<ul class="list-unstyled">
+							<li class="text-danger fw-bold">Contact</li>
+							<li>Tel: 084 3124 150</li>
+							<li>Email: 15steps@gmail.com</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</footer>
+		</div>
+		<div class="border-top copyright">
+			<div class="row pt-4">
+				<div class="col-lg-6">
+					<p class="mb-2 text-center text-lg-start">
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

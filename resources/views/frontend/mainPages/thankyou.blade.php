@@ -38,7 +38,6 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
                     <!------------------- Download or print invoice----------------------->
@@ -228,7 +227,7 @@
                     <!------------------End  Invoice ------------------------>
                 </div>
             </div>
-    </div>
+        </div>
 		<!----------- For Click to print page ----------->
 		<script>
 			function printDiv(divName) {

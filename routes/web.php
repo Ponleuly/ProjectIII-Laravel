@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController\OrderController;
 use App\Http\Controllers\AdminController\CouponController;
 use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
+use App\Http\Controllers\AdminController\SettingController;
 use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\AdminController\CustomerController;
 use App\Http\Controllers\AdminController\DeliveryController;
@@ -199,5 +200,13 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/coupon-edit/{id}', 'coupon_edit')->name('coupon-edit');
       Route::put('/coupon-edit/{id}', 'coupon_update');
       Route::get('/coupon-delete/{id}', 'coupon_delete');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(SettingController::class)->group(function () {
+      Route::get('/general-setting', 'general_setting')->name('general-setting');
+      Route::get('/general-setting-edit', 'general_setting_edit')->name('general-setting-edit');
+      Route::put('/general-setting-edit', 'general_setting_update')->name('general-setting-edit');
+      Route::get('/general-layout', 'general_layout')->name('general-layout');
    });
 });

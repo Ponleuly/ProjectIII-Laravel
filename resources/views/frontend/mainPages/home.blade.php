@@ -1,26 +1,36 @@
 <?php
 	use App\Models\Categories_Subcategories;
+	use App\Models\Settings;
 ?>
 @extends('index')
 @section('content')
+		@php
+			$setting = Settings::all()->first();
+		@endphp
         <!-- Start Hero Section -->
 			<div class="hero">
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Stylish<span clsas="d-block"> Comfortable Quality</span></h1>
-								<p class="mb-4">Bring you the most stylish and newest shoes.
-									For young generation who are passionated with modern and diverse styles.</p>
+							<div class="intro-excerpt text-capitalize">
+								<h1>{{$setting->home_pageSlogan}}</span></h1>
+								<p class="mb-4">{{$setting->home_pageText}}</p>
 								<p>
-									<a href="{{url('shop')}}" class="btn btn-secondary me-2 rounded-pill px-4 py-2 fw-semibold">Shop Now</a>
-									<!--<a href="#" class="btn btn-white-outline rounded-pill px-4 py-2 fw-semibold">Tìm hiểu thêm</a>-->
+									<a
+										href="{{url('shop')}}"
+										class="btn btn-secondary me-2 rounded-pill px-4 py-2 fw-semibold"
+										>
+										Shop Now
+									</a>
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-7">
 							<div class="hero-img-wrap">
-								<img src="frontend/images/sneaker.png" class="img-fluid">
+								<img
+                                    src="/product_img/imghomepage/{{$setting->home_pageImage}}"
+                                    class="img-fluid"
+                                >
 							</div>
 						</div>
 					</div>

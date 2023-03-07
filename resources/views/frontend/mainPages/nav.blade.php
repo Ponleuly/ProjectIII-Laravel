@@ -3,12 +3,16 @@
 	use App\Models\Carts;
 	use App\Models\Categories_Groups;
 	use App\Models\Categories_Subcategories;
+	use App\Models\Settings;
 ?>
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 	<div class="container">
+		@php
+			$setting = Settings::all()->first();
+		@endphp
 		<!---========== Start Logo shop ==============-->
 		<a class="navbar-brand" href="{{url('home')}}">
-			15Steps<span>.</span>
+			{{$setting->website_name}}<span>.</span>
 		</a>
 		<button class="navbar-toggler"
 			type="button"
@@ -206,7 +210,7 @@
 				<input
 					class="form-control ds-input me-2 ms-2 rounded-0"
 					type="search"
-					placeholder="Tìm kiếm"
+					placeholder="Search here"
 					aria-label="Search"
 				>
 			</form>

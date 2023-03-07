@@ -681,7 +681,8 @@ a {
       display: inline-block;
       background: #dce5e4;
       color: #CC2936;
-      border-radius: 50%; }
+      border-radius: 50%;
+    }
       .footer-section .custom-social li a:hover {
         background: #CC2936;
         color: #ffffff; }

@@ -12,7 +12,6 @@ use App\Models\Products_Sizes;
 use App\Models\Products_Imgreviews;
 use App\Http\Controllers\Controller;
 use App\Models\Products_Attributes;
-use App\Models\Products_Groups;
 use Illuminate\Support\Facades\File;
 
 class ProductDetailController extends Controller

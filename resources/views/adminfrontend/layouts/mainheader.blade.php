@@ -35,13 +35,6 @@
 							<div class="profile-info">
 								<div class="info">
 									<h6>{{Auth::user()->name}}</h6>
-									<div class="image">
-										<img
-											src="{{url('frontend/images/person_1.jpg')}}"
-											alt=""
-										/>
-										<span class="status"></span>
-									</div>
 								</div>
 							</div>
 							<i class="lni lni-chevron-down"></i>
@@ -55,7 +48,7 @@
 							</li>
 
 							<li>
-								<a href="{{url('admin/logout')}}"> <i class="lni lni-exit"></i> Sign Out </a>
+								<a href="{{url('admin/logout')}}"> <i class="lni lni-exit"></i> Log Out </a>
 							</li>
 						</ul>
 					</div>
