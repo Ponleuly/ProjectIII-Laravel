@@ -42,12 +42,6 @@
 
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
 							<li>
-								<a href="#0">
-									<i class="lni lni-user"></i> View Profile
-								</a>
-							</li>
-
-							<li>
 								<a href="{{url('admin/logout')}}"> <i class="lni lni-exit"></i> Log Out </a>
 							</li>
 						</ul>

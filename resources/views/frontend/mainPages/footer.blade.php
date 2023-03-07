@@ -2,6 +2,7 @@
 	use App\Models\Categories_Subcategories;
 	use App\Models\Categories;
 	use App\Models\Settings;
+	use App\Models\Contacts;
 ?>
 <footer class="footer-section">
 	<div class="container relative">
@@ -120,10 +121,14 @@
 						</div>
 					@endforeach
 					<div class="col-6 col-sm-6 col-md-3">
+						@php
+							$contacts = Contacts::orderBy('id')->get();
+						@endphp
 						<ul class="list-unstyled">
 							<li class="text-danger fw-bold">Contact</li>
-							<li>Tel: 084 3124 150</li>
-							<li>Email: 15steps@gmail.com</li>
+							@foreach ($contacts as $contact)
+								<li>{{$contact->contact_info}}</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>

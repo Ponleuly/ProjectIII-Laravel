@@ -271,6 +271,11 @@
                                 Layout View
                             </a>
                         </li>
+                        <li>
+                            <a href="{{url('admin/contact-list')}}">
+                                Contacts
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <span class="divider"><hr /></span>

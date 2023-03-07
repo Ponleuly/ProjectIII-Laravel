@@ -8,11 +8,7 @@ use App\Models\Groups;
 
 class ProductGroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_group_list()
     {
         $groups = Groups::orderBy('group_name')->get();
@@ -27,22 +23,13 @@ class ProductGroupController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_group_add()
     {
         return view('adminfrontend.pages.groups.product_group_add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_group_store(Request $request)
     {
         $input  = $request->all();
@@ -53,23 +40,7 @@ class ProductGroupController extends Controller
             ->with('alert', 'Product group ' . $request->group_name . ' is added successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function product_group_edit($id)
     {
         $group = Groups::where('id', $id)->first();
@@ -82,13 +53,7 @@ class ProductGroupController extends Controller
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_group_update(Request $request, $id)
     {
         $update_group_name = Groups::where('id', $id)->first();
@@ -103,12 +68,7 @@ class ProductGroupController extends Controller
             );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function product_group_delete($id)
     {
         $delete_group = Groups::where('id', $id)->first();

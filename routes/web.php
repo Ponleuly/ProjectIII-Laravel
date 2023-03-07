@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController\OrderController;
 use App\Http\Controllers\AdminController\CouponController;
 use App\Http\Controllers\UserController\ProductController;
 use App\Http\Controllers\UserController\ProfileController;
+use App\Http\Controllers\AdminController\ContactController;
 use App\Http\Controllers\AdminController\SettingController;
 use App\Http\Controllers\UserController\AuthUserController;
 use App\Http\Controllers\AdminController\CustomerController;
@@ -208,5 +209,15 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/general-setting-edit', 'general_setting_edit')->name('general-setting-edit');
       Route::put('/general-setting-edit', 'general_setting_update')->name('general-setting-edit');
       Route::get('/general-layout', 'general_layout')->name('general-layout');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(ContactController::class)->group(function () {
+      Route::get('/contact-list', 'contact_list')->name('contact-list');
+      Route::get('/contact-add', 'contact_add')->name('contact-add');
+      Route::post('/contact-add', 'contact_store')->name('contact-add');
+      Route::get('/contact-edit/{id}', 'contact_edit')->name('contact-edit');
+      Route::put('/contact-edit/{id}', 'contact_update');
+      Route::get('/contact-delete/{id}', 'contact_delete');
    });
 });
