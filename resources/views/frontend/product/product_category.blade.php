@@ -1,5 +1,6 @@
 <?php
 	use App\Models\Products_Sizes;
+	use App\Models\Settings;
 	use App\Models\Products;
 ?>
 @extends('index')
@@ -20,7 +21,13 @@
 
 	<div class="container">
 		<div class="row justify-content-between">
-			<img src="/frontend/images/shop_banner.jpg" class="img-fluid">
+			@php
+				$setting = Settings::all()->first();
+			@endphp
+			<img
+				src="/product_img/imghomepage/{{$setting->section_pageImage}}"
+				class="img-fluid"
+			>
 		</div>
 	</div>
 

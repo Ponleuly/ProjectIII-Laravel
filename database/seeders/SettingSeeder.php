@@ -23,7 +23,7 @@ class SettingSeeder extends Seeder
                 'home_pageSlogan' => 'Stylish comfortable quality',
                 'home_pageText' => 'Bring you the most stylish and newest shoes. For the young generation who are passionated with modern and diverse styles.',
                 'home_pageImage' => 'home_pageImage.png',
-                'section_pageImage' => 'shop_banner.jpg',
+                'section_pageImage' => 'new_feature.jpg',
                 'facebook_link' => 'https://www.facebook.com/AllofEntertainment',
                 'instagram_link' => 'https://www.instagram.com/_callme_ponleu_15_',
                 'youtube_link' => 'https://www.youtube.com/channel/UCShcp6skfqHU6eTsTQ1Te_g',
