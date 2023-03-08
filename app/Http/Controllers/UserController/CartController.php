@@ -410,9 +410,11 @@ class CartController extends Controller
                 )
             );
             //return dd($orderDetails->toArray());
-        }
+        } /*elseif ($request->action == 'delivery') {
+            return dd($request->toArray());
+        }*/
         //====================== If Submit input Coupon code ============================//
-        elseif ($request->action == 'apply') {
+        elseif ($request->action == 'apply' || $request->action == 'delivery') {
             if (Auth::check() && Auth::user()->role == 1) {
                 $userId = Auth::user()->id;
                 //==== Convert input to uppercase ===//
@@ -420,13 +422,28 @@ class CartController extends Controller
                 //==== passing route name to $routeName ===//
                 $routeName = 'checkout';
                 $input = $request->all();
+                // Convert discount valeu string to number if there is coupon apllied
+                $dis = preg_replace('/[^0-9]/', '', $request->discount);
+                //=== Passing total discount to discount value by each product ====//
+                $discount = $dis / 100;
+                $input['discount'] = $discount;
+
                 //=== Return with calling method coupon_cal to get discount value ======//
-                return $this->coupon_cal($code, $userId, $routeName)
-                    ->withInput($input)
-                    ->with(
-                        'message',
-                        'Your promo code is applied !',
-                    );
+                if ($request->action == 'apply') {
+                    return $this->coupon_cal($code, $userId, $routeName)
+                        ->withInput($input)
+                        ->with(
+                            'message',
+                            'Your promo code is applied !',
+                        );
+                } elseif ($request->action == 'delivery') {
+                    return redirect('checkout')
+                        ->withInput($input)
+                        ->with(
+                            'message',
+                            'Delivery method is applied !',
+                        );
+                }
             } else {
                 $userId = 0;
                 //==== Convert input to uppercase ===//
@@ -437,12 +454,26 @@ class CartController extends Controller
                 //== Get input request in old page ===//
                 $input = $request->all();
 
-                return $this->coupon_cal($code, $userId, $routeName)
-                    ->withInput($input)
-                    ->with(
-                        'message',
-                        'Your promo code is applied !',
-                    );
+                // Convert discount valeu string to number if there is coupon apllied
+                $dis = preg_replace('/[^0-9]/', '', $request->discount);
+                //=== Passing total discount to discount value by each product ====//
+                $discount = $dis / 100;
+                $input['discount'] = $discount;
+                if ($request->action == 'apply') {
+                    return $this->coupon_cal($code, $userId, $routeName)
+                        ->withInput($input)
+                        ->with(
+                            'message',
+                            'Your promo code is applied !',
+                        );
+                } elseif ($request->action == 'delivery') {
+                    return redirect('checkout')
+                        ->withInput($input)
+                        ->with(
+                            'message',
+                            'Delivery method is applied !',
+                        );
+                }
             }
         }
     }

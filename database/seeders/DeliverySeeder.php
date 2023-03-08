@@ -19,7 +19,13 @@ class DeliverySeeder extends Seeder
         DB::table('deliveries')->insert([
             [
                 'id' => 1,
-                'delivery_option' => "Standard 2 - 5 days",
+                'delivery_option' => "Fast Delivery 1 - 2 days",
+                'delivery_fee' => 4.00,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 2,
+                'delivery_option' => "Standard 3 - 5 days",
                 'delivery_fee' => 2.00,
                 'created_at' => Carbon::now()
             ],

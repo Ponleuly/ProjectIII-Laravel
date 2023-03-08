@@ -83,6 +83,8 @@
 											$c_address =  Auth::user()->address;
 										}
 										$c_note =  Request::old('c_note');
+										$ship = Request::old('delivery_fee');
+										$dis = Request::old('discount');
 									}
 									else{
 										$c_name =  Request::old('c_name');
@@ -90,6 +92,8 @@
 										$c_email =  Request::old('c_email');
 										$c_address =  Request::old('c_address');
 										$c_note =  Request::old('c_note');
+										$ship = Request::old('delivery_fee');
+										$dis = Request::old('discount');
 									}
 								@endphp
 								<div class="form-group row mb-3">
@@ -167,48 +171,49 @@
 
 								<h2 class="h3 mb-3 text-black">Delivery Method</h2>
 								@foreach ($deliveries as $delivery)
-									<div class="row">
-										<div class="col-md-8">
+									<div class="row d-flex  align-items-baseline mb-3">
+										<div class="col-md-2">
+											<button
+												type="submit"
+												name="action"
+												value="delivery"
+												class="btn btn-outline-secondary btn-sm pt-1 rounded-0 "
+												style="font-size: 12px"
+												>
+												Choose
+											</button>
+										</div>
+										<div class="col-md-6">
 											<div class="form-check">
 												<input
-													class="form-check-input big-radio me-2 mb-2 mt-1 deliveryMethod"
+													class="form-check-input big-radio me-2 mb-2 my-2"
 													type="radio"
 													name="delivery_fee"
 													id="delivery_option{{$delivery->id}}"
 													value="{{$delivery->delivery_fee}}"
-													@if ($loop->first)
+													@if ($delivery->delivery_fee == $ship)
 														checked
 													@endif
-													onclick="Fee()"
+													required
 												>
-												<label class="form-check-label text-dark mt-1 fs-6" for="delivery_option{{$delivery->id}}">
+												<label
+													class="form-check-label text-dark fs-6"
+													for="delivery_option{{$delivery->id}}"
+													style="margin-top: 5px"
+													>
 													{{$delivery->delivery_option}}
 												</label>
 											</div>
 										</div>
 										<div class="col-md-4 d-flex justify-content-end">
-											<label class="form-check-label text-dark fs-6" for="delivery_option">
+											<label
+												class="form-check-label text-danger fs-6"
+												for="delivery_option"
+												>
 												$ {{$delivery->delivery_fee}}
 											</label>
 										</div>
 									</div>
-
-									<script>
-										function Fee() {
-											if ($("input[type='radio'].deliveryMethod").is(':checked')) {
-												var delivery_select = $("input[type='radio'].deliveryMethod:checked").val();
-												//alert(card_type);
-											}
-											//document.getElementById("deliveryFee").innerHTML = delivery_select;
-											return delivery_select;
-										}
-										//document.getElementById("demo").innerHTML = delivery_select;
-									</script>
-									@php
-										//$fee = <script>ccc</script>;
-
-										$deliveryFee = 0
-									@endphp
 								@endforeach
 							</div>
 						</div>
@@ -261,8 +266,10 @@
 												@php
 													$subtotal = 0;
 													$total = 0;
+													$deliveryFee = $ship;
 													$discount = 0; // Need to create discount method
-													$discount  =  Session::get('discount');
+													// Check if there is a old discount in session after choose delivery method
+													$discount  = ($dis)? $dis :  Session::get('discount');
 
 												@endphp
 												@foreach ($carts as $cart)
@@ -356,7 +363,7 @@
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="text-black text-end font-weight-bold border-bottom-0 ">
-															<strong  id="deliveryFee">$ {{$deliveryFee}}</strong>
+															<strong  id="deliveryFee">$ {{number_format($deliveryFee, 2)}}</strong>
 														</td>
 													</tr>
 													<tr>
@@ -366,11 +373,12 @@
 														<td ></td>
 														<td ></td>
 														<td ></td>
-														<td class="text-black font-weight-bold d-flex justify-content-end">
+														<td class="text-black font-weight-bold d-flex justify-content-end" >
+
 															<input
-																class="form-control form-control-sm w-75 text-end pe-0 border-0 bg-white text-danger"
+																class="form-control form-control-sm w-75 text-end pe-0 ps-0 border-0 bg-white text-danger fw-bold"
 																name="discount"
-																value="$ {{number_format($discount, 2)}}"
+																value="$ {{number_format(($discount)? $discount : $dis, 2)}}"
 																aria-label=".form-control-sm example"
 																readonly
 																placeholder="$"
@@ -386,7 +394,7 @@
 														<td class="border-bottom-0"></td>
 														<td class="text-danger text-end h6 border-bottom-0">
 															<strong>
-																$ {{$total  = number_format((($subtotal + $deliveryFee) - $discount) ,2)}}
+																$ {{$total  = number_format((($subtotal + number_format($deliveryFee, 2)) - $discount) ,2)}}
 															</strong>
 														</td>
 													</tr>
