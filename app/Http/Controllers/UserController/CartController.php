@@ -332,6 +332,7 @@ class CartController extends Controller
                 // Get data from Carts model
                 $carts = Carts::where('user_id', Auth::user()->id)->get();
                 foreach ($carts as $cart) {
+
                     // Store data to table orderDetails
                     Orders_Details::create([
                         'order_id' => $orderId,
@@ -341,6 +342,7 @@ class CartController extends Controller
                         'size_id' => $cart->size_id,
                     ]);
                 }
+
                 // Remove all products in carts after user completed order
                 Carts::where('user_id', Auth::user()->id)->delete();
             } else {
@@ -392,10 +394,17 @@ class CartController extends Controller
                 $productId = $orderDetail->product_id;
                 $productSize_qty = Products_Sizes::where('product_id', $productId)
                     ->where('size_id', $sizeId)->first();
-                $productSize_qty->size_quantity = ($productSize_qty->size_quantity) - $quantity;
+                $stock_qty = ($productSize_qty->size_quantity) - $quantity;
+                // If total quantity of order bigger than or equal to size stock ==> stock = 0
+                if ($stock_qty <= 0) {
+                    $productSize_qty->size_quantity = 0;
+                } else {
+                    $productSize_qty->size_quantity = ($productSize_qty->size_quantity) - $quantity;
+                }
                 $productSize_qty->update();
             }
-            //==== Get data to display on user invoice ====//
+
+            //=============== Get data to display on user invoice =======================S//
             $order = Orders::where('id', $orderId)->first();
             $customer = Customers::where('id', $orderId)->first();
             $orderDetails = Orders_Details::where('order_id', $orderId)->get();
@@ -410,9 +419,7 @@ class CartController extends Controller
                 )
             );
             //return dd($orderDetails->toArray());
-        } /*elseif ($request->action == 'delivery') {
-            return dd($request->toArray());
-        }*/
+        }
         //====================== If Submit input Coupon code ============================//
         elseif ($request->action == 'apply' || $request->action == 'delivery') {
             if (Auth::check() && Auth::user()->role == 1) {
@@ -510,11 +517,13 @@ class CartController extends Controller
             $removeCart = Carts::where('id', $id)->first();
             $removeCart->delete();
         } else {
-            $cart = Cart::content()->where('id', $id);
+            /*
+            $cart = Cart::content()->where('rowId', $id);
             foreach ($cart as $key => $value) {
                 $rowId = $value->rowId;
             }
-            Cart::remove($rowId);
+            */
+            Cart::remove($id);
         }
         return redirect()->back()
             ->with(
