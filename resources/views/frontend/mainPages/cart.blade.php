@@ -85,10 +85,10 @@
 									$price =  $cart->product_price;
 									$subtotal += $price * $quantity;
 								}else{
-									$cartId = $cart->id;
+									$cartId = $cart->rowId;
 									$productId = $cart->id; // becoz in Cart model, column id is product_id
-									$product = Products::where('id', $cartId)->first();
-									$productSizes = Products_Sizes::where('product_id', $cartId)->get();
+									$product = Products::where('id', $productId)->first();
+									$productSizes = Products_Sizes::where('product_id', $productId)->get();
 
 									// Image
 									$productImg = $cart->options->has('image') ? $cart->options->image : '';

@@ -99,9 +99,7 @@ Route::controller(CartController::class)->group(function () {
    Route::post('place-order', 'place_order')->name('place-order');
    Route::get('download-invoice/{id}', 'download_invoice')->name('download-invoice');
 });
-/*============= End User Frontend route ==================*/
-
-
+/*================================================= End User Frontend route ====================================================*/
 
 
 /*================================================== Admin Frontend route =========================================================*/

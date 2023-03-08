@@ -3,7 +3,6 @@
 	use App\Models\Products_Attributes;
 	use App\Models\Products;
 	use App\Models\Products_Sizes;
-
 ?>
 @extends('index')
 @section('content')
@@ -22,8 +21,7 @@
 
 	<!-- End breabcrumb Section -->
 	<div class="untree_co-section">
-
-			<div class="container">
+		<div class="container">
 				<!--------------- Alert ------------------------>
 				@if(Session::has('alert'))
 					<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
@@ -173,16 +171,17 @@
 										<div class="col-md-8">
 											<div class="form-check">
 												<input
-													class="form-check-input big-radio me-2 mb-2 mt-1"
+													class="form-check-input big-radio me-2 mb-2 mt-1 deliveryMethod"
 													type="radio"
 													name="delivery_fee"
-													id="delivery_option"
+													id="delivery_option{{$delivery->id}}"
 													value="{{$delivery->delivery_fee}}"
 													@if ($loop->first)
 														checked
 													@endif
+													onclick="Fee()"
 												>
-												<label class="form-check-label text-dark mt-1 fs-6" for="delivery_option">
+												<label class="form-check-label text-dark mt-1 fs-6" for="delivery_option{{$delivery->id}}">
 													{{$delivery->delivery_option}}
 												</label>
 											</div>
@@ -193,8 +192,22 @@
 											</label>
 										</div>
 									</div>
+
+									<script>
+										function Fee() {
+											if ($("input[type='radio'].deliveryMethod").is(':checked')) {
+												var delivery_select = $("input[type='radio'].deliveryMethod:checked").val();
+												//alert(card_type);
+											}
+											//document.getElementById("deliveryFee").innerHTML = delivery_select;
+											return delivery_select;
+										}
+										//document.getElementById("demo").innerHTML = delivery_select;
+									</script>
 									@php
-										$deliveryFee = $delivery->delivery_fee;
+										//$fee = <script>ccc</script>;
+
+										$deliveryFee = 0
 									@endphp
 								@endforeach
 							</div>
@@ -216,6 +229,7 @@
 												placeholder="Enter your promo code"
 												aria-label="coupon"
 												aria-describedby="button-addon2"
+												delivery_select=""
 											>
 											<button
 												class="btn btn-outline-secondary px-3 fw-semibold rounded-0"
@@ -342,7 +356,7 @@
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
 														<td class="text-black text-end font-weight-bold border-bottom-0 ">
-															<strong>$ {{$deliveryFee}}</strong>
+															<strong  id="deliveryFee">$ {{$deliveryFee}}</strong>
 														</td>
 													</tr>
 													<tr>
@@ -480,7 +494,14 @@
 				</form>
 		      	<!---------------------- End </form> ---------------->
 				<!---/// onclick="location.href='{{ url('thankyou') }}'" ///-->
-		    </div>
 		</div>
+	</div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
+	<script>
+        //if ($("input[type='radio'].deliveryMethod").is(':checked')) {
+            //var delivery_fee = $("input[type='radio'].deliveryMethod:checked").val();
+            //alert(card_type);
+        //}
+    </script>
 @endsection()

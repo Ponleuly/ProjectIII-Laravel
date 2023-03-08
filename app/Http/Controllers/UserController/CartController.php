@@ -113,8 +113,11 @@ class CartController extends Controller
             $update_cart->product_quantity = $request->product_quantity;
             $update_cart->update();
         } else {
-            $products = Products::findOrFail($cartId);
-            $cart = Cart::content()->where('id', $cartId);
+            $cart = Cart::content()->where('rowId', $cartId);
+            foreach ($cart as $key => $value) {
+                $prouductId = $value->id;
+            }
+            $products = Products::findOrFail($prouductId);
             foreach ($cart as $key => $value) {
                 $rowId = $value->rowId;
             }
@@ -128,6 +131,8 @@ class CartController extends Controller
                     ],
                 ]
             );
+
+            // return dd($prouductId);
         }
         return redirect()->back()
             ->with(
