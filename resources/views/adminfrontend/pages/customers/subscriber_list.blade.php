@@ -8,12 +8,19 @@ use App\Models\Products_Attributes;
 
         <div class="row justify-content-center">
             <div class="col-md-12 my-3 mb-md-0">
-                @if(Session::has('alert'))
-                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
-                    {{Session::get('alert')}}
-                    <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
+                <!--------------- Alert ------------------------>
+                    @if(Session::has('alert'))
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                            {{Session::get('alert')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                    <!---------------End Alert ------------------------>
 
                 <h4 class="mb-2 text-black">Subscribers List</h4>
                 <div class="p-3 p-lg-4 border bg-white">
@@ -47,7 +54,7 @@ use App\Models\Products_Attributes;
                                     <td class="text-center">
                                         <a
                                             class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
-                                            href="{{url('admin/customer-member-delete/'.$subscriber->id)}}"
+                                            href="{{url('admin/customer-subscriber-delete/'.$subscriber->id)}}"
                                             role="button"
                                             data-bs-toggle="tooltip"
                                             data-bs-placement="top"

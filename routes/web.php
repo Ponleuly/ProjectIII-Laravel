@@ -189,8 +189,11 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(CustomerController::class)->group(function () {
       Route::get('/customer-list', 'customer_list')->name('customer-list');
+      Route::get('/customer-delete/{id}', 'customer_delete')->name('customer-delete');
       Route::get('/customer-member-list', 'customer_member_list')->name('customer-member-list');
+      Route::get('/customer-member-delete/{id}', 'customer_member_delete')->name('customer-member-delete');
       Route::get('/customer-subscriber-list', 'customer_subscriber_list')->name('customer-subscriber-list');
+      Route::get('/customer-subscriber-delete/{id}', 'customer_subscriber_delete')->name('customer-subscriber-delete');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
