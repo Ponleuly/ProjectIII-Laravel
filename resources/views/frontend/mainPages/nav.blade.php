@@ -206,10 +206,11 @@
 				</li>
 			</ul>
 			<!-----========= Start Menu icon ===============--->
-			<form class="d-flex col-lg-3 ms-5" action="">
+			<form class="d-flex col-lg-3 ms-5" action="{{url('search-product')}}">
 				<input
 					class="form-control ds-input me-2 ms-2 rounded-0"
-					type="search"
+					type="text"
+					name="search_product"
 					placeholder="Search here"
 					aria-label="Search"
 				>

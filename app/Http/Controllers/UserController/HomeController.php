@@ -35,4 +35,17 @@ class HomeController extends Controller
         return redirect()->back()
             ->with('message', 'You are subscribered successfully !');
     }
+
+    public function search_product()
+    {
+        $search_text = $_GET['search_product'];
+        $search_products = Products::where('product_name', 'LIKE', '%' . $search_text . '%')->get();
+        return view(
+            'frontend.mainPages.search_product',
+            compact(
+                'search_products',
+                'search_text'
+            )
+        );
+    }
 }
