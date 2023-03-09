@@ -29,7 +29,6 @@ class CouponController extends Controller
     }
 
 
-
     public function coupon_view($id)
     {
         $coupon = Coupons::where('id', $id)->first();
@@ -46,7 +45,6 @@ class CouponController extends Controller
             )
         );
     }
-
 
 
     public function coupon_add()
@@ -83,14 +81,20 @@ class CouponController extends Controller
                 'Your Date is expired ! '
             );
         } else {
+            if ($currentTime->gt($start_date) && $currentTime->gt($end_date)) {
+                $status = 0; //expired
+            } elseif ($currentTime->gte($start_date) && $currentTime->lt($end_date)) {
+                $status = 1; //active
+            } elseif ($currentTime->lt($start_date) && $currentTime->lt($end_date)) {
+                $status = 2; //future
+            }
             $input = $request->all();
+            $input['coupon_status'] = $status;
             Coupons::create($input);
             return redirect()->back()
                 ->with('message', 'Coupon ' . $request->campaign_name . ' is added successfully!');
         }
     }
-
-
 
 
     public function coupon_edit($id)
@@ -109,7 +113,6 @@ class CouponController extends Controller
     }
 
 
-
     public function coupon_update(Request $request, $id)
     {
         $update_coupon = Coupons::where('id', $id)->first();
@@ -121,6 +124,18 @@ class CouponController extends Controller
         $update_coupon->end_date = $request->input('end_date');
         $update_coupon->category_id = $request->input('category_id');
         $update_coupon->subcategory_id = $request->input('subcategory_id');
+        $currentTime = Carbon::now();
+        //$end_date = date('Y-m-d  H:i:s', strtotime($request->end_date));
+        $start_date = Carbon::create($request->start_date);
+        $end_date = Carbon::create($request->end_date);
+        if ($currentTime->gt($start_date) && $currentTime->gt($end_date)) {
+            $status = 0; //expired
+        } elseif ($currentTime->gte($start_date) && $currentTime->lt($end_date)) {
+            $status = 1; //active
+        } elseif ($currentTime->lt($start_date) && $currentTime->lt($end_date)) {
+            $status = 2; //future
+        }
+        $update_coupon->coupon_status = $status;
         $update_coupon->update();
 
         return redirect('admin/coupon-list')

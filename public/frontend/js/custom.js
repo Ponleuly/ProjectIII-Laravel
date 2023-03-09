@@ -23,8 +23,28 @@
 	};
 	tinyslider();
 
-	
 
+	var couponSlider = function() {
+		var el = document.querySelectorAll('.coupon-slider');
+
+		if (el.length > 0) {
+			var slider = tns({
+				container: '.coupon-slider',
+				items: 1,
+				axis: "horizontal",
+				controlsContainer: "#coupon-nav",
+				swipeAngle: false,
+				speed: 700,
+				nav: true,
+				controls: true,
+				autoplay: true,
+				autoplayHoverPause: true,
+				autoplayTimeout: 3500,
+				autoplayButtonOutput: false
+			});
+		}
+	};
+	couponSlider();
 
 	var sitePlusMinus = function() {
 
@@ -63,9 +83,9 @@
 
 	        quantityAmount.value = value;
 	    }
-	    
+
 	    init();
-		
+
 	};
 	sitePlusMinus();
 

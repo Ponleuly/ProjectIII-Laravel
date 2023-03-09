@@ -18,5 +18,6 @@ class Coupons extends Model
         'end_date',
         'category_id',
         'subcategory_id',
+        'coupon_status'
     ];
 }

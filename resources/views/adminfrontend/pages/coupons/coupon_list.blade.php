@@ -62,16 +62,17 @@
                             </thead>
                             <tbody>
                                 @foreach($coupons as $coupon)
-                                    <tr class="text-center">
+                                    <tr class="text-center admin-table">
                                         <th scope="row">{{$count++}}</th>
-                                        <td>{{date('M d, Y', strtotime($coupon->start_date));}}</td>
-                                        <td>{{date('M d, Y', strtotime($coupon->end_date));}}</td>
+                                        <td class="col-2">{{date('M d, Y', strtotime($coupon->start_date));}}</td>
+                                        <td class="col-2">{{date('M d, Y', strtotime($coupon->end_date));}}</td>
                                         <td>{{$coupon->campaign_name}}</td>
                                         <td>{{$coupon->code}}</td>
                                         <td>{{$coupon->discount_percentage}} %</td>
                                         <td>{{$coupon->discount_value}} $</td>
                                         <td>
                                             @php
+                                            /*
                                                 $start = date('M d, Y', strtotime($coupon->start_date));
                                                 $end = date('M d, Y', strtotime($coupon->end_date));
                                                 $current = Carbon::now();
@@ -82,22 +83,23 @@
                                                  }elseif($current->lt($start) && $current->lt($end)){
                                                     $status = 2; //future
                                                 }
+                                            */
                                             @endphp
                                             <button
                                                 type="button"
                                                 class="btn btn-sm py-1 px-2
-                                                    {{($status == 0)?  'btn-danger' : ''}}
-                                                    {{($status == 1)?  'btn-success' : ''}}
-                                                    {{($status == 2)?  'btn-warning' : ''}}
+                                                    {{($coupon->coupon_status == 0)?  'btn-danger' : ''}}
+                                                    {{($coupon->coupon_status == 1)?  'btn-success' : ''}}
+                                                    {{($coupon->coupon_status == 2)?  'btn-warning' : ''}}
                                                     "
                                                     style="width: 90px"
                                                 >
-                                                {{($status == 0)? 'Expired':''}}
-                                                {{($status == 1)? 'Active':''}}
-                                                {{($status == 2)? 'Future':''}}
+                                                {{($coupon->coupon_status == 0)? 'Expired':''}}
+                                                {{($coupon->coupon_status == 1)? 'Active':''}}
+                                                {{($coupon->coupon_status == 2)? 'Future':''}}
                                             </button>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center col-2">
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('/admin/coupon-view/'.$coupon->id)}}"

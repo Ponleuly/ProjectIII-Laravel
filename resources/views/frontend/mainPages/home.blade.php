@@ -2,13 +2,48 @@
 	use App\Models\Categories_Subcategories;
 	use App\Models\Settings;
 	use App\Models\News;
+	use App\Models\Coupons;
 ?>
 @extends('index')
 @section('content')
 		@php
 			$setting = Settings::all()->first();
+			$coupons = Coupons::where('');
 		@endphp
-        <!-- Start Hero Section -->
+		<!-- Start Testimonial Slider -->
+		<div class="coupon-section">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+						<div class="coupon-slider-wrap text-center">
+							<div id="coupon-nav">
+								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+							</div>
+							<div class="coupon-slider">
+								@foreach ($news as $new)
+									<div class="item">
+										<div class="row justify-content-center">
+											<div class="col-lg-5 mx-auto">
+												<div class="coupon-block text-center">
+													<div class="author-info">
+														<h5>{{$new->news_title}}</h5>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endforeach
+								<!-- END item -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Testimonial Slider -->
+
+		<!-- Start Hero Section -->
 			<div class="hero">
 				<div class="container">
 					<div class="row justify-content-between">
@@ -182,7 +217,6 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-12">
 						<div class="testimonial-slider-wrap text-center">
-
 							<div id="testimonial-nav">
 								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
 								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
@@ -216,7 +250,6 @@
 										</div>
 									</div>
 								@endforeach
-
 								<!-- END item -->
 							</div>
 						</div>

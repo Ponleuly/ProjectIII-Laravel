@@ -565,6 +565,109 @@ a {
         background-color: #d6d6d6; }
       .testimonial-slider-wrap .tns-nav button:hover:before, .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
         background-color: #CC2936; }
+/*-----------------------------------------------*/
+.coupon-section {
+  padding: 1rem 0 1rem 0;
+}
+.coupon-slider-wrap {
+  position: relative;
+}
+.coupon-slider-wrap .tns-inner {
+  padding-top: 0px;
+}
+.coupon-slider-wrap .item .coupon-block blockquote {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .coupon-slider-wrap .item .coupon-block blockquote {
+    line-height: 32px;
+    font-size: 18px;
+  }
+}
+.coupon-slider-wrap .item .coupon-block .author-info h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 0;
+}
+.coupon-slider-wrap #coupon-nav {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  display: none;
+}
+@media (min-width: 768px) {
+  .coupon-slider-wrap #coupon-nav {
+    display: block;
+  }
+}
+.coupon-slider-wrap #coupon-nav>span {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background: rgba(59, 93, 80, 0.1);
+  color: #2f2f2f;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+.coupon-slider-wrap #coupon-nav>span:hover {
+  background: #CC2936;
+  color: #ffffff;
+}
+.coupon-slider-wrap #coupon-nav .prev {
+  left: -10px;
+}
+.coupon-slider-wrap #coupon-nav .next {
+  right: 0;
+}
+.coupon-slider-wrap .tns-nav {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.coupon-slider-wrap .tns-nav button {
+  background: none;
+  border: none;
+  display: inline-block;
+  position: relative;
+  width: 0 !important;
+  height: 7px !important;
+  margin: 2px;
+}
+.coupon-slider-wrap .tns-nav button:active,
+.coupon-slider-wrap .tns-nav button:focus,
+.coupon-slider-wrap .tns-nav button:hover {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: none;
+}
+.coupon-slider-wrap .tns-nav button:before {
+  display: block;
+  width: 7px;
+  height: 7px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  background-color: #d6d6d6;
+}
+.coupon-slider-wrap .tns-nav button:hover:before,
+.coupon-slider-wrap .tns-nav button.tns-nav-active:before {
+  background-color: #CC2936;
+}
+/*-----------------------------------------------*/
 
 .before-footer-section {
   padding: 3rem 0 12rem 0 !important; }
