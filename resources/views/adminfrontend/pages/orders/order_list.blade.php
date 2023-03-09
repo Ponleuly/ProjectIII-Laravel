@@ -124,6 +124,7 @@
                                                     <option
                                                         value ="{{$status->id}}"
                                                         {{($status->id == $order->order_status)? 'selected': ''}}
+                                                        {{($order->order_status == 4)? 'disabled': ''}}
                                                         onClick="window.location = '{{url('admin/order-status-action/'.$order->id .'/'.$status->id)}}'"
                                                         >
                                                         {{$status->status}}

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Orders_Details;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
+use App\Models\Products_Sizes;
 
 class OrderController extends Controller
 {
@@ -90,6 +91,19 @@ class OrderController extends Controller
         $orderStatus = Orders::where('id', $orderId)->first();
         $orderStatus['order_status'] = $statusId;
         $orderStatus->update();
+        // ==== If order is cancenled, update product size quantity
+        if ($statusId == 4) {
+            $order_details = Orders_Details::where('order_id', $orderId)->get();
+            foreach ($order_details as $order_detail) {
+                $productSize = Products_Sizes::where('product_id', $order_detail->product_id)
+                    ->where('size_id', $order_detail->size_id)->first();
+                $order_qty = $order_detail->product_quantity;
+                $size_qty = $productSize->size_quantity;
+                $productSize->size_quantity = $size_qty + $order_qty;
+                $productSize->update();
+            }
+            //return dd($order_details->toArray());
+        }
         return redirect()->back()
             ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
     }
