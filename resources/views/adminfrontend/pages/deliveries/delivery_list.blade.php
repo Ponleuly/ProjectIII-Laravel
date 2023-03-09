@@ -12,7 +12,7 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Product Colors</h4>
+                    <h4 class="mb-2 text-black">Delivery Options List</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12 d-flex">
@@ -52,23 +52,24 @@
                                         <td>{{$delivery->created_at->diffForHumans()}}</td>
                                         <td>
                                             <a
-                                                class="btn btn-primary py-1 px-2 btn-sm"
-                                                href="{{url('/admin/delivery-edit/'. $delivery->id)}}" role="button"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 edit-btn"
+                                                href="{{url('/admin/delivery-edit/'. $delivery->id)}}"
+                                                role="button"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"
-                                                title="Edit Delivery Option"
+                                                title="Edit Product"
                                                 >
-                                                Edit
+                                                <span class="material-icons-round" style="font-size: 16px">edit</span>
                                             </a>
                                             <a
-                                                class="btn btn-danger py-1 px-2 btn-sm"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
                                                 href="{{url('/admin/delivery-delete/'. $delivery->id)}}"
                                                 role="button"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"
-                                                title="Delete Delivery Option"
+                                                title="Delete Product"
                                                 >
-                                                Delete
+                                                <span class="material-icons-round" style="font-size: 16px">delete</span>
                                             </a>
                                         </td>
                                     </tr>

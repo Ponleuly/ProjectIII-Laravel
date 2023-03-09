@@ -12,13 +12,13 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Add product size</h4>
+                    <h4 class="mb-2 text-black">Add Sizes</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
-                                        <label for="size"><p class="text-label">Product size</p></label>
+                                        <label for="size"><p class="text-label">Size Number</p></label>
                                         <input
                                             type="text&number"
                                             class="form-control rounded-0 fw-500 mb-2"
@@ -29,8 +29,8 @@
                                             required
                                         >
                                         <div class="d-flex mt-4">
-                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-size-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" group="submit">Add size</button>
+                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('/admin/product-size-list')}}" role="button">Back to List</a>
+                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" group="submit">Add Size</button>
                                         </div>
                                     </div>
                                 </div>

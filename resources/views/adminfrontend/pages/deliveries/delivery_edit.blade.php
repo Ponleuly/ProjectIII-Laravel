@@ -39,8 +39,17 @@
                                             required
                                         >
                                         <div class="d-flex mt-4">
-                                            <a class="btn btn-outline-danger rounded-0 mt-3" href="{{url('admin/delivery-list')}}" role="button">Back to list</a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Update delivery option</button>
+                                            <a
+                                                class="btn btn-outline-danger rounded-0 mt-3"
+                                                href="{{url('admin/delivery-list')}}"
+                                                role="button">
+                                                Back to List
+                                            </a>
+                                            <button
+                                                class="btn btn-primary rounded-0 ms-auto mt-3"
+                                                type="submit">
+                                                Update Delivery Option
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

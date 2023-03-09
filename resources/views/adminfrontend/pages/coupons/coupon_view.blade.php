@@ -168,7 +168,7 @@
                                                 href="{{url('/admin/coupon-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
                                         </div>
                                     </div>

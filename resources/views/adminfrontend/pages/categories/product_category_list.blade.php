@@ -17,7 +17,7 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Product Categories</h4>
+                    <h4 class="mb-2 text-black">Categories</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12 d-flex">
@@ -74,9 +74,36 @@
                                         </td>
                                         <td>{{$category->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-info py-1 px-2 btn-sm" href="{{url('/admin/product-category-view/'.$category->id)}}" role="button">View</a>
-                                            <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('/admin/product-category-edit/'.$category->id)}}" role="button">Edit</a>
-                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('/admin/product-category-delete/'.$category->id)}}" role="button">Delete</a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
+                                                href="{{url('/admin/product-category-view/'.$category->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="View Details"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">visibility</span>
+                                            </a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 edit-btn"
+                                                href="{{url('/admin/product-category-edit/'.$category->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Edit Product"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">edit</span>
+                                            </a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
+                                                 href="{{url('/admin/product-category-delete/'.$category->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Delete Product"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

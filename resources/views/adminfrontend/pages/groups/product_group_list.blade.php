@@ -32,7 +32,7 @@
                             <thead>
                                 <tr class="bg-primary text-light text-center">
                                     <th scope="col">#</th>
-                                    <th scope="col">PRODUCT GROUP</th>
+                                    <th scope="col">GROUP</th>
                                     <th scope="col">CATEGORY</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>

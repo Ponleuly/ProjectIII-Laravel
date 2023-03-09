@@ -24,7 +24,6 @@
                             @foreach ($groups as $row)
                                 <div class="col-md-6">
                                     <div class="p-3 p-lg-4 border">
-
                                         <div class="row py-2">
                                             <div class="col-4">
                                                 <h5 class="text-black fw-bold mt-1">Group:</h5>
@@ -57,6 +56,13 @@
                                 </div>
                             @endforeach
                         </div>
+                        <div class="col-md-12 mt-4">
+                            <img
+                                src="/product_img/imgcategory/{{$category->category_img}}"
+                                class="img-fluid product-thumbnail"
+                            >
+                        </div>
+
                     </div>
                 </div>
             </div>

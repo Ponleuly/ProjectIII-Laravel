@@ -18,7 +18,7 @@ use App\Models\Categories_Subcategories;
                 </div>
                 @endif
 
-                <h4 class="mb-2 text-black">Product Categories</h4>
+                <h4 class="mb-2 text-black">Sub Categories List</h4>
                 <div class="p-3 p-lg-4 border bg-white">
                     <div class="row">
                         <div class="col-md-12 d-flex">

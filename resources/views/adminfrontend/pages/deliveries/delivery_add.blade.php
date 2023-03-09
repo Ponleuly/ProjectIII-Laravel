@@ -42,9 +42,13 @@
                                                 href="{{url('admin/delivery-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
-                                            <button class="btn btn-primary rounded-0 ms-auto mt-3" type="submit">Add delivery option</button>
+                                            <button
+                                                class="btn btn-primary rounded-0 ms-auto mt-3"
+                                                type="submit">
+                                                Add Delivery Option
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

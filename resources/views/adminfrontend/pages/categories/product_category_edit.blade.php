@@ -13,7 +13,7 @@
                     </div>
 		            @endif
 
-                    <h4 class="mb-2 text-black">Edit Category</h4>
+                    <h4 class="mb-2 text-black">Edit Categories</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12">
