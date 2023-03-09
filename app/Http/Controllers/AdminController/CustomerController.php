@@ -39,7 +39,7 @@ class CustomerController extends Controller
 
     public function customer_subscriber_list()
     {
-        $subscribers = Subscribers::orderBy('id')->paginate(10);
+        $subscribers = Subscribers::orderByDesc('id')->paginate(10);
         $count = 1;
         return view(
             'adminfrontend.pages.customers.subscriber_list',

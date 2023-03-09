@@ -7,6 +7,7 @@ use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Models\Subscribers;
 
 class HomeController extends Controller
 {
@@ -25,5 +26,13 @@ class HomeController extends Controller
                 'news'
             )
         );
+    }
+
+    public function subscriber_store(Request $request)
+    {
+        $input  = $request->all();
+        Subscribers::create($input);
+        return redirect()->back()
+            ->with('message', 'You are subscribered successfully !');
     }
 }

@@ -8,11 +8,24 @@
 	<div class="container relative">
 		<div class="row">
 			<div class="col-lg-8">
+				 <!--------------- Alert ------------------------>
+                    @if(Session::has('alert'))
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                            {{Session::get('alert')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                    <!---------------End Alert ------------------------>
 				<div class="subscription-form">
 					<h3 class="d-flex align-items-center">
 						<span>SUBSCRIBE TO GET MAIL</span>
 					</h3>
-					<form action="{{url('subscriber')}}" method="POST" enctype="multipart/form-data" class="row g-3">
+					<form action="{{url('/subscriber')}}" method="POST" enctype="multipart/form-data" class="row g-3">
             			@csrf <!-- to make form active -->
 
 						<div class="col-auto">
