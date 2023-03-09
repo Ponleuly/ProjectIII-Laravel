@@ -1,9 +1,8 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/order-status-edit/'.$order_status_option->id)}}" method="POST" enctype="multipart/form-data">
+        <form  action="{{url('/admin/order-status-add')}}" method="POST" enctype="multipart/form-data">
             @csrf <!-- to make form active -->
-            @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-md-6 my-3 mb-md-0">
                     <!--------------- Alert ------------------------>
@@ -25,29 +24,28 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
                                     <div class="col-md-12">
-                                        <label for="status"><p class="text-label">Status Name</p></label>
+                                        <label for="status"><p class="text-label">Status Title</p></label>
                                         <input
                                             type="text"
                                             class="form-control rounded-0 fw-500 mb-2 text-capitalize"
                                             id="status"
                                             name="status"
-                                            value="{{$order_status_option->status}}"
                                             placeholder="Status..."
                                         >
 
                                         <div class="d-flex mt-4">
                                             <a
                                                 class="btn btn-outline-danger rounded-0 mt-3"
-                                                href="{{url('admin/order-status-option')}}"
+                                                href="{{url('admin/order-status-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
                                             <button
                                                 class="btn btn-primary rounded-0 ms-auto mt-3"
                                                 type="submit"
                                                 >
-                                                Update Status
+                                                Add Status
                                             </button>
                                         </div>
                                     </div>

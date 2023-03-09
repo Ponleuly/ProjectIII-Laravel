@@ -183,7 +183,12 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(OrderStatusController::class)->group(function () {
-      Route::get('order-status-option', 'order_status_option')->name('order-status-option');
+      Route::get('order-status-list', 'order_status_list')->name('order-status-list');
+      Route::get('order-status-add', 'order_status_add')->name('order-status-add');
+      Route::post('order-status-add', 'order_status_store')->name('order-status-add');
+      Route::get('order-status-edit/{id}', 'order_status_edit')->name('order-status-edit');
+      Route::put('order-status-edit/{id}', 'order_status_update')->name('order-status-edit');
+      Route::get('order-status-delete/{id}', 'order_status_delete')->name('order-status-delete');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {

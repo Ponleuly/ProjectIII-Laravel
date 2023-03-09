@@ -22,7 +22,7 @@
                     @endif
                     <!---------------End Alert ------------------------>
 
-                    <h4 class="mb-2 text-black">Edit Status Option</h4>
+                    <h4 class="mb-2 text-black">Add Statuses Option</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
                             <div class="col-md-12 d-flex">
@@ -51,8 +51,26 @@
                                         <td>{{$status->status}}</td>
                                         <td>{{$status->created_at->diffForHumans()}}</td>
                                         <td>
-                                            <a class="btn btn-primary py-1 px-2 btn-sm" href="{{url('admin/order-status-edit/'.$status->id)}}" role="button">Edit</a>
-                                            <a class="btn btn-danger py-1 px-2 btn-sm" href="{{url('admin/order-status-delete/'.$status->id)}}" role="button">Delete</a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 edit-btn"
+                                                href="{{url('admin/order-status-edit/'.$status->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Edit Product"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">edit</span>
+                                            </a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
+                                                href="{{url('admin/order-status-delete/'.$status->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Delete Product"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
