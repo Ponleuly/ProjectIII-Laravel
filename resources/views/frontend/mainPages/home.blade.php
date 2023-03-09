@@ -8,41 +8,45 @@
 @section('content')
 		@php
 			$setting = Settings::all()->first();
-			$coupons = Coupons::where('');
+			$coupons = Coupons::where('coupon_status', 1)->get();
 		@endphp
-		<!-- Start Testimonial Slider -->
-		<div class="coupon-section">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-12">
-						<div class="coupon-slider-wrap text-center">
-							<div id="coupon-nav">
-								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
-							</div>
-							<div class="coupon-slider">
-								@foreach ($news as $new)
-									<div class="item">
-										<div class="row justify-content-center">
-											<div class="col-lg-5 mx-auto">
-												<div class="coupon-block text-center">
-													<div class="author-info">
-														<h5>{{$new->news_title}}</h5>
+		<!----- Check if there is any active coupon to show ----->
+		@if(count($coupons) != 0)
+			<!-- Start Testimonial Slider -->
+			<div class="coupon-section">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-12">
+							<div class="coupon-slider-wrap text-center">
+								<div id="coupon-nav">
+									<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+									<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+								</div>
+								<div class="coupon-slider">
+									@foreach ($coupons as $coupon)
+										<div class="item">
+											<div class="row justify-content-center">
+												<div class="col-lg-8 mx-auto">
+													<div class="coupon-block text-center">
+														<div class="author-info">
+															<h6 class="fw-normal text-dark text-uppercase fst-italic">
+																{{($coupon->campaign_name)}}
+															</h6>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								@endforeach
-								<!-- END item -->
+									@endforeach
+									<!-- END item -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- End Testimonial Slider -->
-
+			<!-- End Testimonial Slider -->
+		@endif
 		<!-- Start Hero Section -->
 			<div class="hero">
 				<div class="container">

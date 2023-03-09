@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('subcategory_id')->nullable();
-            $table->unsignedInteger('coupon_status')->nullable();
+            $table->tinyInteger('coupon_status')->nullable();
 
             $table->timestamps();
         });
