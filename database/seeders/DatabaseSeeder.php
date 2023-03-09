@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             CouponSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
+            NewsSeeder::class,
         ]);
     }
 }

@@ -240,7 +240,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item nav-item-has-children">
+                 <li class="nav-item nav-item-has-children">
                     <a
                     href="#0"
                     class="collapsed"
@@ -251,11 +251,40 @@
                     aria-label="Toggle navigation"
                     >
                         <span class="icon">
+                            <span class="material-icons-round">description</span>
+                        </span>
+                        <span class="text"><strong>News</strong></span>
+                    </a>
+                    <ul id="ddmenu_6" class="collapse dropdown-nav">
+                        <li>
+                            <a href="{{url('admin/news-list')}}">
+                                News & Introducing List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/news-add')}}">
+                                News & Introducing Add
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item nav-item-has-children">
+                    <a
+                    href="#0"
+                    class="collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#ddmenu_7"
+                    aria-controls="ddmenu_7"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                        <span class="icon">
                             <span class="material-icons-round">settings</span>
                         </span>
                         <span class="text"><strong>Settings</strong></span>
                     </a>
-                    <ul id="ddmenu_6" class="collapse dropdown-nav">
+                    <ul id="ddmenu_7" class="collapse dropdown-nav">
                         <li>
                             <a href="{{url('admin/general-setting')}}">
                                 General Setting

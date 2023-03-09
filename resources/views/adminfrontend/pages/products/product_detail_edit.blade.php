@@ -58,9 +58,7 @@
                                             placeholder="product description..."
                                             name="product_des"
                                             id="product_des"
-                                        >
-                                            {{$products->product_des}}
-                                        </textarea>
+                                        >{{$products->product_des}}</textarea>
 
                                         <label for="product_imgcover">
                                             <p class="text-label mt-3">Image cover</p>

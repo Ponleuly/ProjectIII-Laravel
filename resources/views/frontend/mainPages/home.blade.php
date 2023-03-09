@@ -194,7 +194,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
@@ -213,7 +213,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="/frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>
@@ -232,7 +232,7 @@
 											<div class="testimonial-block text-center">
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="/frontend/images/Giay_2.jpeg" alt="Maria Jones" class="img-fluid">
+														<img src="/frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
 												</div>

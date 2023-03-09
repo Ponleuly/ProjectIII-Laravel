@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController\CartController;
 use App\Http\Controllers\UserController\HomeController;
 use App\Http\Controllers\UserController\LikeController;
+use App\Http\Controllers\AdminController\NewsController;
 use App\Http\Controllers\AdminController\OrderController;
 use App\Http\Controllers\AdminController\CouponController;
 use App\Http\Controllers\UserController\ProductController;
@@ -217,5 +218,15 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/contact-edit/{id}', 'contact_edit')->name('contact-edit');
       Route::put('/contact-edit/{id}', 'contact_update');
       Route::get('/contact-delete/{id}', 'contact_delete');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(NewsController::class)->group(function () {
+      Route::get('/news-list', 'news_list')->name('news-list');
+      Route::get('/news-add', 'news_add')->name('news-add');
+      Route::post('/news-add', 'news_store')->name('news-add');
+      Route::get('/news-edit/{id}', 'news_edit')->name('news-edit');
+      Route::put('/news-edit/{id}', 'news_update');
+      Route::get('/news-delete/{id}', 'news_delete');
    });
 });
