@@ -6,6 +6,7 @@ use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\News;
 
 class HomeController extends Controller
 {
@@ -13,13 +14,15 @@ class HomeController extends Controller
     {
         $newProducts = Products::where('product_status', 1)->paginate(6);
         $categories = Categories::orderBy('id')->get();
+        $news = News::orderBy('id')->get();
         $newProduct_count = $newProducts->count();
         return view(
             'frontend.mainPages.home',
             compact(
                 'newProducts',
                 'categories',
-                'newProduct_count'
+                'newProduct_count',
+                'news'
             )
         );
     }

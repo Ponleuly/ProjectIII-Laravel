@@ -19,24 +19,7 @@ class NewsSeeder extends Seeder
         DB::table('news')->insert([
             [
                 'id' => 1,
-                'news_content' => fake()->text($maxNbChars = 450),
-                'news_img' => 'news_1.jpg',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 2,
-                'news_content' => fake()->text($maxNbChars = 450),
-                'news_img' => 'news_2.jpg',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 3,
-                'news_content' => fake()->text($maxNbChars = 450),
-                'news_img' => 'news_3.jpg',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 4,
+                'news_title' => 'VULCANIZED SHOES',
                 'news_content' => '
                                 <p><strong>(1) Vamp:</strong> toe - the part located in front of the shoe, in contact with the toe.&nbsp;</p>
                                 <p><strong>(2) Tongue:</strong> commonly known with the pure Vietnamese name of the reed. This is the upper part of the foot and is connected to the top of the Vamp.&nbsp;</p>
@@ -48,6 +31,28 @@ class NewsSeeder extends Seeder
                 'news_img' => 'news_4.jpg',
                 'created_at' => Carbon::now()
             ],
+            [
+                'id' => 2,
+                'news_title' => 'VINTAS SAIGON 1980s',
+                'news_content' => fake()->text($maxNbChars = 450),
+                'news_img' => 'news_2.jpg',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 3,
+                'news_title' => 'URBAS CORLURAY PACK',
+                'news_content' => fake()->text($maxNbChars = 450),
+                'news_img' => 'news_3.jpg',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 4,
+                'news_title' => 'SNEAKER FEST VIETNAM',
+                'news_content' => fake()->text($maxNbChars = 450),
+                'news_img' => 'news_1.jpg',
+                'created_at' => Carbon::now()
+            ],
+
         ]);
     }
 }

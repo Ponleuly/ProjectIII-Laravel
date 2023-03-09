@@ -36,7 +36,17 @@
                                             accept="image/png, image/jpeg, image/jpg"
                                             required
                                         >
-
+                                        <label for="news_title">
+                                            <p class="text-label mt-2">News Title</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control rounded-0 fw-500 mb-2"
+                                            id="news_title"
+                                            name="news_title"
+                                            placeholder="new title..."
+                                            required
+                                        >
                                         <label for="news_content"><p class="text-label mt-2">News Content</p></label>
                                         <textarea
                                             class="form-control rounded-0 fw-500"

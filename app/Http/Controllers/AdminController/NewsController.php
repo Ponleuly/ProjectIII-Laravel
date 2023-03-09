@@ -60,6 +60,7 @@ class NewsController extends Controller
     public function news_update(Request $request, $id)
     {
         $update_news = News::where('id', $id)->first();
+        $update_news->news_title = $request->input('news_title');
         $update_news->news_content = $request->input('news_content');
         if ($request->hasFile('news_img')) {
             $destination_path = 'product_img/imgnews';

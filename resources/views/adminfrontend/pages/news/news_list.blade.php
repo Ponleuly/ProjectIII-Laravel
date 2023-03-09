@@ -47,6 +47,7 @@
                                 <tr class="bg-primary text-light text-center">
                                     <th scope="col">#</th>
                                     <th scope="col">IMAGE</th>
+                                    <th scope="col" class="text-start">TITLE</th>
                                     <th scope="col" class="text-start">CONTENT</th>
                                     <th scope="col">DATE</th>
                                     <th scope="col">ACTIONS</th>
@@ -62,6 +63,7 @@
                                                 class="img-fluid product-thumbnail"
                                             >
                                         </td>
+                                        <td class="text-start col-2">{{$new->news_title}}</td>
                                         <td class="text-start text-wrap">{!! $new->news_content !!}</td>
                                         <td class="col-1">{{$new->created_at->diffForHumans()}}</td>
                                         <td class="col-1">

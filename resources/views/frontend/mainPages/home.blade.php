@@ -1,6 +1,7 @@
 <?php
 	use App\Models\Categories_Subcategories;
 	use App\Models\Settings;
+	use App\Models\News;
 ?>
 @extends('index')
 @section('content')
@@ -188,61 +189,34 @@
 							</div>
 
 							<div class="testimonial-slider">
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-5 mx-auto">
-											<div class="testimonial-block text-center">
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
+								@foreach ($news as $new)
+									<div class="item">
+										<div class="row justify-content-center">
+											<div class="col-lg-5 mx-auto">
+												<div class="testimonial-block text-center">
+													<div class="author-info">
+														<div class="author-pic">
+															<img
+																src="/product_img/imgnews/{{$new->news_img}}"
+																alt="Maria Jones"
+																class="img-fluid"
+															>
+														</div>
+														<h3 class="font-weight-bold">
+															{{$new->news_title}}
+														</h3>
 													</div>
-													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
+													<blockquote class="mb-5">
+														<p>
+															{!! $new->news_content !!}
+														</p>
+													</blockquote>
 												</div>
-												<blockquote class="mb-5">
-													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
-												</blockquote>
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- END item -->
+								@endforeach
 
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-5 mx-auto">
-											<div class="testimonial-block text-center">
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="/frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
-												</div>
-												<blockquote class="mb-5">
-													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
-												</blockquote>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- END item -->
-
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-5 mx-auto">
-											<div class="testimonial-block text-center">
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="/frontend/images/shop_banner.jpg" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">URBAS CORLURAY PACK</h3>
-												</div>
-												<blockquote class="mb-5">
-													<p>&ldquo;Urbas Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể...&rdquo;</p>
-												</blockquote>
-											</div>
-										</div>
-									</div>
-								</div>
 								<!-- END item -->
 							</div>
 						</div>
