@@ -189,6 +189,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(CustomerController::class)->group(function () {
       Route::get('/customer-list', 'customer_list')->name('customer-list');
       Route::get('/customer-member-list', 'customer_member_list')->name('customer-member-list');
+      Route::get('/customer-subscriber-list', 'customer_subscriber_list')->name('customer-subscriber-list');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {

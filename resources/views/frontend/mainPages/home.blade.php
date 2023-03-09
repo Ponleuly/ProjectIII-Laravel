@@ -202,15 +202,15 @@
 																class="img-fluid"
 															>
 														</div>
-														<h3 class="font-weight-bold">
-															{{$new->news_title}}
+														<h3>
+															<strong class="fw-bold fs-4">{{$new->news_title}}</strong>
 														</h3>
 													</div>
-													<blockquote class="mb-5">
+													<div class="text-truncate text-wrap text-start">
 														<p>
 															{!! $new->news_content !!}
 														</p>
-													</blockquote>
+													</div>
 												</div>
 											</div>
 										</div>

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Coupons;
+use App\Models\Subscribers;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             ContactSeeder::class,
             NewsSeeder::class,
+            SubscriberSeeder::class,
         ]);
     }
 }

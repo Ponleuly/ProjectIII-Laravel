@@ -26,7 +26,7 @@ class NewsSeeder extends Seeder
                                 <p><strong>(3) Stamp: </strong>the pineapple logo stamp is sewn or heat pressed directly on the tongue.&nbsp;</p>
                                 <p><strong>(4) Eyestays:</strong> is the part that contains 2 rows of eyelet holes. In manufacturing, this part is known as an oz brace. Shoes may or may not have a brace, depending on the intent of the design.&nbsp;</p>
                                 <p><strong>(5) Eyelets:</strong> located on the Eyestays, Eyelets is the word used to refer to the eyelet, if there are eyelets attached, the Eyelets are also known as the buttonhole.</p>
-                                <p><strong>&nbsp;(6) Stitching:</strong> the stitches both have the effect of attaching the parts together and have a decorative effect.&nbsp;</p>
+                                <p><strong>(6) Stitching:</strong> the stitches both have the effect of attaching the parts together and have a decorative effect.</p>
                                 <p><strong>(7) Laces: </strong>shoelaces - a very familiar component and can be changed easily.</p>',
                 'news_img' => 'news_4.jpg',
                 'created_at' => Carbon::now()

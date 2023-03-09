@@ -237,6 +237,13 @@
                                 >
                                 Customers List</a>
                         </li>
+                        <li>
+                            <a
+                                href="{{url('admin/customer-subscriber-list')}}"
+                                class="{{Request::is('admin/customer-subscriber-list')? 'active':''}}"
+                                >
+                                Subscribers List</a>
+                        </li>
                     </ul>
                 </li>
 
