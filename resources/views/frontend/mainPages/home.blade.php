@@ -29,8 +29,12 @@
 												<div class="col-lg-8 mx-auto">
 													<div class="coupon-block text-center">
 														<div class="author-info">
-															<h6 class="fw-normal text-dark text-uppercase fst-italic">
+															<h6 class="fw-normal text-dark text-uppercase fst-italic mb-0">
 																{{($coupon->campaign_name)}}
+																<p class="text-capitalize text-danger mb-0" style="font-size:12px">
+																	from {{date('M d, Y', strtotime($coupon->start_date))}}
+																	- {{date('M d, Y', strtotime($coupon->end_date));}}
+																</p>
 															</h6>
 														</div>
 													</div>
