@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('order_status');
             $table->unsignedDecimal('discount');
             $table->unsignedDecimal('delivery_fee');
+            $table->unsignedDecimal('total_paid')->nullable();
             $table->string('payment_method');
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();

@@ -16,6 +16,7 @@ class Orders extends Model
         'discount',
         'payment_method',
         'delivery_fee',
+        'total_paid'
 
     ];
     public function rela_order_detail()

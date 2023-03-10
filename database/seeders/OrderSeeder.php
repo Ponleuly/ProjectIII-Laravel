@@ -21,9 +21,9 @@ class OrderSeeder extends Seeder
             DB::table('orders')->insert([
                 'invoice_code' => '#iv' . sprintf('%04d', $i),
                 'user_id' => 0,
-                'order_status' => rand(1, 4),
-                'discount' => floatval(rand(2, 5)),
-                'delivery_fee' => 2.00,
+                'order_status' => 1,
+                'discount' =>  floatval(rand(2, 4)),
+                'delivery_fee' => rand(0, 1) ? 2 : 4,
                 'payment_method' => rand(0, 1) ? 'Bank' : 'Cash',
                 'created_at' => Carbon::now()
 

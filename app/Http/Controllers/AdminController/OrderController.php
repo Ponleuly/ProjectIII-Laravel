@@ -107,6 +107,22 @@ class OrderController extends Controller
         $orderStatus = Orders::where('id', $orderId)->first();
         $orderStatus['order_status'] = $statusId;
         $orderStatus->update();
+        if ($statusId == 3) {
+            $deliveryFee = $orderStatus->delivery_fee;
+            $discount = $orderStatus->discount;
+            $totalAmount = 0;
+            $total = 0;
+            $orderDetails = Orders_Details::where('order_id', $orderStatus->id)->get();
+            foreach ($orderDetails as  $orderDetail) {
+                $price = $orderDetail->product_price;
+                $qty = $orderDetail->product_quantity;
+                $totalAmount += $price * $qty;
+            }
+            $total = $totalAmount + $deliveryFee - $discount;
+            $orderStatus['total_paid'] = $total;
+            $orderStatus->update();
+        }
+
         // ==== If order is cancenled, update product size quantity
         if ($statusId == 4) {
             $order_details = Orders_Details::where('order_id', $orderId)->get();
@@ -120,6 +136,7 @@ class OrderController extends Controller
             }
             //return dd($order_details->toArray());
         }
+
         return redirect()->back()
             ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
     }

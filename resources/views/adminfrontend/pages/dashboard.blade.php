@@ -28,7 +28,19 @@
                 </div>
                 <!-- End Icon Cart -->
             </div>
-
+            <!-- End Col -->
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="icon-card mb-30">
+                    <div class="icon orange">
+                            <span class="material-icons-round">shopping_cart</span>
+                    </div>
+                    <div class="content">
+                        <h6 class="mb-10">Total Orders</h6>
+                        <h3 class="text-bold mb-10">{{$totalOrder}}</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- End Col -->
             <!-- End Col -->
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="icon-card mb-30">
@@ -37,7 +49,7 @@
                     </div>
                     <div class="content">
                         <h6 class="mb-10">Total Income</h6>
-                        <h3 class="text-bold mb-10">$74,567</h3>
+                        <h3 class="text-bold mb-10">$ {{$totalIncome}}</h3>
                     </div>
                 </div>
                 <!-- End Icon Cart -->
@@ -57,19 +69,7 @@
                 <!-- End Icon Cart -->
             </div>
 
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon orange">
-                            <span class="material-icons-round">shopping_cart</span>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">Total Orders</h6>
-                        <h3 class="text-bold mb-10">{{$totalOrder}}</h3>
-                    </div>
-                </div>
-            </div>
-            <!-- End Col -->
+
                     </div>
                     <!-- End Row -->
                     <div class="row">
