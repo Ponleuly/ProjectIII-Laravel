@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table top-selling-table">
+                        <table class="table top-selling-table table-hover">
                             <thead>
                                 <tr class="text-center">
                                     <th><h6 class="text-sm text-medium">#</h6></th>

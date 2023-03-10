@@ -10,9 +10,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-12 my-3 mb-md-0">
-                    <!--------------- Alert ------------------------>
+        <div class="row justify-content-center">
+            <div class="col-md-12 my-3 mb-md-0">
+                <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
                         <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
@@ -24,51 +24,54 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                     @endif
-                    <!---------------End Alert ------------------------>
+                <!---------------End Alert ------------------------>
+            </div>
 
-                    <h4 class="mb-2 text-black">Orders List</h4>
-                    <div class="p-3 p-lg-4 border bg-white">
-                        <div class="row">
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-                                <form  action="{{url('admin/order-search')}}">
-                                    <div class="input-group w-75 ms-auto">
-                                        <input
-                                            type="text"
-                                            name="search_order"
-                                            class="form-control rounded-0"
-                                            placeholder="Enter order code here..."
-                                            aria-label="Recipient's username"
-                                            aria-describedby="search"
-                                            value="{{$search_text}}"
+            <!------------------------------------------------------------------------------------>
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="title d-flex flex-wrap align-items-center justify-content-between align-items-baseline">
+                        <div class="left">
+                            <h6 class="text-medium mb-20">Orders List</h6>
+                        </div>
+                        <div class="right">
+                             <form  action="{{url('admin/order-search')}}">
+                                <div class="input-group input-group-sm w-100">
+                                    <input
+                                        type="text"
+                                        name="search_order"
+                                        class="form-control rounded-0 text-sm"
+                                        placeholder="Enter order code here..."
+                                        aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default"
+                                        value="{{$search_text}}"
+                                    >
+                                    <button
+                                        class="btn btn-outline-primary rounded-0 text-sm"
+                                        type="submit"
+                                        id="search"
                                         >
-                                        <button
-                                            class="btn btn-outline-primary rounded-0"
-                                            type="submit"
-                                            id="search"
-                                            >
-                                            Search
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="mt-3 p-3 p-lg-4 border bg-white">
-                        <table class="table table-hover">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table top-selling-table table-hover">
                             <thead>
-                                <tr class="text-light bg-primary">
-                                    <th scope="col">#</th>
-                                    <th scope="col">ORDER DATE</th>
-                                    <th scope="col">CODE</th>
-                                    <th scope="col">CUSTOMER</th>
-                                    <th scope="col">PHONE</th>
-                                    <th scope="col">PAYMENT</th>
-                                    <th scope="col">TOTAL</th>
-                                    <th scope="col" class="text-center">STATUS</th>
-                                    <th scope="col" class="text-center">ACTION</th>
-                                    <th scope="col" class="text-center">INVOICE</th>
+                                <tr class="text-center">
+                                    <th><h6 class="text-sm text-medium">#</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Order Date</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Code</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Customer</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Phone</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Payment</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Total</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Status</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Action</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Invoice</h6></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,26 +93,16 @@
                                         $statuses = Orders_Statuses::orderBy('id')->get();
                                         $status_name = Orders_Statuses::where('id', $order->order_status)->first();
                                     @endphp
-                                    <tr class="admin-table">
-                                        <th scope="row">{{$count++}}</th>
+                                    <tr class="text-center">
+                                        <td><p class="text-sm">{{$count++}}</p></td>
+                                        <td><p class="text-sm">{{date('Y-m-d  H:i', strtotime($order->created_at))}}</p></td>
+                                        <td><p class="text-sm">{{$order->invoice_code}}</p></td>
+                                        <td><p class="text-sm">{{$order->rela_customer_order->c_name}}</p></td>
+                                        <td><p class="text-sm">{{$order->rela_customer_order->c_phone}}</p></td>
+                                        <td><p class="text-sm"> {{$order->payment_method}}</p></td>
+
+                                        <td><p class="text-sm">$ {{number_format($total, 2)}}</p></td>
                                         <td>
-                                            {{date('Y-m-d  H:i', strtotime($order->created_at))}}
-                                        </td>
-                                        <td>
-                                            {{$order->invoice_code}}
-                                        </td>
-                                        <td>
-                                            {{$order->rela_customer_order->c_name}}
-                                        </td>
-                                        <td>
-                                            {{$order->rela_customer_order->c_phone}}
-                                        </td>
-                                        <td class="text-capitalize">
-                                            {{$order->payment_method}}
-                                        <td>
-                                            $ {{number_format($total, 2)}}
-                                        </td>
-                                        <td class="text-center">
                                             <button
                                                 type="button"
                                                 class="btn btn-sm py-1 px-2
@@ -123,7 +116,7 @@
                                                 {{$status_name->status}}
                                             </button>
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             <select
                                                 class="form-select form-select-sm"
                                                 aria-label="Default select example"
@@ -140,7 +133,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             <a
                                                 class="btn btn-info py-1 px-2 btn-sm"
                                                 href="{{url('admin/order-details/'. $order->id)}}"
@@ -148,7 +141,6 @@
                                                 >
                                                 Details
                                             </a>
-
                                         </td>
                                     </tr>
                                 @endforeach
@@ -159,13 +151,13 @@
                                 <!--- To show data by pagination --->
                                 {{$orders->links()}}
                                 @else
-                                    <div class="d-flex mt-4" style="padding-top: 2px">
+                                    <div class="d-flex">
                                             <a
                                                 class="btn btn-outline-danger rounded-0 mt-2"
                                                 href="{{url('admin/order-list')}}"
                                                 role="button"
                                                 >
-                                                Back to List
+                                                <p class="text-sm">Back to List</p>
                                             </a>
                                     </div>
                             @endif
@@ -173,5 +165,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 @endsection()

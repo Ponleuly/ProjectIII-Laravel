@@ -6,9 +6,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-12 my-3 mb-md-0">
-                    <!--------------- Alert ------------------------>
+        <div class="row justify-content-center">
+            <div class="col-md-12 my-3 mb-md-0">
+                <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
                         <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
@@ -20,62 +20,75 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                     @endif
-                    <!---------------End Alert ------------------------>
+                <!---------------End Alert ------------------------>
+            </div>
 
-                    <h4 class="mb-2 text-black">Product Details</h4>
-                    <div class="p-3 p-lg-4 border bg-white">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a
-                                    class="btn btn-outline-primary rounded-0"
-                                    href="{{url('/admin/product-detail-add')}}"
-                                    role="button">
-                                    Add Product
-                                </a>
+            <!------------------------------------------------------------------------------------>
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="title d-flex flex-wrap align-items-center justify-content-between align-items-baseline">
+                        <div class="col-md-6">
+                            <div class="left">
+                                <h6 class="text-medium mb-20">Products List</h6>
                             </div>
-                            <div class="col-md-6">
-                                <form  action="{{url('admin/product-search')}}">
-                                    <div class="input-group w-75 ms-auto">
-                                        <input
-                                            type="text"
-                                            name="search_product"
-                                            class="form-control rounded-0"
-                                            placeholder="Enter product name here..."
-                                            aria-label="Recipient's username"
-                                            aria-describedby="search"
-                                            value="{{$search_text}}"
-                                        >
-                                        <button
-                                            class="btn btn-outline-primary rounded-0"
-                                            type="submit"
-                                            id="search"
-                                            >
-                                            Search
-                                        </button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2 ">
+                                        <a
+                                            class="btn btn-outline-primary rounded-0 py-1"
+                                            href="{{url('/admin/product-detail-add')}}"
+                                            role="button">
+                                            <p class="text-sm">Add Product</p>
+                                        </a>
                                     </div>
-                                </form>
+                                    <div class="col-md-9 ">
+                                        <form  action="{{url('admin/product-search')}}">
+                                            <div class="input-group input-group-sm w-100">
+                                                <input
+                                                    type="text"
+                                                    name="search_product"
+                                                    class="form-control rounded-0 text-sm"
+                                                    placeholder="Enter product name here..."
+                                                    aria-label="Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-default"
+                                                    value="{{$search_text}}"
+                                                >
+                                                <button
+                                                    class="btn btn-outline-primary rounded-0 text-sm"
+                                                    type="submit"
+                                                    id="search"
+                                                    >
+                                                    Search
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 p-3 p-lg-4 border bg-white">
-                        <table class="table table-hover">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table top-selling-table table-hover">
                             <thead>
-                                <tr class="text-center bg-primary text-light" style="font-size:13px">
-                                    <th scope="col">#</th>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col" class="text-start">PRODUCT NAME</th>
-                                    <th scope="col">CATEGORY</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
-                                    <th scope="col">STOCKLEFT</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">STATUS_ACTION</th>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col" class="text-center">ACTIONS</th>
+                                <tr class="text-center">
+                                    <th><h6 class="text-sm text-medium">#</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Image</h6></th>
+                                    <th class="min-width text-start"><h6 class="text-sm text-medium">Product Name</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Category</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Price</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Stock</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Stock Left</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Status</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Status Action</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Date</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Action</h6></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($products as $product)
+                                @foreach ($products as $product)
                                     @php
                                         $stockLeft = 0;
                                         $groupAttribute = Products_Attributes::where('product_id', $product->id)->get();
@@ -85,18 +98,24 @@
                                             $stockLeft  += $row->size_quantity;
                                         }
                                     @endphp
-
-                                    <tr class="admin-table text-center">
-                                        <th scope="row">{{$count++}}</th>
+                                    <tr class="text-center">
+                                        <td><p class="text-sm">{{$count++}}</p></td>
                                         <td>
-                                            <img src="/product_img/imgcover/{{$product->product_imgcover}}" class="img-fluid product-thumbnail product-img">
+                                            <img
+                                                src="/product_img/imgcover/{{$product->product_imgcover}}"
+                                                class="img-fluid product-thumbnail product-img"
+                                            >
                                         </td>
-                                        <td  class="text-start">{{$product->product_name}}</td>
-                                        <td>{{($categoryAttribute)? $categoryAttribute->rela_product_category->category_name: 'Deleted'}}</td>
-                                        <td>${{$product->product_saleprice}}</td>
-                                        <td>{{$product->product_stock}}</td>
-                                        <td>{{$stockLeft}}</td>
-                                        <td class="text-center py-0">
+                                        <td><p class="text-sm text-start">{{$product->product_name}}</p></td>
+                                        <td>
+                                            <p class="text-sm">
+                                                {{($categoryAttribute)? $categoryAttribute->rela_product_category->category_name: 'Deleted'}}
+                                            </p>
+                                        </td>
+                                        <td><p class="text-sm">$ {{$product->product_saleprice}}</p></td>
+                                        <td><p class="text-sm">{{$product->product_stock}}</p></td>
+                                        <td><p class="text-sm">{{$stockLeft}}</p></td>
+                                        <td>
                                             <button
                                                 type="button"
                                                 class="btn btn-sm py-1 px-0
@@ -111,7 +130,7 @@
                                                 {{($product->product_status == 3)?  'Sold Out' : ''}}
                                             </button>
                                         </td>
-                                        <td class="text-center" >
+                                        <td>
                                             <select
                                                 class="form-select form-select-sm"
                                                 aria-label="Default select example"
@@ -142,8 +161,8 @@
                                                 </option>
                                             </select>
                                         </td>
-                                        <td>{{$product->created_at->diffForHumans()}}</td>
-                                        <td class="text-center col-2">
+                                        <td><p class="text-sm">{{$product->created_at->diffForHumans()}}</p></td>
+                                        <td style="width:125px">
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('/admin/product-detail-view/'.$product->product_code)}}"
@@ -184,13 +203,13 @@
                                 <!--- To show data by pagination --->
                                 {{$products->links()}}
                                 @else
-                                    <div class="d-flex mt-4" style="padding-top: 2px">
+                                    <div class="d-flex">
                                             <a
                                                 class="btn btn-outline-danger rounded-0 mt-2"
                                                 href="{{url('admin/product-detail-list')}}"
                                                 role="button"
                                                 >
-                                                Back to List
+                                                <p class="text-sm">Back to List</p>
                                             </a>
                                     </div>
                             @endif
@@ -198,5 +217,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 @endsection()

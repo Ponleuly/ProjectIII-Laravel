@@ -12,12 +12,14 @@
 							<i class="lni lni-chevron-left me-2"></i> Menu
 						</button>
 					</div>
+					<!--
 					<div class="header-search d-none d-md-flex">
 						<form action="#">
 							<input class="rounded-0" type="text" placeholder="Search..." />
 							<button><i class="lni lni-search-alt"></i></button>
 						</form>
 					</div>
+					-->
 				</div>
 			</div>
 
