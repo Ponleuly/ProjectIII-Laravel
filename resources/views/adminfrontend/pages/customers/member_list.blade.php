@@ -25,12 +25,30 @@ use App\Models\Products_Attributes;
                 <h4 class="mb-2 text-black">Members List</h4>
                 <div class="p-3 p-lg-4 border bg-white">
                     <div class="row">
-                        <div class="col-md-12 d-flex">
-                            <div class="input-group w-25 ms-auto">
-                                <input group="search" class="form-control rounded-0" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="search">
-                                <button class="btn btn-outline-primary rounded-0" group="button" id="search">Search</button>
+                            <div class="col-md-6">
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <form  action="{{url('admin/customer-member-search')}}">
+                                    <div class="input-group w-75 ms-auto">
+                                        <input
+                                            type="text"
+                                            name="search_member"
+                                            class="form-control rounded-0"
+                                            placeholder="Enter member name here..."
+                                            aria-label="Recipient's username"
+                                            aria-describedby="search"
+                                            value="{{$search_text}}"
+                                        >
+                                        <button
+                                            class="btn btn-outline-primary rounded-0"
+                                            type="submit"
+                                            id="search"
+                                            >
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
                 <div class="mt-3 p-3 p-lg-4 border bg-white">
@@ -81,8 +99,20 @@ use App\Models\Products_Attributes;
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end">
-                    <!--- To show data by pagination --->
-                    {{$members->links()}}
+                    @if($search_text == '')
+                        <!--- To show data by pagination --->
+                        {{$members->links()}}
+                        @else
+                            <div class="d-flex mt-4" style="padding-top: 2px">
+                                <a
+                                    class="btn btn-outline-danger rounded-0 mt-2"
+                                    href="{{url('admin/customer-member-list')}}"
+                                    role="button"
+                                    >
+                                    Back to List
+                                </a>
+                            </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -107,9 +107,6 @@
                                             accept="image/png, image/jpeg, image/jpg"
                                             multiple
                                         >
-
-
-
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +282,7 @@
                                                 href="{{url('/admin/product-detail-list')}}"
                                                 role="button"
                                                 >
-                                                Back to list
+                                                Back to List
                                             </a>
                                             <button class="btn btn-primary rounded-0 ms-auto mt-2" type="submit">Update product</button>
                                         </div>

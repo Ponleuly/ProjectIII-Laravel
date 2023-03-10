@@ -15,14 +15,31 @@ class ProductSizeController extends Controller
      */
     public function product_size_list()
     {
-        $sizes = Sizes::orderBy('size_number')->paginate(6);
+        $sizes = Sizes::orderBy('size_number')->paginate(8);
+        $count = 1;
+        $search_text = '';
+        return view(
+            '
+                adminfrontend.pages.sizes.product_size_list',
+            compact(
+                'sizes',
+                'count',
+                'search_text'
+            )
+        );
+    }
+    public function product_size_search()
+    {
+        $search_text = $_GET['search_size'];
+        $sizes = Sizes::where('size_number', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
         return view(
             '
                 adminfrontend.pages.sizes.product_size_list',
             compact(
                 'sizes',
-                'count'
+                'count',
+                'search_text'
             )
         );
     }

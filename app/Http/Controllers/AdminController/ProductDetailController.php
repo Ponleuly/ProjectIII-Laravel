@@ -35,22 +35,37 @@ class ProductDetailController extends Controller
     }
 
 
-
     public function product_detail_list()
     {
         $products = Products::orderByDesc('id')->paginate(6);
         $count = 1;
+        $search_text = '';
         return view(
             'adminfrontend.pages.products.product_detail_list',
             compact(
                 'products',
-                'count'
+                'count',
+                'search_text'
             )
 
         );
     }
 
+    public function product_search()
+    {
+        $search_text = $_GET['search_product'];
+        $products = Products::where('product_name', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.products.product_detail_list',
+            compact(
+                'products',
+                'count',
+                'search_text'
+            )
 
+        );
+    }
 
     public function product_detail_view($code)
     {

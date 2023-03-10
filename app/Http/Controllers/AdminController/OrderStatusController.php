@@ -10,16 +10,32 @@ use App\Http\Controllers\Controller;
 class OrderStatusController extends Controller
 {
 
-
     public function order_status_list()
     {
         $statuses = Orders_Statuses::orderBy('id')->get();
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.order_statuses.status_list',
+            compact(
+                'count',
+                'statuses',
+                'search_text'
+            )
+        );
+    }
+
+    public function order_status_search()
+    {
+        $search_text = $_GET['search_order_status'];
+        $statuses = Orders_Statuses::where('status', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.order_statuses.status_list',
             compact(
                 'count',
-                'statuses'
+                'statuses',
+                'search_text'
             )
         );
     }

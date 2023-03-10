@@ -12,11 +12,28 @@ class DeliveryController extends Controller
     {
         $deliveries = Deliveries::latest()->get();
         $count = 1;
+        $search_text  = '';
         return view(
             'adminfrontend.pages.deliveries.delivery_list',
             compact(
                 'deliveries',
-                'count'
+                'count',
+                'search_text'
+            )
+        );
+    }
+
+    public function delivery_search()
+    {
+        $search_text = $_GET['search_delivery'];
+        $deliveries = Deliveries::where('delivery_option', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.deliveries.delivery_list',
+            compact(
+                'deliveries',
+                'count',
+                'search_text'
             )
         );
     }

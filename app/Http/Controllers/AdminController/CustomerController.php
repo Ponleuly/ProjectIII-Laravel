@@ -14,15 +14,58 @@ class CustomerController extends Controller
     {
         $customers = Customers::orderBy('id')->paginate(10);
         $count = 1;
+        $search_text = '';
         return view(
             'adminfrontend.pages.customers.customer_list',
             compact(
                 'customers',
-                'count'
+                'count',
+                'search_text'
             )
 
         );
     }
+    public function customer_edit($id)
+    {
+        $customer = Customers::where('id', $id)->first();
+        return view(
+            'adminfrontend.pages.customers.customer_edit',
+            compact(
+                'customer',
+            )
+
+        );
+    }
+    public function customer_update(Request $request, $id)
+    {
+        $update_customer = Customers::where('id', $id)->first();
+        $update_customer->c_name = $request->input('c_name');
+        $update_customer->c_phone = $request->input('c_phone');
+        $update_customer->c_email = $request->input('c_email');
+        $update_customer->c_address = $request->input('c_address');
+        $update_customer->update();
+        return redirect('admin/customer-list')
+            ->with('message', 'Customer details updated successfully !');
+
+
+        //return dd($request->toArray());
+    }
+    public function customer_search()
+    {
+        $search_text = $_GET['search_customer'];
+        $customers = Customers::where('c_name', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.customers.customer_list',
+            compact(
+                'customers',
+                'count',
+                'search_text'
+            )
+
+        );
+    }
+
 
     public function customer_delete($id)
     {
@@ -32,20 +75,37 @@ class CustomerController extends Controller
             ->with('message', 'Customer name : ' . $customer->c_name . ' is deleted successfully!');
     }
 
-    public function customer_member_list()
+
+    public function member_list()
     {
         $members = User::orderBy('id')->where('role', 1)->paginate(10);
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.customers.member_list',
+            compact(
+                'members',
+                'count',
+                'search_text'
+            )
+
+        );
+    }
+    public function member_search()
+    {
+        $search_text = $_GET['search_member'];
+        $members = User::where('name', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.customers.member_list',
             compact(
                 'members',
-                'count'
+                'count',
+                'search_text'
             )
 
         );
     }
-
     public function customer_member_delete($id)
     {
         $member = User::where('id', $id)->first();
@@ -54,21 +114,39 @@ class CustomerController extends Controller
             ->with('message', 'Member name : ' . $member->name . ' is deleted successfully!');
     }
 
-    public function customer_subscriber_list()
+
+
+    public function subscriber_list()
     {
         $subscribers = Subscribers::orderByDesc('id')->paginate(10);
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.customers.subscriber_list',
+            compact(
+                'subscribers',
+                'count',
+                'search_text'
+            )
+
+        );
+    }
+    public function subscriber_search()
+    {
+        $search_text = $_GET['search_subscriber'];
+        $subscribers = Subscribers::where('s_name', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.customers.subscriber_list',
             compact(
                 'subscribers',
-                'count'
+                'count',
+                'search_text'
             )
 
         );
     }
-
-    public function customer_subscriber_delete($id)
+    public function subscriber_delete($id)
     {
         $subscriber = Subscribers::where('id', $id)->first();
         $subscriber->delete();

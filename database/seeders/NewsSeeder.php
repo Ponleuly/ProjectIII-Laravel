@@ -29,6 +29,7 @@ class NewsSeeder extends Seeder
                                 <p><strong>(6) Stitching:</strong> the stitches both have the effect of attaching the parts together and have a decorative effect.</p>
                                 <p><strong>(7) Laces: </strong>shoelaces - a very familiar component and can be changed easily.</p>',
                 'news_img' => 'news_4.jpg',
+                'news_status' => 0,
                 'created_at' => Carbon::now()
             ],
             [
@@ -36,6 +37,7 @@ class NewsSeeder extends Seeder
                 'news_title' => 'VINTAS SAIGON 1980s',
                 'news_content' => fake()->text($maxNbChars = 450),
                 'news_img' => 'news_2.jpg',
+                'news_status' => 1,
                 'created_at' => Carbon::now()
             ],
             [
@@ -43,6 +45,7 @@ class NewsSeeder extends Seeder
                 'news_title' => 'URBAS CORLURAY PACK',
                 'news_content' => fake()->text($maxNbChars = 450),
                 'news_img' => 'news_3.jpg',
+                'news_status' => 1,
                 'created_at' => Carbon::now()
             ],
             [
@@ -50,6 +53,7 @@ class NewsSeeder extends Seeder
                 'news_title' => 'SNEAKER FEST VIETNAM',
                 'news_content' => fake()->text($maxNbChars = 450),
                 'news_img' => 'news_1.jpg',
+                'news_status' => 1,
                 'created_at' => Carbon::now()
             ],
 

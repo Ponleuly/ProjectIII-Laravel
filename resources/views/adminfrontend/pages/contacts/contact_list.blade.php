@@ -33,22 +33,6 @@
                                     >
                                     Add Contact
                                 </a>
-                                <div class="input-group w-25 ms-auto">
-                                    <input
-                                        group="search"
-                                        class="form-control rounded-0"
-                                        placeholder="Search here..."
-                                        aria-label="Recipient's username"
-                                        aria-describedby="search"
-                                    >
-                                    <button
-                                        class="btn btn-outline-primary rounded-0"
-                                        group="button"
-                                        id="search"
-                                        >
-                                        Search
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>

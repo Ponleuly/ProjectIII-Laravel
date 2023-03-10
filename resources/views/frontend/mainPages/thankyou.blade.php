@@ -130,10 +130,10 @@
                                     <li class="text-muted">
                                         <p class="text-muted fw-bold">Status :
                                             <span class="fw-normal
-                                                    {{($order->order_status == 1)?  'text-danger' : ''}}
+                                                    {{($order->order_status == 1)?  'text-warning' : ''}}
                                                     {{($order->order_status == 2)?  'text-primary' : ''}}
                                                     {{($order->order_status == 3)?  'text-success' : ''}}
-                                                    {{($order->order_status == 4)?  'text-warning' : ''}}
+                                                    {{($order->order_status == 4)?  'text-danger' : ''}}
                                                 ">
                                                 {{$order->rela_order_status->status}}
                                             </span>

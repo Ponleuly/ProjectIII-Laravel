@@ -47,6 +47,19 @@
                                             placeholder="new title..."
                                             required
                                         >
+                                        <label for="news_status" ><p class="text-label" >News Status</p></label>
+                                        <select
+                                            class="form-select rounded-0 mb-2"
+                                            aria-label="category select"
+                                            name="news_status"
+                                            id="news_status"
+                                            required
+                                            >
+                                            <option selected disabled value="">Select Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+
                                         <label for="news_content"><p class="text-label mt-2">News Content</p></label>
                                         <textarea
                                             class="form-control rounded-0 fw-500"

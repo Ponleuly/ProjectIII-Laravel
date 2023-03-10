@@ -11,7 +11,22 @@ class NewsController extends Controller
 {
     public function news_list()
     {
-        $news = News::orderBy('id')->get();
+        $news = News::orderByDesc('id')->get();
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.news.news_list',
+            compact(
+                'news',
+                'count',
+                'search_text'
+            )
+        );
+    }
+    public function news_search()
+    {
+        $search_text = $_GET['search_news'];
+        $news = News::where('news_title', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
 
         return view(
@@ -19,10 +34,10 @@ class NewsController extends Controller
             compact(
                 'news',
                 'count',
+                'search_text'
             )
         );
     }
-
     public function news_add()
     {
         return view('adminfrontend.pages.news.news_add');
@@ -61,7 +76,9 @@ class NewsController extends Controller
     {
         $update_news = News::where('id', $id)->first();
         $update_news->news_title = $request->input('news_title');
+        $update_news->news_status = $request->input('news_status');
         $update_news->news_content = $request->input('news_content');
+
         if ($request->hasFile('news_img')) {
             $destination_path = 'product_img/imgnews';
             $image = $request->file('news_img');

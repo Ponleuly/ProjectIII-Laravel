@@ -83,7 +83,12 @@
                                 </li>
                                 <li class="text-muted">
                                     <p class="text-muted fw-bold">Status :
-                                        <span class="fw-normal">
+                                        <span class="fw-normal
+                                                {{($order->status == 1)?  'text-warning' : ''}}
+                                                {{($order->status == 2)?  'text-primary' : ''}}
+                                                {{($order->status == 3)?  'text-success' : ''}}
+                                                {{($order->status == 4)?  'text-danger' : ''}}
+                                            ">
                                             {{$order->rela_order_status->status}}
                                         </span>
                                     </p>

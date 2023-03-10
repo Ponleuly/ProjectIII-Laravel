@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $newProducts = Products::where('product_status', 1)->paginate(6);
         $categories = Categories::orderBy('id')->get();
-        $news = News::orderBy('id')->get();
+        $news = News::where('news_status', 1)->get();
         $newProduct_count = $newProducts->count();
         return view(
             'frontend.mainPages.home',

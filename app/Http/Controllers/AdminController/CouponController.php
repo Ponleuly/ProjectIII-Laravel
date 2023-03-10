@@ -17,17 +17,33 @@ class CouponController extends Controller
 
     public function coupon_list()
     {
-        $coupons = Coupons::orderByDesc('id')->paginate(10);
+        $coupons = Coupons::orderByDesc('id')->paginate(4);
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.coupons.coupon_list',
+            compact(
+                'coupons',
+                'count',
+                'search_text'
+            )
+        );
+    }
+
+    public function coupon_search()
+    {
+        $search_text = $_GET['search_coupon'];
+        $coupons = Coupons::where('campaign_name', 'LIKE', '%' . $search_text . '%')->get();
         $count = 1;
         return view(
             'adminfrontend.pages.coupons.coupon_list',
             compact(
                 'coupons',
                 'count',
+                'search_text'
             )
         );
     }
-
 
     public function coupon_view($id)
     {

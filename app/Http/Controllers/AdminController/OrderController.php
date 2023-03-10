@@ -18,15 +18,31 @@ class OrderController extends Controller
     {
         $orders = Orders::orderByDesc('id')->paginate(10); // Showing only 10 ordered per page
         $count = 1;
+        $search_text = '';
         return view(
             'adminfrontend.pages.orders.order_list',
             compact(
                 'count',
-                'orders'
+                'orders',
+                'search_text'
             )
         );
     }
+    public function order_search()
+    {
+        $search_text = $_GET['search_order'];
+        $orders = Orders::where('invoice_code', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.orders.order_list',
+            compact(
+                'orders',
+                'count',
+                'search_text'
+            )
 
+        );
+    }
     //======  Order Details =======//
     public function order_details($id)
     {

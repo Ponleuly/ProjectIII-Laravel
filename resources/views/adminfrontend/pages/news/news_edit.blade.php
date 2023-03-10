@@ -62,6 +62,19 @@
                                                 placeholder="new title..."
                                                 required
                                             >
+                                            <label for="news_status" ><p class="text-label" >News Status</p></label>
+                                            <select
+                                                class="form-select rounded-0 mb-2"
+                                                aria-label="category select"
+                                                name="news_status"
+                                                id="news_status"
+                                                required
+                                                >
+                                                <option selected disabled value="">Select Status</option>
+                                                <option value="1" {{($new->news_status == 1)? 'selected': ''}}>Active</option>
+                                                <option value="0" {{($new->news_status == 0)? 'selected': ''}}>Inactive</option>
+                                            </select>
+
                                             <label for="news_content"><p class="text-label mt-2">News Content</p></label>
                                             <textarea
                                                 class="form-control rounded-0 fw-500"
@@ -69,7 +82,7 @@
                                                 name="news_content"
                                                 id="news_content" >{{$new->news_content}}</textarea>
 
-                                            <div class="d-flex mt-4">
+                                            <div class="d-flex mt-3">
                                                 <a
                                                     class="btn btn-outline-danger rounded-0 mt-3"
                                                     href="{{url('/admin/news-list')}}"

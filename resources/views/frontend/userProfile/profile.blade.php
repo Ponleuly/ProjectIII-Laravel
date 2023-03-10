@@ -13,14 +13,19 @@
 
         <div class="container">
             <div class="row">
-                <!-------- Message ------------------->
-                @if(Session::has('alert'))
-                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
-                        {{Session::get('alert')}}
-                        <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                <!-------- Message ------------------->
+                <!--------------- Alert ------------------------>
+                    @if(Session::has('alert'))
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                            {{Session::get('alert')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                    @endif
+                <!---------------End Alert ------------------------>
                 <div class="col-md-12 border p-5 p-lg-5 bg-white">
 
                     <div class="row">

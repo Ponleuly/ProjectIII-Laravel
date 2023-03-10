@@ -125,6 +125,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-group-edit/{id}', 'product_group_edit')->name('product-group-edit');
       Route::put('/product-group-edit/{id}', 'product_group_update');
       Route::get('/product-group-delete/{id}', 'product_group_delete');
+      Route::get('/product-group-search', 'product_group_search')->name('product-group-search');
    });
 });
 
@@ -138,6 +139,8 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-category-edit/{id}', 'product_category_edit')->name('product-category-edit');
       Route::put('/product-category-edit/{id}', 'product_category_update');
       Route::get('/product-category-delete/{id}', 'product_category_delete');
+      Route::get('/product-category-search', 'product_category_search')->name('product-category-search');
+      Route::get('/product-category-sub-search', 'product_subcategory_search')->name('product-category-sub-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -148,6 +151,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-size-edit/{id}', 'product_size_edit')->name('product-size-edit');
       Route::put('/product-size-edit/{id}', 'product_size_update');
       Route::get('/product-size-delete/{id}', 'product_size_delete');
+      Route::get('/product-size-search', 'product_size_search')->name('product-size-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -161,6 +165,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-detail-delete/{id}', 'product_detail_delete');
       Route::get('/product-detail-status/{product_id}/{status_id}', 'product_detail_status')
          ->name('product-detail-status');
+      Route::get('/product-search', 'product_search')->name('product-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -171,6 +176,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/delivery-edit/{id}', 'delivery_edit')->name('delivery-edit');
       Route::put('/delivery-edit/{id}', 'delivery_update');
       Route::get('/delivery-delete/{id}', 'delivery_delete');
+      Route::get('/delivery-search', 'delivery_search')->name('delivery-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -180,6 +186,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/order-invoice/{id}', 'order_invoice')->name('order-invoice');
       Route::get('/download-invoice/{id}', 'download_invoice')->name('download-invoice');
       Route::get('/order-status-action/{order_id}/{status_id}', 'order_status_action')->name('order-status-action');
+      Route::get('/order-search', 'order_search')->name('order-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -190,16 +197,22 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('order-status-edit/{id}', 'order_status_edit')->name('order-status-edit');
       Route::put('order-status-edit/{id}', 'order_status_update')->name('order-status-edit');
       Route::get('order-status-delete/{id}', 'order_status_delete')->name('order-status-delete');
+      Route::get('/order-status-search', 'order_status_search')->name('order-status-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(CustomerController::class)->group(function () {
       Route::get('/customer-list', 'customer_list')->name('customer-list');
       Route::get('/customer-delete/{id}', 'customer_delete')->name('customer-delete');
-      Route::get('/customer-member-list', 'customer_member_list')->name('customer-member-list');
-      Route::get('/customer-member-delete/{id}', 'customer_member_delete')->name('customer-member-delete');
-      Route::get('/customer-subscriber-list', 'customer_subscriber_list')->name('customer-subscriber-list');
-      Route::get('/customer-subscriber-delete/{id}', 'customer_subscriber_delete')->name('customer-subscriber-delete');
+      Route::get('/customer-edit/{id}', 'customer_edit')->name('customer-edit');
+      Route::put('/customer-edit/{id}', 'customer_update')->name('customer-edit');
+      Route::get('/customer-member-list', 'member_list')->name('customer-member-list');
+      Route::get('/customer-member-delete/{id}', 'member_delete')->name('customer-member-delete');
+      Route::get('/customer-subscriber-list', 'subscriber_list')->name('customer-subscriber-list');
+      Route::get('/customer-subscriber-delete/{id}', 'subscriber_delete')->name('customer-subscriber-delete');
+      Route::get('/customer-search', 'customer_search')->name('customer-search');
+      Route::get('/customer-member-search', 'member_search')->name('customer-member-search');
+      Route::get('/customer-subscriber-search', 'subscriber_search')->name('customer-subscriber-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -211,6 +224,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/coupon-edit/{id}', 'coupon_edit')->name('coupon-edit');
       Route::put('/coupon-edit/{id}', 'coupon_update');
       Route::get('/coupon-delete/{id}', 'coupon_delete');
+      Route::get('/coupon-search', 'coupon_search')->name('coupon-search');
    });
 });
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
@@ -239,5 +253,6 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/news-edit/{id}', 'news_edit')->name('news-edit');
       Route::put('/news-edit/{id}', 'news_update');
       Route::get('/news-delete/{id}', 'news_delete');
+      Route::get('/news-search', 'news_search')->name('news-search');
    });
 });

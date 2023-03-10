@@ -4,8 +4,6 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-        <form  action="{{url('/admin/product-group-add')}}" method="POST" enctype="multipart/form-data">
-            @csrf <!-- to make form active -->
             <div class="row justify-content-center">
                 <div class="col-md-12 my-3 mb-md-0">
                     @if(Session::has('alert'))
@@ -18,12 +16,35 @@
                     <h4 class="mb-2 text-black">Groups List</h4>
                     <div class="p-3 p-lg-4 border bg-white">
                         <div class="row">
-                            <div class="col-md-12 d-flex">
-                                <a class="btn btn-outline-primary rounded-0" href="{{url('/admin/product-group-add')}}" role="button">Add Groups</a>
-                                <div class="input-group w-25 ms-auto">
-                                    <input group="search" class="form-control rounded-0" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="search">
-                                    <button class="btn btn-outline-primary rounded-0" group="button" id="search">Search</button>
-                                </div>
+                            <div class="col-md-6">
+                                <a
+                                    class="btn btn-outline-primary rounded-0"
+                                    href="{{url('/admin/product-group-add')}}"
+                                    role="button">
+                                    Add Group
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <form  action="{{url('admin/product-group-search')}}">
+                                    <div class="input-group w-75 ms-auto">
+                                        <input
+                                            type="text"
+                                            name="search_group"
+                                            class="form-control rounded-0"
+                                            placeholder="Enter group title here..."
+                                            aria-label="Recipient's username"
+                                            aria-describedby="search"
+                                            value="{{$search_text}}"
+                                        >
+                                        <button
+                                            class="btn btn-outline-primary rounded-0"
+                                            type="submit"
+                                            id="search"
+                                            >
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -76,9 +97,21 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-end">
+                            @if($search_text != '')
+                                <div class="d-flex mt-4" style="padding-top: 2px">
+                                    <a
+                                        class="btn btn-outline-danger rounded-0 mt-2"
+                                        href="{{url('admin/product-group-list')}}"
+                                        role="button"
+                                        >
+                                        Back to List
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 @endsection()

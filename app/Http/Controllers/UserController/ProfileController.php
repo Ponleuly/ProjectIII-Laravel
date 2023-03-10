@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $update_user->address = $request->input('address');
         $update_user->update();
         return redirect('profile')
-            ->with('alert', 'Profile updated successfully !');
+            ->with('message', 'Profile updated successfully !');
 
 
         //return dd($request->toArray());
@@ -71,7 +71,7 @@ class ProfileController extends Controller
         }
 
         return redirect('profile')
-            ->with('alert', 'Password has been changed successfully !');
+            ->with('message', 'Password has been changed successfully !');
     }
 
     public function purchase_history()

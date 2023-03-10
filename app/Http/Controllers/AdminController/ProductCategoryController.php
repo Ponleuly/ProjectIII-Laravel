@@ -20,24 +20,56 @@ class ProductCategoryController extends Controller
     public function product_category_list()
     {
         $categories = Categories::orderBy('category_name')->get();
+        $search_text = '';
         $count = 1;
         return view(
             'adminfrontend.pages.categories.product_category_list',
             compact(
                 'categories',
                 'count',
+                'search_text'
+            )
+        );
+    }
+    public function product_category_search()
+    {
+        $search_text = $_GET['search_category'];
+        $categories = Categories::where('category_name', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
+        return view(
+            'adminfrontend.pages.categories.product_category_list',
+            compact(
+                'categories',
+                'count',
+                'search_text'
             )
         );
     }
     public function product_subcategory_list()
     {
-        $subcategories = Categories_Subcategories::orderBy('id')->paginate(6);
+        $subcategories = Categories_Subcategories::orderBy('id')->paginate(8);
+        $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.categories.product_subcategory_list',
+            compact(
+                'subcategories',
+                'search_text',
+                'count',
+            )
+        );
+    }
+    public function product_subcategory_search()
+    {
+        $search_text = $_GET['search_subcategory'];
+        $subcategories = Categories_Subcategories::where('sub_category', 'LIKE', '%' . $search_text . '%')->get();;
         $count = 1;
         return view(
             'adminfrontend.pages.categories.product_subcategory_list',
             compact(
                 'subcategories',
                 'count',
+                'search_text'
             )
         );
     }

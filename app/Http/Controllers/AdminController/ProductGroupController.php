@@ -13,16 +13,32 @@ class ProductGroupController extends Controller
     {
         $groups = Groups::orderBy('group_name')->get();
         $count = 1;
+        $search_text = '';
+        return view(
+            'adminfrontend.pages.groups.product_group_list',
+            compact(
+                'groups',
+                'count',
+                'search_text'
+            )
+        );
+    }
+
+    public function product_group_search()
+    {
+        $search_text = $_GET['search_group'];
+        $groups = Groups::where('group_name', 'LIKE', '%' . $search_text . '%')->get();
+        $count = 1;
 
         return view(
             'adminfrontend.pages.groups.product_group_list',
             compact(
                 'groups',
                 'count',
+                'search_text'
             )
         );
     }
-
 
     public function product_group_add()
     {

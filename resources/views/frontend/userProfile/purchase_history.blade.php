@@ -61,12 +61,12 @@
                                                     {{$order->payment_method}}
                                                 </td>
                                                 <td
-                                                class="text-center
-                                                    {{($order->order_status == 1)?  'text-danger' : ''}}
-                                                    {{($order->order_status == 2)?  'text-primary' : ''}}
-                                                    {{($order->order_status == 3)?  'text-success' : ''}}
-                                                    {{($order->order_status == 4)?  'text-warning' : ''}}
-                                                    "
+                                                    class="text-center
+                                                        {{($order->order_status == 1)?  'text-warning' : ''}}
+                                                        {{($order->order_status == 2)?  'text-primary' : ''}}
+                                                        {{($order->order_status == 3)?  'text-success' : ''}}
+                                                        {{($order->order_status == 4)?  'text-danger' : ''}}
+                                                        "
                                                     >
                                                     {{$status_name->status}}
                                                 </td>
