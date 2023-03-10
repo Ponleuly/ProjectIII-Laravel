@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,16 @@ class AdminFrontendController extends Controller
 {
     public function dashboard()
     {
-        return view('adminfrontend.pages.dashboard');
+        $newOrder = Orders::where('order_status', 1)->count();
+        $totalOrder = Orders::all()->count();
+
+        return view(
+            'adminfrontend.pages.dashboard',
+            compact(
+                'newOrder',
+                'totalOrder'
+            )
+        );
     }
     /**
      * Display a listing of the resource.

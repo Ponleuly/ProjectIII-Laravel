@@ -28,6 +28,18 @@ class OrderDetailSeeder extends Seeder
 
                 //'customer_id ' => Str::random(10) . '@gmail.com',
             ]);
+            if ($i % 4 == 0) {
+                DB::table('orders_details')->insert([
+                    'order_id' => $i,
+                    'product_id' => rand(1, 16),
+                    'product_price' => floatval(rand(22, 25)),
+                    'product_quantity' => rand(1, 2),
+                    'size_id' => rand(1, 12),
+                    'created_at' => Carbon::now()
+
+                    //'customer_id ' => Str::random(10) . '@gmail.com',
+                ]);
+            }
         }
     }
 }
