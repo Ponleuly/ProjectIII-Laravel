@@ -27,7 +27,7 @@
                         aria-label="Toggle navigation"
                         >
                         <span class="icon">
-                            <span class="material-icons-round">inventory_2</span>
+                            <span class="material-icons-round">local_mall</span>
                         </span>
                         <span class="text"><strong>Products</strong></span>
                     </a>

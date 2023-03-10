@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use App\Models\User;
 use App\Models\Orders;
+use App\Models\Products;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Orders_Details;
+use App\Http\Controllers\Controller;
+use App\Models\Customers;
+use App\Models\Subscribers;
 use Illuminate\Support\Facades\Auth;
 
 class AdminFrontendController extends Controller
@@ -16,15 +20,27 @@ class AdminFrontendController extends Controller
         $totalOrder = Orders::all()->count();
         $orders = Orders::where('order_status', 3)->get();
         $totalIncome = 0;
+        $totalProduct = Products::all()->count();
+        $totalMember = User::all()->count();
+        $totalCustomer = Customers::all()->count();
+        $totalSubscriber = Subscribers::all()->count();
         foreach ($orders as $order) {
             $totalIncome += $order->total_paid;
         }
+        $orders = Orders::orderByDesc('id')->paginate(10); // Showing only 10 ordered per page
+        $count = 1;
         return view(
             'adminfrontend.pages.dashboard',
             compact(
                 'newOrder',
                 'totalOrder',
-                'totalIncome'
+                'totalIncome',
+                'totalProduct',
+                'totalMember',
+                'totalCustomer',
+                'totalSubscriber',
+                'count',
+                'orders'
             )
         );
     }
