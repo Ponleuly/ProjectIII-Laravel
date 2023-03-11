@@ -9,7 +9,7 @@
 							id="menu-toggle"
 							class="main-btn primary-btn btn-hover rounded-1"
 							>
-							<i class="lni lni-chevron-left me-2"></i> Menu
+							<i class="lni lni-chevron-left me-2"></i><p class="text-sm">Menu</p>
 						</button>
 					</div>
 					<!--

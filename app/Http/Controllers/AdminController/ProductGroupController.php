@@ -53,7 +53,7 @@ class ProductGroupController extends Controller
 
         // After inputed -> go back to category page
         return redirect('/admin/product-group-add')
-            ->with('alert', 'Product group ' . $request->group_name . ' is added successfully!');
+            ->with('message', 'Product group ' . $request->group_name . ' is added successfully!');
     }
 
 
@@ -78,7 +78,7 @@ class ProductGroupController extends Controller
 
         return redirect('/admin/product-group-list')
             ->with(
-                'alert',
+                'message',
                 'Product group ' . '"' . $update_group_name->group_name . '"' .
                     ' is updated successfully !'
             );
@@ -92,7 +92,7 @@ class ProductGroupController extends Controller
 
         return redirect('/admin/product-group-list')
             ->with(
-                'alert',
+                'message',
                 'Product group ' . '"' . $delete_group->group_name . '"' .
                     ' is deleted successfully !'
             );

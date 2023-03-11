@@ -6,72 +6,92 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-12 my-3 mb-md-0">
+        <div class="row justify-content-center">
+            <div class="col-md-12 my-3 mb-md-0">
+                <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-		            @endif
-
-                    <h4 class="mb-2 text-black">Categories</h4>
-                    <div class="p-3 p-lg-4 border bg-white">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a
-                                    class="btn btn-outline-primary rounded-0"
-                                    href="{{url('/admin/product-category-add')}}"
-                                    role="button">
-                                    Add Category
-                                </a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @elseif(Session::has('message'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                                {{Session::get('message')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            <div class="col-md-6">
-                                <form  action="{{url('admin/product-category-search')}}">
-                                    <div class="input-group w-75 ms-auto">
-                                        <input
-                                            type="text"
-                                            name="search_category"
-                                            class="form-control rounded-0"
-                                            placeholder="Enter category name here..."
-                                            aria-label="Recipient's username"
-                                            aria-describedby="search"
-                                            value="{{$search_text}}"
-                                        >
-                                        <button
-                                            class="btn btn-outline-primary rounded-0"
-                                            type="submit"
-                                            id="search"
-                                            >
-                                            Search
-                                        </button>
+                    @endif
+                <!---------------End Alert ------------------------>
+            </div>
+
+            <!------------------------------------------------------------------------------------>
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="title d-flex flex-wrap align-items-center justify-content-between align-items-baseline">
+                        <div class="col-md-6">
+                            <div class="left">
+                                <h6 class="text-medium mb-20">Categories List</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2 ">
+                                        <a
+                                            class="btn btn-outline-primary rounded-0 py-1"
+                                            href="{{url('/admin/product-category-add')}}"
+                                            role="button">
+                                            <p class="text-sm">Add Category</p>
+                                        </a>
                                     </div>
-                                </form>
+                                    <div class="col-md-9 ">
+                                        <form  action="{{url('admin/product-category-search')}}">
+                                            <div class="input-group input-group-sm w-100">
+                                                <input
+                                                    type="text"
+                                                    name="search_category"
+                                                    class="form-control rounded-0 text-sm"
+                                                    placeholder="Enter category name here..."
+                                                    aria-label="Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-default"
+                                                    value="{{$search_text}}"
+                                                >
+                                                <button
+                                                    class="btn btn-outline-primary rounded-0 text-sm"
+                                                    type="submit"
+                                                    id="search"
+                                                    >
+                                                    Search
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 p-3 p-lg-4 border bg-white">
-                        <table class="table table-hover">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table top-selling-table table-hover">
                             <thead>
-                                <tr class="bg-primary text-light text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">CATEGORY</th>
-                                    <th scope="col">SUB CATEGORY</th>
-                                    <th scope="col">PRODUCTS</th>
-                                    <th scope="col">CATEGORY GROUP</th>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col">ACTIONS</th>
+                                <tr class="text-center">
+                                    <th><h6 class="text-sm text-medium">#</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Image</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Category</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Sub Category</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Group</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Products</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Date</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Actions</h6></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($categories as $category)
+                                 @foreach($categories as $category)
                                     @php
                                         $groups =  Categories_Groups::where('category_id', $category->id)->get();
                                         $productCount =  Products_Attributes::where('category_id', $category->id)->distinct('product_id')->count();
                                     @endphp
                                     <tr class="text-center admin-table">
-                                        <th scope="row">{{$count++}}</th>
+                                        <th><p class="text-sm"></p>{{$count++}}</th>
                                         <td>
                                             <img
                                                 src="/product_img/imgcategory/{{$category->category_img}}"
@@ -79,22 +99,24 @@
                                                 style="width: 120px"
                                             >
                                         </td>
-                                        <td>{{$category->category_name}}</td>
+                                        <td><p class="text-sm">{{$category->category_name}}</p></td>
                                         <td>
                                             @php
                                                 $sub_count = Categories_Subcategories::where('category_id', $category->id)->count();
                                             @endphp
-                                            {{$sub_count}}
+                                            <p class="text-sm">{{$sub_count}}</p>
                                         </td>
-                                        <td>{{$productCount}}</td>
                                         <td>
                                             @foreach($groups as $item)
-                                                {{$item->rela_category_group->group_name}}
-                                                {{($loop->last)? '':'&'}}
+                                                <p class="text-sm">
+                                                    {{$item->rela_category_group->group_name}}
+                                                    {{($loop->last)? '':'&'}}
+                                                </p>
                                             @endforeach
                                         </td>
-                                        <td>{{$category->created_at->diffForHumans()}}</td>
-                                        <td>
+                                        <td>{{$productCount}}</td>
+                                        <td><p class="text-sm">{{$category->created_at->diffForHumans()}}</p></td>
+                                        <td style="width:125px">
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('/admin/product-category-view/'.$category->id)}}"
@@ -132,13 +154,13 @@
                         </table>
                         <div class="d-flex justify-content-end">
                             @if($search_text != '')
-                                <div class="d-flex mt-4" style="padding-top: 2px">
+                                <div class="d-flex">
                                     <a
                                         class="btn btn-outline-danger rounded-0 mt-2"
                                         href="{{url('admin/product-category-list')}}"
                                         role="button"
                                         >
-                                        Back to List
+                                        <p class="text-sm">Back to List</p>
                                     </a>
                                 </div>
                             @endif
@@ -146,5 +168,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 @endsection()

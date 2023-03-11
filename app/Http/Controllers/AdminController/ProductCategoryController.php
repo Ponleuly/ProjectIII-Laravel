@@ -142,7 +142,7 @@ class ProductCategoryController extends Controller
         }
         // After inputed -> go back to category pages
         return redirect('/admin/product-category-add')
-            ->with('alert', 'Product category ' . $request->category_name . ' successfully!');
+            ->with('message', 'Product category ' . $request->category_name . ' successfully!');
 
         //return dd($explode_id);
     }
@@ -237,7 +237,7 @@ class ProductCategoryController extends Controller
 
         return redirect('/admin/product-category-list')
             ->with(
-                'alert',
+                'message',
                 'Product category ' . '"' . $update_category_name->category_name . '"' .
                     ' is updated successfully !'
             );
@@ -270,7 +270,7 @@ class ProductCategoryController extends Controller
 
         return redirect('/admin/product-category-list')
             ->with(
-                'alert',
+                'message',
                 'Product category ' . '"' . $delete_category->category_name . '"' .
                     ' is deleted successfully !'
             );

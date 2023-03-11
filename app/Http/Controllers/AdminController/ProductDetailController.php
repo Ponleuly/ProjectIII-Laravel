@@ -176,7 +176,7 @@ class ProductDetailController extends Controller
             Products_Attributes::create($attribute);
         }
         return redirect('/admin/product-detail-add')
-            ->with('alert', 'Product ' . $request->product_name . ' is added successfully!');
+            ->with('message', 'Product ' . $request->product_name . ' is added successfully!');
 
         //return dd($total_stock);
     }
@@ -308,7 +308,7 @@ class ProductDetailController extends Controller
             Products_Attributes::create($attribute);
         }
         return redirect('/admin/product-detail-list')
-            ->with('alert', 'Product ' . $request->product_name . ' is updated successfully!');
+            ->with('message', 'Product ' . $request->product_name . ' is updated successfully!');
     }
 
 
@@ -318,7 +318,7 @@ class ProductDetailController extends Controller
         $delete_product->delete();
         return redirect('/admin/product-detail-list')
             ->with(
-                'alert',
+                'message',
                 'Product ' . '"' . $delete_product->product_name . '"' .
                     ' is deleted successfully !'
             );

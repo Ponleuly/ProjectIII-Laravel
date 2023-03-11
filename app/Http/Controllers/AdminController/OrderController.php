@@ -16,7 +16,7 @@ class OrderController extends Controller
 
     public function order_list()
     {
-        $orders = Orders::orderByDesc('id')->paginate(10); // Showing only 10 ordered per page
+        $orders = Orders::orderByDesc('id')->paginate(8); // Showing only 8 ordered per page
         $count = 1;
         $search_text = '';
         return view(

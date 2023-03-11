@@ -1931,14 +1931,14 @@ h6,
 
 /* ========== header css ========== */
 .header {
-  padding: 20px 0;
+  padding: 10px 0;
   background: #fff;
 }
 .header .header-left .menu-toggle-btn .main-btn {
-  padding: 0px 15px;
-  height: 40px;
-  line-height: 46px;
-  border-radius: 10px;
+  padding: 0px 10px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1951,7 +1951,7 @@ h6,
   width: 100%;
   border: 1px solid #efefef;
   background: rgba(239, 239, 239, 0.5);
-  border-radius: 10px;
+  border-radius: 5px;
   height: 40px;
   padding-left: 44px;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -1982,7 +1982,7 @@ h6,
   border: 1px solid #efefef;
   background: rgba(239, 239, 239, 0.5);
   border-radius: 10px;
-  height: 46px;
+  height: 30px;
   width: 46px;
   display: flex;
   justify-content: center;
@@ -2016,7 +2016,7 @@ h6,
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-  top: 24px !important;
+  top: 10px !important;
   right: 0;
   position: absolute;
   transform: translate3d(0px, 60px, 0px);
