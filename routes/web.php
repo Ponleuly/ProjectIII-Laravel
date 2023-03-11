@@ -248,6 +248,7 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(NewsController::class)->group(function () {
       Route::get('/news-list', 'news_list')->name('news-list');
+      Route::get('/news-view/{id}', 'news_view')->name('news-view');
       Route::get('/news-add', 'news_add')->name('news-add');
       Route::post('/news-add', 'news_store')->name('news-add');
       Route::get('/news-edit/{id}', 'news_edit')->name('news-edit');

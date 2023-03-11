@@ -4,10 +4,9 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
-
-            <div class="row justify-content-center">
-                <div class="col-md-12 my-3 mb-md-0">
-                    <!--------------- Alert ------------------------>
+        <div class="row justify-content-center">
+            <div class="col-md-12 my-3 mb-md-0">
+                <!--------------- Alert ------------------------>
                     @if(Session::has('alert'))
                         <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                             {{Session::get('alert')}}
@@ -19,59 +18,73 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                     @endif
-                    <!---------------End Alert ------------------------>
+                <!---------------End Alert ------------------------>
+            </div>
 
-                    <h4 class="mb-2 text-black">Customers List</h4>
-                    <div class="p-3 p-lg-4 border bg-white">
-                        <div class="row">
-                            <div class="col-md-6">
+            <!------------------------------------------------------------------------------------>
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="title d-flex flex-wrap align-items-center justify-content-between align-items-baseline">
+                        <div class="col-md-6">
+                            <div class="left">
+                                <h6 class="text-medium mb-20">Customers List</h6>
                             </div>
-                            <div class="col-md-6">
-                                <form  action="{{url('admin/customer-search')}}">
-                                    <div class="input-group w-75 ms-auto">
-                                        <input
-                                            type="text"
-                                            name="search_customer"
-                                            class="form-control rounded-0"
-                                            placeholder="Enter customer name here..."
-                                            aria-label="Recipient's username"
-                                            aria-describedby="search"
-                                            value="{{$search_text}}"
-                                        >
-                                        <button
-                                            class="btn btn-outline-primary rounded-0"
-                                            type="submit"
-                                            id="search"
-                                            >
-                                            Search
-                                        </button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2 ">
+
                                     </div>
-                                </form>
+                                    <div class="col-md-9 ">
+                                        <form  action="{{url('admin/customer-search')}}">
+                                            <div class="input-group input-group-sm w-100">
+                                                <input
+                                                    type="text"
+                                                    name="search_customer"
+                                                    class="form-control rounded-0 text-sm"
+                                                    placeholder="Enter customer name here..."
+                                                    aria-label="Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-default"
+                                                    value="{{$search_text}}"
+                                                >
+                                                <button
+                                                    class="btn btn-outline-primary rounded-0 text-sm"
+                                                    type="submit"
+                                                    id="search"
+                                                    >
+                                                    Search
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 p-3 p-lg-4 border bg-white">
-                        <table class="table table-hover">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table top-selling-table table-hover">
                             <thead>
-                                <tr class="bg-primary text-light">
-                                    <th scope="col">#</th>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">PHONE</th>
-                                    <th scope="col">EMAIL</th>
-                                    <th scope="col">ADDRESS</th>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col">ACTIONS</th>
+                                <tr>
+                                    <th><h6 class="text-sm text-medium">#</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Name</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Phone</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Email</h6></th>
+                                    <th class="min-width"><h6 class="text-sm text-medium">Address</h6></th>
+                                    <th class="min-width text-center"><h6 class="text-sm text-medium">Date</h6></th>
+                                    <th class="min-width text-center"><h6 class="text-sm text-medium">Actions</h6></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($customers as $customer)
-                                    <tr class="admin-table">
-                                        <th scope="row">{{$count++}}</th>
-                                        <td>{{$customer->c_name}}</td>
-                                        <td>{{$customer->c_phone}}</td>
-                                        <td>{{$customer->c_email}}</td>
-                                        <td>{{$customer->c_address}}</td>
-                                        <td>{{$customer->created_at->diffForHumans()}}</td>
+                                    <tr>
+                                        <td><p class="text-sm">{{$count++}}</p></td>
+                                        <td><p class="text-sm">{{$customer->c_name}}</p></td>
+                                        <td><p class="text-sm">{{$customer->c_phone}}</p></td>
+                                        <td><p class="text-sm">{{$customer->c_email}}</p></td>
+                                        <td><p class="text-sm">{{$customer->c_address}}</p></td>
+                                        <td><p class="text-sm text-center">{{$customer->created_at->diffForHumans()}}</p></td>
                                         <td class="text-center">
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 edit-btn"
@@ -83,7 +96,6 @@
                                                 >
                                                 <span class="material-icons-round" style="font-size: 16px">edit</span>
                                             </a></div>
-
                                             <a
                                                 class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
                                                 href="{{url('admin/customer-delete/'.$customer->id)}}"
@@ -102,20 +114,22 @@
                         <div class="d-flex justify-content-end">
                             @if($search_text == '')
                                 <!--- To show data by pagination --->
-                                {{$customers->links()}}
+                                 {{$customers->links()}}
                                 @else
-                                    <div class="d-flex mt-4" style="padding-top: 2px">
+                                    <div class="d-flex">
                                         <a
                                             class="btn btn-outline-danger rounded-0 mt-2"
                                             href="{{url('admin/customer-list')}}"
                                             role="button"
                                             >
-                                            Back to List
+                                            <p class="text-sm">Back to List</p>
                                         </a>
                                     </div>
                             @endif
                         </div>
                     </div>
+                </div>
             </div>
+        </div>
     </div>
 @endsection()

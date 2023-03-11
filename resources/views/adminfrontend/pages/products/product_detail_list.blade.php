@@ -1,7 +1,6 @@
 <?php
 	use App\Models\Products_Attributes;
 	use App\Models\Products_Sizes;
-
 ?>
 @extends('adminfrontend.layouts.index')
 @section('admincontent')

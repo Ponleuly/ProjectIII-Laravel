@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     public function customer_list()
     {
-        $customers = Customers::orderBy('id')->paginate(10);
+        $customers = Customers::orderBy('id')->paginate(8);
         $count = 1;
         $search_text = '';
         return view(
@@ -78,7 +78,7 @@ class CustomerController extends Controller
 
     public function member_list()
     {
-        $members = User::orderBy('id')->where('role', 1)->paginate(10);
+        $members = User::orderBy('id')->where('role', 1)->paginate(8);
         $count = 1;
         $search_text = '';
         return view(
@@ -106,7 +106,7 @@ class CustomerController extends Controller
 
         );
     }
-    public function customer_member_delete($id)
+    public function member_delete($id)
     {
         $member = User::where('id', $id)->first();
         $member->delete();
@@ -118,7 +118,7 @@ class CustomerController extends Controller
 
     public function subscriber_list()
     {
-        $subscribers = Subscribers::orderByDesc('id')->paginate(10);
+        $subscribers = Subscribers::orderByDesc('id')->paginate(8);
         $count = 1;
         $search_text = '';
         return view(

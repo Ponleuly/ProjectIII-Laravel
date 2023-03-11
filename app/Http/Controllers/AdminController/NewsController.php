@@ -23,6 +23,16 @@ class NewsController extends Controller
             )
         );
     }
+    public function news_view($id)
+    {
+        $news = News::where('id', $id)->first();
+        return view(
+            'adminfrontend.pages.news.news_view',
+            compact(
+                'news',
+            )
+        );
+    }
     public function news_search()
     {
         $search_text = $_GET['search_news'];
