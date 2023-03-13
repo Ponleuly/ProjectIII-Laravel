@@ -169,7 +169,7 @@
 										>{{$c_note}}</textarea>
 								</div>
 
-								<h2 class="h3 mb-3 text-black">Delivery Method</h2>
+								<h2 class="h3 mb-3 text-black">Delivery Methods</h2>
 								@foreach ($deliveries as $delivery)
 									<div class="row d-flex  align-items-baseline mb-3">
 										<div class="col-md-2">
@@ -404,73 +404,42 @@
 										<!--------------------- End Toal table --------------------------->
 
 										<!--------------------- Payment Method --------------------------->
-										<h2 class="h3 mb-3 text-black">Payment Method</h2>
-										<div class="border p-3 mb-3">
-											<div class="form-check ">
-												<input
-													class="form-check-input big-radio me-2"
-													type="radio"
-													name="payment"
-													value="cash"
-													id="flexRadioDefault1"
-													checked
-												>
-												<label class="form-check-label" for="flexRadioDefault1">
-													<h3 class="h6 mb-0 mt-1">
-														<a
-															class="d-block"
-															data-bs-toggle="collapse"
-															href="#collapsebank"
-															role="button"
-															aria-expanded="false"
-															aria-controls="collapsebank"
-															>
-															Pay by Cash
-														</a>
-													</h3>
-												</label>
-											</div>
-											<div class="collapse" id="collapsebank">
-												<div class="py-2">
-												<p class="mb-0">Get product then pay money.</p>
+										<h2 class="h3 mb-3 text-black">Payment Methods</h2>
+										@foreach ($payments as $payment)
+											<div class="border p-3 mb-3">
+												<div class="form-check ">
+													<input
+														class="form-check-input big-radio me-2"
+														type="radio"
+														name="payment"
+														value="{{$payment->payment_title}}"
+														id="{{$payment->payment_title}}"
+														@if ($loop->first)
+															checked
+														@endif
+													>
+													<label class="form-check-label" for="{{$payment->payment_title}}">
+														<h3 class="h6 mb-0 mt-1">
+															<a
+																class="d-block"
+																data-bs-toggle="collapse"
+																href="#collapsemethod{{$payment->id}}"
+																role="button"
+																aria-expanded="false"
+																aria-controls="collapsemethod{{$payment->id}}"
+																>
+																{{$payment->payment_title}}
+															</a>
+														</h3>
+													</label>
+												</div>
+												<div class="collapse" id="collapsemethod{{$payment->id}}">
+													<div class="py-2">
+														<p class="mb-0">{!! $payment->payment_detail !!}</p>
+													</div>
 												</div>
 											</div>
-										</div>
-
-										<div class="border p-3 mb-3">
-											<div class="form-check">
-												<input
-													class="form-check-input big-radio me-2"
-													type="radio"
-													name="payment"
-													value="bank"
-													id="flexRadioDefault2"
-												>
-												<label class="form-check-label" for="flexRadioDefault2">
-													<h3 class="h6 mb-0 mt-1">
-														<a
-															class="d-block"
-															data-bs-toggle="collapse"
-															href="#collapsecheque"
-															role="button"
-															aria-expanded="false"
-															aria-controls="collapsecheque"
-															>
-															Pay by Bank Transfer
-														</a>
-													</h3>
-												</label>
-											</div>
-											<div class="collapse" id="collapsecheque">
-												<div class="py-2">
-													<p class="mb-0">Customer please transfer to bank acount below :</p>
-													<p class="mb-0">Bank: <strong class="text-danger">Agribank</strong></p>
-													<p class="mb-0">Account: <strong class="text-danger">1303206422785</strong></p>
-													<p class="mb-0">Account's name: <strong class="text-danger">LY PONLEU</strong></p>
-													<p class="mb-0">Remark: <strong class="text-danger">Customer's name + Orders code</strong></p>
-												</div>
-											</div>
-										</div>
+										@endforeach
 										<!---------------------End Payment Method --------------------------->
 
 										<div class="row ">

@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             NewsSeeder::class,
             SubscriberSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }

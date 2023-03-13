@@ -65,7 +65,7 @@
                                             class="form-control rounded-0 fw-500"
                                             placeholder="news content..."
                                             name="news_content"
-                                            id="news_content"></textarea>
+                                            id="news_content" required></textarea>
 
                                         <div class="d-flex mt-4">
                                             <a

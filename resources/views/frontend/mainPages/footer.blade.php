@@ -9,14 +9,14 @@
 		<div class="row">
 			<div class="col-lg-8">
 				 <!--------------- Alert ------------------------>
-                    @if(Session::has('alert'))
+                    @if(Session::has('sub-alert'))
                         <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
-                            {{Session::get('alert')}}
+                            {{Session::get('sub-alert')}}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                        @elseif(Session::has('message'))
+                        @elseif(Session::has('sub-message'))
                             <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
-                                {{Session::get('message')}}
+                                {{Session::get('sub-message')}}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                     @endif

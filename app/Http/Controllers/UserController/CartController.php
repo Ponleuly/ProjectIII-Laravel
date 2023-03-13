@@ -16,6 +16,7 @@ use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Products_Attributes;
 use App\Http\Controllers\Controller;
+use App\Models\Payments;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -287,12 +288,14 @@ class CartController extends Controller
             $carts = Cart::content();
         }
         $deliveries = Deliveries::orderBy('id')->get();
+        $payments = Payments::orderBy('id')->get();
 
         return view(
             'frontend.mainPages.checkout',
             compact(
                 'carts',
-                'deliveries'
+                'deliveries',
+                'payments'
             )
         );
     }

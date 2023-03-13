@@ -10,7 +10,7 @@ class DeliveryController extends Controller
 {
     public function delivery_list()
     {
-        $deliveries = Deliveries::latest()->get();
+        $deliveries = Deliveries::orderBy('id')->get();
         $count = 1;
         $search_text  = '';
         return view(

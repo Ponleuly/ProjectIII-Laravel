@@ -25,6 +25,8 @@ use App\Http\Controllers\AdminController\ProductgroupController;
 use App\Http\Controllers\AdminController\AdminFrontendController;
 use App\Http\Controllers\AdminController\ProductDetailController;
 use App\Http\Controllers\AdminController\ProductCategoryController;
+use App\Http\Controllers\AdminController\PaymentController;
+
 
 
 /*
@@ -255,5 +257,17 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::put('/news-edit/{id}', 'news_update');
       Route::get('/news-delete/{id}', 'news_delete');
       Route::get('/news-search', 'news_search')->name('news-search');
+   });
+});
+Route::prefix('admin')->middleware('authAdmin')->group(function () {
+   Route::controller(PaymentController::class)->group(function () {
+      Route::get('/payment-list', 'payment_list')->name('payment-list');
+      Route::get('/payment-view/{id}', 'payment_view')->name('payment-view');
+      Route::get('/payment-add', 'payment_add')->name('payment-add');
+      Route::post('/payment-add', 'payment_store')->name('payment-add');
+      Route::get('/payment-edit/{id}', 'payment_edit')->name('payment-edit');
+      Route::put('/payment-edit/{id}', 'payment_update');
+      Route::get('/payment-delete/{id}', 'payment_delete');
+      Route::get('/payment-search', 'payment_search')->name('payment-search');
    });
 });

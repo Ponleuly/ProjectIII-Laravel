@@ -33,7 +33,7 @@ class HomeController extends Controller
         $input  = $request->all();
         Subscribers::create($input);
         return redirect()->back()
-            ->with('message', 'You are subscribered successfully !');
+            ->with('sub-message', 'You are subscribered successfully !');
     }
 
     public function search_product()

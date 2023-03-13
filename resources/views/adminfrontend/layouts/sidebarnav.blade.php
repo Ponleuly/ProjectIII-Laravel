@@ -209,7 +209,7 @@
                     </ul>
                 </li>
                 <!---------------------------------------------------------->
-                <li class="nav-item nav-item-has-children  {{Request::is('admin/coupon*')? 'active':''}}">
+                <li class="nav-item nav-item-has-children   {{Request::is('admin/payment*')? 'active':''}}">
                     <a
                         href="#0"
                         class="collapsed"
@@ -220,11 +220,44 @@
                         aria-label="Toggle navigation"
                         >
                         <span class="icon">
+                            <span class="material-icons-round">payments</span>
+                        </span>
+                        <span class="text"><strong>Payment Methods</strong></span>
+                    </a>
+                    <ul id="ddmenu_7" class="collapse dropdown-nav">
+                        <li>
+                            <a  href="{{url('admin/payment-list')}}"
+                                class="{{Request::is('admin/payment-list')? 'active':''}}">
+                                Payment Methods List
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{url('admin/payment-add')}}"
+                                class="{{Request::is('admin/payment-add')? 'active':''}}"
+                                >
+                                Payment Methods Add
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!---------------------------------------------------------->
+                <li class="nav-item nav-item-has-children  {{Request::is('admin/coupon*')? 'active':''}}">
+                    <a
+                        href="#0"
+                        class="collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#ddmenu_8"
+                        aria-controls="ddmenu_8"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                        <span class="icon">
                             <span class="material-icons-round">card_giftcard</span>
                         </span>
                         <span class="text"><strong>Coupons</strong></span>
                     </a>
-                    <ul id="ddmenu_7" class="collapse dropdown-nav">
+                    <ul id="ddmenu_8" class="collapse dropdown-nav">
                         <li>
                             <a  href="{{url('admin/coupon-list')}}"
                                 class="{{Request::is('admin/coupon-list')? 'active':''}}">
@@ -246,8 +279,8 @@
                         href="#0"
                         class="collapsed"
                         data-bs-toggle="collapse"
-                        data-bs-target="#ddmenu_8"
-                        aria-controls="ddmenu_8"
+                        data-bs-target="#ddmenu_9"
+                        aria-controls="ddmenu_9"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                         >
@@ -256,7 +289,7 @@
                         </span>
                         <span class="text"><strong>Customers</strong></span>
                     </a>
-                    <ul id="ddmenu_8" class="collapse dropdown-nav">
+                    <ul id="ddmenu_9" class="collapse dropdown-nav">
                         <li>
                             <a  href="{{url('admin/customer-member-list')}}"
                                 class="{{Request::is('admin/customer-member-list')? 'active':''}}">
@@ -283,8 +316,8 @@
                         href="#0"
                         class="collapsed"
                         data-bs-toggle="collapse"
-                        data-bs-target="#ddmenu_9"
-                        aria-controls="ddmenu_9"
+                        data-bs-target="#ddmenu_10"
+                        aria-controls="ddmenu_10"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
@@ -293,7 +326,7 @@
                         </span>
                         <span class="text"><strong>News</strong></span>
                     </a>
-                    <ul id="ddmenu_9" class="collapse dropdown-nav">
+                    <ul id="ddmenu_10" class="collapse dropdown-nav">
                         <li>
                             <a  href="{{url('admin/news-list')}}"
                                 {{Request::is('admin/news-list')? 'active':''}}>
@@ -314,8 +347,8 @@
                         href="#0"
                         class="collapsed"
                         data-bs-toggle="collapse"
-                        data-bs-target="#ddmenu_10"
-                        aria-controls="ddmenu_10"
+                        data-bs-target="#ddmenu_11"
+                        aria-controls="ddmenu_11"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="icon">
@@ -323,7 +356,7 @@
                         </span>
                         <span class="text"><strong>Settings</strong></span>
                     </a>
-                    <ul id="ddmenu_10" class="collapse dropdown-nav">
+                    <ul id="ddmenu_11" class="collapse dropdown-nav">
                         <li>
                             <a href="{{url('admin/general-setting')}}">
                                 General Setting
