@@ -21,43 +21,45 @@
                             </div>
                     @endif
                     <!---------------End Alert ------------------------>
-				<div class="subscription-form">
-					<h3 class="d-flex align-items-center">
-						<span>SUBSCRIBE TO GET MAIL</span>
-					</h3>
-					<form action="{{url('/subscriber')}}" method="POST" enctype="multipart/form-data" class="row g-3">
-            			@csrf <!-- to make form active -->
+				@if(!(Auth::check() && (Auth::user()->role == 1)))
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center">
+							<span>SUBSCRIBE TO GET MAIL</span>
+						</h3>
+						<form action="{{url('/subscriber')}}" method="POST" enctype="multipart/form-data" class="row g-3">
+							@csrf <!-- to make form active -->
 
-						<div class="col-auto">
-							<input
-								type="text"
-								name="s_name"
-								class="form-control  rounded-0"
-								placeholder="Enter your name"
-								required
-							>
-						</div>
-						<div class="col-auto">
-							<input
-								type="email"
-								name="s_email"
-								class="form-control  rounded-0"
-								placeholder="Enter your email"
-								required
-							>
-						</div>
-						<div class="col-auto">
-							<button
-								type="submit"
-								class="btn btn-primary
-								px-3
-								rounded-0 border-1"
+							<div class="col-auto">
+								<input
+									type="text"
+									name="s_name"
+									class="form-control  rounded-0"
+									placeholder="Enter your name"
+									required
 								>
-								<span class="fw-bold">SUB</span>
-							</button>
-						</div>
-					</form>
-				</div>
+							</div>
+							<div class="col-auto">
+								<input
+									type="email"
+									name="s_email"
+									class="form-control  rounded-0"
+									placeholder="Enter your email"
+									required
+								>
+							</div>
+							<div class="col-auto">
+								<button
+									type="submit"
+									class="btn btn-primary
+									px-3
+									rounded-0 border-1"
+									>
+									<span class="fw-bold">SUB</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				@endif
 			</div>
 		</div>
 
