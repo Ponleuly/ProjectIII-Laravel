@@ -26,9 +26,6 @@ use App\Http\Controllers\AdminController\AdminFrontendController;
 use App\Http\Controllers\AdminController\ProductDetailController;
 use App\Http\Controllers\AdminController\ProductCategoryController;
 use App\Http\Controllers\AdminController\PaymentController;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,11 +111,9 @@ Route::controller(AuthAdminController::class)->group(function () {
    Route::post('admin/login', 'login')->name('login');
    Route::get('admin/logout', 'adminLogout')->name('logout');;
 });
-
 Route::prefix('admin')->controller(AdminFrontendController::class)->group(function () {
    Route::get('/dashboard', 'dashboard')->name('dashboard')->middleware('authAdmin');
 });
-
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(ProductGroupController::class)->group(function () {
       Route::get('/product-group-list', 'product_group_list')->name('product-group-list');
@@ -130,7 +125,6 @@ Route::prefix('admin')->middleware('authAdmin')->group(function () {
       Route::get('/product-group-search', 'product_group_search')->name('product-group-search');
    });
 });
-
 Route::prefix('admin')->middleware('authAdmin')->group(function () {
    Route::controller(ProductCategoryController::class)->group(function () {
       Route::get('/product-category-list', 'product_category_list')->name('product-category-list');

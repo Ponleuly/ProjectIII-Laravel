@@ -77,16 +77,13 @@
                                         <p class="fs-6 fw-bold mb-1">CONTACT</p>
                                     </li>
 
-                                    <li class="text-muted">
-                                        <p class="text-muted fw-bold mb-0">Tel :
-                                            <span class="fw-normal">084 3142 150</span>
-                                        </p>
-                                    </li>
-                                    <li class="text-muted ">
-                                        <p class="text-muted fw-bold mb-0">Email :
-                                            <span class="fw-normal">15steps@gmail.com</span>
-                                      </p>
-                                    </li>
+                                    @foreach ($contacts as $contact)
+                                        <li class="text-muted">
+                                            <p class="text-muted fw-bold mb-0">
+                                                <span class="fw-normal">{{$contact->contact_info}}</span>
+                                            </p>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -180,7 +177,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table> 
                         </div>
                         <div class="row">
                             <div class="col-xl-9">

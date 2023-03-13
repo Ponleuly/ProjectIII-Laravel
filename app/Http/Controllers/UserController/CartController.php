@@ -16,6 +16,7 @@ use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Products_Attributes;
 use App\Http\Controllers\Controller;
+use App\Models\Contacts;
 use App\Models\Payments;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -412,13 +413,15 @@ class CartController extends Controller
             $customer = Customers::where('id', $orderId)->first();
             $orderDetails = Orders_Details::where('order_id', $orderId)->get();
             $count = 1;
+            $contacts = Contacts::orderBy('id')->get();
             return view(
                 'frontend.mainPages.thankyou',
                 compact(
                     'count',
                     'order',
                     'customer',
-                    'orderDetails'
+                    'orderDetails',
+                    'contacts'
                 )
             );
             //return dd($orderDetails->toArray());
@@ -500,11 +503,14 @@ class CartController extends Controller
         $customer = Customers::where('id', $order->id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
+        $contacts = Contacts::orderBy('id')->get();
+
         $data = [
             'count' => $count,
             'order' =>  $order,
             'customer' => $customer,
             'orderDetails' => $orderDetails,
+            'contacts' => $contacts,
         ];
         $pdf = Pdf::loadView('adminfrontend.pages.orders.order_invoice', $data);
 

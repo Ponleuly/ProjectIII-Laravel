@@ -10,6 +10,7 @@ use App\Models\Orders_Details;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Products_Sizes;
+use App\Models\Contacts;
 
 class OrderController extends Controller
 {
@@ -50,6 +51,7 @@ class OrderController extends Controller
         $customer = Customers::where('id', $order->id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
+        $contacts = Contacts::orderBy('id')->get();
 
         return view(
             'adminfrontend.pages.orders.order_details',
@@ -57,7 +59,8 @@ class OrderController extends Controller
                 'count',
                 'order',
                 'customer',
-                'orderDetails'
+                'orderDetails',
+                'contacts'
             )
         );
     }
@@ -69,14 +72,15 @@ class OrderController extends Controller
         $customer = Customers::where('id', $order->customer_id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
-
+        $contacts = Contacts::orderBy('id')->get();
         return view(
             'adminfrontend.pages.orders.order_invoice',
             compact(
                 'count',
                 'order',
                 'customer',
-                'orderDetails'
+                'orderDetails',
+                'contacts'
             )
         );
     }
@@ -89,11 +93,13 @@ class OrderController extends Controller
         $customer = Customers::where('id', $order->id)->first();
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
+        $contacts = Contacts::orderBy('id')->get();
         $data = [
             'count' => $count,
             'order' =>  $order,
             'customer' => $customer,
             'orderDetails' => $orderDetails,
+            'contacts' => $contacts,
         ];
         $pdf = Pdf::loadView('adminfrontend.pages.orders.order_invoice', $data);
 
