@@ -5,11 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
-        rel="shortcut icon"
-        href="{{url('frontend/assets/images/favicon.svg')}}"
-        type="image/x-icon"
+            rel="shortcut icon"
+            href="{{url('frontend/assets/images/favicon.svg')}}"
+            type="image/x-icon"
         />
-        <title>15Steps</title>
+        <?php
+			use App\Models\Settings;
+		?>
+		@php
+			$shopName = Settings::all()->first();    
+		@endphp
+		<title>Admin {{$shopName->website_name}}</title>
 
         <!-- ========== All CSS files linkup ========= -->
         <link rel="stylesheet" href="{{url('frontend/assets/css/bootstrap.min.css')}}" />

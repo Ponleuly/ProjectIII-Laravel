@@ -1,10 +1,3 @@
- <!-- /*
-* Bootstrap 5
-* Template Name: Furni
-* Template Author: Untree.co
-* Template URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +19,13 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-		<title>15Steps</title>
+		<?php
+			use App\Models\Settings;
+		?>
+		@php
+			$shopName = Settings::all()->first();    
+		@endphp
+		<title>{{$shopName->website_name}}</title>
 	</head>
 
 	<body>
