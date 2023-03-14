@@ -69,7 +69,7 @@
                         <!------------------ Invoice header ------------------------>
                         <div class="row d-flex align-items-baseline">
                             <div class="col-xl-9">
-                                <h2 class="pt-0 fw-bold text-danger mb-1">15Steps</h2>
+                                <h2 class="pt-0 fw-bold text-danger mb-1">{{$shopName->website_name}}</h2>
                             </div>
                             <div class="col-xl-3">
                                 <ul class="list-unstyled">

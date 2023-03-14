@@ -18,6 +18,7 @@ use App\Models\Products_Attributes;
 use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use App\Models\Payments;
+use App\Models\Settings;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -414,6 +415,8 @@ class CartController extends Controller
             $orderDetails = Orders_Details::where('order_id', $orderId)->get();
             $count = 1;
             $contacts = Contacts::orderBy('id')->get();
+            $shopName = Settings::all()->first();    
+
             return view(
                 'frontend.mainPages.thankyou',
                 compact(
@@ -421,7 +424,8 @@ class CartController extends Controller
                     'order',
                     'customer',
                     'orderDetails',
-                    'contacts'
+                    'contacts',
+                    'shopName'
                 )
             );
             //return dd($orderDetails->toArray());
@@ -504,6 +508,7 @@ class CartController extends Controller
         $orderDetails = Orders_Details::where('order_id', $id)->get();
         $count = 1;
         $contacts = Contacts::orderBy('id')->get();
+        $shopName = Settings::all()->first();    
 
         $data = [
             'count' => $count,
@@ -511,6 +516,7 @@ class CartController extends Controller
             'customer' => $customer,
             'orderDetails' => $orderDetails,
             'contacts' => $contacts,
+            'shopName'=> $shopName,
         ];
         $pdf = Pdf::loadView('adminfrontend.pages.orders.order_invoice', $data);
 

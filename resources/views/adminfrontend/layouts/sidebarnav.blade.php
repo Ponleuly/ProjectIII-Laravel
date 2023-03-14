@@ -1,8 +1,14 @@
+<?php
+    use App\Models\Settings;
+?>
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
         <div class="navbar-logo">
             <a href="{{url('admin/dashboard')}}">
-                <h3 class="text-primary fw-bold">15Steps</h3>
+                @php
+                    $shopName = Settings::all()->first();    
+                @endphp
+                <h3 class="text-primary fw-bold">{{$shopName->website_name}}</h3>
             </a>
         </div>
         <nav class="sidebar-nav">
