@@ -73,7 +73,7 @@
                                     <th class="min-width"><h6 class="text-sm text-medium">Email</h6></th>
                                     <th class="min-width"><h6 class="text-sm text-medium">Address</h6></th>
                                     <th class="min-width text-center"><h6 class="text-sm text-medium">Date</h6></th>
-                                    <th class="min-width text-center"><h6 class="text-sm text-medium">Actions</h6></th>
+                                    <th class="min-width text-center" style="width: 100px"><h6 class="text-sm text-medium">Actions</h6></th>
                                 </tr>
                             </thead>
                             <tbody>
