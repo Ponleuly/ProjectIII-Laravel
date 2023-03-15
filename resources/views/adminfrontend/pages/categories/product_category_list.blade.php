@@ -35,7 +35,7 @@
                         <div class="col-md-6">
                             <div class="right">
                                 <div class="row">
-                                    <div class="col-md-3 mb-2 ">
+                                    <div class="col-md-4 mb-2 ">
                                         <a
                                             class="btn btn-outline-primary rounded-0 py-1"
                                             href="{{url('/admin/product-category-add')}}"
@@ -43,7 +43,7 @@
                                             <p class="text-sm">Add Category</p>
                                         </a>
                                     </div>
-                                    <div class="col-md-9 ">
+                                    <div class="col-md-8 ">
                                         <form  action="{{url('admin/product-category-search')}}">
                                             <div class="input-group input-group-sm w-100">
                                                 <input
