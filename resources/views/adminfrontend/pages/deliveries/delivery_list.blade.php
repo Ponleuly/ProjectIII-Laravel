@@ -30,15 +30,15 @@
                         <div class="col-md-6">
                             <div class="right">
                                 <div class="row">
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-3 mb-2">
                                         <a
                                             class="btn btn-outline-primary rounded-0 py-1"
                                             href="{{url('/admin/delivery-add')}}"
                                             role="button">
-                                            <p class="text-sm">Add Delivery Option</p>
+                                            <p class="text-sm">Add Delivery</p>
                                         </a>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-9">
                                         <form action="{{url('admin/delivery-search')}}">
                                             <div class="input-group input-group-sm w-100">
                                                 <input
