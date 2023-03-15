@@ -387,7 +387,7 @@
 													</tr>
 													<tr>
 														<td class="text-black h6  border-bottom-0">
-															<strong>Total Amount</strong>
+															<strong>Total Paid</strong>
 														</td>
 														<td class="border-bottom-0"></td>
 														<td class="border-bottom-0"></td>
