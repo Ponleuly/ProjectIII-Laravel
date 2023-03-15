@@ -64,10 +64,19 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Login') }}
+                                        </button>
+                                    </div>
 
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label class="form-check-label ms-auto">
+                                            Register an account ? <a href="{{url('register')}}"> Click here.</a>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

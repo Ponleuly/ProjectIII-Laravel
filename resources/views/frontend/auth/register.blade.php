@@ -109,9 +109,19 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Register') }}
+                                        </button>
+                                    </div>
+
+                                    <div class="col-md-8 d-flex align-items-center">
+                                        <label class="form-check-label ms-auto">
+                                            Have an account ? <a href="{{url('login')}}"> Click here.</a>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
