@@ -174,6 +174,7 @@
                                                     {{($order->order_status == 2)?  'btn-primary' : ''}}
                                                     {{($order->order_status == 3)?  'btn-success' : ''}}
                                                     {{($order->order_status == 4)?  'btn-danger' : ''}}
+                                                    {{($order->order_status > 4)?  'btn-secondary' : ''}}
                                                     "
                                                     style="width: 90px"
                                                 >
@@ -189,7 +190,6 @@
                                                     <option
                                                         value ="{{$status->id}}"
                                                         {{($status->id == $order->order_status)? 'selected': ''}}
-                                                        {{($order->order_status == 4)? 'disabled': ''}}
                                                         onClick="window.location = '{{url('admin/order-status-action/'.$order->id .'/'.$status->id)}}'"
                                                         >
                                                         {{$status->status}}
