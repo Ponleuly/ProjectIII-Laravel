@@ -162,11 +162,11 @@
                 </table>
             </div>
             <div class="row">
-                <div class="col-xl-9">
+                <div class="col-xl-8">
                     <p class=" fs-6 fw-bold mb-1 text-muted">PAYMENT METHOD</p>
                     <p class=" fs-5 mb-1 text-muted">{{$order->payment_method}}</p>
                 </div>
-                <div class="col-xl-3">
+                <div class="col-xl-4">
                     <ul class="list-unstyled">
                         <li class="text-muted ">
                             <p class="text-muted mb-1">SubTotal :
