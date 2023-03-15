@@ -5,7 +5,6 @@
 	use App\Models\Invoices;
 	use App\Models\Orders_Statuses;
 ?>
-@extends('index')
 @extends('frontend.userProfile.profile')
 @section('profile_content')
 <h5 class="text-black py-2">Purchase History</h5>

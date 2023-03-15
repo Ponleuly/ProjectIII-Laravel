@@ -1,4 +1,3 @@
-@extends('index')
 @extends('frontend.userProfile.profile')
 @section('profile_content')
                             <h5 class="text-black py-2">Change Password</h5>

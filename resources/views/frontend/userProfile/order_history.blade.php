@@ -4,6 +4,8 @@
 	use App\Models\Products;
 	use App\Models\Invoices;
 	use App\Models\Orders_Statuses;
+	use App\Models\Settings;
+	use App\Models\Contacts;
 ?>
 <!-- For window.print() without title and web hhtp-->
     <style>
@@ -18,7 +20,6 @@
             }
         }
     </style>
-@extends('index')
 @extends('frontend.userProfile.profile')
 @section('profile_content')
         <!------------------Start Invoice ------------------------>
@@ -46,25 +47,25 @@
         <div class="p-lg-5 border bg-white" id="printableArea">
             <!------------------ Invoice header ------------------------>
             <div class="row d-flex align-items-baseline">
-                <div class="col-xl-9">
-                    <h2 class="pt-0 fw-bold text-danger mb-1">15Steps</h2>
+                <div class="col-xl-8">
+                    @php
+                        $shopName = Settings::all()->first();
+                        $contacts = Contacts::orderBy('id')->get();
+                    @endphp
+                    <h2 class="pt-0 fw-bold text-danger mb-1">{{$shopName->website_name}}</h2>
                 </div>
-                <div class="col-xl-3">
+                <div class="col-xl-4">
                     <ul class="list-unstyled">
                         <li class="text-muted">
                             <p class="fs-6 fw-bold mb-1">CONTACT</p>
                         </li>
-
-                        <li class="text-muted">
-                            <p class="text-muted fw-bold mb-0">Tel :
-                                <span class="fw-normal">084 3142 150</span>
-                            </p>
-                        </li>
-                        <li class="text-muted ">
-                            <p class="text-muted fw-bold mb-0">Email :
-                                <span class="fw-normal">15steps@gmail.com</span>
-                          </p>
-                        </li>
+                        @foreach ($contacts as $contact)
+                            <li class="text-muted">
+                                <p class="text-muted fw-bold mb-0">
+                                    <span class="fw-normal">{{$contact->contact_info}}</span>
+                                </p>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -79,7 +80,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-9 mb-2">
+                <div class="col-xl-8 mb-2">
                     <ul class="list-unstyled">
                         <li class="text-muted"><p class="fs-5 fw-bold mb-1">CUSTOMER</p></li>
                         <li class="text-muted">{{$customer->c_name}}</li>
@@ -88,7 +89,7 @@
                         <li class="text-muted col-md-6">{{$customer->c_address}}</li>
                     </ul>
                 </div>
-                <div class="col-xl-3 ">
+                <div class="col-xl-4 ">
                     <ul class="list-unstyled">
                         <li class="text-muted">
                             <p class="fs-5 fw-bold mb-1">ORDER</p>
