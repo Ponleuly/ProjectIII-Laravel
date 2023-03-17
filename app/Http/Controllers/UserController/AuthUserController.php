@@ -19,7 +19,7 @@ class AuthUserController extends Controller
     {
         $input = $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:20', 'regex:/(01)[0-9]{9}/'], // verify only number is acceptable
+            'phone' => ['required', 'string', 'max:20', /*'regex:/(01)[0-9]{9}'*/], // verify only number is acceptable
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -28,18 +28,22 @@ class AuthUserController extends Controller
         if ($input) {
             $input['password'] = bcrypt($request->password);
             User::create($input);
+            /*
             //==== Auto Sign in after register ===//
             $arr = [
                 'email' => $request->email,
                 'password' => $request->password
             ];
             Auth::attempt($arr);
+            */
             //=====================================//
+
         } else {
             return redirect()->back();
         }
         return redirect()->back()
             ->with('alert', 'You are signed up successfully !');
+        //return dd($request->toArray());
     }
 
     //================= Login  ===========================//

@@ -7,7 +7,7 @@
             @if(Session::has('alert'))
                 <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
-                    <a href="{{url('profile')}}" class="alert-link">See your profile ?</a>
+                    <a href="{{url('login')}}" class="alert-link">Click here ! </a> to log in.
                     <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 		    @endif
