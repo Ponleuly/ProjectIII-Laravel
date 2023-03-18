@@ -41,8 +41,8 @@ class AuthUserController extends Controller
         } else {
             return redirect()->back();
         }
-        return redirect()->back()
-            ->with('alert', 'You are signed up successfully !');
+        return redirect('login')
+            ->with('message', 'You are signed up successfully !');
         //return dd($request->toArray());
     }
 

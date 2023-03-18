@@ -4,12 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 p-5">
+            <!--------------- Alert ------------------------>
             @if(Session::has('alert'))
                 <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
-                    <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-		    @endif
+                @elseif(Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        {{Session::get('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            @endif
+            <!---------------End Alert ------------------------>
             <div class="card border-danger">
                 <div class="card-header">{{ $title ?? "" }} {{ __('Login') }}</div>
 

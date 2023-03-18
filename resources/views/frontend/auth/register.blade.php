@@ -3,15 +3,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 p-5">
-            <!-------- Message ------------------->
+            <!--------------- Alert ------------------------>
             @if(Session::has('alert'))
-                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                     {{Session::get('alert')}}
-                    <a href="{{url('login')}}" class="alert-link">Click here ! </a> to log in.
-                    <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-		    @endif
-            <!-------- Message ------------------->
+                @elseif(Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                        {{Session::get('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            @endif
+            <!---------------End Alert ------------------------>
             <div class="card border-danger">
                 <div class="card-header">{{ $title ?? "" }} {{ __('Register') }}</div>
                 <div class="card-body">
