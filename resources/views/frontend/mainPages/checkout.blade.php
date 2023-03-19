@@ -252,6 +252,45 @@
 							<div class="row mb-5">
 								<div class="col-md-12">
 									<div class="p-3 p-lg-4 border bg-white">
+										<!--------------------- Payment Method --------------------------->
+										<h2 class="h3 mb-3 text-black">Payment Methods</h2>
+										@foreach ($payments as $payment)
+											<div class="border p-3 mb-3">
+												<div class="form-check ">
+													<input
+														class="form-check-input big-radio me-2"
+														type="radio"
+														name="payment"
+														value="{{$payment->payment_title}}"
+														id="{{$payment->payment_title}}"
+														@if ($loop->first)
+															checked
+														@endif
+													>
+													<label class="form-check-label" for="{{$payment->payment_title}}">
+														<h3 class="h6 mb-0 mt-1">
+															<a
+																class="d-block"
+																data-bs-toggle="collapse"
+																href="#collapsemethod{{$payment->id}}"
+																role="button"
+																aria-expanded="false"
+																aria-controls="collapsemethod{{$payment->id}}"
+																>
+																{{$payment->payment_title}}
+															</a>
+														</h3>
+													</label>
+												</div>
+												<div class="collapse" id="collapsemethod{{$payment->id}}">
+													<div class="py-2">
+														<p class="mb-0">{!! $payment->payment_detail !!}</p>
+													</div>
+												</div>
+											</div>
+										@endforeach
+										<!---------------------End Payment Method --------------------------->
+
 										<h2 class="h3 mb-3 text-black">Your Cart</h2>
 										<table class="table site-block-order-table mb-3">
 											<thead>
@@ -403,45 +442,7 @@
 										</table>
 										<!--------------------- End Toal table --------------------------->
 
-										<!--------------------- Payment Method --------------------------->
-										<h2 class="h3 mb-3 text-black">Payment Methods</h2>
-										@foreach ($payments as $payment)
-											<div class="border p-3 mb-3">
-												<div class="form-check ">
-													<input
-														class="form-check-input big-radio me-2"
-														type="radio"
-														name="payment"
-														value="{{$payment->payment_title}}"
-														id="{{$payment->payment_title}}"
-														@if ($loop->first)
-															checked
-														@endif
-													>
-													<label class="form-check-label" for="{{$payment->payment_title}}">
-														<h3 class="h6 mb-0 mt-1">
-															<a
-																class="d-block"
-																data-bs-toggle="collapse"
-																href="#collapsemethod{{$payment->id}}"
-																role="button"
-																aria-expanded="false"
-																aria-controls="collapsemethod{{$payment->id}}"
-																>
-																{{$payment->payment_title}}
-															</a>
-														</h3>
-													</label>
-												</div>
-												<div class="collapse" id="collapsemethod{{$payment->id}}">
-													<div class="py-2">
-														<p class="mb-0">{!! $payment->payment_detail !!}</p>
-													</div>
-												</div>
-											</div>
-										@endforeach
-										<!---------------------End Payment Method --------------------------->
-
+										
 										<div class="row ">
 											<div class="col-md-6">
 												<a
