@@ -50,6 +50,7 @@
                                             data-role="tagsinput"
                                             name="sub_category"
                                             placeholder="sub category"
+                                            required
                                         >
 
                                         <label>
