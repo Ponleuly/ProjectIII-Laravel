@@ -18,7 +18,6 @@
                             </div>
                     @endif
                     <!---------------End Alert ------------------------>
-		            @endif
 
                     <h4 class="mb-2 text-black">Add Categories</h4>
                     <div class="p-3 p-lg-4 border bg-white">
