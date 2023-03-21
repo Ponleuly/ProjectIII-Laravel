@@ -35,7 +35,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade'); 
 
             $table->unsignedInteger('group_id');
             $table->foreign('group_id')

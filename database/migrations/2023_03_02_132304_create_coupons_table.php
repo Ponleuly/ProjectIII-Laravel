@@ -22,7 +22,17 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->unsignedInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->unsignedInteger('subcategory_id')->nullable();
+            $table->foreign('subcategory_id')
+                ->references('id')
+                ->on('categories_subcategories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->tinyInteger('coupon_status')->nullable();
 
             $table->timestamps();
