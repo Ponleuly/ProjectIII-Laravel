@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('address');
             $table->boolean('role')->default('1');
-            $table->rememberToken()->nullable();
+            //$table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
