@@ -134,11 +134,13 @@ class ProductCategoryController extends Controller
             $save['group_id'] = $groupId[$i];
             Categories_Groups::create($save);
         }
-        $subCategory = explode(',', $request->sub_category);
-        for ($j = 0; $j < count($subCategory); $j++) {
-            $sub['category_id'] = $categoryId;
-            $sub['sub_category'] = $subCategory[$j];
-            Categories_Subcategories::create($sub);
+        if($request->sub_category != null){
+            $subCategory = explode(',', $request->sub_category);
+            for ($j = 0; $j < count($subCategory); $j++) {
+                $sub['category_id'] = $categoryId;
+                $sub['sub_category'] = $subCategory[$j];
+                Categories_Subcategories::create($sub);
+            }
         }
         // After inputed -> go back to category pages
         return redirect('/admin/product-category-add')
