@@ -69,7 +69,7 @@
 												$category_count = $categories->count();
 											@endphp
 											<!--====================== New and Featured Menu ===============================-->
-											<div class="col-md-{{($category_count > 2)? 3:4}}">
+											<div class="col-md-{{($category_count >= 3)? 3:4}}">
 												<a href="{{url('product-category/new-featured')}}">
 													<h5 class="text-center text-black py-4">
 														<strong>New & Featured</strong>
@@ -93,7 +93,7 @@
 											<!--====================== New and Featured Menu ===============================-->
 											<!--====================== Category Menu ===============================-->
 											@foreach ($categories as $category)
-												<div class="col-md-{{($category_count >= 2)? 3:4}}">
+												<div class="col-md-{{($category_count >= 3)? 3:4}}">
 													<a href="{{url('product-group-category/'.strtolower($group->group_name).'/'.strtolower($category->rela_category->category_name))}}">
 														<h5 class="text-center text-black py-4">
 															<strong>{{$category->rela_category->category_name}}</strong>
