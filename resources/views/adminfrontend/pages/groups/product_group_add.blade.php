@@ -25,6 +25,7 @@
                                             id="group_name"
                                             name="group_name"
                                             placeholder="group title..."
+                                            required
                                         >
 
                                         <div class="d-flex mt-4">
