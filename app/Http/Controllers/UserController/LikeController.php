@@ -34,17 +34,17 @@ class LikeController extends Controller
                 Likes::create($add_like);
                 return redirect()->back()->with(
                     'message',
-                    'Products is added to liked successfully!',
+                    'Products is added to favorite successfully!',
                 );
             }
             return redirect()->back()->with(
                 'message',
-                'Products is removed from liked !',
+                'Products is removed from favorite !',
             );
         } else {
             return redirect()->back()->with(
                 'alert',
-                'Please sign in ! To add products to liked.',
+                'Please sign in ! To add products to favorite.',
             );
         }
     }
@@ -56,7 +56,7 @@ class LikeController extends Controller
         return redirect()->back()
             ->with(
                 'message',
-                'Product is removed from liked successfully!',
+                'Product is removed from favorite successfully!',
             );
         //return dd($rowId);
     }
@@ -66,7 +66,7 @@ class LikeController extends Controller
         return redirect()->back()
             ->with(
                 'message',
-                'All products is removed from liked list successfully!',
+                'All products is removed from favorite list successfully!',
             );
         //return dd($rowId);
     }
