@@ -48,12 +48,19 @@ class ProductGroupController extends Controller
 
     public function product_group_store(Request $request)
     {
+        $group_cmp = Groups::all();
+        foreach ($group_cmp as $group) {
+            if (ucfirst($request->group_name) == ucfirst($group->group_name)) {
+                return redirect('/admin/product-group-add')
+                    ->with('alert', 'Product group ' . $request->group_name . ' already existed !');
+            }
+        }
         $input  = $request->all();
         Groups::create($input);
 
         // After inputed -> go back to category page
         return redirect('/admin/product-group-add')
-            ->with('message', 'Product group ' . $request->group_name . ' is added successfully!');
+            ->with('message', 'Product group ' . ucfirst($request->group_name) . ' is added successfully!');
     }
 
 
@@ -72,6 +79,13 @@ class ProductGroupController extends Controller
 
     public function product_group_update(Request $request, $id)
     {
+        $group_cmp = Groups::all();
+        foreach ($group_cmp as $group) {
+            if (ucfirst($request->group_name) == ucfirst($group->group_name)) {
+                return redirect()->back()
+                    ->with('alert', 'Product group ' . $request->group_name . ' already existed !');
+            }
+        }
         $update_group_name = Groups::where('id', $id)->first();
         $update_group_name->group_name = $request->input('group_name');
         $update_group_name->update();
