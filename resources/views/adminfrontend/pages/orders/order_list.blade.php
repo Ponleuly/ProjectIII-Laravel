@@ -133,13 +133,26 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td>
+                                        <td style="width:100px">
                                             <a
-                                                class="btn btn-info py-1 px-2 btn-sm"
+                                                class="text-light py-1 pb-0 px-2 rounded-0 view-btn"
                                                 href="{{url('admin/order-details/'. $order->id)}}"
                                                 role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="View Details"
                                                 >
-                                                Details
+                                                <span class="material-icons-round" style="font-size: 16px">visibility</span>
+                                            </a>
+                                            <a
+                                                class="text-light py-1 pb-0 px-2 rounded-0 delete-btn"
+                                                 href="{{url('/admin/order-delete/'.$order->id)}}"
+                                                role="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Delete Order"
+                                                >
+                                                <span class="material-icons-round" style="font-size: 16px">delete</span>
                                             </a>
                                         </td>
                                     </tr>

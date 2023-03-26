@@ -154,4 +154,17 @@ class OrderController extends Controller
         return redirect()->back()
             ->with('message', 'Order with invoice code ' . $orderStatus->invoice_code  . ' updated status successfully !');
     }
+
+    public function order_delete($id)
+    {
+        $delete_order = Orders::where('id', $id)->first();
+        $delete_order->delete();
+
+        return redirect('/admin/order-list')
+            ->with(
+                'message',
+                'Order ' . '"' . $delete_order->invoice_code . '"' .
+                    ' is deleted successfully !'
+            );
+    }
 }
