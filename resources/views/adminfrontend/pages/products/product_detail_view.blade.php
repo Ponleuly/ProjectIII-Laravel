@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
                                             <p>
-                                                {{($productCategory)? $productCategory->rela_product_category->category_name: 'Deleted'}}
+                                                {{($productCategory)? $productCategory->rela_product_category->category_name: 'None'}}
                                             </p>
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="col-9 ms-0 ps-0">
                                             <p>
-                                                {{($productCategory)? $productCategory->rela_product_subcategory->sub_category : 'Deleted'}}
+                                                {{($productCategory)? $productCategory->rela_product_subcategory->sub_category : 'None'}}
                                             </p>
                                         </div>
                                     </div>
