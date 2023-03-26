@@ -5,7 +5,7 @@
             @csrf <!-- to make form active -->
             <div class="row justify-content-center">
                 <div class="col-md-6 my-3 mb-md-0">
-                     <!--------------- Alert ------------------------>
+                    <!--------------- Alert ------------------------>
                      @if(Session::has('alert'))
                      <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
                          {{Session::get('alert')}}

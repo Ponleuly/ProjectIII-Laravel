@@ -6,12 +6,19 @@
 @extends('adminfrontend.layouts.index')
 @section('admincontent')
     <div class="container-fluid">
+        <!--------------- Alert ------------------------>
         @if(Session::has('alert'))
+        <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+            {{Session::get('alert')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif(Session::has('message'))
             <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
-                {{Session::get('alert')}}
-                <button group="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{Session::get('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-		@endif
+        @endif
+        <!---------------End Alert ------------------------>
 
         <h4 class="mt-3 text-black">Edit Product</h4>
         <form action="{{url('/admin/product-detail-edit/'.$products->id)}}" method="POST" enctype="multipart/form-data">
