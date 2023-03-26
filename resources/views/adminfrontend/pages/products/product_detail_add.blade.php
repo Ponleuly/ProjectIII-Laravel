@@ -51,8 +51,7 @@
                                             placeholder="product description..."
                                             name="product_des"
                                             id="product_des"
-                                            required>
-                                        </textarea>
+                                            required></textarea>
 
                                         <label for="product_imgcover"><p class="text-label mt-3">Image Cover (1 picture)</p></label>
                                         <input
