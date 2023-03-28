@@ -296,7 +296,7 @@
 											<thead>
 												<th>Products</th>
 												<th class="text-center">Size</th>
-												<th class="text-center">Price</th>
+												<th class="text-center" style="width: 100px">Price</th>
 												<th class="text-center">Quantity</th>
 												<th class="text-end" style="width: 100px">Amount</th>
 											</thead>

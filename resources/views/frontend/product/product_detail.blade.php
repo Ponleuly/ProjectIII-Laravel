@@ -111,18 +111,18 @@
                                 <!--------------------- Price ------------------------>
                                 <div class="row d-flex align-items-baseline">
                                     @if($productDetails->product_price > $productDetails->product_saleprice)
-                                        <div class="col-2 ">
+                                        <div class="col-4 ">
                                             <h5 class="text-danger fw-bold py-2">
                                                 $ {{number_format($productDetails->product_saleprice, 2)}}
                                             </h5>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-4">
                                             <p class="fw-bold">
                                                 <del>$ {{number_format($productDetails->product_price, 2)}}</del>
                                             </p>
                                         </div>
                                         @else
-                                            <div class="col-2">
+                                            <div class="col-4">
                                                 <h5 class="text-danger fw-bold py-2">
                                                     $ {{number_format($productDetails->product_saleprice, 2)}}
                                                 </h5>
