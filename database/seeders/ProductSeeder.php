@@ -205,7 +205,7 @@ class ProductSeeder extends Seeder
                 'product_saleprice' => 10.00,
                 'product_imgcover' => 'Pro_hac0001_1.jpg',
                 'product_color' => '#ebebeb',
-                'product_status' => 2,
+                'product_status' => 3,
                 'product_stock' => 10,
                 'created_at' => Carbon::now()
             ],
