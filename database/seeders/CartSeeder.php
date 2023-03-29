@@ -49,8 +49,8 @@ class CartSeeder extends Seeder
                 'user_id' => 3,
                 'product_id' => 13,
                 'size_id' => 12,
-                'product_quantity' => 2,
-                'product_price' => 11.00,
+                'product_quantity' => 1,
+                'product_price' => 35.00,
                 'created_at' => Carbon::now()
             ],
 
