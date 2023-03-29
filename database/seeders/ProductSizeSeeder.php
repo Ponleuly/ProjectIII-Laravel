@@ -38,7 +38,7 @@ class ProductSizeSeeder extends Seeder
                 'id' => 157,
                 'product_id' => 14,
                 'size_id' => 13,
-                'size_quantity' => 10,
+                'size_quantity' => 0,
                 'created_at' => Carbon::now()
             ],
             [
