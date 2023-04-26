@@ -177,7 +177,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table> 
+                            </table>
                         </div>
                         <div class="row">
                             <div class="col-xl-9">
